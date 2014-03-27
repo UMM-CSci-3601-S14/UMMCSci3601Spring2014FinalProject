@@ -1,0 +1,19 @@
+{
+  "name": "Iteration2Team1",
+  "version": "1.0.0",
+  "homepage": "https://github.com/UMM-CSci-3601-S14/Iteration2Team1",
+    "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "underscore": "~1.6.0",
+    "jquery": "~2.1.0"
+  }
+}
