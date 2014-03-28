@@ -4,6 +4,6 @@
 # 
 exports.index = (req, res) ->
   res.render "index",
-    title: "Express"
+    title: "Lightside"
 
   return
