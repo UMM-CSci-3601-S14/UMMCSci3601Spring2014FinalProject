@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "resultsView.js",
+  "sourceRoot": "",
+  "sources": [
+    "resultsView.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,GAAA,EAAA;KAAA;oSAAA;;CAAA,CAAM,IAAM;CACV;;;;;CAAA;;CAAA,EAAS,EAAT,EAAA;;CAAA,EACU,CAAW,IAArB,MAAqB;;CADrB,EAGY,MAAA,CAAZ;CACG,GAAA,EAAD,OAAA;CAJF,IAGY;;CAHZ,EAMQ,GAAR,GAAQ;CACN,EAAA,GAAA,CAAO;CAAP,GACA,EAAA,EAAmB,EAAnB;CAFM,YAGN;CATF,IAMQ;;CANR;;CAD+B,OAAQ;CAAzC"
+}

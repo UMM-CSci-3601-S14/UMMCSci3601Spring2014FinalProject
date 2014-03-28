@@ -5,55 +5,76 @@ Module dependencies.
 
 
 (function() {
-  var app, express, http, path, routes, user;
+  var app, db, express, http, mongoose, path, routes;
 
-  express = require("express");
+  express = require('express');
 
-  routes = require("./routes");
+  routes = require('./routes');
 
-  user = require("./routes/user");
+  http = require('http');
 
-  http = require("http");
+  path = require('path');
 
-  path = require("path");
+  mongoose = require('mongoose');
 
   app = express();
 
-  app.set("port", process.env.PORT || 3000);
+  mongoose.connect('mongodb://localhost/test');
 
-  app.set("views", path.join(__dirname, "views"));
+  db = mongoose.connection;
 
-  app.engine("html", require("hogan-express"));
+  db.on('error', console.error.bind(console, 'connection error:'));
 
-  app.set("view engine", "html");
+  db.once('open', function() {
+    return console.log('DB connection opened');
+  });
 
-  app.use(express.favicon());
+  app.set('layout', 'layouts/main');
 
-  app.use(express.logger("dev"));
+  app.set('partials', {
+    welcome: 'partials/welcome',
+    results: 'partials/results',
+    csv: 'partials/csv',
+    navbar: 'partials/navbar',
+    scripts: 'partials/scripts'
+  });
 
-  app.use(express.json());
+  app.engine('html', require("hogan-express"));
 
-  app.use(express.urlencoded());
+  app.enable('view cache');
 
-  app.use(express.methodOverride());
-
-  app.use(app.router);
+  app.configure(function() {
+    app.set("port", process.env.PORT || 3000);
+    app.set("views", __dirname + "/views");
+    app.set("view engine", "html");
+    app.use(express.favicon());
+    app.use(express.logger("dev"));
+    app.use(express.json());
+    app.use(express.urlencoded());
+    app.use(express.methodOverride());
+    app.use(express.cookieParser('your secret here'));
+    return app.use(app.router);
+  });
 
   app.use(express["static"](path.join(__dirname, "public")));
 
-  if ("development" === app.get("env")) {
-    app.use(express.errorHandler());
-  }
+  app.use(express["static"](path.join(__dirname, 'bower_components')));
+
+  app.configure('development', function() {
+    return app.use(express.errorHandler());
+  });
 
   app.get("/", routes.index);
 
-  app.get("/users", user.list);
+  app.get("/results", routes.results);
+
+  app.get("/csvPage", routes.csvPage);
+
+  app.get("/users", routes.list);
 
   http.createServer(app).listen(app.get("port"), function() {
     return console.log("Express server listening on port " + app.get("port"));
   });
-
-  return;
 
 }).call(this);
 

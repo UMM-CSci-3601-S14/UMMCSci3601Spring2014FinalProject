@@ -1,14 +1,19 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.coffee"
-  },
-  "dependencies": {
-    "express": "3.4.8",
-    "mocha": "~1.18.2",
-    "hogan-express": "~0.5.2",
-    "coffee-script": "~1.7.1"
-  }
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.coffee"
+    },
+    "dependencies": {
+        "express": "3.4.8",
+        "mocha": "~1.17.1",
+        "coffee-script": "~1.7.1",
+        "hogan-express": "~0.5.2",
+        "mongoose": "~3.8.8",
+        "bootstrap": "0.0.2",
+        "nodemon": "~1.0.15",
+        "chart": "~0.1.2",
+        "request": "~2.34.0"
+    }
 }

@@ -1,8 +1,40 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
 }
 
-a {
-  color: #00B7FF;
+h2{
+    text-align: center;
+}
+
+.page-header{
+    font-size: 50px;
+}
+
+#essayContents {
+    width: 100%;
+    min-height: 80px;
+}
+
+#sandbox, .page-header{
+    text-align: center;
+    padding: 15px;
+    background-color: #FFEABA;
+    border-radius: 10px;
+}
+
+#sandboxResults{
+    display: none;
+    padding: 15px;
+    background-color: #FFE099;
+    border-radius: 10px;
+}
+
+#signIn {
+    padding: 20px;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    min-width: 200px;
 }
