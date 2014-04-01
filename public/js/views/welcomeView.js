@@ -22,16 +22,38 @@
     welcomeView.prototype.initialize = function() {
       var thePrompt;
       thePrompt = new prompt().fetch().done(function() {
-        var theAnswerSet, theAuthor;
+        var theAuthor;
         $('#promptContents').html(thePrompt.responseJSON.text);
-        theAuthor = new author({
+        return theAuthor = new author({
           designator: "BG2",
           email: "test@gmail.com"
-        }).fetch();
-        return theAnswerSet = new answerSet({
-          prompt: thePrompt.responseJSON.url,
-          "trained-models": thePrompt.responseJSON.default_models[0]
-        }).save();
+        }).fetch().done(function() {
+          var theAnswerSet;
+          return theAnswerSet = new answerSet({
+            prompt: thePrompt.responseJSON.url,
+            "trained-models": thePrompt.responseJSON.default_models[0]
+          }).save().done(function() {
+            var theAnswer;
+            return theAnswer = new answer({
+              author: "https://try-api.lightsidelabs.com/api/authors/51",
+              "answer_set": "https://try-api.lightsidelabs.com/api/answer-sets/92",
+              text: "sup."
+            }).save().done(function() {
+              var thePredictionTask;
+              return thePredictionTask = new predictionTask({
+                "answer_set": "https://try-api.lightsidelabs.com/api/answer-sets/92"
+              }).save().done(function() {
+                var thePredictionProcess;
+                return thePredictionProcess = new predictionProcess().save().done(function() {
+                  var thePredictionResult;
+                  return thePredictionResult = new predictionResult().fetch().done(function() {
+                    return console.log(thePredictionResult.responseJSON);
+                  });
+                });
+              });
+            });
+          });
+        });
       });
       this.render();
     };

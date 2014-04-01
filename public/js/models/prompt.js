@@ -38,5 +38,3 @@
   })(Backbone.Model);
 
 }).call(this);
-
-//# sourceMappingURL=prompt.map

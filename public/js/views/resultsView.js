@@ -29,5 +29,3 @@
   })(Backbone.View);
 
 }).call(this);
-
-//# sourceMappingURL=resultsView.map

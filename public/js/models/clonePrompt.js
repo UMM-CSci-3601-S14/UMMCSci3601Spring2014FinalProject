@@ -34,5 +34,3 @@
   })(Backbone.Model);
 
 }).call(this);
-
-//# sourceMappingURL=clonePrompt.map
