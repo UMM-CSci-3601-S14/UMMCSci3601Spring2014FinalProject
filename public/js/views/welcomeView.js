@@ -23,32 +23,34 @@
       var thePrompt;
       thePrompt = new prompt().fetch().done(function() {
         var theAuthor;
+        console.log(thePrompt);
         $('#promptContents').html(thePrompt.responseJSON.text);
         return theAuthor = new author({
           designator: "BG2",
           email: "test@gmail.com"
         }).fetch().done(function() {
           var theAnswerSet;
+          console.log(theAuthor);
           return theAnswerSet = new answerSet({
             prompt: thePrompt.responseJSON.url,
             "trained-models": thePrompt.responseJSON.default_models[0]
           }).save().done(function() {
             var theAnswer;
+            console.log(theAnswerSet);
             return theAnswer = new answer({
-              author: "https://try-api.lightsidelabs.com/api/authors/51",
-              "answer_set": "https://try-api.lightsidelabs.com/api/answer-sets/92",
-              text: "sup."
+              author: theAuthor.responseJSON.results[0].url,
+              answer_set: theAnswerSet.responseJSON.url,
+              text: theAuthor.responseJSON.results[0].answers[3]
             }).save().done(function() {
               var thePredictionTask;
+              console.log(theAnswer);
               return thePredictionTask = new predictionTask({
-                "answer_set": "https://try-api.lightsidelabs.com/api/answer-sets/92"
+                answer_set: "https://try-api.lightsidelabs.com/api/answer-sets/92",
+                trained_model: thePrompt.responseJSON.default_models[0]
               }).save().done(function() {
-                var thePredictionProcess;
-                return thePredictionProcess = new predictionProcess().save().done(function() {
-                  var thePredictionResult;
-                  return thePredictionResult = new predictionResult().fetch().done(function() {
-                    return console.log(thePredictionResult.responseJSON);
-                  });
+                var thePredictionResult;
+                return thePredictionResult = new predictionResult().fetch().done(function() {
+                  return console.log(thePredictionResult.responseJSON);
                 });
               });
             });
