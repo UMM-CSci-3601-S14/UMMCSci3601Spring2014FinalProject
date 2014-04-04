@@ -1,5 +1,4 @@
-class window.clonePrompt extends Backbone.Model
-  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
+class window.superPost extends Backbone.Model
 
   sync: (method,model,options) ->
     $.ajaxSetup {
@@ -9,7 +8,6 @@ class window.clonePrompt extends Backbone.Model
       type: 'POST'}
     Backbone.sync(method,model,options).done ->
       console.log model
-
 
 
   parse: (response, options) ->
