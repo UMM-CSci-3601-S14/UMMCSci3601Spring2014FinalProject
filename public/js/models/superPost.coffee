@@ -5,7 +5,7 @@ class window.superPost extends Backbone.Model
       headers:
         Authorization: 'Token a9c60d6b68ca214e595cbdd44a21e832df8f8216' #dummy token
         'Content-Type': 'application/json'
-      type: 'POST'}
+      }
     Backbone.sync(method,model,options).done ->
       console.log model
 

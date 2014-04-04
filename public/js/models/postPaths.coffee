@@ -23,3 +23,6 @@ class window.predictionProcess extends superPost
 
 class window.predictionResult extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-results/'
+
+class window.ourAnswerSet extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/263'
