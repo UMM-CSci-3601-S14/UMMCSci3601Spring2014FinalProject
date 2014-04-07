@@ -4,6 +4,8 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   window.welcomeView = (function(_super) {
+    var thePrompt;
+
     __extends(welcomeView, _super);
 
     function welcomeView() {
@@ -19,9 +21,12 @@
       'click button#hideResults': 'hideResults'
     };
 
+    thePrompt = null;
+
     welcomeView.prototype.initialize = function() {
-      var thePrompt;
       thePrompt = new prompt().fetch().done(function() {
+        $('#promptTitle').html('Prompt: ' + thePrompt.responseJSON.text);
+        $('#promptDescription').html(thePrompt.responseJSON.description);
         return console.log(thePrompt);
       });
       this.render();
@@ -33,38 +38,58 @@
     };
 
     welcomeView.prototype.submitEssay = function() {
-      var thePrompt;
+      var theAuthor;
       $('#sandboxResults').show(1000);
-      return thePrompt = new prompt().fetch().done(function() {
-        var theAuthor;
-        console.log(thePrompt);
-        $('#promptContents').html(thePrompt.responseJSON.text);
-        return theAuthor = new author({
-          designator: "BG2",
-          email: "test@gmail.com"
-        }).fetch().done(function() {
-          var theAnswerSet;
-          console.log(theAuthor);
-          return theAnswerSet = new ourAnswerSet({}).fetch().done(function() {
-            var theAnswer;
-            console.log(theAnswerSet);
-            return theAnswer = new answer({
-              author: theAuthor.responseJSON.results[0].url,
+      return theAuthor = new author({
+        designator: "BG2",
+        email: "test@gmail.com"
+      }).fetch().done(function() {
+        var theAnswerSet;
+        console.log(theAuthor);
+        return theAnswerSet = new ourAnswerSet({}).fetch().done(function() {
+          var theAnswer;
+          console.log(theAnswerSet);
+          return theAnswer = new answer({
+            author: theAuthor.responseJSON.results[0].url,
+            answer_set: theAnswerSet.responseJSON.url,
+            text: $('#essayContents').val()
+          }).save().done(function() {
+            var thePredictionTask;
+            console.log(theAnswer);
+            return thePredictionTask = new predictionTask({
               answer_set: theAnswerSet.responseJSON.url,
-              text: $('#essayContents').val()
+              trained_model: thePrompt.responseJSON.default_models[0]
             }).save().done(function() {
-              var thePredictionTask;
-              console.log(theAnswer);
-              return thePredictionTask = new predictionTask({
-                answer_set: theAnswerSet.responseJSON.url,
-                trained_model: thePrompt.responseJSON.default_models[0]
-              }).save().done(function() {
-                var thePredictionResult;
-                return thePredictionResult = new predictionResult().fetch().done(function() {
-                  var answerGraded;
-                  console.log(thePredictionResult.responseJSON);
-                  return answerGraded = new answer;
-                });
+              var theProcess;
+              console.log(thePredictionTask.responseJSON.process);
+              theProcess = new predictionProcess();
+              theProcess.urlRoot = thePredictionTask.responseJSON.process;
+              return theProcess.save().done(function() {
+                var looping, thePredictionStatus;
+                thePredictionStatus = new predictionStatus();
+                console.log("----------------------------------------");
+                return looping = setInterval((function() {
+                  thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
+                  return thePredictionStatus.fetch().done(function() {
+                    var thePredictionResult;
+                    console.log("Prediction Task status: " + thePredictionStatus.responseJSON.attributes.status);
+                    console.log(theProcess.attributes.prediction_task);
+                    if (thePredictionStatus.responseJSON.attributes.status === 'S') {
+                      console.log("Prediction Task was SUCCESSFUL");
+                      console.log("exited while loop");
+                      thePredictionResult = new predictionResult().fetch().done(function() {
+                        var answerGraded;
+                        console.log(thePredictionResult.responseJSON);
+                        return answerGraded = new answer;
+                      });
+                      window.clearInterval(looping);
+                    }
+                    if (thePredictionStatus.responseJSON.attributes.status === 'U') {
+                      console.log("Prediction Task was UNSUCCESSFUL");
+                      return window.clearInterval(looping);
+                    }
+                  });
+                }), 1000);
               });
             });
           });

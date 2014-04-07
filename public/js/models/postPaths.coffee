@@ -4,7 +4,7 @@ class window.prompt extends superPost
 class window.author extends superPost
   urlRoot:'https://try-api.lightsidelabs.com/api/authors'
 
-#  Clone is presently unused/commented out
+#  Clone is presently unused/commented out.
 class window.clonePrompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
 
@@ -19,7 +19,10 @@ class window.predictionTask extends superPost
 
 #  Also is presently unused/commented out. Is this needed?
 class window.predictionProcess extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-tasks/991/process'
+  urlRoot: ""
+
+class window.predictionStatus extends superPost
+  urlRoot: ""
 
 class window.predictionResult extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-results/'

@@ -4,7 +4,7 @@
 
     <div class="row">
         <div id="welcome" class="col-md-6 col-md-offset-2">
-            <h4>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough.
+            <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough.
                 In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest
                 and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re
                 interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features
@@ -18,7 +18,7 @@
                 <br/><br/>
                 The state of writing in education is broken and getting worse. At LightSide, we’re inventing the tools that
                 will support the next generation of student writers. Learn more about our pedagogy, our technology, and our
-                Spring pilot by reading through our website, or contact us today to learn more.</h4>
+                Spring pilot by reading through our website, or contact us today to learn more.</p>
 
             <a href="http://lightsidelabs.com/why/" class="btn btn-success">More</a>
 
@@ -26,10 +26,20 @@
 
             <div id="sandbox">
                 <h2>Try Our Tools for In-Classroom Writing!</h2>
-                <h4>Try our sample model without signing in. Type or paste an essay to this prompt.</h4>
-                <h4 id="promptContents"></h4>
+                <h3 id="promptTitle"></h3>
+                <p id="promptDescription"></p>
 
-                <textarea id="essayContents">Pick a prewritten essay or write your own to be graded!</textarea>
+                <textarea id="essayContents">Pick a pre-written essay or write your own essay to be graded!</textarea>
+                <div class="btn-group" id="essayChoose">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Choose an Essay
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>Essay 1</li>
+                        <li>Essay 1</li>
+                    </ul>
+                </div>
                 <button name='submitEssay' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
 
 

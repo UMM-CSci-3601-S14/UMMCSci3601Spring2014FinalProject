@@ -1,20 +1,29 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Francois One", "Lucida Grande", Helvetica, Arial, sans-serif;
 
 }
 
 h2{
     text-align: center;
 }
+p{
+    font: "Alegreya Sans","Bookman", Georgia, "Times New Roman", serif;
+    font-size: larger;
+}
 
 .page-header{
+    font: Helvetica, Arial, sans-serif;
     font-size: 50px;
 }
 
 #essayContents {
     width: 100%;
-    min-height: 80px;
+    min-height: 200px;
+}
+
+#essayChoose{
+    text-align: left;
 }
 
 #sandbox, .page-header{
