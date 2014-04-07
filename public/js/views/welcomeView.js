@@ -65,26 +65,30 @@
               theProcess = new predictionProcess();
               theProcess.urlRoot = thePredictionTask.responseJSON.process;
               return theProcess.save().done(function() {
-                var looping, thePredictionStatus;
+                var count, looping, thePredictionStatus;
                 thePredictionStatus = new predictionStatus();
                 console.log("----------------------------------------");
+                count = 0;
                 return looping = setInterval((function() {
+                  count++;
                   thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
                   return thePredictionStatus.fetch().done(function() {
                     var thePredictionResult;
-                    console.log("Prediction Task status: " + thePredictionStatus.responseJSON.attributes.status);
+                    console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
                     console.log(theProcess.attributes.prediction_task);
-                    if (thePredictionStatus.responseJSON.attributes.status === 'S') {
+                    if (thePredictionStatus.attributes.status === 'S') {
                       console.log("Prediction Task was SUCCESSFUL");
                       console.log("exited while loop");
                       thePredictionResult = new predictionResult().fetch().done(function() {
                         var answerGraded;
                         console.log(thePredictionResult.responseJSON);
+                        console.log(thePredictionResult.responseJSON.results[0]);
                         return answerGraded = new answer;
                       });
+                      console.log(count);
                       window.clearInterval(looping);
                     }
-                    if (thePredictionStatus.responseJSON.attributes.status === 'U') {
+                    if (thePredictionStatus.attributes.status === 'U') {
                       console.log("Prediction Task was UNSUCCESSFUL");
                       return window.clearInterval(looping);
                     }

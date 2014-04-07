@@ -56,23 +56,27 @@ class window.welcomeView extends Backbone.View
 
                 # a loop to wait for the api to return contact
                 console.log "----------------------------------------"
+                count = 0
 
                 looping = setInterval (->
+                  count++
                   #delay for 1 second
                   thePredictionStatus.urlRoot = theProcess.attributes.prediction_task[0..3] + "s" + theProcess.attributes.prediction_task[4..]
                   thePredictionStatus.fetch().done ->
-                    console.log "Prediction Task status: " + thePredictionStatus.responseJSON.attributes.status
+                    console.log "Prediction Task status: " + thePredictionStatus.attributes.status
                     console.log theProcess.attributes.prediction_task
 
-                    if thePredictionStatus.responseJSON.attributes.status == 'S'
+                    if thePredictionStatus.attributes.status == 'S'
                       console.log "Prediction Task was SUCCESSFUL"
                       console.log "exited while loop"
                       thePredictionResult = new predictionResult().fetch().done ->
                         console.log thePredictionResult.responseJSON
+                        console.log thePredictionResult.responseJSON.results[0]
                         answerGraded = new answer
+                      console.log count
                       window.clearInterval looping
 
-                    if thePredictionStatus.responseJSON.attributes.status == 'U'
+                    if thePredictionStatus.attributes.status == 'U'
                       console.log "Prediction Task was UNSUCCESSFUL"
                       window.clearInterval looping
                 ), 1000
