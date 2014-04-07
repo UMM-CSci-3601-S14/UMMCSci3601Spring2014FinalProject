@@ -14,7 +14,8 @@
     AppRouter.prototype.routes = {
       '': 'index',
       'results': 'results',
-      'csvPage': 'csvPage'
+      'csvPage': 'csvPage',
+      'modelPage': 'modelPage'
     };
 
     AppRouter.prototype.index = function() {
@@ -27,9 +28,14 @@
       $('#content').html(new window.resultsView().$el);
     };
 
-    AppRouter.prototype.results = function() {
+    AppRouter.prototype.csvPage = function() {
       console.log("in csv");
       $('#content').html(new window.CSVView().$el);
+    };
+
+    AppRouter.prototype.modelPage = function() {
+      console.log("in model");
+      $('#content').html(new window.modelView().$el);
     };
 
     return AppRouter;
@@ -45,3 +51,5 @@
   });
 
 }).call(this);
+
+//# sourceMappingURL=app.map

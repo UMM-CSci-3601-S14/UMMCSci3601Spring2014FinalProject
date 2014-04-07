@@ -4,8 +4,9 @@ class window.resultsView extends Backbone.View
 
   initialize: ->
     @render()
+    return
 
   render: ->
     console.log 'blaaa'
-    $('#content').html @template()
+    @$el.html @template()
     this

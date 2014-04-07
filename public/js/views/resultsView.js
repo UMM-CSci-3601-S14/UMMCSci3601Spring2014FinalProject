@@ -15,12 +15,12 @@
     resultsView.prototype.template = _.template($('#resultsPage').html());
 
     resultsView.prototype.initialize = function() {
-      return this.render();
+      this.render();
     };
 
     resultsView.prototype.render = function() {
       console.log('blaaa');
-      $('#content').html(this.template());
+      this.$el.html(this.template());
       return this;
     };
 

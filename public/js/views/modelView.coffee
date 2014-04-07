@@ -1,6 +1,6 @@
-class window.CSVView extends Backbone.View
+class window.modelView extends Backbone.View
   tagName: 'div'
-  template: _.template $('#csvPage').html()
+  template: _.template $('#modelPage').html()
 
   events:
     'click button.submitEssay': 'submitEssay'
@@ -9,7 +9,7 @@ class window.CSVView extends Backbone.View
     @render()
 
   render: ->
-    console.log 'adsfasdf'
+    console.log 'Model'
     @$el.html @template()
     this
 

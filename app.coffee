@@ -21,6 +21,7 @@ app.set 'partials',
   csv: 'partials/csv',
   navbar: 'partials/navbar',
   scripts: 'partials/scripts'
+  model: 'partials/model'
 
 # all environments
 app.engine 'html', require ("hogan-express")
@@ -47,6 +48,7 @@ app.configure 'development', ->
 app.get "/", routes.index
 app.get "/results", routes.results
 app.get "/csvPage", routes.csvPage
+app.get "/modelPage", routes.modelPage
 app.get "/users", routes.list
 
 
