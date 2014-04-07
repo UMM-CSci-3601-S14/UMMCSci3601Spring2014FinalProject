@@ -36,7 +36,8 @@ Module dependencies.
     results: 'partials/results',
     csv: 'partials/csv',
     navbar: 'partials/navbar',
-    scripts: 'partials/scripts'
+    scripts: 'partials/scripts',
+    model: 'partials/model'
   });
 
   app.engine('html', require("hogan-express"));
@@ -69,6 +70,8 @@ Module dependencies.
   app.get("/results", routes.results);
 
   app.get("/csvPage", routes.csvPage);
+
+  app.get("/modelPage", routes.modelPage);
 
   app.get("/users", routes.list);
 
