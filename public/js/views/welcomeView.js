@@ -25,9 +25,23 @@
 
     welcomeView.prototype.initialize = function() {
       thePrompt = new prompt().fetch().done(function() {
+        var theRequest;
         $('#promptTitle').html('Prompt: ' + thePrompt.responseJSON.text);
         $('#promptDescription').html(thePrompt.responseJSON.description);
-        return console.log(thePrompt);
+        console.log(thePrompt.responseJSON);
+        console.log('trying to find an essay');
+        console.log(thePrompt.responseJSON.answer_sets[0]);
+        return theRequest = new trainingAnswers().fetch().done(function() {
+
+          /* exampleAns = new request()
+           exampleAns.urlRoot = theRequest.attributes.answers[0]
+           exampleAns.fetch().done ->
+             hopeANS = new request()
+             hopeANS.urlRoot = exampleAns.attributes.text
+             hopeANS.fetch().done ->
+             console.log hopeANS
+           */
+        });
       });
       this.render();
     };
@@ -69,9 +83,11 @@
                 thePredictionStatus = new predictionStatus();
                 console.log("----------------------------------------");
                 count = 0;
+                looping;
                 return looping = setInterval((function() {
                   count++;
                   thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
+                  console.log(thePredictionStatus.urlRoot);
                   return thePredictionStatus.fetch().done(function() {
                     var thePredictionResult;
                     console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
@@ -82,7 +98,7 @@
                       thePredictionResult = new predictionResult().fetch().done(function() {
                         var answerGraded;
                         console.log(thePredictionResult.responseJSON);
-                        console.log(thePredictionResult.responseJSON.results[0]);
+                        $('#grade').html("Your grade for the submitted essay is " + thePredictionResult.responseJSON.results[0].label + " out of 5.");
                         return answerGraded = new answer;
                       });
                       console.log(count);

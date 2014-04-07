@@ -11,7 +11,18 @@ class window.welcomeView extends Backbone.View
     thePrompt = new prompt().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-      console.log thePrompt
+      console.log thePrompt.responseJSON
+      console.log 'trying to find an essay'
+      console.log thePrompt.responseJSON.answer_sets[0]
+      #theRequest = new trainingAnswers().fetch().done ->
+       ### exampleAns = new request()
+        exampleAns.urlRoot = theRequest.attributes.answers[0]
+        exampleAns.fetch().done ->
+          hopeANS = new request()
+          hopeANS.urlRoot = exampleAns.attributes.text
+          hopeANS.fetch().done ->
+          console.log hopeANS###
+
     @render()
     return
 
@@ -58,10 +69,12 @@ class window.welcomeView extends Backbone.View
                 console.log "----------------------------------------"
                 count = 0
 
+                looping
                 looping = setInterval (->
                   count++
                   #delay for 1 second
                   thePredictionStatus.urlRoot = theProcess.attributes.prediction_task[0..3] + "s" + theProcess.attributes.prediction_task[4..]
+                  console.log thePredictionStatus.urlRoot
                   thePredictionStatus.fetch().done ->
                     console.log "Prediction Task status: " + thePredictionStatus.attributes.status
                     console.log theProcess.attributes.prediction_task
@@ -71,7 +84,7 @@ class window.welcomeView extends Backbone.View
                       console.log "exited while loop"
                       thePredictionResult = new predictionResult().fetch().done ->
                         console.log thePredictionResult.responseJSON
-                        console.log thePredictionResult.responseJSON.results[0]
+                        $('#grade').html("Your grade for the submitted essay is " +thePredictionResult.responseJSON.results[0].label+ " out of 5.")
                         answerGraded = new answer
                       console.log count
                       window.clearInterval looping
