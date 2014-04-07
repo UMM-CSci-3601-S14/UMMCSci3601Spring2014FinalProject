@@ -31,7 +31,9 @@
         console.log(thePrompt.responseJSON);
         console.log('trying to find an essay');
         console.log(thePrompt.responseJSON.answer_sets[0]);
-        return theRequest = new trainingAnswers().fetch().done(function() {
+        theRequest = new testRequest();
+        theRequest.urlRoot = thePrompt.responseJSON.corpora[0];
+        return theRequest.fetch().done(function() {
 
           /* exampleAns = new request()
            exampleAns.urlRoot = theRequest.attributes.answers[0]

@@ -14,7 +14,11 @@ class window.welcomeView extends Backbone.View
       console.log thePrompt.responseJSON
       console.log 'trying to find an essay'
       console.log thePrompt.responseJSON.answer_sets[0]
-      #theRequest = new trainingAnswers().fetch().done ->
+      #request for corpa from copied prompt
+      theRequest = new testRequest()
+      theRequest.urlRoot = thePrompt.responseJSON.corpora[0]
+      theRequest.fetch().done ->
+        #trained_model found (66), we have no trained_answers in our corpa
        ### exampleAns = new request()
         exampleAns.urlRoot = theRequest.attributes.answers[0]
         exampleAns.fetch().done ->

@@ -17,9 +17,6 @@ class window.answer extends superPost
 class window.predictionTask extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-tasks/'
 
-class window.trainingAnswers extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/training-answers/'
-
 #  Also is presently unused/commented out. Is this needed?
 class window.predictionProcess extends superPost
   urlRoot: ""
@@ -27,7 +24,7 @@ class window.predictionProcess extends superPost
 class window.predictionStatus extends superPost
   urlRoot: ""
 
-class window.request extends superPost
+class window.testRequest extends superPost
   urlRoot: ""
 
 class window.predictionResult extends superPost
