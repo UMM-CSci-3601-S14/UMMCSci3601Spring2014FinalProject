@@ -21,7 +21,7 @@
     },
     "config": {
         "blanket": {
-            "pattern": "[dir_to_cover, file_to_cover.js, etc]"
+            "pattern": ""
         }
     }
 }
