@@ -43,3 +43,29 @@ p{
     box-shadow: 0 0 5px #888;
     min-width: 200px;
 }
+
+.fields {
+    padding-bottom: 5px;
+}
+
+#reset {
+    float: right;
+}
+
+.docBox {
+    border-radius: 5px;
+    font-family:"Sans-serif", Arial, sans-serif;
+    font-size:1.15em;
+    color:black;
+    text-align:center;
+    display: none;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-color: gray;
+    width:30px ;
+    height:30px;
+    line-height:25px;
+    background-color: lightblue;
+}

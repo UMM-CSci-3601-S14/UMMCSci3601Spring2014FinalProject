@@ -1,3 +1,69 @@
 <script id='csvPage' type='text/html'>
-    <p>This will be the csv page.</p>
+    <div class="jumbotron">
+        <h1>{{ title }} <small>By LightSide Labs</small></h1>
+    </div>
+    {{> tutorial}}
+    <div id="fieldNames">
+        <form role="form">
+            <label> Prompt</label>
+            <input class="form-control" id="promptField" placeholder="Enter the Prompt for the Writing Submissions">
+            <br />
+            <div class="btn-group" id="addFieldsSelector">
+                <label>Choose number of fields to enter for each document</label>
+                <br />
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Number of Fields <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a onclick="addFields(1)">1 Field</a></li>
+                    <li><a onclick="addFields(2)">2 Fields</a></li>
+                    <li><a onclick="addFields(3)">3 Fields</a></li>
+                    <li><a onclick="addFields(4)">4 Fields</a></li>
+                    <li><a onclick="addFields(5)">5 Fields</a></li>
+                </ul>
+                <br />
+                <br />
+            </div>
+        </form>
+        <div id="moreFields"></div>
+        <button class="btn btn-default glyphicon glyphicon-saved" id="saveFields">Save</button>
+    </div>
+    <div id="workZone" class="row">
+        <form role="form">
+            <div id="promptSpace"></div>
+            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span></button>
+            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span></button>
+            <br /> <br />
+            <label> Title</label>
+            <input class="form-control" id="fileTitle" placeholder="Enter Title of CSV File">
+            <br />
+            <div id="fieldScores"></div>
+
+            <label>Text</label>
+            <textarea class="text form-control" id="text" placeholder="Enter Text" rows="10"></textarea>
+            <br />
+            <button type="button" class="btn btn-danger" id="reset">
+                <span class="glyphicon glyphicon-share-alt"></span> Reset
+            </button>
+            <button type="button" class="btn btn-default" id="add">
+                <span class="glyphicon glyphicon-plus"></span> Add
+            </button>
+            <button type="button" class = "btn btn-default" id="replace">
+                <span class="glyphicon glyphicon-edit"></span> Replace
+            </button>
+            <button type="button" class="btn btn-default" id="submit">
+                <span class="glyphicon glyphicon-download"></span> Download CSV
+            </button>
+            <button type="button" class="btn btn-default" id="cancel">
+                <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+        </form>
+        <p style="display:inline;"><strong>Documents Added:</strong></p>
+        <p style="display:inline;" id="documentAmount">0</p>
+        <br />
+        <div id="pastDocs"></div>
+    </div>
+    <button onclick="doVisualization()">Click for Visualization</button>
+    <div id="visualization"></div>
+    <div id="description"></div>
 </script>

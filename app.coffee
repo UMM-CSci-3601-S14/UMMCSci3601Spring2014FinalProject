@@ -21,14 +21,17 @@ app.set 'partials',
   results: 'partials/results',
   csv: 'partials/csv',
   navbar: 'partials/navbar',
-  scripts: 'partials/scripts'
-  model: 'partials/model'
+  scripts: 'partials/scripts',
+  model: 'partials/model',
+  tutorial: 'partials/tutorial',
+  functions: 'partials/functions',
+  visualization: 'partials/visualization'
 
 # all environments
 app.engine 'html', require ("hogan-express")
 app.enable 'view cache'
 app.configure ->
-  app.set "port", process.env.PORT or 3000
+  app.set "port", process.env.PORT or 3005
   app.set "views", __dirname + "/views"
   app.set "view engine", "html"
   app.use express.favicon()

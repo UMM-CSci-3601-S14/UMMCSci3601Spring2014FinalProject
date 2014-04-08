@@ -39,7 +39,10 @@ Module dependencies.
     csv: 'partials/csv',
     navbar: 'partials/navbar',
     scripts: 'partials/scripts',
-    model: 'partials/model'
+    model: 'partials/model',
+    tutorial: 'partials/tutorial',
+    functions: 'partials/functions',
+    visualization: 'partials/visualization'
   });
 
   app.engine('html', require("hogan-express"));
@@ -47,7 +50,7 @@ Module dependencies.
   app.enable('view cache');
 
   app.configure(function() {
-    app.set("port", process.env.PORT || 3000);
+    app.set("port", process.env.PORT || 3005);
     app.set("views", __dirname + "/views");
     app.set("view engine", "html");
     app.use(express.favicon());

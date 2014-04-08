@@ -1,0 +1,59 @@
+<script>
+    var parser;
+    var CSVArray;
+    var arrayOfArrays = new Array();
+    var arrayOfDic = new Array();
+
+    function doVisualization(){
+        parser = new  CSVParser(myCSV);
+        CSVArray = parser.array();
+        getFields();
+
+    }
+
+    //sets arrayOfArrays to be an array of each field (including the field name at the first index of each sub-array!)
+    function getFields () {
+        for (var i = 0; i < numFields; i++) {
+            arrayOfArrays[i] = new Array();
+            for (var j = 0; j < CSVArray.length; j++) {
+                arrayOfArrays[i][j] = CSVArray[j][i];
+            }
+        }
+        console.log(arrayOfArrays);
+    }
+
+    function countGrades (){
+        for (var i =0; i < numFields; i++){
+            arrayOfDic.push(generateMap(arrayOfArrays[i]));
+        }
+    }
+
+    //fieldNum is the index that a field is on
+    function createData(fieldNum){
+        var tmp1 = "Number of ";
+        var tmp2 = " documents: ";
+        var data = [];
+        for(var i = 0; i < dicLength(); i++) {
+            data.push({Label: tmp1 +  + tmp2, value: arrayOfDic[fieldNum].value});
+        }
+        return data;
+    }
+
+    Morris.Donut({
+        element: 'myfirstchart',
+        data: [
+            {label: "Number of 0 papers: ", value: grades[0]},
+            {label: "Number of 1 papers: ", value: grades[1]},
+            {label: "Number of 2 papers: ", value: grades[2]},
+            {label: "Number of 3 papers: ", value: grades[3]}
+        ],
+        labelColor: 'black',
+        colors: [
+            '#CB5DF5',
+            '#8451FF',
+            '#6375E8',
+            '#60B8FF'
+        ]
+    });
+
+</script>
