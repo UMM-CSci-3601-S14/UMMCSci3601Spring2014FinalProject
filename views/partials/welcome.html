@@ -29,19 +29,8 @@
                 <h3 id="promptTitle"></h3>
                 <p id="promptDescription"></p>
 
-                <textarea id="essayContents" placeholder="Pick a pre-written essay or write your own essay to be graded!"></textarea>
-                <div class="btn-group" id="essayChoose">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Choose an Essay
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>Essay 1</li>
-                        <li>Essay 1</li>
-                    </ul>
-                </div>
+                <textarea id="essayContents">Pick a pre-written essay or write your own essay to be graded!</textarea>
                 <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
-
 
                 <br/><br/>
                 <div id="sandboxResults">
@@ -56,12 +45,11 @@
 
         <div id="signIn" class="col-md-2 col-md-offset-1">
             <h3>Sign In <small>to begin creating your own unique and functional models.</small></h3>
-            <form method="post" action="/">
-                <input name="username" type="text" placeholder="Username"><br/>
-                <input name="password" type="password" placeholder="Password" /><br/>
-                <input type="submit" class="btn btn-success" value="Log In" />
-            </form>
-            {{{failed}}} <br/>
+            <label>Username:</label><br/>
+            <input type="textArea" id="username"><br/>
+            <label>Password:</label><br/>
+            <input type="textArea" id="password"></br></br>
+            <button class="btn btn-success">Log In</button>
             <a>New User?</a>
         </div>
     </div>

@@ -4,7 +4,7 @@
 exports.index = (req, res) ->
   console.log 'inside index'
   res.locals = {
-    title: 'LightSide',
+    title: 'LightSide'
     header: 'LightSide Test Page'
   }
   res.render 'index'
@@ -12,21 +12,21 @@ exports.index = (req, res) ->
 exports.results = (req, res) ->
   console.log 'inside results'
   res.locals = {
-    title: 'LightSide',
+    title: 'LightSide'
     header: 'LightSide Results Page'
   }
   res.render 'index'
 
 exports.csvPage = (req, res) ->
   res.locals = {
-    title: 'LightSide',
+    title: 'LightSide'
     header: 'LightSide CSV Upload Page'
   }
   res.render 'index'
 
 exports.modelPage = (req, res) ->
   res.locals = {
-    title: 'LightSide',
+    title: 'LightSide'
     header: 'LightSide Model Maker'
   }
   res.render 'index'
