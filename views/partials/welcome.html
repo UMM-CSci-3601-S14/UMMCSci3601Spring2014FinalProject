@@ -45,11 +45,15 @@
 
         <div id="signIn" class="col-md-2 col-md-offset-1">
             <h3>Sign In <small>to begin creating your own unique and functional models.</small></h3>
-            <label>Username:</label><br/>
-            <input type="textArea" id="username"><br/>
-            <label>Password:</label><br/>
-            <input type="textArea" id="password"></br></br>
-            <button class="btn btn-success">Log In</button>
+            <form method="post" action="/">
+                <label>Username:</label><br/>
+                <input name="username" type="text" placeholder="Username"><br/>
+                <label>Password:</label><br/>
+                <input name="password" type="password" placeholder="Password" /><br/>
+                <br/>
+                <input type="submit" class="btn btn-success" value="Log In" />
+            </form>
+            {{{failed}}} <br/>
             <a>New User?</a>
         </div>
     </div>
