@@ -3,7 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "start": "node app.coffee"
+        "start": "node app.coffee",
+        "test": "coffee --compile --output . . && node_modules/mocha/bin/_mocha --reporter spec --timeout 60000",
+        "blanket-cov": "node_modules/mocha/bin/_mocha --require blanket --reporter json-cov --timeout 60000"
     },
     "dependencies": {
         "express": "3.4.8",
@@ -14,6 +16,12 @@
         "bootstrap": "0.0.2",
         "nodemon": "~1.0.15",
         "chart": "~0.1.2",
-        "request": "~2.34.0"
+        "request": "~2.34.0",
+        "blanket": "1.1.x"
+    },
+    "config": {
+        "blanket": {
+            "pattern": "[dir_to_cover, file_to_cover.js, etc]"
+        }
     }
 }
