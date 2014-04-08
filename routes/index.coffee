@@ -33,3 +33,21 @@ exports.modelPage = (req, res) ->
 
 exports.list = (req, res) ->
   res.send "respond with a resource"
+
+exports.failed = (req, res) ->
+  res.locals = {
+    title: 'Lightside'
+    header: 'Failed Login'
+    failed: 'YOU HAVE FAILED!'
+  }
+  res.render 'index'
+
+exports.user = (req, res) ->
+  if (req.session.passport.user is undefined)
+    res.redirect '/'
+  else
+    res.locals = {
+      title: 'Lightside'
+      header: 'Welcome ' + req.session.passport.user.username + '!'
+    }
+    res.render 'index'

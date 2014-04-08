@@ -5,14 +5,96 @@ Module dependencies.
  */
 
 (function() {
-  var express, routes;
+  var LocalStrategy, User, createAndAdd, express, passport, populateDB;
 
   express = require("express");
 
-  routes = require("./routes");
+  User = require('../schemas/userSchema').user;
+
+  passport = require("passport");
+
+  LocalStrategy = require("passport-local").Strategy;
+
+  User.count({}, function(err, c) {
+    if (err) {
+      console.log(err);
+    }
+    if (c === 0) {
+      console.log('Populating database');
+      return populateDB();
+    }
+  });
+
+  exports.getByUsername = function(req, res) {
+    var id;
+    id = req.params.id;
+    return user.findById(id, function(err, result) {
+      return res.send(result);
+    });
+  };
 
   exports.list = function(req, res) {
     res.send("respond with a resource");
   };
 
+  populateDB = function() {
+    var user, usernames, _i, _len, _results;
+    usernames = [
+      {
+        username: 'skippy',
+        password: '1234'
+      }, {
+        username: 'justin',
+        password: '4321'
+      }, {
+        username: 'david',
+        password: '9hnMILd23145'
+      }
+    ];
+    _results = [];
+    for (_i = 0, _len = usernames.length; _i < _len; _i++) {
+      user = usernames[_i];
+      _results.push(createAndAdd(user));
+    }
+    return _results;
+  };
+
+  createAndAdd = function(u) {
+    var newUser;
+    newUser = new User(u);
+    console.log('user logged');
+    return newUser.save();
+  };
+
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.use('local-login', new LocalStrategy(function(username, password, done) {
+    process.nextTick(function() {
+      User.findOne({
+        username: username
+      }, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false);
+        }
+        if (user.password !== password) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+    });
+  }));
+
+  module.exports = passport;
+
 }).call(this);
+
+//# sourceMappingURL=user.map

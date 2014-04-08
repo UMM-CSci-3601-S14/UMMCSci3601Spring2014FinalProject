@@ -38,6 +38,27 @@
     return res.send("respond with a resource");
   };
 
+  exports.failed = function(req, res) {
+    res.locals = {
+      title: 'Lightside',
+      header: 'Failed Login',
+      failed: 'YOU HAVE FAILED!'
+    };
+    return res.render('index');
+  };
+
+  exports.user = function(req, res) {
+    if (req.session.passport.user === void 0) {
+      return res.redirect('/');
+    } else {
+      res.locals = {
+        title: 'Lightside',
+        header: 'Welcome ' + req.session.passport.user.username + '!'
+      };
+      return res.render('index');
+    }
+  };
+
 }).call(this);
 
 //# sourceMappingURL=index.map

@@ -6,6 +6,7 @@ routes = require './routes'
 http = require 'http'
 path = require 'path'
 mongoose = require 'mongoose'
+passport = require('./routes/user')
 app = express()
 
 mongoose.connect 'mongodb://localhost/test'
@@ -35,7 +36,11 @@ app.configure ->
   app.use express.json()
   app.use express.urlencoded()
   app.use express.methodOverride()
-  app.use express.cookieParser('your secret here')
+  app.use express.cookieParser('csci3601')
+  app.use express.session(
+    secret: 'csci3601')
+  app.use passport.initialize()
+  app.use passport.session()
   app.use app.router
 
 app.use express.static(path.join(__dirname, "public"))
@@ -50,6 +55,11 @@ app.get "/results", routes.results
 app.get "/csvPage", routes.csvPage
 app.get "/modelPage", routes.modelPage
 app.get "/users", routes.list
+app.get "/failed", routes.failed
+app.get "/user", routes.user
+app.post '/', passport.authenticate 'local-login',
+  failureRedirect: '/failed',
+  successRedirect: '/user'
 
 
 http.createServer(app).listen app.get("port"), ->
