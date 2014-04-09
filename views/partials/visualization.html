@@ -1,4 +1,5 @@
 <div class="col-md-6 col-md-offset-2" id="visualization">
+    <h4 id="visHeader">Occurrences of each entry for each field</h4>
     <div id="visField1" class="visualization"></div>
     <div id="visField2" class="visualization"></div>
     <div id="visField3" class="visualization"></div>
@@ -7,6 +8,16 @@
 </div>
 <script>
     function doVisualization(){
+//        var template1 = '<div class="visualization" id="visField';
+//        var template2 = '"></div>\n';
+//        var temp = "";
+//        for (var i = 1; i < numFields+ 1; i++) {
+//            temp += template1 + numFields + template2;
+//        }
+//        document.getElementById("visualization").innerHTML=temp;
+        if (documentsAdded > 0) {
+            $('#visHeader').show();
+        }
         var parser = new  CSVParser(myCSV);
         var CSVArray = parser.array();
         getFields(CSVArray);

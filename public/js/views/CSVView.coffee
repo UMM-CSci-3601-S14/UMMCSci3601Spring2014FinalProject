@@ -9,7 +9,7 @@ class window.CSVView extends Backbone.View
     @render()
 
   render: ->
-    console.log 'adsfasdf'
+    console.log 'rendering CSVView'
     @$el.html @template()
     this
 

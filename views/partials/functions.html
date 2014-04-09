@@ -50,18 +50,18 @@ function emptyFields() {
 
 //Hides cancel and replace, shows submit and add.
 function editButtons() {
-    $("#cancel").slideUp();
-    $("#replace").slideUp();
-    $("#submit").slideDown();
-    $("#add").slideDown();
+    $("#cancel").hide();
+    $("#replace").hide();
+    $("#submit").show();
+    $("#add").show();
 }
 
 //Hides submit and add, shows cancel and replace.
 function addingButtons() {
-    $("#add").slideUp();
-    $("#submit").slideUp();
-    $("#replace").slideDown();
-    $("#cancel").slideDown();
+    $("#add").hide();
+    $("#submit").hide();
+    $("#replace").show();
+    $("#cancel").show();
 }
 
 function add() {
@@ -77,6 +77,7 @@ function add() {
         documentsAdded++;
         clearAllFields();
         document.getElementById("documentAmount").innerHTML = documentsAdded;
+        doVisualization();
 
         /***************************/
         document.getElementById("pastDocs").innerHTML += "<div class='docBox' id ='docBox' >" + documentsAdded + "</div>"; //Adds boxes of past entries.
@@ -142,6 +143,7 @@ function replace() {
                 selected = 0;
                 clearAllFields();
                 deselect();
+                doVisualization();
                 return;
             }
         }
@@ -268,6 +270,7 @@ $(document).ready(function() {
     $("#replace").hide();
     $("#cancel").hide();
     $("#savePrompt").hide();
+    $('#visHeader').hide();
 
     $("#submit").click(function() {
         exportToCSV();

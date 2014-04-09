@@ -23,7 +23,7 @@
     };
 
     CSVView.prototype.render = function() {
-      console.log('adsfasdf');
+      console.log('rendering CSVView');
       this.$el.html(this.template());
       return this;
     };
