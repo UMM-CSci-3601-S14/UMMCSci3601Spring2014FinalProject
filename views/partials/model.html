@@ -1,7 +1,42 @@
 <script id='modelPage' type='text/html'>
     <div class="row">
         <div id="csvUpload" class="col-md-6 col-md-offset-2">
-            <p>test</p>
+            <p>
+                Here at LightSide <em>you</em> can create <em>your own</em> grading model to grade <em>your</em> assignments based off of how <em>you</em> grade.
+            </p>
+
+                <label for="title">Prompt Title: </label><br/>
+                <input id="title" value="Title" /> <br/>
+
+                <label for="text">Prompt Text: </label><br/>
+                <input id="text" value="Text" /><br/>
+
+                <label for="description">Prompt Description: </label><br/>
+                <input id="description" value="Description" /><br/>
+
+                <label for="cDescription">Class Description: </label><br/>
+                <input id="cDescription" value="Class Description" /><br/><br/>
+
+                <!--Form to allow a cvs file to be uploaded.-->
+                <form action="upload_file.php" method="post" enctype="multipart/form-data">
+                    <label for="file">Upload CSV for Model:</label>
+                    <input type="file" name="file" id="file"><br>
+                </form>
+
+                <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
+            <br/><br/>
+            <div id="waitingForModel">
+                <h4>Please Wait For LightSide To Build Your Model</h4>
+                <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
+                <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                <br/><br/>
+                <button id="hideWait" class="btn btn-success">Thank You</button>
+
+            </div>
+            <br/><br/>
+            <p>To be able to access more api features or to become a client of LightSide's</p>
+            <p>please contact us for more information and to look into our newest features.</p>
+            <a href="http://lightsidelabs.com/contact/" class="btn btn-success">Contact Us</a>
         </div>
     </div>
 </script>

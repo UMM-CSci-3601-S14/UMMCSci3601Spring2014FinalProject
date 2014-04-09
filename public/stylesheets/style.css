@@ -36,6 +36,14 @@ p{
     border-radius: 10px;
 }
 
+#waitingForModel{
+    text-align: center;
+    display: none;
+    padding: 15px;
+    background-color: #FFE099;
+    border-radius: 10px;
+}
+
 #signIn {
     padding: 20px;
     -moz-box-shadow: 0 0 5px #888;

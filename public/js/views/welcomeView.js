@@ -25,25 +25,8 @@
 
     welcomeView.prototype.initialize = function() {
       thePrompt = new prompt().fetch().done(function() {
-        var theRequest;
         $('#promptTitle').html('Prompt: ' + thePrompt.responseJSON.text);
-        $('#promptDescription').html(thePrompt.responseJSON.description);
-        console.log(thePrompt.responseJSON);
-        console.log('trying to find an essay');
-        console.log(thePrompt.responseJSON.answer_sets[0]);
-        theRequest = new testRequest();
-        theRequest.urlRoot = thePrompt.responseJSON.corpora[0];
-        return theRequest.fetch().done(function() {
-
-          /* exampleAns = new request()
-           exampleAns.urlRoot = theRequest.attributes.answers[0]
-           exampleAns.fetch().done ->
-             hopeANS = new request()
-             hopeANS.urlRoot = exampleAns.attributes.text
-             hopeANS.fetch().done ->
-             console.log hopeANS
-           */
-        });
+        return $('#promptDescription').html(thePrompt.responseJSON.description);
       });
       this.render();
     };
@@ -78,11 +61,11 @@
             }).save().done(function() {
               var theProcess;
               console.log(thePredictionTask.responseJSON.process);
-              theProcess = new predictionProcess();
+              theProcess = new theRequest();
               theProcess.urlRoot = thePredictionTask.responseJSON.process;
               return theProcess.save().done(function() {
                 var count, looping, thePredictionStatus;
-                thePredictionStatus = new predictionStatus();
+                thePredictionStatus = new theRequest();
                 console.log("----------------------------------------");
                 count = 0;
                 looping;
@@ -108,6 +91,7 @@
                     }
                     if (thePredictionStatus.attributes.status === 'U') {
                       console.log("Prediction Task was UNSUCCESSFUL");
+                      $('#grade').html("The grading process was unsucessful. Pleas wait befor resubmitting.");
                       return window.clearInterval(looping);
                     }
                   });
