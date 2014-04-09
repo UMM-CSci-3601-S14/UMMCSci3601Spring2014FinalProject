@@ -1,98 +1,59 @@
 <script>
+    var parser;
+    var CSVArray;
+    var arrayOfArrays = new Array();
+    var arrayOfDic = new Array();
+
     function doVisualization(){
-//This doesn't work due to CanvasJS not able to render into divs that were added later (I think)
-//        var template1 = '<div class="visualization" id="visField';
-//        var template2 = '"></div>\n';
-//        var temp = "";
-//        for (var i = 1; i < numFields+ 1; i++) {
-//            temp += template1 + numFields + template2;
-//        }
-//        document.getElementById("visualization").innerHTML=temp;
-        if (documentsAdded > 0) {
-            $('#visHeader').show();
-        }
-        var parser = new  CSVParser(myCSV);
-        var CSVArray = parser.array();
-        getFields(CSVArray);
+        parser = new  CSVParser(myCSV);
+        CSVArray = parser.array();
+        getFields();
 
     }
 
     //sets arrayOfArrays to be an array of each field (including the field name at the first index of each sub-array!)
-    function getFields (CSVArray) {
-        var arrayOfArrays = new Array();
+    function getFields () {
         for (var i = 0; i < numFields; i++) {
             arrayOfArrays[i] = new Array();
             for (var j = 0; j < CSVArray.length; j++) {
                 arrayOfArrays[i][j] = CSVArray[j][i];
             }
         }
-        countGrades(arrayOfArrays);
+        console.log(arrayOfArrays);
     }
 
-    function countGrades (arrayOfArrays){
-        var arrayOfDict = new Array();
-        for (var i = 0; i < numFields; i++){
-            arrayOfDict.push(generateMap(arrayOfArrays[i]));
-            createData(i, arrayOfDict);
+    function countGrades (){
+        for (var i =0; i < numFields; i++){
+            arrayOfDic.push(generateMap(arrayOfArrays[i]));
         }
     }
 
     //fieldNum is the index that a field is on
-    function createData(fieldNum, arrayOfDict){
-        var tempValue;
-        var tempKey;
-        var divID = "visField" + (fieldNum + 1);
-        var title = fieldNames[fieldNum];
-        var dataPointsTemplate = new Array();
-        for(var i = 0; i < arrayOfDict[fieldNum].keys.length; i++) {
-            tempValue = arrayOfDict[fieldNum].values[i];
-            tempKey = (arrayOfDict[fieldNum].keys[i]).toString();
-            dataPointsTemplate.push({y: tempValue, indexLabel: tempKey});
+    function createData(fieldNum){
+        var tmp1 = "Number of ";
+        var tmp2 = " documents: ";
+        var data = [];
+        for(var i = 0; i < dicLength(); i++) {
+            data.push({Label: tmp1 +  + tmp2, value: arrayOfDic[fieldNum].value});
         }
-        var dataTemplate = [
-            {
-                type:"doughnut",
-                dataPoints:dataPointsTemplate
-            }
-        ];
-        var chart = new CanvasJS.Chart(divID,
-            {
-                title:{
-                    text: title
-                },
-                data:dataTemplate
-            });
-        chart.render();
+        return data;
     }
 
-    function Dictionary(){
-        this.keys = [];
-        this.values = [];
+    Morris.Donut({
+        element: 'myfirstchart',
+        data: [
+            {label: "Number of 0 papers: ", value: grades[0]},
+            {label: "Number of 1 papers: ", value: grades[1]},
+            {label: "Number of 2 papers: ", value: grades[2]},
+            {label: "Number of 3 papers: ", value: grades[3]}
+        ],
+        labelColor: 'black',
+        colors: [
+            '#CB5DF5',
+            '#8451FF',
+            '#6375E8',
+            '#60B8FF'
+        ]
+    });
 
-        this.add = function(entry) {
-            var index = this.keys.indexOf(entry);
-            if (-1 == index){
-                this.keys.push(entry);
-                this.values.push(1);
-                this.length == (this.length + 1);
-            }
-            else{
-                this.values[index] = (this.values[index] + 1);
-            }
-        };
-
-        this.getValue = function(key) {
-            var index = this.keys.indexOf(key);
-            return this.values[index];
-        };
-    }
-
-    function generateMap (arrayOfStrings) {
-        var map = new Dictionary();
-        for (var i = 1; i < arrayOfStrings.length; i++) {
-            var entry = arrayOfStrings[i];
-            map.add(entry)
-        }
-        return map
-    }
 </script>

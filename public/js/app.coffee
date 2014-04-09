@@ -4,6 +4,8 @@ class AppRouter extends Backbone.Router
     'results': 'results'
     'csvPage': 'csvPage'
     'modelPage': 'modelPage'
+    'logIn': 'logIn'
+    'newUser': 'newUser'
 
   index: ->
 
@@ -24,6 +26,16 @@ class AppRouter extends Backbone.Router
   modelPage: ->
     console.log "in model"
     $('#content').html new window.modelView().$el
+    return
+
+  logIn: ->
+    console.log "in Sign in"
+    $('#content').html new window.logInView().$el
+    return
+
+  newUser: ->
+    console.log "in newUser"
+    $('#content').html new window.newUserView().$el
     return
 
 $(document).ready ->

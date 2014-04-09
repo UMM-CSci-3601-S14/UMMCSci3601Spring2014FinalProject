@@ -1,3 +1,31 @@
 <script id='resultsPage' type='text/html'>
     <h4>This will be the results page.</h4>
 </script>
+
+<script id="logIn" type="text/html">
+    <div class="col-md-6 col-md-offset-3">
+        <form method="post" action="/">
+            <label>Username:</label><br/>
+            <input name="username" type="text" placeholder="Username"><br/>
+            <label>Password:</label><br/>
+            <input name="password" type="password" placeholder="Password" /><br/>
+            <br/>
+            <input type="submit" class="btn btn-success" value="Log In" />
+        </form>
+        {{{failed}}} <br/>
+        <a href="newUser">New User?</a>
+    </div>
+</script>
+
+<script id="newUserPage" type="text/html">
+    <div class="col-md-6 col-md-offset-3">
+        <form method="post" action="/">
+            <label>Desired Username:</label><br/>
+            <input name="username" type="text" placeholder="Username" value="<%= username %>"/><br/>
+            <label>Desired Password:</label><br/>
+            <input name="password" type="password" placeholder="Password" value="<%= password %>"/><br/>
+            <br/>
+            <button class="create">Create User</button>
+        </form>
+    </div>
+</script>

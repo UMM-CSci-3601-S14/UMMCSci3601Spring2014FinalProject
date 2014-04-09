@@ -60,6 +60,9 @@ app.get "/modelPage", routes.modelPage
 app.get "/users", routes.list
 app.get "/failed", routes.failed
 app.get "/user", routes.user
+app.get "/login", routes.logIn
+app.get "/newUser", routes.newUser
+app.post '/create', routes.create
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
   successRedirect: '/user'
