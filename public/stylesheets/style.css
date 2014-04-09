@@ -77,3 +77,7 @@ p{
     line-height:25px;
     background-color: lightblue;
 }
+
+.visualization {
+    height: 250px;
+}
