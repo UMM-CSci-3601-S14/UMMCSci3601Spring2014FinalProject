@@ -1,13 +1,6 @@
-<div class="col-md-6 col-md-offset-2" id="visualization">
-    <h4 id="visHeader">Occurrences of each entry for each field</h4>
-    <div id="visField1" class="visualization"></div>
-    <div id="visField2" class="visualization"></div>
-    <div id="visField3" class="visualization"></div>
-    <div id="visField4" class="visualization"></div>
-    <div id="visField5" class="visualization"></div>
-</div>
 <script>
     function doVisualization(){
+//This doesn't work due to CanvasJS not able to render into divs that were added later (I think)
 //        var template1 = '<div class="visualization" id="visField';
 //        var template2 = '"></div>\n';
 //        var temp = "";
@@ -54,8 +47,6 @@
         for(var i = 0; i < arrayOfDict[fieldNum].keys.length; i++) {
             tempValue = arrayOfDict[fieldNum].values[i];
             tempKey = (arrayOfDict[fieldNum].keys[i]).toString();
-            console.log(tempValue);
-            console.log(tempKey);
             dataPointsTemplate.push({y: tempValue, indexLabel: tempKey});
         }
         var dataTemplate = [
@@ -64,7 +55,6 @@
                 dataPoints:dataPointsTemplate
             }
         ];
-        console.log(dataTemplate);
         var chart = new CanvasJS.Chart(divID,
             {
                 title:{

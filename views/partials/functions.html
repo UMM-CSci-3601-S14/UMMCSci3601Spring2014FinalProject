@@ -185,6 +185,11 @@ function reset() {
         myCSV = "";
         documentsAdded = 0;
         document.getElementById("documentAmount").innerHTML = documentsAdded;
+        document.getElementById("visField1").innerHTML = "";
+        document.getElementById("visField2").innerHTML = "";
+        document.getElementById("visField3").innerHTML = "";
+        document.getElementById("visField4").innerHTML = "";
+        document.getElementById("visField5").innerHTML = "";
         numFields = 0;
         fieldNames = [];
         selected = 0;
@@ -197,6 +202,7 @@ function reset() {
         $("#saveFields").hide();
         $("#workZone").hide();
         $("#fieldNames").show();
+        $("#visHeader").hide();
     }
 }
 
