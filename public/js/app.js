@@ -17,7 +17,8 @@
       'csvPage': 'csvPage',
       'modelPage': 'modelPage',
       'logIn': 'logIn',
-      'newUser': 'newUser'
+      'newUser': 'newUser',
+      'failed': 'logIn'
     };
 
     AppRouter.prototype.index = function() {

@@ -6,6 +6,7 @@ class AppRouter extends Backbone.Router
     'modelPage': 'modelPage'
     'logIn': 'logIn'
     'newUser': 'newUser'
+    'failed': 'logIn'
 
   index: ->
 
