@@ -7,7 +7,6 @@ class window.newUserView extends Backbone.View
    'change': 'change'
    'click button.create': 'create'
 
-
   initialize: ->
     @render()
 
