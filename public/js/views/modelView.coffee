@@ -45,12 +45,19 @@ class window.modelView extends Backbone.View
         newCorpusUpload = new corpusUploadTasks().fetch().done ->
 
           # Getting security paramiters for S3 to upload the cvs in mass,
-          #  We get a forbidden error and get told that access is not allowed
+          #  We get access but now have a 412 (Precondition Failed)
           s3Request = new theRequest()
           s3Request.urlRoot = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
 
           s3Request.fetch().done ->
-            s3Post = new theRequest({AWSAccessKeyId: s3Request.attributes.access_key_id, key: s3Request.attributes.key, acl: 'public-read', Policy: s3Request.attributes.policy, Signature: s3Request.attributes.signature, success_action_status: '201', file: newcsv })
+            s3Post = new theRequest({
+              AWSAccessKeyId: s3Request.attributes.access_key_id
+              key: s3Request.attributes.key
+              acl: 'public-read'
+              Policy: s3Request.attributes.policy
+              Signature: s3Request.attributes.signature
+              success_action_status: '201'}
+              {file: newcsv})
             s3Post.urlRoot= s3Request.attributes.s3_endpoint
             s3Post.save().done ->
 
