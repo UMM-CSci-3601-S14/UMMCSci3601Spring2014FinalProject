@@ -93,6 +93,7 @@ function add() {
                 docBoxColors(this, 'lightblue', 'black', 'gray');
             }
         });
+        //gets run when a docBox is clicked, used for editing, a homemade parser and content generator
         $(".docBox").click(function() {
             addingButtons();
             selected = (parseInt($(this).text()));
@@ -138,7 +139,8 @@ function replace() {
                     toReplace += $("#toScore" + j + "").val() + ",";
                 }
                 toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
-                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
+                //Finds the ith instance of a line break, then replaces starting at that line.
+                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace);
 
                 selected = 0;
                 clearAllFields();

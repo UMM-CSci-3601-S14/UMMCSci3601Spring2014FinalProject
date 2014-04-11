@@ -1,14 +1,13 @@
 body {
-  padding: 50px;
-  font: 14px "Francois One", "Lucida Grande", Helvetica, Arial, sans-serif;
-
+    padding: 50px;
+    font-family: "Francois One", "Lucida Grande", Helvetica, Arial, Sans-serif;
 }
 
 h2{
     text-align: center;
 }
 p{
-    font: "Alegreya Sans","Bookman", Georgia, "Times New Roman", serif;
+    font-family: "Bookman", serif;
     font-size: larger;
 }
 
