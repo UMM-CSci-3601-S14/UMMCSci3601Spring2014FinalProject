@@ -38,69 +38,60 @@
 
     welcomeView.prototype.submitEssay = function() {
       var theAuthor;
-      $('#sandboxResults').show(1000);
-      return theAuthor = new author({
-        designator: "BG2",
-        email: "test@gmail.com"
-      }).fetch().done(function() {
-        var theAnswerSet;
-        console.log(theAuthor);
-        return theAnswerSet = new ourAnswerSet({}).fetch().done(function() {
-          var theAnswer;
-          console.log(theAnswerSet);
-          return theAnswer = new answer({
-            author: theAuthor.responseJSON.results[0].url,
-            answer_set: theAnswerSet.responseJSON.url,
-            text: $('#essayContents').val()
-          }).save().done(function() {
-            var thePredictionTask;
-            console.log(theAnswer);
-            return thePredictionTask = new predictionTask({
+      if ($('#essayContents').val() === "") {
+        return alert("Please enter text to for LightSide to Grade.");
+      } else {
+        $('#sandboxResults').show(1000);
+        return theAuthor = new author({
+          designator: "BG2",
+          email: "test@gmail.com"
+        }).fetch().done(function() {
+          var theAnswerSet;
+          return theAnswerSet = new ourAnswerSet({}).fetch().done(function() {
+            var theAnswer;
+            return theAnswer = new answer({
+              author: theAuthor.responseJSON.results[0].url,
               answer_set: theAnswerSet.responseJSON.url,
-              trained_model: thePrompt.responseJSON.default_models[0]
+              text: $('#essayContents').val()
             }).save().done(function() {
-              var theProcess;
-              console.log(thePredictionTask.responseJSON.process);
-              theProcess = new theRequest();
-              theProcess.urlRoot = thePredictionTask.responseJSON.process;
-              return theProcess.save().done(function() {
-                var count, looping, thePredictionStatus;
-                thePredictionStatus = new theRequest();
-                console.log("----------------------------------------");
-                count = 0;
-                looping;
-                return looping = setInterval((function() {
-                  count++;
-                  thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
-                  console.log(thePredictionStatus.urlRoot);
-                  return thePredictionStatus.fetch().done(function() {
-                    var thePredictionResult;
-                    console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
-                    console.log(theProcess.attributes.prediction_task);
-                    if (thePredictionStatus.attributes.status === 'S') {
-                      console.log("Prediction Task was SUCCESSFUL");
-                      console.log("exited while loop");
-                      thePredictionResult = new predictionResult().fetch().done(function() {
-                        var answerGraded;
-                        console.log(thePredictionResult.responseJSON);
-                        $('#grade').html("Your grade for the submitted essay is " + thePredictionResult.responseJSON.results[0].label + " out of 5.");
-                        return answerGraded = new answer;
-                      });
-                      console.log(count);
-                      window.clearInterval(looping);
-                    }
-                    if (thePredictionStatus.attributes.status === 'U') {
-                      console.log("Prediction Task was UNSUCCESSFUL");
-                      $('#grade').html("The grading process was unsucessful. Pleas wait befor resubmitting.");
-                      return window.clearInterval(looping);
-                    }
-                  });
-                }), 1000);
+              var thePredictionTask;
+              return thePredictionTask = new predictionTask({
+                answer_set: theAnswerSet.responseJSON.url,
+                trained_model: thePrompt.responseJSON.default_models[0]
+              }).save().done(function() {
+                var theProcess;
+                theProcess = new request();
+                theProcess.urlRoot = thePredictionTask.responseJSON.process;
+                return theProcess.save().done(function() {
+                  var looping, thePredictionStatus;
+                  thePredictionStatus = new request();
+                  return looping = setInterval((function() {
+                    thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
+                    return thePredictionStatus.fetch().done(function() {
+                      var thePredictionResult;
+                      console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
+                      if (thePredictionStatus.attributes.status === 'S') {
+                        console.log("Prediction Task was SUCCESSFUL");
+                        thePredictionResult = new predictionResult().fetch().done(function() {
+                          var answerGraded;
+                          $('#grade').html("Your grade for the submitted essay is " + thePredictionResult.responseJSON.results[0].label + " out of 5.");
+                          return answerGraded = new answer;
+                        });
+                        window.clearInterval(looping);
+                      }
+                      if (thePredictionStatus.attributes.status === 'U') {
+                        console.log("Prediction Task was UNSUCCESSFUL");
+                        $('#grade').html("The grading process was unsucessful. Please wait before resubmitting.");
+                        return window.clearInterval(looping);
+                      }
+                    });
+                  }), 1000);
+                });
               });
             });
           });
         });
-      });
+      }
     };
 
     welcomeView.prototype.hideResults = function() {

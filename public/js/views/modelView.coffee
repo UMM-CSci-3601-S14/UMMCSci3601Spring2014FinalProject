@@ -19,10 +19,15 @@ class window.modelView extends Backbone.View
     $('#waitingForModel').show(1000)
 
     # Collecting all the nessesary information from the page
+    # Text and title are requeired to create a new prompt
     newTitle =  $('#title').val()
     newText =  $('#text').val()
+    # The prompt description is NOT required
+    # but used for grading after model is created
     newDescription =  $('#description').val()
+    # The Class description is required for the corpa
     newClass = $('#cDescription').val()
+    # The CSV is required to send to s3
     newcsv = $('#file').val()
 
     # Start process to creat a new model
@@ -46,11 +51,11 @@ class window.modelView extends Backbone.View
 
           # Getting security paramiters for S3 to upload the cvs in mass,
           #  We get access but now have a 412 (Precondition Failed)
-          s3Request = new theRequest()
+          s3Request = new request()
           s3Request.urlRoot = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
 
           s3Request.fetch().done ->
-            s3Post = new theRequest({
+            s3Post = new request({
               AWSAccessKeyId: s3Request.attributes.access_key_id
               key: s3Request.attributes.key
               acl: 'public-read'
@@ -68,13 +73,13 @@ class window.modelView extends Backbone.View
                 content_type: 'text/csv'
               }).save().done ->
                 console.log newUploadTask.responseJSON
-                uploadQueue = new theRequest()
+                uploadQueue = new request()
                 uploadQueue.urlRoot = newUploadTask.responseJSON.process
                 console.log newUploadTask.responseJSON.process
                 uploadQueue.save().done ->
                   console.log 'helllp'
                   console.log uploadQueue
-                  uploadTask = new theRequest()
+                  uploadTask = new request()
                   uploadTask.urlRoot = uploadQueue.attributes.corpus_upload_task[0..3] + "s" + uploadQueue.attributes.corpus_upload_task[4..]
                   console.log "----------------------------------------"
                   count = 0

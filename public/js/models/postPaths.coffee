@@ -2,20 +2,17 @@
 class window.prompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/114'
 
-# This author is the same for all submitions on this page.
-class window.author extends superPost
-  urlRoot:'https://try-api.lightsidelabs.com/api/authors'
-
 #  Clone is presently unused/commented out.
 class window.clonePrompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
 
-class window.clonePrompt extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
+# This author is the same for all submitions on this page.
+class window.author extends superPost
+  urlRoot:'https://try-api.lightsidelabs.com/api/authors'
 
-  # Calls for sending an answer to the api
-class window.answerSet extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/'
+# Calls for sending an answer to the api
+class window.ourAnswerSet extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/263'
 
 class window.answer extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answers/'
@@ -23,17 +20,12 @@ class window.answer extends superPost
 class window.predictionTask extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-tasks/'
 
-#  This general request call takes the place of the prediction process
-#   and the prediction status, as the urls for both can't be predefined
-class window.theRequest extends superPost
-  urlRoot: ""
-
-# Calls for getting the grades from the api
+# Call for getting the grades from the api once sucessfully graded
 class window.predictionResult extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-results/'
 
-class window.ourAnswerSet extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/263'
+
+
 
   ##Calls for making a new model.
 class window.createPrompt extends superPost
@@ -44,3 +36,10 @@ class window.createCorpora extends superPost
 
 class window.corpusUploadTasks extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/corpus-upload-tasks/'
+
+
+
+#  This general request call takes the place of the prediction process,
+#  the prediction status, and other places where the URL can't be predefined
+class window.request extends superPost
+  urlRoot: ""
