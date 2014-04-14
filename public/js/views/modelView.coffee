@@ -90,7 +90,7 @@ class window.modelView extends Backbone.View
                     count++
                     uploadTask.fetch().done ->
 
-                        # If the model is compleat then the upload task's status will change to 'S' and we can exit the loop
+                        # If the model is complete then the upload task's status will change to 'S' and we can exit the loop
                       # and beging to interact with the model
 
 

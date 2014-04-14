@@ -1,3 +1,4 @@
+
 # This is the cloned prompt that we are using for the demo page
 class window.prompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/114'

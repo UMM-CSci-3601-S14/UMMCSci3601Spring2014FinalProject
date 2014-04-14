@@ -19,24 +19,24 @@ exports.results = (req, res) ->
   res.render 'index'
 
 exports.csvPage = (req, res) ->
-  if req.user is undefined
-    res.redirect '/logIn'
-  else
-   res.locals = {
-     title: 'LightSide'
-     header: 'LightSide CSV Upload Page'
-   }
-   res.render 'index'
+#  if req.user is undefined
+#    res.redirect '/logIn'
+#  else
+  res.locals = {
+    title: 'LightSide'
+    header: 'LightSide CSV Upload Page'
+  }
+  res.render 'index'
 
 exports.modelPage = (req, res) ->
-  if req.user is undefined
-    res.redirect '/logIn'
-  else
-   res.locals = {
-     title: 'LightSide'
-     header: 'LightSide Model Maker'
-   }
-   res.render 'index'
+#  if req.user is undefined
+#    res.redirect '/logIn'
+#  else
+  res.locals = {
+   title: 'LightSide'
+   header: 'LightSide Model Maker'
+  }
+  res.render 'index'
 
 exports.list = (req, res) ->
   res.send "respond with a resource"
