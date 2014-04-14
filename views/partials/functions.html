@@ -11,11 +11,60 @@ var numFields;
 var fieldNames = [];
 var selected = 0;
 
-//Much of this function was found here:
-//http://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
-function replaceAt(str, start, end, text) {
-    return str.substring(0, start) + text + str.substring(end + 1);
+/***************ADD/SAVE FIELDS*****************/
+//Sets the number of text fields for number of scorers. Runs when dropdown is selected.
+function addFields(numToAdd) {
+    numFields = numToAdd;
+    var template1 = '<div class="fields">\n</div><input class="field form-control" id="field';
+    var template2 = '" placeholder="Enter Field Name (Ex: Grade)">\n</div>\n';
+    var temp = "<label>Fields</label>";
+    for (var i = 1; i < numToAdd + 1; i++) {
+        temp += template1 + i + template2;
+    }
+    document.getElementById("moreFields").innerHTML=temp;
+    $("#saveFields").show();
 }
+
+//Runs when you hit save. Inserts the name of the fields into the fields.
+function saveFields() {
+
+    var prompt = $("#promptField").val();
+    var tempbool = true;
+    for (var i = 1; i <= numFields; i++) {
+        if ($("#field" + i + "").val()== "") {
+            tempbool = false;
+        }
+    }
+    if ($("#promptField").val()=="") {
+        window.alert("Please enter the prompt");
+    }
+    else if (tempbool == true) {
+        for (var i = 1; i <= numFields; i++) {
+            fieldNames.push($("#field" + i + "").val());
+            myCSV += $("#field" + i + "").val() + ",";
+        }
+        var template1 = '<div class="input-group fields">\n<span class="input-group-addon">';
+        var template2 = '</span>\n<input type="text" class="form-control" id="toScore';
+        var template3 = '"placeholder="Enter ';
+        var template4 = '">\n</div>\n';
+        var temp = "<label>Scores</label>";
+        for (var i = 1; i < numFields+ 1; i++) {
+            temp += template1 + fieldNames[i-1] + template2 + i + template3 + fieldNames[i-1] + template4;
+        }
+        document.getElementById("promptSpace").innerHTML="<strong>Your Prompt: </strong>" + prompt;
+        document.getElementById("fieldScores").innerHTML=temp;
+        myCSV += "text\r\n"
+        $("#fieldNames").hide();
+        $("#workZone").show();
+
+        //This will hide the first tutorial div and show the second tutorial div
+        $("#firstT").hide();
+        $("#secondT").show();
+    } else {
+        window.alert("Please fill all field names");
+    }
+}
+/******************************************************/
 
 //If no documents have been added, prompts user to add documents. Else it asks for confirmation of download, then runs the download method.
 function exportToCSV() {
@@ -34,39 +83,30 @@ function download(filename, text) {
     saveAs(blob, $("#fileTitle").val()+".csv");
 }
 
-//Returns true or false. False if all fields and text area have contents.
-function emptyFields() {
-    for (var i = 1; i <= numFields; i++) {
-        if ($("#toScore" + i + "").val() == "") {
-            return true;
-        }
-    }
-    if ($("#text").val() == "") {
-        return true;
-    } else {
-        return false;
-    }
-}
 
-//Hides cancel and replace, shows submit and add.
+//Hides cancel, the third tutorial, and replace, shows submit, the second tutorial, and add
 function editButtons() {
     $("#cancel").hide();
     $("#replace").hide();
     $("#submit").show();
     $("#add").show();
+    $("#secondT").show();
+    $("#thirdT").hide();
 }
 
-//Hides submit and add, shows cancel and replace.
+//Hides submit, the second tutorial, and add, shows cancel, third tutorial, and replace.
 function addingButtons() {
     $("#add").hide();
     $("#submit").hide();
     $("#replace").show();
     $("#cancel").show();
+    $("#secondT").hide();
+    $("#thirdT").show();
 }
 
+/**********************ADDING********************************/
 function add() {
     /***************************/
-
     if (emptyFields() == true) {                             //If any of the fields/text areas are empty, will alert the user.
         window.alert("Please fill all fields for the text");
     } else {                                                 //If all fields are populated will add the entry.
@@ -93,8 +133,7 @@ function add() {
                 docBoxColors(this, 'lightblue', 'black', 'gray');
             }
         });
-        //gets run when a docBox is clicked, used for editing, a homemade parser and content generator
-        $(".docBox").click(function() {
+        $(".docBox").click(function() { //Edits CSV document by clicking the specified docBox
             addingButtons();
             selected = (parseInt($(this).text()));
             deselect();
@@ -119,6 +158,21 @@ function add() {
         });
     }
 }
+
+//Returns true or false. False if all fields and text area have contents.
+function emptyFields() {
+    for (var i = 1; i <= numFields; i++) {
+        if ($("#toScore" + i + "").val() == "") {
+            return true;
+        }
+    }
+    if ($("#text").val() == "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 //Changes the color of the docBox.
 function docBoxColors(element, bgColor, color, bdColor) {
     $(element).css("background-color", bgColor);
@@ -139,8 +193,7 @@ function replace() {
                     toReplace += $("#toScore" + j + "").val() + ",";
                 }
                 toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
-                //Finds the ith instance of a line break, then replaces starting at that line.
-                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace);
+                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
 
                 selected = 0;
                 clearAllFields();
@@ -150,6 +203,13 @@ function replace() {
             }
         }
     }
+}
+
+//  Much of this function was found here:
+//  http://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
+//Used in the replace function, takes in two indices of a string and replaces that range of the string with other given text
+function replaceAt(str, start, end, text) {
+    return str.substring(0, start) + text + str.substring(end + 1);
 }
 
 //Deselects all docBoxes
@@ -165,7 +225,7 @@ function deselect() {
     }
 }
 
-//Doesn't actually clear all fields (it keeps the title) :P
+//Clears all text in text boxes in all field EXCEPT title
 function clearAllFields() {
     for (var k = 1; k <= numFields; k++) {
         $("#toScore" + k + "").val("");
@@ -198,6 +258,8 @@ function reset() {
         $("#text").val("");
         $("#fileTitle").val("");
         $("#promptField").val("");
+        $("#promptTitle").val("");
+        $("#corpusField").val("");
         document.getElementById("pastDocs").innerHTML = "";
         document.getElementById("moreFields").innerHTML = "";
         document.getElementById("fieldScores").innerHTML = "";
@@ -206,54 +268,9 @@ function reset() {
         $("#workZone").hide();
         $("#fieldNames").show();
         $("#visHeader").hide();
-    }
-}
-
-//Sets the number of text fields for number of scorers. Runs when dropdown is selected.
-function addFields(numToAdd) {
-    numFields = numToAdd;
-    var template1 = '<div class="fields">\n</div><input class="field form-control" id="field';
-    var template2 = '" placeholder="Enter Field Name (Ex: Grade)">\n</div>\n';
-    var temp = "<label>Fields</label>";
-    for (var i = 1; i < numToAdd + 1; i++) {
-        temp += template1 + i + template2;
-    }
-    document.getElementById("moreFields").innerHTML=temp;
-    $("#saveFields").show();
-}
-
-//Runs when you hit save. Inserts the name of the fields into the fields.
-function saveFields() {
-    var prompt = $("#promptField").val();
-    var tempbool = true;
-    for (var i = 1; i <= numFields; i++) {
-        if ($("#field" + i + "").val()== "") {
-            tempbool = false;
-        }
-    }
-    if ($("#promptField").val()=="") {
-        window.alert("Please enter the prompt");
-    }
-    else if (tempbool == true) {
-        for (var i = 1; i <= numFields; i++) {
-            fieldNames.push($("#field" + i + "").val());
-            myCSV += $("#field" + i + "").val() + ",";
-        }
-        var template1 = '<div class="input-group fields">\n<span class="input-group-addon">';
-        var template2 = '</span>\n<input type="text" class="form-control" id="toScore';
-        var template3 = '"placeholder="Enter ';
-        var template4 = '">\n</div>\n';
-        var temp = "<label>Scores</label>";
-        for (var i = 1; i < numFields+ 1; i++) {
-            temp += template1 + fieldNames[i-1] + template2 + i + template3 + fieldNames[i-1] + template4;
-        }
-        document.getElementById("promptSpace").innerHTML="<strong>Your Prompt: </strong>" + prompt;
-        document.getElementById("fieldScores").innerHTML=temp;
-        myCSV += "text\r\n"
-        $("#fieldNames").hide();
-        $("#workZone").show();
-    } else {
-        window.alert("Please fill all field names");
+        $("#firstT").show();
+        $("#secondT").hide();
+        $("#thirdT").hide();
     }
 }
 
@@ -279,7 +296,9 @@ $(document).ready(function() {
     $("#replace").hide();
     $("#cancel").hide();
     $("#savePrompt").hide();
-    $('#visHeader').hide();
+    $("#visHeader").hide();
+    $("#secondT").hide();
+    $("#thirdT").hide();
 
     $("#submit").click(function() {
         exportToCSV();
