@@ -1,23 +1,19 @@
 <script>
+    //This function will call every visualization function in a chain.
     function doVisualization(){
-//This doesn't work due to CanvasJS not able to render into divs that were added later (I think)
-//        var template1 = '<div class="visualization" id="visField';
-//        var template2 = '"></div>\n';
-//        var temp = "";
-//        for (var i = 1; i < numFields+ 1; i++) {
-//            temp += template1 + numFields + template2;
-//        }
-//        document.getElementById("visualization").innerHTML=temp;
+        //Hides #visHeader if nothing has been added
         if (documentsAdded > 0) {
             $('#visHeader').show();
         }
+        //uses CSVParser.js to parse the myCSV string into an array
         var parser = new  CSVParser(myCSV);
+        //CSVarray is an array of arrays. The arrays inside the main array contain the information from one document and its fields.
         var CSVArray = parser.array();
+        //sends the array from the csv into the getFields().
         getFields(CSVArray);
 
     }
 
-    //sets arrayOfArrays to be an array of each field (including the field name at the first index of each sub-array!)
     function getFields (CSVArray) {
         var arrayOfArrays = new Array();
         for (var i = 0; i < numFields; i++) {
@@ -26,15 +22,29 @@
                 arrayOfArrays[i][j] = CSVArray[j][i];
             }
         }
+        //sets arrayOfArrays to be an array of each field (including the field name at the first index of each sub-array!).
         countGrades(arrayOfArrays);
     }
 
     function countGrades (arrayOfArrays){
+        //arrayOfDicts will contain a dictionary of occurrences for each field
         var arrayOfDict = new Array();
         for (var i = 0; i < numFields; i++){
+            //Add the dictionary to arrayOfDicts
             arrayOfDict.push(generateMap(arrayOfArrays[i]));
+            //Runs createData on each field
             createData(i, arrayOfDict);
         }
+    }
+
+    function generateMap (arrayOfStrings) {
+        //Makes a dictionary of key value pairs based on occurrences within the given array. Returns the dictionary.
+        var map = new Dictionary();
+        for (var i = 1; i < arrayOfStrings.length; i++) {
+            var entry = arrayOfStrings[i];
+            map.add(entry)
+        }
+        return map
     }
 
     //fieldNum is the index that a field is on
@@ -43,6 +53,7 @@
         var tempKey;
         var divID = "visField" + (fieldNum + 1);
         var title = fieldNames[fieldNum];
+        //array of the field entries and the occurrences of them in an object for each index of the array
         var dataPointsTemplate = new Array();
         for(var i = 0; i < arrayOfDict[fieldNum].keys.length; i++) {
             tempValue = arrayOfDict[fieldNum].values[i];
@@ -55,6 +66,8 @@
                 dataPoints:dataPointsTemplate
             }
         ];
+
+        //chart object
         var chart = new CanvasJS.Chart(divID,
                 {
                     title:{
@@ -62,9 +75,11 @@
                     },
                     data:dataTemplate
                 });
+        //renders the chart
         chart.render();
     }
 
+    //Dictionary class and methods. Custom data structure!! :D
     function Dictionary(){
         this.keys = [];
         this.values = [];
@@ -85,14 +100,5 @@
             var index = this.keys.indexOf(key);
             return this.values[index];
         };
-    }
-
-    function generateMap (arrayOfStrings) {
-        var map = new Dictionary();
-        for (var i = 1; i < arrayOfStrings.length; i++) {
-            var entry = arrayOfStrings[i];
-            map.add(entry)
-        }
-        return map
     }
 </script>
