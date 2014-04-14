@@ -19,9 +19,9 @@ exports.results = (req, res) ->
   res.render 'index'
 
 exports.csvPage = (req, res) ->
-  if req.user is undefined
-    res.redirect '/logIn'
-  else
+#  if req.user is undefined
+#    res.redirect '/logIn'
+#  else
    res.locals = {
      title: 'LightSide'
      header: 'LightSide CSV Upload Page'
@@ -29,9 +29,9 @@ exports.csvPage = (req, res) ->
    res.render 'index'
 
 exports.modelPage = (req, res) ->
-  if req.user is undefined
-    res.redirect '/logIn'
-  else
+#  if req.user is undefined
+#    res.redirect '/logIn'
+#  else
    res.locals = {
      title: 'LightSide'
      header: 'LightSide Model Maker'

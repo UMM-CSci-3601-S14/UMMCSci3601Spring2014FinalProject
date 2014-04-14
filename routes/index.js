@@ -23,27 +23,19 @@
   };
 
   exports.csvPage = function(req, res) {
-    if (req.user === void 0) {
-      return res.redirect('/logIn');
-    } else {
-      res.locals = {
-        title: 'LightSide',
-        header: 'LightSide CSV Upload Page'
-      };
-      return res.render('index');
-    }
+    res.locals = {
+      title: 'LightSide',
+      header: 'LightSide CSV Upload Page'
+    };
+    return res.render('index');
   };
 
   exports.modelPage = function(req, res) {
-    if (req.user === void 0) {
-      return res.redirect('/logIn');
-    } else {
-      res.locals = {
-        title: 'LightSide',
-        header: 'LightSide Model Maker'
-      };
-      return res.render('index');
-    }
+    res.locals = {
+      title: 'LightSide',
+      header: 'LightSide Model Maker'
+    };
+    return res.render('index');
   };
 
   exports.list = function(req, res) {

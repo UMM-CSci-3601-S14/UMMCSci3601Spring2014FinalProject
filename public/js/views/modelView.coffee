@@ -27,8 +27,18 @@ class window.modelView extends Backbone.View
     newDescription =  $('#description').val()
     # The Class description is required for the corpa
     newClass = $('#cDescription').val()
-    # The CSV is required to send to s3
-    newcsv = $('#file').val()
+    newcsv = ''
+    file = document.getElementById("file").files[0]
+    if file
+      reader = new FileReader()
+      reader.readAsDataURL file
+      reader.onload = (evt) ->
+        newcsv = evt.target.result
+        return
+
+      reader.onerror = (evt) ->
+        document.getElementById("fileContents").innerHTML = "error reading file"
+        return
 
     # Start process to creat a new model
     # First create the new Prompt
@@ -53,7 +63,7 @@ class window.modelView extends Backbone.View
           #  We get access but now have a 412 (Precondition Failed)
           s3Request = new request()
           s3Request.urlRoot = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
-
+          console.log newcsv
           s3Request.fetch().done ->
             s3Post = new request({
               AWSAccessKeyId: s3Request.attributes.access_key_id
@@ -64,12 +74,12 @@ class window.modelView extends Backbone.View
               success_action_status: '201'}
               {file: newcsv})
             s3Post.urlRoot= s3Request.attributes.s3_endpoint
-            s3Post.save().done ->
+            s3Post.save(files: {file: newcsv}).done ->
 
               # Start of upload, with the corpus' url, the (unsuccessful) s3 key that containes the csv, and the type id for the csv
               newUploadTask = new corpusUploadTasks({
                 corpus: newCorpus.responseJSON.url
-                ##s3_key: '/home/harre096/Downloads/essay.csv' to be changed after we get s3 permission
+              ##s3_key: '/home/harre096/Downloads/essay.csv' to be changed after we get s3 permission
                 content_type: 'text/csv'
               }).save().done ->
                 console.log newUploadTask.responseJSON
@@ -90,7 +100,7 @@ class window.modelView extends Backbone.View
                     count++
                     uploadTask.fetch().done ->
 
-                        # If the model is compleat then the upload task's status will change to 'S' and we can exit the loop
+                      # If the model is compleat then the upload task's status will change to 'S' and we can exit the loop
                       # and beging to interact with the model
 
 
@@ -108,7 +118,7 @@ class window.modelView extends Backbone.View
                         window.clearInterval looping
                         window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
 
-                    ), 1000
+                  ), 1000
 
 
   hideResults: ->
