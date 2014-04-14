@@ -93,6 +93,8 @@ Module dependencies.
 
   app.get("/newUser", routes.newUser);
 
+  app.get("/logout", routes.logout);
+
   app.post('/create', routes.create);
 
   app.post('/', passport.authenticate('local-login', {

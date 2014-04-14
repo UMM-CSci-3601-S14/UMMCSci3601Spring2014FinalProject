@@ -18,17 +18,19 @@ class window.newUserView extends Backbone.View
     @$el.html @template()
     this
 
-  change: (event) ->
-    # when the value of the text area changes, update the model on the client
-    console.log 'changed'
-    change = {}
-    changeTarget = event.target
-    change[changeTarget.name] = changeTarget.value #uses name attribute from html
-    # change = {body: 'whatever'}
-    model.set(change)
+#  change: (event) ->
+#    # when the value of the text area changes, update the model on the client
+#    console.log 'changed'
+#    change = {}
+#    changeTarget = event.target
+#    change[changeTarget.name] = changeTarget.value #uses name attribute from html
+#    # change = {body: 'whatever'}
+#    model.set(change)
 
   create: ->
     #save all changes made to the model back to the database
+    model.set({username: $('#username').val()})
+    model.set({password: $('#password').val()})
     console.log 'saving...'
     model.save {},
       success: ->

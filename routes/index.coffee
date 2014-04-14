@@ -4,10 +4,17 @@ User = require('../schemas/userSchema').user
 #
 exports.index = (req, res) ->
   console.log 'inside index'
-  res.locals = {
-    title: 'LightSide'
-    header: 'LightSide Test Page'
-  }
+  if req.user is undefined
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide Test Page'
+    }
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide Test Page'
+      username: req.user.username
+    }
   res.render 'index'
 
 exports.results = (req, res) ->
@@ -15,28 +22,31 @@ exports.results = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'LightSide Results Page'
+    username: req.user.username
   }
   res.render 'index'
 
 exports.csvPage = (req, res) ->
-#  if req.user is undefined
-#    res.redirect '/logIn'
-#  else
-  res.locals = {
-    title: 'LightSide'
-    header: 'LightSide CSV Upload Page'
-  }
-  res.render 'index'
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+   res.locals = {
+     title: 'LightSide'
+     header: 'LightSide CSV Upload Page'
+     username: req.user.username
+   }
+   res.render 'index'
 
 exports.modelPage = (req, res) ->
-#  if req.user is undefined
-#    res.redirect '/logIn'
-#  else
-  res.locals = {
-   title: 'LightSide'
-   header: 'LightSide Model Maker'
-  }
-  res.render 'index'
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+   res.locals = {
+     title: 'LightSide'
+     header: 'LightSide Model Maker'
+     username: req.user.username
+   }
+   res.render 'index'
 
 exports.list = (req, res) ->
   res.send "respond with a resource"
@@ -56,6 +66,7 @@ exports.user = (req, res) ->
     res.locals = {
       title: 'Lightside'
       header: 'Welcome ' + req.session.passport.user.username + '!'
+      username: req.user.username
     }
     res.render 'index'
 
@@ -66,12 +77,19 @@ exports.logIn = (req, res) ->
   }
   res.render 'index'
 
-exports.newUser = (req,res) ->
+exports.newUser = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'LightSide Register'
   }
   res.render 'index'
+
+exports.logout = (req, res) ->
+  if (req.session.passport.user is undefined)
+    res.redirect '/'
+  else
+    req.logout()
+    res.redirect('/')
 
 exports.create = (req, res) ->
   newUser = new User req.body

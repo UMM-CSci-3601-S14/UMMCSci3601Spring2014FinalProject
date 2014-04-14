@@ -6,10 +6,18 @@
 
   exports.index = function(req, res) {
     console.log('inside index');
-    res.locals = {
-      title: 'LightSide',
-      header: 'LightSide Test Page'
-    };
+    if (req.user === void 0) {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide Test Page'
+      };
+    } else {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide Test Page',
+        username: req.user.username
+      };
+    }
     return res.render('index');
   };
 
@@ -17,25 +25,36 @@
     console.log('inside results');
     res.locals = {
       title: 'LightSide',
-      header: 'LightSide Results Page'
+      header: 'LightSide Results Page',
+      username: req.user.username
     };
     return res.render('index');
   };
 
   exports.csvPage = function(req, res) {
-    res.locals = {
-      title: 'LightSide',
-      header: 'LightSide CSV Upload Page'
-    };
-    return res.render('index');
+    if (req.user === void 0) {
+      return res.redirect('/logIn');
+    } else {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide CSV Upload Page',
+        username: req.user.username
+      };
+      return res.render('index');
+    }
   };
 
   exports.modelPage = function(req, res) {
-    res.locals = {
-      title: 'LightSide',
-      header: 'LightSide Model Maker'
-    };
-    return res.render('index');
+    if (req.user === void 0) {
+      return res.redirect('/logIn');
+    } else {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide Model Maker',
+        username: req.user.username
+      };
+      return res.render('index');
+    }
   };
 
   exports.list = function(req, res) {
@@ -57,7 +76,8 @@
     } else {
       res.locals = {
         title: 'Lightside',
-        header: 'Welcome ' + req.session.passport.user.username + '!'
+        header: 'Welcome ' + req.session.passport.user.username + '!',
+        username: req.user.username
       };
       return res.render('index');
     }
@@ -77,6 +97,15 @@
       header: 'LightSide Register'
     };
     return res.render('index');
+  };
+
+  exports.logout = function(req, res) {
+    if (req.session.passport.user === void 0) {
+      return res.redirect('/');
+    } else {
+      req.logout();
+      return res.redirect('/');
+    }
   };
 
   exports.create = function(req, res) {

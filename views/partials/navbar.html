@@ -20,8 +20,12 @@
                 <li><a href="modelPage">Make a Model</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="logIn">Sign In</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">{{ username }}<b class="caret"> </b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user">My Account</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
