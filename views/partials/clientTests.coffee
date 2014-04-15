@@ -7,3 +7,7 @@ describe "Create paragraph", ->
       return
     return
   return
+
+  #unzip.js tests.
+
+describe "String from XML"
