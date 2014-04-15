@@ -29,6 +29,8 @@ function addFields(numToAdd) {
 function saveFields() {
 
     var prompt = $("#promptField").val();
+    var model = $("#promptTitle").val();
+    var subjectEssay = $("#corpusField").val();
     var tempbool = true;
     for (var i = 1; i <= numFields; i++) {
         if ($("#field" + i + "").val()== "") {
@@ -37,6 +39,12 @@ function saveFields() {
     }
     if ($("#promptField").val()=="") {
         window.alert("Please enter the prompt");
+    }
+    else if ($("#promptTitle").val()=="") {
+        window.alert("Please enter the Model");
+    }
+    else if($("#corpusField").val()=="") {
+        window.alert("Please enter the subject essay");
     }
     else if (tempbool == true) {
         for (var i = 1; i <= numFields; i++) {
@@ -51,7 +59,9 @@ function saveFields() {
         for (var i = 1; i < numFields+ 1; i++) {
             temp += template1 + fieldNames[i-1] + template2 + i + template3 + fieldNames[i-1] + template4;
         }
-        document.getElementById("promptSpace").innerHTML="<strong>Your Prompt: </strong>" + prompt;
+        document.getElementById("promptSpace").innerHTML = "<strong>Your Prompt: </strong>" + prompt + "<br />";
+        document.getElementById("promptSpace").innerHTML += "<strong>Your Model: </strong>" + model + "<br />";
+        document.getElementById("promptSpace").innerHTML += "<strong>Your Subject Essay: </strong>" + subjectEssay;
         document.getElementById("fieldScores").innerHTML=temp;
         myCSV += "text\r\n"
         $("#fieldNames").hide();
@@ -278,15 +288,31 @@ function reset() {
 function editPrompt() {
     $('#editPrompt').slideUp();
     $('#savePrompt').slideDown();
-    document.getElementById("promptSpace").innerHTML= "<label>New Prompt: </label>\n<input class='form-control' id='promptField2' name='promptField2' placeholder='Enter the Prompt for the Writing Submissions'>";
+    document.getElementById("promptSpace").innerHTML= "<label>New Prompt: </label>\n<input class='form-control' id='promptField2' name='promptField2' placeholder='Enter the Prompt for the Writing Submissions'> <br />";
+}
+
+function editModel() {
+    $('#editPrompt').slideUp();
+    $('#savePrompt').slideDown();
+    document.getElementById("promptSpace").innerHTML += "<label>New Model: </label>\n<input class='form-control' id='promptTitle2' name='promptTitle2' placeholder='Enter the Model for the Writing Submissions'> <br />";
+}
+
+function editEssaySubject() {
+    $('#editPrompt').slideUp();
+    $('#savePrompt').slideDown();
+    document.getElementById("promptSpace").innerHTML += "<label>New Subject Essay: </label>\n<input class='form-control' id='fieldCorpus2' name='fieldCorpus2' placeholder='Enter the Subject Essay for the Writing Submissions'>";
 }
 
 //Saves the prompt entered into the text field
 function savePrompt() {
     prompt = $("#promptField2").val();
+    model = $("#promptTitle2").val();
+    subjectEssay = $("#fieldCorpus2").val();
     $("#editPrompt").slideDown();
     $("#savePrompt").slideUp();
-    document.getElementById("promptSpace").innerHTML= "<strong>Your Prompt: </strong>" + prompt;
+    document.getElementById("promptSpace").innerHTML= "<strong>Your Prompt: </strong>" + prompt + "<br />";
+    document.getElementById("promptSpace").innerHTML += "<strong>Your Model: </strong>" + model + "<br />";
+    document.getElementById("promptSpace").innerHTML += "<strong>Your Subject Essay: </strong>" + subjectEssay;
 }
 
 //Hides the things that need to be hidden at the beginning.
@@ -326,6 +352,8 @@ $(document).ready(function() {
 
     $("#editPrompt").click(function() {
         editPrompt();
+        editModel();
+        editEssaySubject();
     });
 
     $("#savePrompt").click(function() {

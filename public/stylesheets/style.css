@@ -80,3 +80,7 @@ p{
 .visualization {
     height: 250px;
 }
+
+.navbar .container-fluid {
+    background-color: lightgray;
+}
