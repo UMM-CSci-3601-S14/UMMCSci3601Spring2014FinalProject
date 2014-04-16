@@ -1,6 +1,7 @@
 class window.welcomeView extends Backbone.View
   tagName: 'div'
   template: _.template $('#welcomePage').html()
+
   events:
     'click button.submitEssay': 'submitEssay'
     'click button#hideResults' : 'hideResults'

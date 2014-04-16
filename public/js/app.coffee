@@ -7,9 +7,9 @@ class AppRouter extends Backbone.Router
     'logIn': 'logIn'
     'newUser': 'newUser'
     'failed': 'logIn'
+    'account': 'account'
 
   index: ->
-
     console.log "in index"
     $('#content').html new window.welcomeView().$el
     return
@@ -39,6 +39,11 @@ class AppRouter extends Backbone.Router
     $('#content').html new window.newUserView().$el
     return
 
+  account: ->
+    console.log "in account"
+    $('#content').html new window.accountView().$el
+    return
+    
 $(document).ready ->
   app = new AppRouter()
   Backbone.history.start pushState: true

@@ -24,8 +24,39 @@
             <input name="username" id="username" type="text" placeholder="Username" value="<%= username %>"/><br/>
             <label>Desired Password:</label><br/>
             <input name="password" id="password" type="password" placeholder="Password" value="<%= password %>"/><br/>
+            <label>First Name:</label><br/>
+            <input name="firstName" id="firstName" type="text" placeholder="First Name" value="<%= firstName %>"/><br/>
+            <label>Surname:</label><br/>
+            <input name="surname" id="surname" type="text" placeholder="Surname" value="<%= surname %>"/><br/>
+            <label>Email:</label><br/>
+            <input name="email" id="email" type="email" placeholder="Email" value="<%= email %>"/><br/>
             <br/>
             <button class="create">Create User</button>
         </form>
+    </div>
+</script>
+
+<script id="account" type="text/html">
+    <div class="col-md-6 col-md-offset-1">
+        <h4>Your Account Information:</h4>
+        <div>
+            <label>Email:</label>
+            <p>{{ user.email }}</p><br/>
+            <label>Name:</label>
+            <p>{{ user.firstName }}</p><br/>
+            <label>Surname:</label>
+            <p>{{ user.surname }}</p><br/>
+        </div>
+        <button class="startChangePassword">Change Password</button>
+        <div id="changePasswordFields" class="changePasswordFields">
+            <label>Old Password:</label>
+            <input name="oldPassword" id="oldPassword" type="password"/><br/>
+            <label>New Password:</label>
+            <input name="newPassword" id="newPassword" value="<%= password %>"/><br/>
+            <label>Confirm New Password:</label>
+            <input name="confirmNewPassword" id="confirmNewPassword" value="<%= password %>"/><br/>
+            <button class="endChangePassword">Change Password</button>
+            <button class="cancelPasswordChange">Cancel</button>
+        </div>
     </div>
 </script>

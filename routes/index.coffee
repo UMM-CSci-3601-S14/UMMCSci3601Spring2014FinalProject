@@ -13,7 +13,7 @@ exports.index = (req, res) ->
     res.locals = {
       title: 'LightSide'
       header: 'LightSide Test Page'
-      username: req.user.username
+      user: req.user
     }
   res.render 'index'
 
@@ -22,7 +22,7 @@ exports.results = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'LightSide Results Page'
-    username: req.user.username
+    user: req.user
   }
   res.render 'index'
 
@@ -33,7 +33,7 @@ exports.csvPage = (req, res) ->
    res.locals = {
      title: 'LightSide'
      header: 'LightSide CSV Upload Page'
-     username: req.user.username
+     user: req.user
    }
    res.render 'index'
 
@@ -44,7 +44,7 @@ exports.modelPage = (req, res) ->
    res.locals = {
      title: 'LightSide'
      header: 'LightSide Model Maker'
-     username: req.user.username
+     user: req.user
    }
    res.render 'index'
 
@@ -66,7 +66,7 @@ exports.user = (req, res) ->
     res.locals = {
       title: 'Lightside'
       header: 'Welcome ' + req.session.passport.user.username + '!'
-      username: req.user.username
+      user: req.user
     }
     res.render 'index'
 
@@ -90,6 +90,17 @@ exports.logout = (req, res) ->
   else
     req.logout()
     res.redirect('/')
+
+exports.account = (req, res) ->
+  if (req.session.passport.user is undefined)
+    res.redirect '/logIn'
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'Welcome ' + req.user.firstName
+      user: req.user
+    }
+  res.render 'index'
 
 exports.create = (req, res) ->
   newUser = new User req.body

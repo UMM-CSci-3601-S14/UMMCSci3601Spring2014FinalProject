@@ -29,8 +29,14 @@ class window.newUserView extends Backbone.View
 
   create: ->
     #save all changes made to the model back to the database
-    model.set({username: $('#username').val()})
-    model.set({password: $('#password').val()})
+    model.set({
+      username: $('#username').val()
+      password: $('#password').val()
+      email: $('#email').val()
+      firstName: $('#firstName').val()
+      surname: $('#surname').val()
+    })
+
     console.log 'saving...'
     model.save {},
       success: ->
