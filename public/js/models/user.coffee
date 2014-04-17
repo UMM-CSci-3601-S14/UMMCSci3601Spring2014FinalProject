@@ -4,6 +4,10 @@ class window.user extends Backbone.Model
   defaults:
    username: ''
    password: ''
+   email: ''
+   firstName: ''
+   surname: ''
+
   initialize: ->
     console.log 'Initializing a user'
 

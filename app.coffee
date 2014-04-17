@@ -41,6 +41,9 @@ app.configure ->
   app.use express.methodOverride()
   app.use express.cookieParser('csci3601')
   app.use express.session(
+    cookie: {
+      maxAge: 1800000
+    }
     secret: 'csci3601')
   app.use passport.initialize()
   app.use passport.session()
@@ -62,10 +65,12 @@ app.get "/failed", routes.failed
 app.get "/user", routes.user
 app.get "/login", routes.logIn
 app.get "/newUser", routes.newUser
+app.get "/logout", routes.logout
+app.get "/account", routes.account
 app.post '/create', routes.create
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
-  successRedirect: '/user'
+  successRedirect: '/account'
 
 
 http.createServer(app).listen app.get("port"), ->

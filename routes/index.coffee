@@ -4,10 +4,17 @@ User = require('../schemas/userSchema').user
 #
 exports.index = (req, res) ->
   console.log 'inside index'
-  res.locals = {
-    title: 'LightSide'
-    header: 'LightSide Test Page'
-  }
+  if req.user is undefined
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide Test Page'
+    }
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide Test Page'
+      user: req.user
+    }
   res.render 'index'
 
 exports.results = (req, res) ->
@@ -15,28 +22,31 @@ exports.results = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'LightSide Results Page'
+    user: req.user
   }
   res.render 'index'
 
 exports.csvPage = (req, res) ->
-#  if req.user is undefined
-#    res.redirect '/logIn'
-#  else
-  res.locals = {
-    title: 'LightSide'
-    header: 'LightSide CSV Upload Page'
-  }
-  res.render 'index'
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+   res.locals = {
+     title: 'LightSide'
+     header: 'LightSide CSV Upload Page'
+     user: req.user
+   }
+   res.render 'index'
 
 exports.modelPage = (req, res) ->
-#  if req.user is undefined
-#    res.redirect '/logIn'
-#  else
-  res.locals = {
-   title: 'LightSide'
-   header: 'LightSide Model Maker'
-  }
-  res.render 'index'
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+   res.locals = {
+     title: 'LightSide'
+     header: 'LightSide Model Maker'
+     user: req.user
+   }
+   res.render 'index'
 
 exports.list = (req, res) ->
   res.send "respond with a resource"
@@ -56,6 +66,7 @@ exports.user = (req, res) ->
     res.locals = {
       title: 'Lightside'
       header: 'Welcome ' + req.session.passport.user.username + '!'
+      user: req.user
     }
     res.render 'index'
 
@@ -66,11 +77,29 @@ exports.logIn = (req, res) ->
   }
   res.render 'index'
 
-exports.newUser = (req,res) ->
+exports.newUser = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'LightSide Register'
   }
+  res.render 'index'
+
+exports.logout = (req, res) ->
+  if (req.session.passport.user is undefined)
+    res.redirect '/'
+  else
+    req.logout()
+    res.redirect('/')
+
+exports.account = (req, res) ->
+  if (req.session.passport.user is undefined)
+    res.redirect '/logIn'
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'Welcome ' + req.user.firstName
+      user: req.user
+    }
   res.render 'index'
 
 exports.create = (req, res) ->

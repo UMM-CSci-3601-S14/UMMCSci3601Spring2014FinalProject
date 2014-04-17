@@ -1,9 +1,5 @@
-assert = require("assert")
-
-describe "Create paragraph", ->
-  describe "test 1", ->
-    it "should create a paragraph with given text", ->
-      assert.equal "2", "2"
-      return
-    return
-  return
+describe 'testing a coffeescript cube function in the browser', ->
+  it '3 cubed is 27', ->
+    chai.assert.equal 27, cube(3)
+  it '-3 cubed is -27', ->
+    chai.assert.equal -27, cube(-3)

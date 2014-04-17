@@ -29,14 +29,23 @@ populateDB = ->
     {
       username: 'skippy'
       password: '1234'
+      email: 'lol@lol.com'
+      firstName: 'Zachary'
+      surname: 'Vink'
     },
     {
       username: 'justin'
       password: '4321'
+      email: 'lal@lol.com'
+      firstName: 'Justin'
+      surname: 'YaDeau'
     },
     {
       username: 'david'
       password: '9hnMILd23145'
+      email: 'Ha@lol.com'
+      firstName: 'David'
+      surname: 'Donatuccshio'
     }
   ]
   createAndAdd user for user in usernames
