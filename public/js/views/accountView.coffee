@@ -20,7 +20,11 @@ class window.accountView extends Backbone.View
 
 
   endChangePassword: ->
-    $('.changePasswordFields').hide()
+    if $('#newPassword').val() isnt $('#confirmNewPassword').val()
+      $('.passwordMismatch').show()
+    else
+#      if $('#oldPassword').val() isnt user.password
+#      console.log ($('#newPassword').val() + ' ' + $('#confirmNewPassword').val())
 
   cancelPasswordChange: ->
     console.log "here"

@@ -107,3 +107,4 @@ exports.create = (req, res) ->
   console.log 'created user'
   newUser.save()
   res.send newUser
+  res.redirect '/logIn'

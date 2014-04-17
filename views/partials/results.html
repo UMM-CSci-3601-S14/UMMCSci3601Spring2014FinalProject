@@ -19,17 +19,17 @@
 
 <script id="newUserPage" type="text/html">
     <div class="col-md-6 col-md-offset-3">
-        <form method="post" action="/">
+        <form method="post" action="/create">
             <label>Desired Username:</label><br/>
-            <input name="username" id="username" type="text" placeholder="Username" value="<%= username %>"/><br/>
+            <input name="createUsername" id="createUsername" type="text" placeholder="Username" value="<%= username %>"/><br/>
             <label>Desired Password:</label><br/>
-            <input name="password" id="password" type="password" placeholder="Password" value="<%= password %>"/><br/>
+            <input name="createPassword" id="createPassword" type="password" placeholder="Password" value="<%= password %>"/><br/>
             <label>First Name:</label><br/>
-            <input name="firstName" id="firstName" type="text" placeholder="First Name" value="<%= firstName %>"/><br/>
+            <input name="createFirstName" id="createFirstName" type="text" placeholder="First Name" value="<%= firstName %>"/><br/>
             <label>Surname:</label><br/>
-            <input name="surname" id="surname" type="text" placeholder="Surname" value="<%= surname %>"/><br/>
+            <input name="createSurname" id="createSurname" type="text" placeholder="Surname" value="<%= surname %>"/><br/>
             <label>Email:</label><br/>
-            <input name="email" id="email" type="email" placeholder="Email" value="<%= email %>"/><br/>
+            <input name="createEmail" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/><br/>
             <br/>
             <button class="create">Create User</button>
         </form>
@@ -48,7 +48,7 @@
             <p>{{ user.surname }}</p><br/>
         </div>
         <button class="startChangePassword">Change Password</button>
-        <div id="changePasswordFields" class="changePasswordFields">
+        <div id="changePasswordFields" class="changePasswordFields" style="display: none">
             <label>Old Password:</label>
             <input name="oldPassword" id="oldPassword" type="password"/><br/>
             <label>New Password:</label>
@@ -57,6 +57,9 @@
             <input name="confirmNewPassword" id="confirmNewPassword" value="<%= password %>"/><br/>
             <button class="endChangePassword">Change Password</button>
             <button class="cancelPasswordChange">Cancel</button>
+        </div>
+        <div class="passwordMismatch" style="display: none">
+            <p><b>New password and confirm new password do not match.<b></p>
         </div>
     </div>
 </script>

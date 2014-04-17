@@ -126,7 +126,8 @@
     newUser = new User(req.body);
     console.log('created user');
     newUser.save();
-    return res.send(newUser);
+    res.send(newUser);
+    return res.redirect('/logIn');
   };
 
 }).call(this);
