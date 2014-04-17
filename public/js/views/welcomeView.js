@@ -18,7 +18,9 @@
 
     welcomeView.prototype.events = {
       'click button.submitEssay': 'submitEssay',
-      'click button#hideResults': 'hideResults'
+      'click button#hideResults': 'hideResults',
+      'click button.more': 'showExtra',
+      'click button.hideMore': 'hideExtra'
     };
 
     thePrompt = null;
@@ -36,12 +38,24 @@
       return this;
     };
 
+    welcomeView.prototype.showExtra = function() {
+      $('.extra').show(500);
+      $('.hideMore').show(500);
+      return $('.more').hide(500);
+    };
+
+    welcomeView.prototype.hideExtra = function() {
+      $('.extra').hide(500);
+      $('.hideMore').hide(500);
+      return $('.more').show(500);
+    };
+
     welcomeView.prototype.submitEssay = function() {
       var theAuthor;
       if ($('#essayContents').val() === "") {
         return alert("Please enter text to for LightSide to Grade.");
       } else {
-        $('#sandboxResults').show(1000);
+        $('#sandboxResults').show(500);
         return theAuthor = new author({
           designator: "BG2",
           email: "test@gmail.com"
@@ -95,7 +109,7 @@
     };
 
     welcomeView.prototype.hideResults = function() {
-      return $('#sandboxResults').hide(1000);
+      return $('#sandboxResults').hide(500);
     };
 
     return welcomeView;

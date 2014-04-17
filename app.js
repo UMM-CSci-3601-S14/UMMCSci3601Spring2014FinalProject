@@ -37,7 +37,6 @@ Module dependencies.
     welcome: 'partials/welcome',
     results: 'partials/results',
     csv: 'partials/csv',
-    navbar: 'partials/navbar',
     scripts: 'partials/scripts',
     model: 'partials/model',
     tutorial: 'partials/tutorial',
