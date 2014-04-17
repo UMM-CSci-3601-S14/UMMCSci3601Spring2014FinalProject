@@ -5,8 +5,7 @@ class window.welcomeView extends Backbone.View
   events:
     'click button.submitEssay': 'submitEssay'
     'click button#hideResults' : 'hideResults'
-    'click button.more' : 'showExtra'
-    'click button.hideMore' : 'hideExtra'
+    'click button#more' : 'showExtra'
 
   thePrompt = null
 
@@ -24,13 +23,7 @@ class window.welcomeView extends Backbone.View
 
   showExtra: ->
     $('.extra').show(500)
-    $('.hideMore').show(500)
-    $('.more').hide(500)
-
-  hideExtra: ->
-    $('.extra').hide(500)
-    $('.hideMore').hide(500)
-    $('.more').show(500)
+    $('#more').hide()
 
   submitEssay: ->
     # alerts user if no text has been entered

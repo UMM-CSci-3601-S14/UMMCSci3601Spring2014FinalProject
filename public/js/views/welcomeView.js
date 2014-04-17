@@ -19,8 +19,7 @@
     welcomeView.prototype.events = {
       'click button.submitEssay': 'submitEssay',
       'click button#hideResults': 'hideResults',
-      'click button.more': 'showExtra',
-      'click button.hideMore': 'hideExtra'
+      'click button#more': 'showExtra'
     };
 
     thePrompt = null;
@@ -40,14 +39,7 @@
 
     welcomeView.prototype.showExtra = function() {
       $('.extra').show(500);
-      $('.hideMore').show(500);
-      return $('.more').hide(500);
-    };
-
-    welcomeView.prototype.hideExtra = function() {
-      $('.extra').hide(500);
-      $('.hideMore').hide(500);
-      return $('.more').show(500);
+      return $('#more').hide();
     };
 
     welcomeView.prototype.submitEssay = function() {
