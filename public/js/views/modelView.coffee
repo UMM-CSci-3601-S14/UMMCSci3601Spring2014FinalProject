@@ -27,8 +27,6 @@ class window.modelView extends Backbone.View
     newDescription =  $('#description').val()
     # The Class description is required for the corpa
     newClass = $('#cDescription').val()
-    # The CSV is required to send to s3
-    newcsv = $('#file').val()
 
     # Start process to creat a new model
     # First create the new Prompt
@@ -52,63 +50,62 @@ class window.modelView extends Backbone.View
           # Getting security paramiters for S3 to upload the cvs in mass,
           #  We get access but now have a 412 (Precondition Failed)
           s3Request = new request()
-          s3Request.urlRoot = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
-
+          s3Request.url = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
           s3Request.fetch().done ->
-            s3Post = new request({
-              AWSAccessKeyId: s3Request.attributes.access_key_id
-              key: s3Request.attributes.key
-              acl: 'public-read'
-              Policy: s3Request.attributes.policy
-              Signature: s3Request.attributes.signature
-              success_action_status: '201'}
-              {file: newcsv})
-            s3Post.urlRoot= s3Request.attributes.s3_endpoint
-            s3Post.save().done ->
+            form = new FormData()
+            form.append('AWSAccessKeyId', s3Request.attributes.access_key_id)
+            form.append('key', s3Request.attributes.key)
+            form.append('policy', s3Request.attributes.policy)
+            form.append('signature', s3Request.attributes.signature)
+            form.append('acl', 'public-read')
+            form.append('success_action_status', '201')
+            form.append('file', $('#file').get(0).files[0])
+            xhr = new XMLHttpRequest()
+            xhr.open('POST', "https://lightsidelabs-try.s3.amazonaws.com/", true)
+            xhr.onreadystatechange = ->
+              if(xhr.readyState == 4)
+                s3Key = $(xhr.responseXML).find("Key").first().text()
+                console.log s3Key
+                # Start of upload, with the corpus' url, the (unsuccessful) s3 key that containes the csv, and the type id for the csv
+                newUploadTask = new corpusUploadTasks({
+                  corpus: newCorpus.responseJSON.url
+                  s3_key: s3Key
+                  content_type: 'text/csv'
+                }).save().done ->
+                  uploadQueue = new request()
+                  uploadQueue.urlRoot = newUploadTask.responseJSON.process
+                  uploadQueue.save().done ->
+                    uploadTask = new request()
+                    console.log newUploadTask.responseJSON.url
+                    uploadTask.urlRoot = newUploadTask.responseJSON.url
+                    count = 0
+                    ## a loop to wait for the api to build the model, waits 1 second(need to make this longer)
+                    looping
+                    looping = setInterval (->
+                      count++
+                      uploadTask.fetch().done ->
 
-              # Start of upload, with the corpus' url, the (unsuccessful) s3 key that containes the csv, and the type id for the csv
-              newUploadTask = new corpusUploadTasks({
-                corpus: newCorpus.responseJSON.url
-                ##s3_key: '/home/harre096/Downloads/essay.csv' to be changed after we get s3 permission
-                content_type: 'text/csv'
-              }).save().done ->
-                console.log newUploadTask.responseJSON
-                uploadQueue = new request()
-                uploadQueue.urlRoot = newUploadTask.responseJSON.process
-                console.log newUploadTask.responseJSON.process
-                uploadQueue.save().done ->
-                  console.log 'helllp'
-                  console.log uploadQueue
-                  uploadTask = new request()
-                  uploadTask.urlRoot = uploadQueue.attributes.corpus_upload_task[0..3] + "s" + uploadQueue.attributes.corpus_upload_task[4..]
-                  console.log "----------------------------------------"
-                  count = 0
-
-                  ## a loop to wait for the api to build the model, waits 1 second(need to make this longer)
-                  looping
-                  looping = setInterval (->
-                    count++
-                    uploadTask.fetch().done ->
-
-                        # If the model is complete then the upload task's status will change to 'S' and we can exit the loop
-                      # and beging to interact with the model
+                          # If the model is complete then the upload task's status will change to 'S' and we can exit the loop
+                        # and beging to interact with the model
 
 
-                      if uploadTask.attributes.status == 'S'
-                        console.log "Prediction Task was SUCCESSFUL"
-                        console.log "exited while loop"
-                        console.log newUploadTask.responseJSON
-                        console.log count
-                        window.clearInterval looping
-                        window.alert("Your Model Has Been Made")
+                        if uploadTask.attributes.status == 'S'
+                          console.log "Prediction Task was SUCCESSFUL"
+                          console.log "exited while loop"
+                          console.log newUploadTask.responseJSON
+                          console.log count
+                          window.clearInterval looping
+                          window.alert("Your Model Has Been Made")
 
-                      #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
-                      if uploadTask.attributes.status == 'U'
-                        console.log "Prediction Task was UNSUCCESSFUL"
-                        window.clearInterval looping
-                        window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
+                        #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
+                        if uploadTask.attributes.status == 'U'
+                          console.log "Prediction Task was UNSUCCESSFUL"
+                          window.clearInterval looping
+                          window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
 
-                    ), 1000
+                      ), 1000
+            xhr.send(form)
+
 
 
   hideResults: ->

@@ -11,6 +11,9 @@ class window.CSVView extends Backbone.View
   render: ->
     console.log 'rendering CSVView'
     @$el.html @template()
+    #REFRESH WARNING:
+    window.onbeforeunload = ->
+      "WARNING: Reloading the page will restart the process and you will lose all of your data!"
     this
 
   submitEssay: ->

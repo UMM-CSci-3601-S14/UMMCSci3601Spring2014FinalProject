@@ -1,10 +1,5 @@
 <script type="text/javascript">
-/*
- REFRESH WARNING:
- */
-//    window.onbeforeunload = function() {
-//        return "WARNING: Reloading the page will restart the process and you will lose all of your data!";
-//    };
+
 var myCSV = "";
 var documentsAdded = 0;
 var numFields;
@@ -117,12 +112,12 @@ function add() {
         $(".docBox").slideDown(130);
         $(".docBox").mouseover(function() { //Hover effect.
             if (parseInt($(this).text()) != selected) {
-                docBoxColors(this, 'midnightblue', 'white', 'gray');
+                docBoxColors(this, 'midnightblue', 'white', '#5E79B2');
             }
         });
         $(".docBox").mouseout(function() { //Returns to normal color.
             if (parseInt($(this).text()) != selected) {
-                docBoxColors(this, 'lightblue', 'black', 'gray');
+                docBoxColors(this, 'lightblue', 'black', '#5E79B2');
             }
         });
         $(".docBox").click(function() { //Edits CSV document by clicking the specified docBox
@@ -225,7 +220,7 @@ function deselect() {
 
         e.style.backgroundColor = 'lightblue';
         e.style.color = 'black';
-        e.style.borderColor = 'gray';
+        e.style.borderColor = '#5E79B2';
     }
 }
 
@@ -321,7 +316,7 @@ $(document).ready(function() {
     $("#visHeader").hide();
     $("#secondT").hide();
     $("#thirdT").hide();
-    $("#changePasswordFields").hide();
+//    $("#changePasswordFields").hide();
 
     $("#submit").click(function() {
         exportToCSV();
