@@ -56,4 +56,5 @@ test.describe "gradingOnTheDemo", ->
 
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 5 out of 5.")
-        driver.close()describe 'testing a coffeescript cube function in the browser', ->
+
+        driver.close()
