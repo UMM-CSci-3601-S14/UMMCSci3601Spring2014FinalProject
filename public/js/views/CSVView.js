@@ -25,6 +25,9 @@
     CSVView.prototype.render = function() {
       console.log('rendering CSVView');
       this.$el.html(this.template());
+      window.onbeforeunload = function() {
+        return "WARNING: Reloading the page will restart the process and you will lose all of your data!";
+      };
       return this;
     };
 
