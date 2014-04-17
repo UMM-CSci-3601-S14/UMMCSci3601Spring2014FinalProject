@@ -17,12 +17,10 @@
                 <label for="cDescription">Class Description: </label><br/>
                 <input id="cDescription" placeholder="Class Description" /><br/><br/>
 
-                <!--Form to allow a cvs file to be uploaded.-->
-                <form action="upload_file.php" method="post" enctype="multipart/form-data">
-                    <label for="file">Upload CSV for Model:</label>
-                    <input type="file" name="file" id="file"><br>
-                    <div id="fileContents"></div>
-                </form>
+                <label for="file">Upload CSV for Model:</label>
+                <input type="file" name="files[]" id="file"><br>
+
+
 
                 <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
             <br/><br/>

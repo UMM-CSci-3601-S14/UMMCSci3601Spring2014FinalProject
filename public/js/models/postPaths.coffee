@@ -25,9 +25,6 @@ class window.predictionTask extends superPost
 class window.predictionResult extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-results/'
 
-
-
-
   ##Calls for making a new model.
 class window.createPrompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/'
