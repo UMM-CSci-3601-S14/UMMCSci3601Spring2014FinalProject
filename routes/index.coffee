@@ -112,7 +112,7 @@ exports.updatePassword = (req, res) ->
       #console.log 'The raw response from Mongo was ', raw
     )
   else
-    console.log 'you are wrong'
+    console.log 'incorrect password'
 
 
 exports.create = (req, res) ->

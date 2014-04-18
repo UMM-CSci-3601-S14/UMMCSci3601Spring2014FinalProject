@@ -137,7 +137,7 @@
         return console.log('The number of updated documents was %d', numAffected);
       });
     } else {
-      return console.log('you are wrong');
+      return console.log('incorrect password');
     }
   };
 

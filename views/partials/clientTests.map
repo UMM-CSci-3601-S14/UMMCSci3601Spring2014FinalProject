@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "clientTests.js",
+  "sourceRoot": "",
+  "sources": [
+    "clientTests.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,KAAA;;CAAA,CAAA,CAAS,GAAT,CAAS,CAAA;;CAAT,CAEA,CAA6B,KAA7B,CAA6B,SAA7B;CACE,CAAmB,CAAA,CAAnB,IAAA,CAAmB;CACjB,CAAA,CAAgD,GAAhD,GAAgD,kCAAhD;CACE,CAAkB,CAAlB,EAAA,CAAM,EAAN;CADF,MAAgD;CADlD,IAAmB;CADrB,EAA6B;;CAF7B,CAYA,MAAA,SAAA;CAZA"
+}
