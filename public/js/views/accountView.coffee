@@ -2,6 +2,8 @@ class window.accountView extends Backbone.View
   tagName: 'div'
   template: _.template $('#account').html()
   model = new window.user()
+#  passwordChangeModel = new window.changePassword()
+
   events:
     'click button.startChangePassword': 'startChangePassword'
     'click button.endChangePassword': 'endChangePassword'
@@ -23,7 +25,27 @@ class window.accountView extends Backbone.View
     if $('#newPassword').val() isnt $('#confirmNewPassword').val()
       $('.passwordMismatch').show()
     else
-#      if $('#oldPassword').val() isnt user.password
+      Backbone.ajax {
+        type: "PUT"
+        url: "/updatePassword"
+        data:
+          oldPassword: $('#oldPassword').val()
+          newPassword: $('#newPassword').val()
+        success: ->
+          console.log "worked"
+        error: ->
+          console.log "failed"
+      }
+
+#      passwordChangeModel.set({
+#        oldPassword: $('#oldPassword').val()
+#        newPassword: $('#newPassword').val()
+#      })
+#      passwordChangeModel.save {},
+#        success: ->
+#          console.log 'saved'
+#        error: ->
+#          console.log 'error'
 #      console.log ($('#newPassword').val() + ' ' + $('#confirmNewPassword').val())
 
   cancelPasswordChange: ->

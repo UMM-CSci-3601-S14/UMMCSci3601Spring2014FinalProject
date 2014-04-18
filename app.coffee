@@ -67,6 +67,7 @@ app.get "/newUser", routes.newUser
 app.get "/logout", routes.logout
 app.get "/account", routes.account
 app.post '/create', routes.create
+app.put '/updatePassword', routes.updatePassword
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
   successRedirect: '/account'

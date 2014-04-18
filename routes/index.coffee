@@ -102,9 +102,22 @@ exports.account = (req, res) ->
     }
   res.render 'index'
 
+exports.updatePassword = (req, res) ->
+  if req.user.password is req.body.oldPassword
+    currentUser = req.user.username
+    newPass = req.body.newPassword
+    User.update({username: currentUser}, { password: newPass}, (err, numAffected, raw) ->
+      console.log err if err
+      console.log 'The number of updated documents was %d', numAffected
+      #console.log 'The raw response from Mongo was ', raw
+    )
+  else
+    console.log 'you are wrong'
+
+
 exports.create = (req, res) ->
   newUser = new User req.body
-  console.log 'created user'
+  console.log req.body
   newUser.save()
   res.send newUser
   res.redirect '/logIn'
