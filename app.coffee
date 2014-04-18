@@ -23,6 +23,7 @@ app.set 'partials',
   scripts: 'partials/scripts',
   model: 'partials/model',
   tutorial: 'partials/tutorial',
+  dashboard: 'partials/dashboard',
   functions: 'partials/functions',
   visualization: 'partials/visualization'
 
@@ -58,6 +59,7 @@ app.configure 'development', ->
 app.get "/", routes.index
 app.get "/results", routes.results
 app.get "/csvPage", routes.csvPage
+app.get "/dash", routes.dash
 app.get "/modelPage", routes.modelPage
 app.get "/users", routes.list
 app.get "/failed", routes.failed

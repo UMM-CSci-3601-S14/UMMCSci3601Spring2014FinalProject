@@ -40,6 +40,7 @@ Module dependencies.
     scripts: 'partials/scripts',
     model: 'partials/model',
     tutorial: 'partials/tutorial',
+    dashboard: 'partials/dashboard',
     functions: 'partials/functions',
     visualization: 'partials/visualization'
   });
@@ -82,6 +83,8 @@ Module dependencies.
   app.get("/results", routes.results);
 
   app.get("/csvPage", routes.csvPage);
+
+  app.get("/dash", routes.dash);
 
   app.get("/modelPage", routes.modelPage);
 

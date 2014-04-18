@@ -17,52 +17,53 @@
 
     <div id="right" class="col-sm-3 col-sm-push-1">
         <!-- Button trigger modal -->
-        <div class="login content">
+        <div class="content">
             <h3 class="title">Sign in <small>to create and use your own models!</small></h3>
             <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
                 Sign In
             </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h1 class="text-center">Welcome</h1>
+            <br />
+
+            <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough. In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features of writing like content mastery, stylistic syntax choices, and genre awareness.
+                <button id="more" class="btn btn-default btn-sm glyphicon glyphicon-chevron-down btn-block"></button>
+            </p>
+            <p class="extra">We believe we can do better. We’ve built a writing tool that lets students know where they stand as soon as they finish their first draft, that guides them through the revision process, and that delivers final work directly to teachers, where they can choose how to assess the work and whether to intervene. Our goal is to be a tool in the classroom, and to iteratively develop a platform that will fit the needs of English Language Arts teachers.</p>
+            <p class="extra">The state of writing in education is broken and getting worse. At LightSide, we’re inventing the tools that will support the next generation of student writers. Learn more about our pedagogy, our technology, and our Spring pilot by reading through our website, or contact us today to learn more.
+                <button id="less" class="btn btn-default btn-sm glyphicon glyphicon-chevron-up btn-block"></button>
+            </p>
+            <a href="http://lightsidelabs.com/why/" id="goToLightSide" class="btn btn-default btn-small">Visit LightSide Main Page</a>
+        </div>
+    </div>
+
+
+    <!-- Sign In Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center">Welcome</h1>
+                </div>
+                <div class="modal-body">
+                    <form class="form col-md-12 center-block">
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" placeholder="Username">
                         </div>
-                        <div class="modal-body">
-                            <form class="form col-md-12 center-block">
-                                <div class="form-group">
-                                    <input type="text" class="form-control input-lg" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control input-lg" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                                    <span class="pull-right"><a href="newUser">Register</a></span><span><a href="#">Need help?</a></span>
-                                </div>
-                            </form>
+                        <div class="form-group">
+                            <input type="password" class="form-control input-lg" placeholder="Password">
                         </div>
-                        <div class="modal-footer">
-                            <div class="col-md-12">
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                            </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                            <span class="pull-right"><a href="newUser">Register</a></span><span><a href="#">Need help?</a></span>
                         </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     </div>
                 </div>
-            </div>
-
-            <div class="content">
-                <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough. In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features of writing like content mastery, stylistic syntax choices, and genre awareness.
-                    <button id="more" class="btn btn-default btn-sm glyphicon glyphicon-chevron-down btn-block"></button>
-                </p>
-                <p class="extra">We believe we can do better. We’ve built a writing tool that lets students know where they stand as soon as they finish their first draft, that guides them through the revision process, and that delivers final work directly to teachers, where they can choose how to assess the work and whether to intervene. Our goal is to be a tool in the classroom, and to iteratively develop a platform that will fit the needs of English Language Arts teachers.</p>
-                <p class="extra">The state of writing in education is broken and getting worse. At LightSide, we’re inventing the tools that will support the next generation of student writers. Learn more about our pedagogy, our technology, and our Spring pilot by reading through our website, or contact us today to learn more.
-                    <button id="less" class="btn btn-default btn-sm glyphicon glyphicon-chevron-up btn-block"></button>
-                </p>
-                <a href="http://lightsidelabs.com/why/" id="goToLightSide" class="btn btn-default btn-small">Visit LightSide Main Page</a>
             </div>
         </div>
     </div>

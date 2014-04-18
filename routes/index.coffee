@@ -17,6 +17,13 @@ exports.index = (req, res) ->
     }
   res.render 'index'
 
+exports.dash = (req, res) ->
+  res.locals = {
+    title: 'LightSide'
+    header: 'User Dashboard'
+  }
+  res.render 'index'
+
 exports.results = (req, res) ->
   console.log 'inside results'
   res.locals = {

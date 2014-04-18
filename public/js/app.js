@@ -13,6 +13,7 @@
 
     AppRouter.prototype.routes = {
       '': 'index',
+      'dash': 'dash',
       'results': 'results',
       'csvPage': 'csvPage',
       'modelPage': 'modelPage',
@@ -25,6 +26,11 @@
     AppRouter.prototype.index = function() {
       console.log("in index");
       $('#content').html(new window.welcomeView().$el);
+    };
+
+    AppRouter.prototype.dash = function() {
+      console.log("in dash");
+      $('#content').html(new window.dashView().$el);
     };
 
     AppRouter.prototype.results = function() {

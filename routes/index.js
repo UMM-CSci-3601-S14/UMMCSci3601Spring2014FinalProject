@@ -21,6 +21,14 @@
     return res.render('index');
   };
 
+  exports.dash = function(req, res) {
+    res.locals = {
+      title: 'LightSide',
+      header: 'User Dashboard'
+    };
+    return res.render('index');
+  };
+
   exports.results = function(req, res) {
     console.log('inside results');
     res.locals = {

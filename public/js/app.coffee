@@ -1,6 +1,7 @@
 class AppRouter extends Backbone.Router
   routes:
     '': 'index'
+    'dash': 'dash'
     'results': 'results'
     'csvPage': 'csvPage'
     'modelPage': 'modelPage'
@@ -12,6 +13,11 @@ class AppRouter extends Backbone.Router
   index: ->
     console.log "in index"
     $('#content').html new window.welcomeView().$el
+    return
+
+  dash: ->
+    console.log "in dash"
+    $('#content').html new window.dashView().$el
     return
 
   results: ->
