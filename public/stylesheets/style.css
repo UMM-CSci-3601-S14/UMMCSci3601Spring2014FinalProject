@@ -69,6 +69,10 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     border-radius: 10px;
 }
 
+#submitEssay {
+    margin: 15px;
+}
+
 /*Formatting for right*/
 #right {
     height: 100%;
