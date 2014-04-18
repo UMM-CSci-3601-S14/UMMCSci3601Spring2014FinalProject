@@ -1,51 +1,73 @@
 <script id="welcomePage" type="text/html">
-    <div class="row">
-        <div id="welcome" class="col-md-6 col-md-offset-2">
-            <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough.
-                In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest
-                and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re
-                interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features
-                of writing like content mastery, stylistic syntax choices, and genre awareness.
-                <br/><br/>
-                We believe we can do better. We’ve built a writing tool that lets students know where they stand as soon as
-                they finish their first draft, that guides them through the revision process, and that delivers final work
-                directly to teachers, where they can choose how to assess the work and whether to intervene. Our goal is to
-                be a tool in the classroom, and to iteratively develop a platform that will fit the needs of English
-                Language Arts teachers.
-                <br/><br/>
-                The state of writing in education is broken and getting worse. At LightSide, we’re inventing the tools that
-                will support the next generation of student writers. Learn more about our pedagogy, our technology, and our
-                Spring pilot by reading through our website, or contact us today to learn more.</p>
+    <div id="left" class="col-sm-7 col-sm-push-1">
+            <h2 class="title">Try Our Tools for In-Classroom Writing!</h2>
+            <h3 id="promptTitle" class="title"></h3>
+            <p id="promptDescription"></p>
 
-            <a href="http://lightsidelabs.com/why/" class="btn btn-success">More</a>
+            <textarea id="essayContents" placeholder="Paste in or write your own essay to be graded!"></textarea>
+            <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
 
             <br/><br/>
-
-            <div id="sandbox">
-                <h2>Try Our Tools for In-Classroom Writing!</h2>
-                <h3 id="promptTitle"></h3>
-                <p id="promptDescription"></p>
-
-                <textarea id="essayContents" placeholder="Paste in or write your own essay to be graded!"></textarea>
-                <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
-
+            <div id="sandboxResults">
+                <h4 class="title">Here is what our Model Reports:</h4>
+                <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
                 <br/><br/>
-                <div id="sandboxResults">
-                    <h4>Here is what our Model Reports:</h4>
-                    <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
-                    <br/><br/>
-                    <button id="hideResults" class="btn btn-success"> Cool!</button>
+                <button id="hideResults" class="btn btn-success"> Cool!</button>
 
-                </div>
             </div>
         </div>
 
-        <div id="signIn" class="col-md-2 col-md-offset-1">
-            <h3>
-                <a href="logIn">Sign In </a>
-                <small>to begin creating your own unique and functional models for grading assignments!</small>
-            </h3>
-            <a href="newUser">New User?</a>
+    <div id="right" class="col-sm-3 col-sm-push-1">
+
+
+        <!-- Button trigger modal -->
+        <div class="login content">
+            <h3 class="title">Sign in <small>to create and use your own models!</small></h3>
+            <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+                Sign In
+            </button>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h1 class="text-center">Welcome</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form col-md-12 center-block">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-lg" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control input-lg" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                                    <span class="pull-right"><a href="newUser">Register</a></span><span><a href="#">Need help?</a></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-md-12">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough. In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features of writing like content mastery, stylistic syntax choices, and genre awareness.
+                    <button id="more" class="btn btn-default btn-sm glyphicon glyphicon-chevron-down btn-block"></button>
+                </p>
+                <p class="extra">We believe we can do better. We’ve built a writing tool that lets students know where they stand as soon as they finish their first draft, that guides them through the revision process, and that delivers final work directly to teachers, where they can choose how to assess the work and whether to intervene. Our goal is to be a tool in the classroom, and to iteratively develop a platform that will fit the needs of English Language Arts teachers.</p>
+                <p class="extra">The state of writing in education is broken and getting worse. At LightSide, we’re inventing the tools that will support the next generation of student writers. Learn more about our pedagogy, our technology, and our Spring pilot by reading through our website, or contact us today to learn more.
+                </p>
+                <a href="http://lightsidelabs.com/why/" id="goToLightSide" class="btn btn-default btn-small">Visit LightSide Main Page</a>
+            </div>
         </div>
     </div>
 </script>

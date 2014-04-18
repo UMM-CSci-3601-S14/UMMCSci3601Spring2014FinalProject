@@ -1,40 +1,66 @@
-body {
-    padding: 50px;
-    font-family: "Francois One", "Lucida Grande", Helvetica, Arial, Sans-serif;
+/*General Design and Formatting*/
+html, body {
+    height: 100%;
 }
 
-h2{
-    text-align: center;
+body {
+    background-color: #FFF2D3;
 }
-p{
-    font-family: "Bookman", serif;
-    font-size: larger;
+
+p {
+    text-align: left;
+}
+
+.title {
+    font-family: "Francois One", "Lucida Grande", Helvetica, Arial, Sans-serif;
 }
 
 .page-header{
     font: Helvetica, Arial, sans-serif;
     font-size: 50px;
+    text-align: center;
+    padding: 15px;
+    background-color: #B29E70;
 }
 
+.LightSideStyle .page-header {
+    margin-top: 0px;
+}
+.content {
+    text-align: center;
+    padding: 10px;
+    background-color: #BAD0FF;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 15px;
+}
+/*
+https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4&name=My%20Kuler%20Theme&mode=rgb&rgbvalues=0.7,0.6210485933503733,0.4405882352941176,1,0.9480818414322183,0.8294117647058823,1,0.9176470588235294,0.7294117647058823,0.37058823529411755,0.4762713689594366,0.7,0.7294117647058823,0.8162229102166801,1&swatchOrder=0,1,2,3,4
+*/
+
+/*Formatting for left areas*/
+#left {
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
 #essayContents {
     width: 100%;
     min-height: 200px;
 }
-
-#sandbox, .page-header{
+#sandbox {
     text-align: center;
     padding: 15px;
-    background-color: #FFEABA;
+    background-color: #B29E70;
     border-radius: 10px;
 }
-
 #sandboxResults{
     display: none;
     padding: 15px;
     background-color: #FFE099;
     border-radius: 10px;
 }
-
 #waitingForModel{
     text-align: center;
     display: none;
@@ -42,6 +68,18 @@ p{
     background-color: #FFE099;
     border-radius: 10px;
 }
+
+/*Formatting for right*/
+#right {
+    height: 100%;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+
+#right .extra{
+    display: none;
+}
+
 
 #signIn {
     padding: 20px;
@@ -51,10 +89,24 @@ p{
     min-width: 200px;
 }
 
+#right .title {
+    margin-top: 0px;
+    text-align: center;
+}
+
+.title small {
+    color: darkslategray;
+}
+
+#goToLightSide {
+    margin: 0 auto;
+}
+
+/*CSS for Visualization page*/
 .fields {
     padding-bottom: 5px;
 }
-docBox
+
 #reset {
     float: right;
 }
@@ -81,8 +133,4 @@ docBox
 
 .visualization {
     height: 250px;
-}
-
-.navbar .container-fluid {
-    background-color: lightgray;
 }

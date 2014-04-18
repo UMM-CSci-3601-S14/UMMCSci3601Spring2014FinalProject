@@ -5,6 +5,7 @@ class window.welcomeView extends Backbone.View
   events:
     'click button.submitEssay': 'submitEssay'
     'click button#hideResults' : 'hideResults'
+    'click button#more' : 'showExtra'
 
   thePrompt = null
 
@@ -20,7 +21,9 @@ class window.welcomeView extends Backbone.View
     @$el.html @template()
     this
 
-
+  showExtra: ->
+    $('.extra').show(500)
+    $('#more').hide()
 
   submitEssay: ->
     # alerts user if no text has been entered
@@ -31,7 +34,7 @@ class window.welcomeView extends Backbone.View
       #Start calls to LightSide API
 
       #Show results area
-      $('#sandboxResults').show(1000)
+      $('#sandboxResults').show(500)
 
       #Begin calls to the LightSide API
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
@@ -97,4 +100,4 @@ class window.welcomeView extends Backbone.View
 
 
   hideResults: ->
-    $('#sandboxResults').hide(1000);
+    $('#sandboxResults').hide(500);
