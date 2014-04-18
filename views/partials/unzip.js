@@ -6,12 +6,11 @@
 // IN FUNCTIONS processEssay AND getGrades.
 
 
-
 function stripXml(aString) {
     //Xml stripping
     //probably full of bugs
     //"/s/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g/
-  return  aString.replace(foo, "")
+  return  aString.replace(/foo/, "")
 }
 
 function processEssay(aString) {
@@ -34,26 +33,41 @@ function getGrades(aString){
     //Matches hash tags, globally, with any non hash character in them.
     //So the hash ## is *NOT* ok, but all other hashes work.
     //Even Unicode characters - #漢字 should work!
-    return aString.match(regex)
+    return aString.match(regex);
 }
+
+
 
 function unzip(zip) {
-    //dummy function ; magic unzip procedure
-    //returns an array of files
+
+
 }
 
-function read(file) {
+function readDocx(file) {
+    // dummy function ; returns a string
+}
+
+function readTxt(file) {
     // dummy function ; returns a string
 }
 
 function makeCSV(zip){
     var fileArray = unzip(zip)
     var csv =""
-    //add a check that each file in the array is a .docx
-    for (var i = 0; i <= fileArray.length; i++){
-        //unzip the .docx
-        var docx = unzip(fileArray[i])
-        csv = csv + processEssay(read(docx[5]))//fix the number
+    if ("docx" == checkType(zip)){
+        for (var i = 0; i <= fileArray.length; i++){
+            //unzip the .docx
+            var docx = unzip(fileArray[i])
+            csv = csv + processEssay(read(docx[5]))//fix the number
+        }
+        return csv;
     }
+    if ("txt" == checkType(zip)){
+        for (var i = 0; i <= fileArray.length; i++){
+            csv = csv + processEssay(readTxt(docx[i]))
+        }
+        return csv;
+    }
+
 
 }
