@@ -1,3 +1,30 @@
 <script id='dashboard' type='text/html'>
-    <h1>Dashboard</h1>
+    <div id="left" class="col-sm-7 col-sm-push-1">
+        <h1 class="title">Welcome USER <small>Click Model to Use or Edit</small></h1>
+
+        <button class="box" id="createModelBox">
+            <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
+            <span class="center dashBtn">Create New Model</span>
+        </button>
+
+        <button class="box">
+            <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
+            <span class="center dashBtn">Models in Account</span>
+        </button>
+
+        <button class="box">
+            <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
+            <span class="center dashBtn">Choose Pre-existing Models</span>
+        </button>
+    </div>
+
+    <div id="right" class="col-sm-3 col-sm-push-1">
+        <div class="content">
+            <a href="/account" class="btn btn-primary btn-lg btn-block">Account Settings</a>
+            <br />
+            <h2 class="title">Getting Started</h2>
+            <p>You will need ~500 human graded papers evenly distributed over your grading label.</p>
+            <p>More instructions, etc. here</p>
+        </div>
+    </div>
 </script>

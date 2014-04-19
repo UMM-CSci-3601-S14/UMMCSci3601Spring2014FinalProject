@@ -24,7 +24,7 @@
   exports.dash = function(req, res) {
     res.locals = {
       title: 'LightSide',
-      header: 'User Dashboard'
+      header: 'Dashboard'
     };
     return res.render('index');
   };

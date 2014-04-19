@@ -20,7 +20,7 @@ exports.index = (req, res) ->
 exports.dash = (req, res) ->
   res.locals = {
     title: 'LightSide'
-    header: 'User Dashboard'
+    header: 'Dashboard'
   }
   res.render 'index'
 

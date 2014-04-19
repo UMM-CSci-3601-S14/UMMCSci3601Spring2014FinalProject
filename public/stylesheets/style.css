@@ -34,9 +34,20 @@ p {
     margin-top: 10px;
     padding: 15px;
 }
+
+.title small {
+    color: darkslategray;
+}
+
+.center {
+    text-align: center;
+}
 /*
 https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4&name=My%20Kuler%20Theme&mode=rgb&rgbvalues=0.7,0.6210485933503733,0.4405882352941176,1,0.9480818414322183,0.8294117647058823,1,0.9176470588235294,0.7294117647058823,0.37058823529411755,0.4762713689594366,0.7,0.7294117647058823,0.8162229102166801,1&swatchOrder=0,1,2,3,4
 */
+
+/************************************************/
+/*Welcome Page*/
 
 /*Formatting for left areas*/
 #left {
@@ -84,7 +95,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     display: none;
 }
 
-
 #signIn {
     padding: 20px;
     -moz-box-shadow: 0 0 5px #888;
@@ -98,13 +108,62 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     text-align: center;
 }
 
-.title small {
-    color: darkslategray;
-}
-
 #goToLightSide {
     margin: 0 auto;
 }
+/******************************************************/
+
+/*Dashboard*/
+
+/******************************************************/
+
+.glyphicon-large {
+    font-size: 64px;
+}
+
+.box {
+    color: inherit;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    height: 150px;
+    width: 150px;
+    background-color: #5E79B2;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+}
+.box:focus,
+.box:active:focus,
+.box.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.box:hover,
+.box:focus {
+    color: #333;
+    text-decoration: none;
+    background-color: #7597DE;
+}
+.box:active,
+.box.active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+/******************************************************/
 
 /*CSS for Visualization page*/
 .fields {
