@@ -1,19 +1,30 @@
 
-# This is the cloned prompt that we are using for the demo page
-class window.prompt extends superPost
+# This is the cloned prompts that we are using for the demo page
+class window.prompt1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/114'
+class window.prompt2 extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/449'
+
+
+class window.prompt extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/'
 
 #  Clone is presently unused/commented out.
-class window.clonePrompt extends superPost
+class window.clonePrompt1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
+class window.clonePrompt2 extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/clone'
 
 # This author is the same for all submitions on this page.
 class window.author extends superPost
   urlRoot:'https://try-api.lightsidelabs.com/api/authors'
 
 # Calls for sending an answer to the api
-class window.ourAnswerSet extends superPost
+class window.answerSet1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/263'
+#does not exist or can't access
+class window.answerSet2 extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/2'
 
 class window.answer extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answers/'

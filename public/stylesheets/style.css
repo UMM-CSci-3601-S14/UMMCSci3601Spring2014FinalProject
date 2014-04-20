@@ -72,6 +72,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     background-color: #FFE099;
     border-radius: 10px;
 }
+#grade{
+    text-align: center;
+}
 #waitingForModel{
     text-align: center;
     display: none;
@@ -79,7 +82,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     background-color: #FFE099;
     border-radius: 10px;
 }
-
 #submitEssay {
     margin: 15px;
 }
@@ -116,6 +118,25 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 /*Dashboard*/
 
 /******************************************************/
+
+#dash {
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#preexisting {
+    display: none;
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+#preexisting #grade{
+    text-align: center;
+}
+
 
 .glyphicon-large {
     font-size: 64px;

@@ -1,24 +1,43 @@
 <script id='dashboard' type='text/html'>
     <div id="left" class="col-sm-7 col-sm-push-1">
-        <h1 class="title">Welcome {{username}} <small>Click Model to Use or Edit</small></h1>
+        <div id="dash">
+            <h1 class="title">Welcome {{username}} <small>Click Model to Use or Edit</small></h1>
 
-        <button class="box" id="createModelBox">
-            <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
-            <br />
-            <span class="center dashBtn">Create New Model</span>
-        </button>
+            <button class="box" id="createModelBox">
+                <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
+                <br />
+                <span class="center dashBtn">Create New Model</span>
+            </button>
 
-        <button class="box">
-            <span class="glyphicon-large glyphicon glyphicon-folder-open"></span>
-            <br />
-            <span class="center dashBtn">Models in Account</span>
-        </button>
+            <button class="box">
+                <span class="glyphicon-large glyphicon glyphicon-folder-open"></span>
+                <br />
+                <span class="center dashBtn">Models in Account</span>
+            </button>
 
-        <button class="box">
-            <span class="glyphicon-large glyphicon glyphicon-cloud"></span>
-            <br />
-            <span class="center dashBtn">Pre-existing Models</span>
-        </button>
+            <button class="box" id="preexistingPrompts">
+                <span class="glyphicon-large glyphicon glyphicon-cloud"></span>
+                <br />
+                <span class="center dashBtn">Pre-existing Models</span>
+            </button>
+        </div>
+        <div id="preexisting">
+            <h2 class="title">Explore Our Pre-Made Models!</h2>
+            <button type='button' name='pickEssay1'class='pickEssay1 btn btn-success' id="pickEssay1">Essay1</button>
+            <button type='button' name='pickEssay2'class='pickEssay2 btn btn-success' id="pickEssay2">Essay2</button>
+            <h3 id="promptTitle" class="title"></h3>
+            <p id="promptDescription"></p>
+
+            <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+            <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
+
+            <div id="sandboxResults">
+                <h4 class="title">Here is what our Model Reports:</h4>
+                <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                <br/><br/>
+                <button id="hideResults" class="btn btn-success"> Cool!</button>
+            </div>
+        </div>
     </div>
 
     <div id="right" class="col-sm-3 col-sm-push-1">
@@ -26,9 +45,9 @@
             <a href="/account" class="btn btn-primary btn-lg btn-block">Account Settings</a>
             <br />
             <h2 class="title">Getting Started</h2>
-            <p><strong>Create New Model:</strong> This is where you will make all of your own models. You will need ~500 human graded papers evenly distributed over your grading label.</p>
+            <p><strong>Create New Model:</strong> This is where you will make all of your own models. You will need ~500 human graded papers evenly distributed over your grading labels.</p>
             <p><strong>Models in Account:</strong> This will contain all the models that you have made.</p>
-            <p><strong>Pre-existing Models:</strong> This has all of the Models that are provided for you.</p>
+            <p><strong>Pre-existing Models:</strong> This has all of the Models that are provided for you by LightSide.</p>
         </div>
     </div>
 </script>

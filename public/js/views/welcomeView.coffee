@@ -14,7 +14,9 @@ class window.welcomeView extends Backbone.View
     thePrompt = new prompt().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-
+    #this is not used because we only need one clone for each different prompt
+      #theClone = new clonePrompt1().save()
+      #console.log theClone.responseJSON
     @render()
     return
 
@@ -46,10 +48,7 @@ class window.welcomeView extends Backbone.View
       #Begin calls to the LightSide API
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
 
-        #this is not used because we only need one clone
-        #theClone = new clonePrompt().save()
-
-        theAnswerSet = new ourAnswerSet({
+        theAnswerSet = new answerSet1({
         }).fetch().done ->
 
           theAnswer = new answer({
