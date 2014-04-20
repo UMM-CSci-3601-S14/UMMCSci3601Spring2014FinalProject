@@ -119,13 +119,14 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 
 .glyphicon-large {
     font-size: 64px;
+    color: white;
 }
 
 .box {
-    color: inherit;
+    color: white;
     display: inline-block;
     padding: 6px 12px;
-    margin-bottom: 0;
+    margin: 5px;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.42857143;
@@ -152,9 +153,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 .box:hover,
 .box:focus {
-    color: #333;
     text-decoration: none;
-    background-color: #7597DE;
+    background-color: #506696;
 }
 .box:active,
 .box.active {

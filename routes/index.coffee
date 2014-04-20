@@ -21,6 +21,7 @@ exports.dash = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'Dashboard'
+#    username: req.session.passport.user.username
   }
   res.render 'index'
 

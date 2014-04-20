@@ -16,3 +16,4 @@ class window.dashView extends Backbone.View
 
   loadCSVPage: ->
     window.location.href = '/csvPage'
+
