@@ -72,7 +72,7 @@ app.post '/create', routes.create
 app.put '/updatePassword', routes.updatePassword
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
-  successRedirect: '/account'
+  successRedirect: '/dash'
 
 
 http.createServer(app).listen app.get("port"), ->
