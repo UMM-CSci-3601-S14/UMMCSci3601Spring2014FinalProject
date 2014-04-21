@@ -11,7 +11,7 @@ class window.welcomeView extends Backbone.View
   thePrompt = null
 
   initialize: ->
-    thePrompt = new prompt().fetch().done ->
+    thePrompt = new prompt1().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
     #this is not used because we only need one clone for each different prompt
