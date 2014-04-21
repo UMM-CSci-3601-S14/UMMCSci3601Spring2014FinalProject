@@ -4,12 +4,13 @@ class window.dashView extends Backbone.View
 
   events:
     'click button#createModelBox' : 'loadCSVPage'
-    'click button#preexistingPrompts': 'loadPreexistingPrompt'
+    'click button#yourModels': 'loadModelsInAccount'
 
     'click button#pickEssay1' : 'loadEssay1'
     'click button#pickEssay2' : 'loadEssay2'
 
     'click button.submitEssay': 'submitEssay'
+    'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
 
   thePrompt = null
@@ -28,9 +29,9 @@ class window.dashView extends Backbone.View
   loadCSVPage: ->
     window.location.href = '/csvPage'
 
-  loadPreexistingPrompt: ->
-      $('#dash').hide()
-      $('#preexisting').show()
+  loadModelsInAccount: ->
+    $('#dash').hide()
+    $('#modelsInAccount').show()
 
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
@@ -41,6 +42,8 @@ class window.dashView extends Backbone.View
 
       theAnswerSet = new answerSet1({
       }).fetch().done ->
+
+      $('#essayArea').show()
 
   loadEssay2: ->
     thePrompt = new prompt2().fetch().done ->
@@ -56,6 +59,8 @@ class window.dashView extends Backbone.View
 #      theNewAnswerSet.save().done ->
       theAnswerSet = new answerSet2({
       }).fetch().done ->
+
+      $('#essayArea').show()
 
 
   submitEssay: ->
@@ -128,5 +133,8 @@ class window.dashView extends Backbone.View
                   window.clearInterval looping
             ), 1000
 
+  hidePrompt: ->
+    $('#essayArea').hide()
+
   hideResults: ->
-    $('#sandboxResults').hide(500);
+    $('#sandboxResults').hide(500)

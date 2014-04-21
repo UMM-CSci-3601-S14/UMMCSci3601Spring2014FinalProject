@@ -1,15 +1,36 @@
 <script id='dashboard' type='text/html'>
     <div id="left" class="col-sm-7 col-sm-push-1">
-        <div id="dash">
-            <h1 class="title">Welcome {{ user.firstName }}, <small>Click Model to Use or Edit</small></h1>
+        <h1 class="title">Welcome {{user.firstName}} <small>Click A Model to Use or Edit</small></h1>
+        <div id="preexisting">
+            <h2 class="title">Explore Our Pre-Made Models!</h2>
+            <button type='button' name='pickEssay1'class='pickEssay1 btn btn-success' id="pickEssay1">Essay1</button>
+            <button type='button' name='pickEssay2'class='pickEssay2 btn btn-success' id="pickEssay2">Essay2</button>
+            <div id="essayArea">
+            <h3 id="promptTitle" class="title"></h3>
+            <p id="promptDescription"></p>
+                <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+                <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
+                <button type='button' name='hidePrompt' class='hidePrompt btn btn-success' id="hidePrompt">Hide Prompt</button>
 
+                <div id="sandboxResults">
+                    <h4 class="title">Here is what our Model Reports:</h4>
+                    <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                    <br/><br/>
+                    <button id="hideResults" class="btn btn-success"> Cool!</button>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="title">Your Models.</h1>
+
+        <div id="dash">
             <button class="box" id="createModelBox">
                 <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
                 <br />
                 <span class="center dashBtn">Create New Model</span>
             </button>
 
-            <button class="box">
+            <button class="box" id="yourModels">
                 <span class="glyphicon-large glyphicon glyphicon-folder-open"></span>
                 <br />
                 <span class="center dashBtn">Models in Account</span>
@@ -25,24 +46,6 @@
         <div id="modelsInAccount">
             <div id="noModels">
                 <p>There are no models in your account at this moment.</p>
-            </div>
-        </div>
-
-        <div id="preexisting">
-            <h2 class="title">Explore Our Pre-Made Models!</h2>
-            <button type='button' name='pickEssay1'class='pickEssay1 btn btn-success' id="pickEssay1">Essay1</button>
-            <button type='button' name='pickEssay2'class='pickEssay2 btn btn-success' id="pickEssay2">Essay2</button>
-            <h3 id="promptTitle" class="title"></h3>
-            <p id="promptDescription"></p>
-
-            <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
-            <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
-
-            <div id="sandboxResults">
-                <h4 class="title">Here is what our Model Reports:</h4>
-                <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
-                <br/><br/>
-                <button id="hideResults" class="btn btn-success"> Cool!</button>
             </div>
         </div>
     </div>

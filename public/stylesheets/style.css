@@ -134,8 +134,16 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     text-align: center;
 }
 
-#preexisting {
+#modelsInAccount{
     display: none;
+    height: 100%;
+    margin-right: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#preexisting {
+    /*display: none;*/
     height: 100%;
     margin-right: 5px;
     border-radius: 10px;
@@ -143,6 +151,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 #preexisting #grade{
     text-align: center;
+}
+#preexisting #essayArea{
+    display: none;
 }
 
 
