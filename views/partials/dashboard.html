@@ -3,8 +3,16 @@
         <h1 class="title">Welcome {{user.firstName}} <small>Click A Model to Use or Edit</small></h1>
         <div id="preexisting">
             <h2 class="title">Explore Our Pre-Made Models!</h2>
-            <button type='button' name='pickEssay1'class='pickEssay1 btn btn-success' id="pickEssay1">Essay1</button>
-            <button type='button' name='pickEssay2'class='pickEssay2 btn btn-success' id="pickEssay2">Essay2</button>
+            <button type='button' name='pickEssay1'class='pickEssay1 box' id="pickEssay1">
+                <span class="glyphicon-large glyphicon glyphicon-cloud"></span>
+                <br />
+                Essay 1
+            </button>
+            <button type='button' name='pickEssay2'class='pickEssay2 box' id="pickEssay2">
+                <span class="glyphicon-large glyphicon glyphicon-cloud"></span>
+                <br />
+                Essay 2
+            </button>
             <div id="essayArea">
             <h3 id="promptTitle" class="title"></h3>
             <p id="promptDescription"></p>
@@ -21,7 +29,7 @@
             </div>
         </div>
 
-        <h1 class="title">Your Models.</h1>
+        <h2 class="title">Your Models.</h2>
 
         <div id="dash">
             <button class="box" id="createModelBox">
@@ -34,12 +42,6 @@
                 <span class="glyphicon-large glyphicon glyphicon-folder-open"></span>
                 <br />
                 <span class="center dashBtn">Models in Account</span>
-            </button>
-
-            <button class="box" id="preexistingPrompts">
-                <span class="glyphicon-large glyphicon glyphicon-cloud"></span>
-                <br />
-                <span class="center dashBtn">Pre-existing Models</span>
             </button>
         </div>
 
