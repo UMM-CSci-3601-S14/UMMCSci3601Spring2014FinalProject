@@ -5,13 +5,7 @@
 // READ THE COMMENTS ABOUT THE REGULAR EXPRESSIONS USED
 // IN FUNCTIONS processEssay AND getGrades.
 
-
-function stripXml(aString) {
-    //Xml stripping
-    //probably full of bugs
-    //"/s/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g/
-  return  aString.replace(/foo/, "")
-}
+var zip = require('zipJs');
 
 function processEssay(aString) {
 //returns the whole line for csv, given an essay.
@@ -38,9 +32,17 @@ function getGrades(aString){
 
 
 
-function unzip(zip) {
+function unzip(aBlob) {
+
+}
 
 
+
+function stripXml(aString) {
+    //Xml stripping
+    //probably full of bugs
+    //"/s/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g/
+    return  aString.replace(/foo/, "")
 }
 
 function readDocx(file) {
@@ -51,18 +53,18 @@ function readTxt(file) {
     // dummy function ; returns a string
 }
 
-function makeCSV(zip){
-    var fileArray = unzip(zip)
+function makeCSV(zipFile){
+    var fileArray = unzip(zipFile)
     var csv =""
-    if ("docx" == checkType(zip)){
+    if ("docx" == typeof(fileArray[0])){
         for (var i = 0; i <= fileArray.length; i++){
             //unzip the .docx
             var docx = unzip(fileArray[i])
-            csv = csv + processEssay(read(docx[5]))//fix the number
+            csv = csv + processEssay(readDocx(docx[5]))//fix the number
         }
         return csv;
     }
-    if ("txt" == checkType(zip)){
+    if ("txt" == typeof(fileArray[0])){
         for (var i = 0; i <= fileArray.length; i++){
             csv = csv + processEssay(readTxt(docx[i]))
         }
