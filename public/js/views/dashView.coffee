@@ -49,6 +49,11 @@ class window.dashView extends Backbone.View
 
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
 
+#      theNewAnswerSet = new request({
+#        prompt: thePrompt.responseJSON.url
+#      })
+#      theNewAnswerSet.urlRoot = "https://try-api.lightsidelabs.com/api/answer-sets/"
+#      theNewAnswerSet.save().done ->
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
