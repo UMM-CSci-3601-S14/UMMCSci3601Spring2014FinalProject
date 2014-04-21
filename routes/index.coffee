@@ -84,14 +84,14 @@ exports.user = (req, res) ->
 exports.logIn = (req, res) ->
   res.locals = {
     title: 'LightSide'
-    header: 'LightSide Sign In'
+    header: 'Sign In'
   }
   res.render 'index'
 
 exports.newUser = (req, res) ->
   res.locals = {
     title: 'LightSide'
-    header: 'LightSide Register'
+    header: 'Register'
   }
   res.render 'index'
 

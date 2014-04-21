@@ -99,7 +99,7 @@
   exports.logIn = function(req, res) {
     res.locals = {
       title: 'LightSide',
-      header: 'LightSide Sign In'
+      header: 'Sign In'
     };
     return res.render('index');
   };
@@ -107,7 +107,7 @@
   exports.newUser = function(req, res) {
     res.locals = {
       title: 'LightSide',
-      header: 'LightSide Register'
+      header: 'Register'
     };
     return res.render('index');
   };
