@@ -36,10 +36,10 @@ function unzip(aBlob) {
 
 }
 
-function decompress(fullsavepath, filename){
+function decompress(){
     zip.useWebWorkers = false;
 
-    var fileInput = document.getElementById("fileInput")
+    var fileInput = document.getElementById("createZip")
     var file = fileInput.files[0]
 //   file_system.root.getFile("app_cache/temp.zip", {}, function(fileEntry){
 //        fileEntry.file(function (file) {
