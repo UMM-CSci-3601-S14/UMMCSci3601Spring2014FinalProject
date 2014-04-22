@@ -27,6 +27,8 @@ app.set 'partials',
   functions: 'partials/functions',
   visualization: 'partials/visualization',
   uploadCSV: 'partials/uploadCSV',
+  unzip: 'partials/unzip',
+
 
 # all environments
 app.engine 'html', require ("hogan-express")
@@ -70,8 +72,10 @@ app.get "/newUser", routes.newUser
 app.get "/logout", routes.logout
 app.get "/account", routes.account
 app.get "/uploadCSV", routes.uploadCSV
-app.post '/updatePassword', routes.updatePassword
+app.get "/uploadZip", routes.uploadZip
 app.post '/create', routes.create
+app.put '/updatePassword', routes.updatePassword
+
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
   successRedirect: '/dash'

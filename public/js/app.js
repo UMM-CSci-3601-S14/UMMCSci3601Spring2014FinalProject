@@ -21,7 +21,8 @@
       'newUser': 'newUser',
       'failed': 'logIn',
       'account': 'account',
-      'uploadCSV': 'uploadCSV'
+      'uploadCSV': 'uploadCSV',
+      'uploadZip': 'uploadZip'
     };
 
     AppRouter.prototype.index = function() {
@@ -47,6 +48,11 @@
     AppRouter.prototype.uploadCSV = function() {
       console.log("in uploadCSV");
       $('#content').html(new window.uploadCSVView().$el);
+    };
+
+    AppRouter.prototype.uploadZip = function() {
+      console.log("in uploadZip");
+      $('#content').html(new window.uploadZipView().$el);
     };
 
     AppRouter.prototype.modelPage = function() {

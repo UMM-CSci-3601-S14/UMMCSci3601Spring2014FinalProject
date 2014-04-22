@@ -18,7 +18,8 @@
       'click button#createPrompt': 'createPrompt',
       'click button#hideWait': 'hideWait',
       'click button#uploadCSV': 'uploadCSV',
-      'click button#makeCSV': 'makeCSV'
+      'click button#makeCSV': 'makeCSV',
+      'click button#makeZip': 'makeZip'
     };
 
     modelView.prototype.initialize = function() {
@@ -150,6 +151,10 @@
 
     modelView.prototype.uploadCSV = function() {
       return $('#uploadBox').html(new window.uploadCSVView().$el);
+    };
+
+    modelView.prototype.makeZip = function() {
+      return $('#uploadBox').html(new window.uploadZipView().$el);
     };
 
     modelView.prototype.makeCSV = function() {

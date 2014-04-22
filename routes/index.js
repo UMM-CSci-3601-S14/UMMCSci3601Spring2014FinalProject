@@ -70,6 +70,19 @@
     }
   };
 
+  exports.uploadZip = function(req, res) {
+    if (req.user === void 0) {
+      return res.redirect('/logIn');
+    } else {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide CSV Upload Page',
+        user: req.user
+      };
+      return res.render('index');
+    }
+  };
+
   exports.modelPage = function(req, res) {
     if (req.user === void 0) {
       return res.redirect('/logIn');

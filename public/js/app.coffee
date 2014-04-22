@@ -10,6 +10,8 @@ class AppRouter extends Backbone.Router
     'failed': 'logIn'
     'account': 'account'
     'uploadCSV': 'uploadCSV'
+    'uploadZip': 'uploadZip'
+
 
   index: ->
     console.log "in index"
@@ -34,6 +36,11 @@ class AppRouter extends Backbone.Router
   uploadCSV: ->
     console.log "in uploadCSV"
     $('#content').html new window.uploadCSVView().$el
+    return
+
+  uploadZip: ->
+    console.log "in uploadZip"
+    $('#content').html new window.uploadZipView().$el
     return
 
   modelPage: ->

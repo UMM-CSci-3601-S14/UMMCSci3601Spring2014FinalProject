@@ -59,6 +59,17 @@ exports.csvPage = (req, res) ->
    }
    res.render 'index'
 
+exports.uploadZip = (req, res) ->
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide CSV Upload Page'
+      user: req.user
+    }
+    res.render 'index'
+
 exports.modelPage = (req, res) ->
   if req.user is undefined
     res.redirect '/logIn'

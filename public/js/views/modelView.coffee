@@ -7,6 +7,8 @@ class window.modelView extends Backbone.View
     'click button#hideWait' : 'hideWait'
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
+    'click button#makeZip' : 'makeZip'
+
 
 
   initialize: ->
@@ -141,6 +143,9 @@ class window.modelView extends Backbone.View
 
   uploadCSV: ->
     $('#uploadBox').html new window.uploadCSVView().$el
+
+  makeZip: ->
+    $('#uploadBox').html new window.uploadZipView().$el
 
   makeCSV: ->
     $('#uploadBox').html new window.CSVView().$el

@@ -33,7 +33,6 @@ function getGrades(aString){
 
 
 function unzip(aBlob) {
-
 }
 
 function decompress(){
@@ -67,13 +66,10 @@ function decompress(){
                     }
                 });
             }, null);
-
-
 }
 
 function stripXml(aString) {
-    //Xml stripping
-    //full of bugs
+    //Xml stripping - full of bugs
     //"/s/<[^>]\{1,\}>//g; s/[^[:print:]]\{1,\}//g/
     return  aString.replace(/foo/, "")
 }
@@ -91,11 +87,11 @@ function makeCSV(zipFile){
     var csv =""
     if ("docx" == typeof(fileArray[0])){
         //docx not supported yet.
-//        for (var i = 0; i <= fileArray.length; i++){
-//            //unzip the .docx
-//            var docx = unzip(fileArray[i])
-//            csv = csv + processEssay(readDocx(docx[5]))//fix the number
-//        }
+        for (var i = 0; i <= fileArray.length; i++){
+            //unzip the .docx
+            var docx = unzip(fileArray[i])
+            csv = csv + processEssay(readDocx(docx[5]))//fix the number
+        }
         return csv;
     }
     if ("txt" == typeof(fileArray[0])){
@@ -104,6 +100,4 @@ function makeCSV(zipFile){
         }
         return csv;
     }
-
-
 }

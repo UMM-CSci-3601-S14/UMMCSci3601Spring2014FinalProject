@@ -43,7 +43,8 @@ Module dependencies.
     dashboard: 'partials/dashboard',
     functions: 'partials/functions',
     visualization: 'partials/visualization',
-    uploadCSV: 'partials/uploadCSV'
+    uploadCSV: 'partials/uploadCSV',
+    unzip: 'partials/unzip'
   });
 
   app.engine('html', require("hogan-express"));
@@ -105,9 +106,11 @@ Module dependencies.
 
   app.get("/uploadCSV", routes.uploadCSV);
 
-  app.post('/updatePassword', routes.updatePassword);
+  app.get("/uploadZip", routes.uploadZip);
 
   app.post('/create', routes.create);
+
+  app.put('/updatePassword', routes.updatePassword);
 
   app.post('/', passport.authenticate('local-login', {
     failureRedirect: '/failed',
