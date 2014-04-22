@@ -34,7 +34,7 @@
       console.log('in function');
       $('#waitingForModel').show(1000);
       newTitle = $('#title').val();
-      newText = $('#text').val();
+      newText = $('#title').val();
       newDescription = $('#description').val();
       newClass = $('#cDescription').val();
       return newPrompt = new createPrompt({

@@ -21,7 +21,7 @@ class window.modelView extends Backbone.View
     # Collecting all the nessesary information from the page
     # Text and title are requeired to create a new prompt
     newTitle =  $('#title').val()
-    newText =  $('#text').val()
+    newText =  $('#title').val()
     # The prompt description is NOT required
     # but used for grading after model is created
     newDescription =  $('#description').val()

@@ -18,10 +18,13 @@ exports.index = (req, res) ->
   res.render 'index'
 
 exports.dash = (req, res) ->
-  res.locals = {
-    title: 'LightSide'
-    header: 'Dashboard'
-#    username: req.session.passport.user.username
+  if (req.session.passport.user is undefined)
+    res.redirect '/logIn'
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'Dashboard'
+      user: req.user
   }
   res.render 'index'
 
@@ -81,14 +84,14 @@ exports.user = (req, res) ->
 exports.logIn = (req, res) ->
   res.locals = {
     title: 'LightSide'
-    header: 'LightSide Sign In'
+    header: 'Sign In'
   }
   res.render 'index'
 
 exports.newUser = (req, res) ->
   res.locals = {
     title: 'LightSide'
-    header: 'LightSide Register'
+    header: 'Register'
   }
   res.render 'index'
 
@@ -103,6 +106,7 @@ exports.account = (req, res) ->
   if (req.session.passport.user is undefined)
     res.redirect '/logIn'
   else
+    console.log req.user
     res.locals = {
       title: 'LightSide'
       header: 'Welcome ' + req.user.firstName

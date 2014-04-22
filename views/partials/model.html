@@ -1,41 +1,59 @@
 <script id='modelPage' type='text/html'>
-    <div class="row">
-        <div id="csvUpload" class="col-md-6 col-md-offset-2">
-            <p>
-                Here at LightSide <em>you</em> can create <em>your own</em> grading model to grade <em>your</em> assignments based off of how <em>you</em> grade.
-            </p>
+    <div class="col-sm-7 col-sm-push-1">
+        <p>
+            Here at LightSide <em>you</em> can create <em>your own</em> grading model to grade <em>your</em> assignments based off of how <em>you</em> grade.
+        </p>
 
-                <label for="title">Prompt Title: </label><br/>
-                <input id="title" placeholder="Title" /> <br/>
+        <label for="title">Prompt Title: </label><br/>
+        <input id="title" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
 
-                <label for="text">Prompt Text: </label><br/>
-                <input id="text" placeholder="Text" /><br/>
+        <!--<label for="text">Prompt Text: </label><br/>-->
+        <!--<input id="text" class="form-control" placeholder="Text" /><br/>-->
 
-                <label for="description">Prompt Description: </label><br/>
-                <input id="description" placeholder="Description (Optional)" /><br/>
+        <label for="description">Prompt Description: </label><br/>
+        <textarea id="description" class="form-control"  placeholder="Description of the Prompt (Example: Consider the benefits and disadvantages of instant answers. Also, consider mentioning the fact that the internet is always right.)" /><br/>
 
-                <label for="cDescription">Class Description: </label><br/>
-                <input id="cDescription" placeholder="Class Description" /><br/><br/>
+        <label for="cDescription">Class Description: </label><br/>
+        <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Page's 9th Grade English Class)" /><br/><br/>
 
-                <label for="file">Upload CSV for Model:</label>
-                <input type="file" name="files[]" id="file"><br>
-
-
-
-                <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
+        <label for="file">Upload CSV for Model:</label>
+        <input type="file" name="files[]" id="file"><br>
+        <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
+        <br><br>
+        <div id="upLoad">
+            <button class="box" id="uploadCSV">
+                <span class="glyphicon-large glyphicon glyphicon-upload"></span>
+                <br />
+                <span class="center dashBtn">Upload Existing CSV File</span>
+            </button>
+        </div>
+        <div id="makeOnline">
+            <button class="box" id="makeCSV">
+                <span class="glyphicon-large glyphicon glyphicon-pencil"></span>
+                <br />
+                <span class="center dashBtn">Make CSV File Online</span>
+            </button>
+        </div>
+        <br/><br/>
+        <div id="waitingForModel">
+            <h4>Please Wait For LightSide To Build Your Model</h4>
+            <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
+            <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
             <br/><br/>
-            <div id="waitingForModel">
-                <h4>Please Wait For LightSide To Build Your Model</h4>
-                <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
-                <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
-                <br/><br/>
-                <button id="hideWait" class="btn btn-success">Thank You</button>
+            <button id="hideWait" class="btn btn-success">Thank You</button>
 
-            </div>
+        </div>
+        <br/><br/>
+        <p>To be able to access more api features or to become a client of LightSide's</p>
+        <p>please contact us for more information and to look into our newest features.</p>
+        <a href="http://lightsidelabs.com/contact/" class="btn btn-success">Contact Us</a>
+    </div>
+
+    <div id="right" class="col-sm-3 col-sm-push-1">
+        <div class="content">
+            <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
+            <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
             <br/><br/>
-            <p>To be able to access more api features or to become a client of LightSide's</p>
-            <p>please contact us for more information and to look into our newest features.</p>
-            <a href="http://lightsidelabs.com/contact/" class="btn btn-success">Contact Us</a>
         </div>
     </div>
 </script>
