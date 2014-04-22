@@ -5,6 +5,9 @@ class window.modelView extends Backbone.View
   events:
     'click button#createPrompt': 'createPrompt'
     'click button#hideWait' : 'hideWait'
+    'click button#uploadCSV' : 'uploadCSV'
+    'click button#makeCSV' : 'makeCSV'
+
 
   initialize: ->
     @render()
@@ -106,6 +109,12 @@ class window.modelView extends Backbone.View
                       ), 1000
             xhr.send(form)
 
+
+  uploadCSV: ->
+    $('#uploadBox').html new window.uploadCSVView().$el
+
+  makeCSV: ->
+    $('#uploadBox').html new window.CSVView().$el
 
 
   hideResults: ->

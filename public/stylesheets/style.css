@@ -115,14 +115,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 width: 49%
 }
 
-#signIn {
-    padding: 20px;
-    -moz-box-shadow: 0 0 5px #888;
-    -webkit-box-shadow: 0 0 5px#888;
-    box-shadow: 0 0 5px #888;
-    min-width: 200px;
-}
-
 #right .title {
     margin-top: 0px;
     text-align: center;

@@ -20,20 +20,20 @@
         <input type="file" name="files[]" id="file"><br>
         <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
         <br><br>
-        <div id="upLoad">
+        <div id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
                 <br />
                 <span class="center dashBtn">Upload Existing CSV File</span>
             </button>
-        </div>
-        <div id="makeOnline">
+
             <button class="box" id="makeCSV">
                 <span class="glyphicon-large glyphicon glyphicon-pencil"></span>
                 <br />
                 <span class="center dashBtn">Make CSV File Online</span>
             </button>
         </div>
+        <div id="uploadBox"></div>
         <br/><br/>
         <div id="waitingForModel">
             <h4>Please Wait For LightSide To Build Your Model</h4>
@@ -54,6 +54,8 @@
             <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
             <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
             <br/><br/>
+            <div id="visFields">
+            </div>
+
         </div>
-    </div>
 </script>

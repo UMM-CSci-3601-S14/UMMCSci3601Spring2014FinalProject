@@ -16,7 +16,9 @@
 
     modelView.prototype.events = {
       'click button#createPrompt': 'createPrompt',
-      'click button#hideWait': 'hideWait'
+      'click button#hideWait': 'hideWait',
+      'click button#uploadCSV': 'uploadCSV',
+      'click button#makeCSV': 'makeCSV'
     };
 
     modelView.prototype.initialize = function() {
@@ -112,6 +114,14 @@
           });
         });
       });
+    };
+
+    modelView.prototype.uploadCSV = function() {
+      return $('#uploadBox').html(new window.uploadCSVView().$el);
+    };
+
+    modelView.prototype.makeCSV = function() {
+      return $('#uploadBox').html(new window.CSVView().$el);
     };
 
     modelView.prototype.hideResults = function() {

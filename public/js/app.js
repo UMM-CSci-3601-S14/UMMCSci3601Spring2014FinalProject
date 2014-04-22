@@ -20,7 +20,8 @@
       'logIn': 'logIn',
       'newUser': 'newUser',
       'failed': 'logIn',
-      'account': 'account'
+      'account': 'account',
+      'uploadCSV': 'uploadCSV'
     };
 
     AppRouter.prototype.index = function() {
@@ -41,6 +42,11 @@
     AppRouter.prototype.csvPage = function() {
       console.log("in csv");
       $('#content').html(new window.CSVView().$el);
+    };
+
+    AppRouter.prototype.uploadCSV = function() {
+      console.log("in uploadCSV");
+      $('#content').html(new window.uploadCSVView().$el);
     };
 
     AppRouter.prototype.modelPage = function() {
