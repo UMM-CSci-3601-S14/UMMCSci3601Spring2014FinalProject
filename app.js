@@ -105,9 +105,9 @@ Module dependencies.
 
   app.get("/uploadCSV", routes.uploadCSV);
 
-  app.post('/create', routes.create);
+  app.post('/updatePassword', routes.updatePassword);
 
-  app.put('/updatePassword', routes.updatePassword);
+  app.post('/create', routes.create);
 
   app.post('/', passport.authenticate('local-login', {
     failureRedirect: '/failed',

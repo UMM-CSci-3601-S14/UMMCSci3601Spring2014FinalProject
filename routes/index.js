@@ -153,7 +153,8 @@
     if (req.user.password === req.body.oldPassword) {
       currentUser = req.user.username;
       newPass = req.body.newPassword;
-      return User.update({
+      req.user.password = newPass;
+      User.update({
         username: currentUser
       }, {
         password: newPass
@@ -163,8 +164,9 @@
         }
         return console.log('The number of updated documents was %d', numAffected);
       });
+      return res.redirect('/dash');
     } else {
-      return console.log('incorrect password');
+      return res.redirect('/dash');
     }
   };
 

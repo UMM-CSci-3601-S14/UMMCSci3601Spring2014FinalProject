@@ -16,8 +16,6 @@
 
     newUserView.prototype.template = _.template($('#newUserPage').html());
 
-    newUserView.prototype.templateMain = _.template($('#welcomePage').html());
-
     model = new window.user();
 
     newUserView.prototype.events = {
@@ -64,3 +62,5 @@
   })(Backbone.View);
 
 }).call(this);
+
+//# sourceMappingURL=newUserView.map

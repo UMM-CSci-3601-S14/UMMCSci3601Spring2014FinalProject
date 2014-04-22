@@ -1,7 +1,7 @@
 class window.newUserView extends Backbone.View
   tagName: 'div'
   template: _.template $('#newUserPage').html()
-  templateMain: _.template $('#welcomePage').html()
+#  templateMain: _.template $('#welcomePage').html()
   model =  new window.user()
   events:
    'change': 'change'

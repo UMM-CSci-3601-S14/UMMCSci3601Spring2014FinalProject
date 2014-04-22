@@ -43,7 +43,7 @@
         return $('.passwordMismatch').show();
       } else {
         return Backbone.ajax({
-          type: "PUT",
+          type: "POST",
           url: "/updatePassword",
           data: {
             oldPassword: $('#oldPassword').val(),

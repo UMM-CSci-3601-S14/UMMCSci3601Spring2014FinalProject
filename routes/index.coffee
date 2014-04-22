@@ -129,14 +129,14 @@ exports.updatePassword = (req, res) ->
   if req.user.password is req.body.oldPassword
     currentUser = req.user.username
     newPass = req.body.newPassword
+    req.user.password = newPass
     User.update({username: currentUser}, { password: newPass}, (err, numAffected, raw) ->
       console.log err if err
       console.log 'The number of updated documents was %d', numAffected
-      #console.log 'The raw response from Mongo was ', raw
     )
+    res.redirect '/dash'
   else
-    console.log 'incorrect password'
-
+    res.redirect '/dash'
 
 exports.create = (req, res) ->
   newUser = new User req.body

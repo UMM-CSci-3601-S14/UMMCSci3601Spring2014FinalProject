@@ -28,7 +28,6 @@ app.set 'partials',
   visualization: 'partials/visualization',
   uploadCSV: 'partials/uploadCSV',
 
-
 # all environments
 app.engine 'html', require ("hogan-express")
 app.enable 'view cache'
@@ -71,9 +70,8 @@ app.get "/newUser", routes.newUser
 app.get "/logout", routes.logout
 app.get "/account", routes.account
 app.get "/uploadCSV", routes.uploadCSV
+app.post '/updatePassword', routes.updatePassword
 app.post '/create', routes.create
-app.put '/updatePassword', routes.updatePassword
-
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
   successRedirect: '/dash'

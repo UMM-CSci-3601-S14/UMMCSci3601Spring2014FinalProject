@@ -20,13 +20,12 @@ class window.accountView extends Backbone.View
     $('.changePasswordFields').show()
     $('.startChangePassword').hide()
 
-
   endChangePassword: ->
     if $('#newPassword').val() isnt $('#confirmNewPassword').val()
       $('.passwordMismatch').show()
     else
       Backbone.ajax {
-        type: "PUT"
+        type: "POST"
         url: "/updatePassword"
         data:
           oldPassword: $('#oldPassword').val()
@@ -37,16 +36,6 @@ class window.accountView extends Backbone.View
           console.log "failed"
       }
 
-#      passwordChangeModel.set({
-#        oldPassword: $('#oldPassword').val()
-#        newPassword: $('#newPassword').val()
-#      })
-#      passwordChangeModel.save {},
-#        success: ->
-#          console.log 'saved'
-#        error: ->
-#          console.log 'error'
-#      console.log ($('#newPassword').val() + ' ' + $('#confirmNewPassword').val())
 
   cancelPasswordChange: ->
     console.log "here"
