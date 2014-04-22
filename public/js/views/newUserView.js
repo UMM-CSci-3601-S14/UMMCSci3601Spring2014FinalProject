@@ -64,5 +64,3 @@
   })(Backbone.View);
 
 }).call(this);
-
-//# sourceMappingURL=newUserView.map

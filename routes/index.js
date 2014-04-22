@@ -34,6 +34,19 @@
     return res.render('index');
   };
 
+  exports.uploadCSV = function(req, res) {
+    if (req.user === void 0) {
+      return res.redirect('/logIn');
+    } else {
+      res.locals = {
+        title: 'LightSide',
+        header: 'LightSide CSV Upload Page',
+        username: req.user.username
+      };
+      return res.render('index');
+    }
+  };
+
   exports.results = function(req, res) {
     console.log('inside results');
     res.locals = {

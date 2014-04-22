@@ -28,6 +28,17 @@ exports.dash = (req, res) ->
   }
   res.render 'index'
 
+exports.uploadCSV = (req, res) ->
+  if req.user is undefined
+    res.redirect '/logIn'
+  else
+    res.locals = {
+      title: 'LightSide'
+      header: 'LightSide CSV Upload Page'
+      username: req.user.username
+    }
+    res.render 'index'
+
 exports.results = (req, res) ->
   console.log 'inside results'
   res.locals = {

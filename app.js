@@ -42,7 +42,8 @@ Module dependencies.
     tutorial: 'partials/tutorial',
     dashboard: 'partials/dashboard',
     functions: 'partials/functions',
-    visualization: 'partials/visualization'
+    visualization: 'partials/visualization',
+    uploadCSV: 'partials/uploadCSV'
   });
 
   app.engine('html', require("hogan-express"));
@@ -101,6 +102,8 @@ Module dependencies.
   app.get("/logout", routes.logout);
 
   app.get("/account", routes.account);
+
+  app.get("/uploadCSV", routes.uploadCSV);
 
   app.post('/create', routes.create);
 
