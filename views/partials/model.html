@@ -1,25 +1,20 @@
 <script id='modelPage' type='text/html'>
     <div class="col-sm-7 col-sm-push-1">
-        <p>
-            Here at LightSide <em>you</em> can create <em>your own</em> grading model to grade <em>your</em> assignments based off of how <em>you</em> grade.
-        </p>
+        <div id="promptSpace">
+            <label for="promptTitle">Prompt Title: </label><br/>
+            <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
 
-        <label for="title">Prompt Title: </label><br/>
-        <input id="title" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
+            <label for="promptDescription">Prompt Description: </label><br/>
+            <textarea id="promptDescription" class="form-control"  placeholder="Description of the Prompt (Example: Consider the benefits and disadvantages of instant answers. Also, consider mentioning the fact that the internet is always right.)" /><br/>
 
-        <!--<label for="text">Prompt Text: </label><br/>-->
-        <!--<input id="text" class="form-control" placeholder="Text" /><br/>-->
+            <label for="cDescription">Class Description: </label><br/>
+            <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Page's 9th Grade English Class)" /><br/><br/>
+        </div>
+        <div id="promptButtons">
+            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span></button>
+            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span></button>
+        </div>
 
-        <label for="description">Prompt Description: </label><br/>
-        <textarea id="description" class="form-control"  placeholder="Description of the Prompt (Example: Consider the benefits and disadvantages of instant answers. Also, consider mentioning the fact that the internet is always right.)" /><br/>
-
-        <label for="cDescription">Class Description: </label><br/>
-        <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Page's 9th Grade English Class)" /><br/><br/>
-
-        <label for="file">Upload CSV for Model:</label>
-        <input type="file" name="files[]" id="file"><br>
-        <button type="button" id="createPrompt" class="btn btn-success">Create Prompt</button>
-        <br><br>
         <div id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
@@ -48,10 +43,6 @@
             <button id="hideWait" class="btn btn-success">Thank You</button>
 
         </div>
-        <br/><br/>
-        <p>To be able to access more api features or to become a client of LightSide's</p>
-        <p>please contact us for more information and to look into our newest features.</p>
-        <a href="http://lightsidelabs.com/contact/" class="btn btn-success">Contact Us</a>
     </div>
 
     <div id="right" class="col-sm-3 col-sm-push-1">
@@ -61,6 +52,12 @@
             <br/><br/>
             <div id="visFields">
             </div>
-
+            {{> tutorial}}
         </div>
+
+        <script>
+            $(document).ready(function() {
+                $("#savePrompt").hide();
+            });
+</script>
 </script>

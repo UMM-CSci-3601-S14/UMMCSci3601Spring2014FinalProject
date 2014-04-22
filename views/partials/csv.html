@@ -1,17 +1,7 @@
 <script id='csvPage' type='text/html'>
-    <div class="col-md-7 col-md-push-1">
-        {{> tutorial}}
+    <div>
         <div id="fieldNames">
             <form role="form">
-                <label> Prompt</label>
-                <input class="form-control" id="promptField" placeholder="Enter the Prompt for the Writing Submissions">
-                <br />
-                <label> Model</label>
-                <input class="form-control" id="promptTitle" placeholder="Enter the Model Name">
-                <br />
-                <label> Essay Subject</label>
-                <input class="form-control" id="corpusField" placeholder="Enter the Subject for the Essay Collection">
-                <br />
                 <div class="btn-group" id="addFieldsSelector">
                     <label>Choose number of fields to enter for each document</label>
                     <br />
@@ -34,11 +24,6 @@
         </div>
         <div id="workZone" class="row">
             <form role="form">
-                <div id="promptSpace"></div>
-                <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span></button>
-                <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span></button>
-                <br /> <br />
-
                 <div id="fieldScores"></div>
 
                 <label>Text</label>
@@ -53,14 +38,9 @@
                 <button type="button" class = "btn btn-default" id="replace">
                     <span class="glyphicon glyphicon-edit"></span> Replace
                 </button>
-
-
-
-
                 <button type="button" class="btn btn-default" id="submit">
                     <span class="glyphicon glyphicon-download"></span> Download CSV
                 </button>
-                <input class="form-control" id="fileTitle" placeholder="Enter Title of CSV File">
 
                 <button type="button" class="btn btn-default" id="cancel">
                     <span class="glyphicon glyphicon-remove"></span> Cancel
@@ -73,23 +53,49 @@
         </div>
     </div>
 
-    <div id="right" class="col-sm-3 col-sm-push-1">
-        <div class="content">
-            <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
-            <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
-            <br/><br/>
-            <div class="helper">
-                <h2 class="title">Tutorial</h2>
-                <p id="advice">get help</p>
-            </div>
-        </div>
-        <div id="visualization">
-            <h2 class="title">Visualization of Your Data</h2>
-            <div id="visField1" class="visualization"></div>
-            <div id="visField2" class="visualization"></div>
-            <div id="visField3" class="visualization"></div>
-            <div id="visField4" class="visualization"></div>
-            <div id="visField5" class="visualization"></div>
-        </div>
-    </div>
+    <script>
+        $(document).ready(function() {
+            $("#saveFields").hide();
+            $("#workZone").hide();
+            $("#replace").hide();
+            $("#cancel").hide();
+            $("#visHeader").hide();
+            $("#secondT").hide();
+            $("#thirdT").hide();
+//    $("#changePasswordFields").hide();
+
+            $("#submit").click(function() {
+                exportToCSV();
+            });
+
+            $("#add").click(function() {
+                add();
+            });
+
+            $("#reset").click(function() {
+                reset();
+            });
+
+            $("#saveFields").click(function() {
+                saveFields();
+            });
+
+            $("#replace").click(function() {
+                replace();
+            });
+
+            $("#cancel").click(function() {
+                cancelReplace();
+            });
+
+            $("#editPrompt").click(function() {
+                editPromptFields();
+            });
+
+            $("#savePrompt").click(function() {
+                savePrompt();
+            });
+
+        });
+</script>
 </script>
