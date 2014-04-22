@@ -46,6 +46,9 @@ class window.createCorpora extends superPost
 class window.corpusUploadTasks extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/corpus-upload-tasks/'
 
+class window.trainingTasks extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/training-tasks/'
+
 
 
 #  This general request call takes the place of the prediction process,

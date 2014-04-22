@@ -90,13 +90,45 @@
                       return looping = setInterval((function() {
                         count++;
                         return uploadTask.fetch().done(function() {
+                          var trainingTask;
                           if (uploadTask.attributes.status === 'S') {
-                            console.log("Prediction Task was SUCCESSFUL");
-                            console.log("exited while loop");
+                            console.log("Upload Task was SUCCESSFUL");
                             console.log(newUploadTask.responseJSON);
                             console.log(count);
+                            trainingTask = new trainingTasks({
+                              corpus: newCorpus.responseJSON.url
+                            }).save().done(function() {
+                              var addTrainTask;
+                              addTrainTask = new request();
+                              addTrainTask.url = trainingTask.responseJSON.process;
+                              return addTrainTask.save().done(function() {
+                                var pollTrainTask, trainTaskLoop;
+                                console.log(addTrainTask);
+                                pollTrainTask = new request();
+                                pollTrainTask.url = trainingTask.responseJSON.url;
+                                return trainTaskLoop = setInterval((function() {
+                                  return pollTrainTask.fetch().done(function() {
+                                    var finalPrompt;
+                                    if (pollTrainTask.attributes.status === 'S') {
+                                      window.alert('Training task was SUCCESSFUL');
+                                      finalPrompt = new createPrompt({
+                                        title: newPrompt.responseJSON.title,
+                                        text: newPrompt.responseJSON.text,
+                                        description: newPrompt.responseJSON.description,
+                                        default_models: [pollTrainTask.attributes.trained_model]
+                                      });
+                                      finalPrompt.save().done(function() {});
+                                      window.clearInterval(trainTaskLoop);
+                                    }
+                                    if (pollTrainTask.attributes.status === 'U') {
+                                      window.alert('Training task was UNSUCCESSFUL');
+                                      return window.clearInterval(trainTaskLoop);
+                                    }
+                                  });
+                                }), 1000);
+                              });
+                            });
                             window.clearInterval(looping);
-                            window.alert("Your Model Has Been Made");
                           }
                           if (uploadTask.attributes.status === 'U') {
                             console.log("Prediction Task was UNSUCCESSFUL");

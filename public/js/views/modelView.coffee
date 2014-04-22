@@ -93,12 +93,39 @@ class window.modelView extends Backbone.View
 
 
                         if uploadTask.attributes.status == 'S'
-                          console.log "Prediction Task was SUCCESSFUL"
-                          console.log "exited while loop"
+                          console.log "Upload Task was SUCCESSFUL"
                           console.log newUploadTask.responseJSON
                           console.log count
+                          trainingTask = new trainingTasks({corpus: newCorpus.responseJSON.url}).save().done ->
+                            addTrainTask = new request()
+                            addTrainTask.url = trainingTask.responseJSON.process;
+                            addTrainTask.save().done ->
+                              console.log addTrainTask
+                              pollTrainTask = new request()
+                              pollTrainTask.url = trainingTask.responseJSON.url
+
+                              trainTaskLoop = setInterval (->
+                                pollTrainTask.fetch().done ->
+
+                                  if pollTrainTask.attributes.status == 'S'
+                                    window.alert 'Training task was SUCCESSFUL'
+                                    finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
+                                    finalPrompt.save().done ->
+
+                                    window.clearInterval trainTaskLoop
+
+                                  if pollTrainTask.attributes.status == 'U'
+                                    window.alert 'Training task was UNSUCCESSFUL'
+                                    window.clearInterval trainTaskLoop
+
+                              ), 1000
                           window.clearInterval looping
-                          window.alert("Your Model Has Been Made")
+
+
+
+
+
+
 
                         #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
                         if uploadTask.attributes.status == 'U'
@@ -107,6 +134,8 @@ class window.modelView extends Backbone.View
                           window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
 
                       ), 1000
+
+
             xhr.send(form)
 
 

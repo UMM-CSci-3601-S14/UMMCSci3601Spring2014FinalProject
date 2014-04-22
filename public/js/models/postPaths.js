@@ -185,6 +185,19 @@
 
   })(superPost);
 
+  window.trainingTasks = (function(_super) {
+    __extends(trainingTasks, _super);
+
+    function trainingTasks() {
+      return trainingTasks.__super__.constructor.apply(this, arguments);
+    }
+
+    trainingTasks.prototype.urlRoot = 'https://try-api.lightsidelabs.com/api/training-tasks/';
+
+    return trainingTasks;
+
+  })(superPost);
+
   window.request = (function(_super) {
     __extends(request, _super);
 
@@ -199,3 +212,5 @@
   })(superPost);
 
 }).call(this);
+
+//# sourceMappingURL=postPaths.map
