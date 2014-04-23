@@ -1,6 +1,6 @@
 class window.logInView extends Backbone.View
   tagName: 'div'
-  template: _.template $('#logIn').html()
+  template: _.template $('#login').html()
 
   initialize: ->
     @render()

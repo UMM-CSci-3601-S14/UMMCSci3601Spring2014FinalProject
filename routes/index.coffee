@@ -19,7 +19,7 @@ exports.index = (req, res) ->
 
 exports.dash = (req, res) ->
   if (req.session.passport.user is undefined)
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
     res.locals = {
       title: 'LightSide'
@@ -30,7 +30,7 @@ exports.dash = (req, res) ->
 
 exports.uploadCSV = (req, res) ->
   if req.user is undefined
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
     res.locals = {
       title: 'LightSide'
@@ -41,7 +41,7 @@ exports.uploadCSV = (req, res) ->
 
 exports.csvPage = (req, res) ->
   if req.user is undefined
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
    res.locals = {
      title: 'LightSide'
@@ -52,7 +52,7 @@ exports.csvPage = (req, res) ->
 
 exports.uploadZip = (req, res) ->
   if req.user is undefined
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
     res.locals = {
       title: 'LightSide'
@@ -61,9 +61,9 @@ exports.uploadZip = (req, res) ->
     }
     res.render 'index'
 
-exports.modelPage = (req, res) ->
+exports.modelMaker = (req, res) ->
   if req.user is undefined
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
    res.locals = {
      title: 'LightSide'
@@ -94,7 +94,7 @@ exports.user = (req, res) ->
     }
     res.render 'index'
 
-exports.logIn = (req, res) ->
+exports.login = (req, res) ->
   res.locals = {
     title: 'LightSide'
     header: 'Sign In'
@@ -117,7 +117,7 @@ exports.logout = (req, res) ->
 
 exports.account = (req, res) ->
   if (req.session.passport.user is undefined)
-    res.redirect '/logIn'
+    res.redirect '/login'
   else
     console.log req.user
     res.locals = {
@@ -145,4 +145,4 @@ exports.create = (req, res) ->
   console.log req.body
   newUser.save()
   res.send newUser
-  res.redirect '/logIn'
+  res.redirect '/login'

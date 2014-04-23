@@ -3,8 +3,8 @@ class AppRouter extends Backbone.Router
     '': 'index'
     'dash': 'dash'
     'csvPage': 'csvPage'
-    'modelPage': 'modelPage'
-    'logIn': 'logIn'
+    'model-maker': 'modelMaker'
+    'login': 'login'
     'newUser': 'newUser'
     'failed': 'logIn'
     'account': 'account'
@@ -37,12 +37,12 @@ class AppRouter extends Backbone.Router
     $('#content').html new window.uploadZipView().$el
     return
 
-  modelPage: ->
+  modelMaker: ->
     console.log "in model"
     $('#content').html new window.modelView().$el
     return
 
-  logIn: ->
+  login: ->
     console.log "in Sign in"
     $('#content').html new window.logInView().$el
     return

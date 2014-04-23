@@ -12,7 +12,7 @@
 
     logInView.prototype.tagName = 'div';
 
-    logInView.prototype.template = _.template($('#logIn').html());
+    logInView.prototype.template = _.template($('#login').html());
 
     logInView.prototype.initialize = function() {
       return this.render();

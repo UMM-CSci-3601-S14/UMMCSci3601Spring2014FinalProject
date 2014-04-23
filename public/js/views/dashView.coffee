@@ -3,7 +3,7 @@ class window.dashView extends Backbone.View
   template: _.template $('#dashboard').html()
 
   events:
-    'click button#createModelBox' : 'loadModelPage'
+    'click button#createModelBox' : 'loadModelMaker'
     'click button#yourModels': 'loadModelsInAccount'
 
     'click button#pickEssay1' : 'loadEssay1'
@@ -26,8 +26,8 @@ class window.dashView extends Backbone.View
     @$el.html @template()
     this
 
-  loadModelPage: ->
-    window.location.href = '/modelPage'
+  loadModelMaker: ->
+    window.location.href = '/model-maker'
 
   loadModelsInAccount: ->
     $('#modelsInAccount').show()

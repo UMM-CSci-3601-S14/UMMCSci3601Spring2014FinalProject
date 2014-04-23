@@ -15,8 +15,8 @@
       '': 'index',
       'dash': 'dash',
       'csvPage': 'csvPage',
-      'modelPage': 'modelPage',
-      'logIn': 'logIn',
+      'model-maker': 'modelMaker',
+      'login': 'login',
       'newUser': 'newUser',
       'failed': 'logIn',
       'account': 'account',
@@ -49,12 +49,12 @@
       $('#content').html(new window.uploadZipView().$el);
     };
 
-    AppRouter.prototype.modelPage = function() {
+    AppRouter.prototype.modelMaker = function() {
       console.log("in model");
       $('#content').html(new window.modelView().$el);
     };
 
-    AppRouter.prototype.logIn = function() {
+    AppRouter.prototype.login = function() {
       console.log("in Sign in");
       $('#content').html(new window.logInView().$el);
     };

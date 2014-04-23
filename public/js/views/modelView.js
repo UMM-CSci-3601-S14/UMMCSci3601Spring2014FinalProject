@@ -12,7 +12,7 @@
 
     modelView.prototype.tagName = 'div';
 
-    modelView.prototype.template = _.template($('#modelPage').html());
+    modelView.prototype.template = _.template($('#modelMaker').html());
 
     modelView.prototype.events = {
       'click button#createPrompt': 'createPrompt',

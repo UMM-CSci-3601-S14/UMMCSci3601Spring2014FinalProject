@@ -84,13 +84,13 @@ Module dependencies.
 
   app.get("/dash", routes.dash);
 
-  app.get("/modelPage", routes.modelPage);
+  app.get("/model-maker", routes.modelMaker);
 
   app.get("/failed", routes.failed);
 
   app.get("/user", routes.user);
 
-  app.get("/login", routes.logIn);
+  app.get("/login", routes.login);
 
   app.get("/newUser", routes.newUser);
 

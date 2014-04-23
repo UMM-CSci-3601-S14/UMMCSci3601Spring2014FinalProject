@@ -23,7 +23,7 @@
 
   exports.dash = function(req, res) {
     if (req.session.passport.user === void 0) {
-      res.redirect('/logIn');
+      res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
@@ -36,7 +36,7 @@
 
   exports.uploadCSV = function(req, res) {
     if (req.user === void 0) {
-      return res.redirect('/logIn');
+      return res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
@@ -49,7 +49,7 @@
 
   exports.csvPage = function(req, res) {
     if (req.user === void 0) {
-      return res.redirect('/logIn');
+      return res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
@@ -62,7 +62,7 @@
 
   exports.uploadZip = function(req, res) {
     if (req.user === void 0) {
-      return res.redirect('/logIn');
+      return res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
@@ -73,9 +73,9 @@
     }
   };
 
-  exports.modelPage = function(req, res) {
+  exports.modelMaker = function(req, res) {
     if (req.user === void 0) {
-      return res.redirect('/logIn');
+      return res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
@@ -112,7 +112,7 @@
     }
   };
 
-  exports.logIn = function(req, res) {
+  exports.login = function(req, res) {
     res.locals = {
       title: 'LightSide',
       header: 'Sign In'
@@ -139,7 +139,7 @@
 
   exports.account = function(req, res) {
     if (req.session.passport.user === void 0) {
-      res.redirect('/logIn');
+      res.redirect('/login');
     } else {
       console.log(req.user);
       res.locals = {
@@ -179,7 +179,7 @@
     console.log(req.body);
     newUser.save();
     res.send(newUser);
-    return res.redirect('/logIn');
+    return res.redirect('/login');
   };
 
 }).call(this);

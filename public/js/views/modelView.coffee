@@ -1,6 +1,6 @@
 class window.modelView extends Backbone.View
   tagName: 'div'
-  template: _.template $('#modelPage').html()
+  template: _.template $('#modelMaker').html()
 
   events:
     'click button#createPrompt': 'createPrompt'
