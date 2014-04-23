@@ -295,3 +295,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 .visualization {
     height: 150px;
 }
+#visualization {
+    text-align: center;
+}
