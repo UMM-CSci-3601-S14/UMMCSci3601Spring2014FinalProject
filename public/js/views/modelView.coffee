@@ -150,7 +150,7 @@ class window.modelView extends Backbone.View
       window.alert "Please enter the class description"
     else
       fieldCollapse()
-      $('#uploadBox').html new window.uploadCSVView().$el
+      $('#csvArea').html new window.uploadCSVView().$el
 
   uploadZip: ->
     if $("#promptTitle").val() is ""
@@ -161,7 +161,7 @@ class window.modelView extends Backbone.View
       window.alert "Please enter the class description"
     else
       fieldCollapse()
-      $('#uploadBox').html new window.uploadZipView().$el
+      $('#csvArea').html new window.uploadZipView().$el
 
   makeCSV: ->
     if $("#promptTitle").val() is ""
@@ -172,7 +172,7 @@ class window.modelView extends Backbone.View
       window.alert "Please enter the class description"
     else
       fieldCollapse()
-      $('#uploadBox').html new window.CSVView().$el
+      $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
       $('#makeTut').show()
 
