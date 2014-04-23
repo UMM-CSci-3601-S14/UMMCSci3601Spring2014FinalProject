@@ -47,16 +47,6 @@
     }
   };
 
-  exports.results = function(req, res) {
-    console.log('inside results');
-    res.locals = {
-      title: 'LightSide',
-      header: 'LightSide Results Page',
-      user: req.user
-    };
-    return res.render('index');
-  };
-
   exports.csvPage = function(req, res) {
     if (req.user === void 0) {
       return res.redirect('/logIn');

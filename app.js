@@ -82,15 +82,9 @@ Module dependencies.
 
   app.get("/", routes.index);
 
-  app.get("/results", routes.results);
-
-  app.get("/csvPage", routes.csvPage);
-
   app.get("/dash", routes.dash);
 
   app.get("/modelPage", routes.modelPage);
-
-  app.get("/users", routes.list);
 
   app.get("/failed", routes.failed);
 
@@ -103,10 +97,6 @@ Module dependencies.
   app.get("/logout", routes.logout);
 
   app.get("/account", routes.account);
-
-  app.get("/uploadCSV", routes.uploadCSV);
-
-  app.get("/uploadZip", routes.uploadZip);
 
   app.post('/create', routes.create);
 
