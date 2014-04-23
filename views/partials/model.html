@@ -1,5 +1,5 @@
 <script id='modelMaker' type='text/html'>
-    <div class="col-sm-7 col-sm-push-1">
+    <div class="left col-sm-7 col-sm-push-1">
         <div id="promptSpace">
             <label for="promptTitle">Prompt Title: </label><br/>
             <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
@@ -48,28 +48,26 @@
         </div>
     </div>
 
-    <div id="right" class="col-sm-3 col-sm-push-1">
+    <div class="right col-sm-3 col-sm-push-1">
         <div class="content">
             <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
             <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
             <br/><br/>
             <h3 class ="title">Getting Started</h3>
             {{> tutorial}}
+    </div>
 
+    <script>
+        $(document).ready(function() {
+            $("#savePrompt").hide();
 
-        </div>
-
-        <script>
-            $(document).ready(function() {
-                $("#savePrompt").hide();
-
-                $("#editPrompt").click(function() {
-                    editPromptFields();
-                });
-
-                $("#savePrompt").click(function() {
-                    savePrompt();
-                });
+            $("#editPrompt").click(function() {
+                editPromptFields();
             });
-</script>
+
+            $("#savePrompt").click(function() {
+                savePrompt();
+            });
+        });
+    </script>
 </script>

@@ -38,6 +38,11 @@ textarea{
 .LightSideStyle .page-header {
     margin-top: 0px;
 }
+
+#more, #less{
+    background:none;
+    border:none;
+}
 /*.content {*/
 /*text-align: center;*/
 /*padding: 10px;*/
@@ -62,7 +67,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 /*Welcome Page*/
 
 /*Formatting for left areas*/
-#left {
+.left {
     height: 100%;
     margin-right: 5px;
     border-radius: 10px;
@@ -99,7 +104,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 
 /*Formatting for right*/
-#right {
+.right {
     height: 100%;
     margin-left: 5px;
     border-radius: 10px;
@@ -110,7 +115,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     padding: 15px;
 }
 
-#right .extra{
+.right .extra{
     display: none;
 }
 
@@ -118,7 +123,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     width: 49%
 }
 
-#right .title {
+.right .title {
     margin-top: 0px;
     text-align: center;
 }
