@@ -25,10 +25,6 @@ function addFields(numToAdd) {
 
 //Runs when you hit save. Inserts the name of the fields into the fields.
 function saveFields() {
-
-    promptTitle = $("#promptTitle").val();
-    promptDescript = $("#promptDescription").val();
-    cDescript = $("#cDescription").val();
     var tempbool = true;
     for (var i = 1; i <= numFields; i++) {
         if ($("#field" + i + "").val()== "") {
@@ -101,7 +97,7 @@ function exportToCSV() {
     }
     else if (confirm("Do you want to download the CSV?"))
     {
-        download(promptDescript+".csv", myCSV);
+        download(promptTitle, myCSV);
     }
 }
 
