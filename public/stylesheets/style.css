@@ -160,7 +160,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     text-align: center;
 }
 
-
 .glyphicon-large {
     font-size: 64px;
     color: white;
@@ -286,8 +285,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     height:30px;
     cursor: pointer;
     line-height:25px;
-    background-color: #add8e6;
-    box-shadow: 3px 3px 3px #888888;
+    background-color: #BAD0FF;
+    box-shadow: 2px 2px 2px #888888;
 }
 
 #advice{

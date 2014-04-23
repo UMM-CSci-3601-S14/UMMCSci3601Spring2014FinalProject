@@ -130,19 +130,19 @@ function add() {
         $(".docBox").slideDown(130);
         $(".docBox").mouseover(function() { //Hover effect.
             if (parseInt($(this).text()) != selected) {
-                docBoxColors(this, 'midnightblue', 'white', '#5E79B2');
+                docBoxColors(this, '#506696', 'white', '#5E79B2');
             }
         });
         $(".docBox").mouseout(function() { //Returns to normal color.
             if (parseInt($(this).text()) != selected) {
-                docBoxColors(this, 'lightblue', 'black', '#5E79B2');
+                docBoxColors(this, '#BAD0FF', 'black', '#5E79B2');
             }
         });
         $(".docBox").click(function() { //Edits CSV document by clicking the specified docBox
             addingButtons();
             selected = (parseInt($(this).text()));
             deselect();
-            docBoxColors(this, 'darkred', 'white', 'black');
+            docBoxColors(this, '#EBADFF', 'black', '#BA80CC');
             var counter = 1;
             for(var i = 0; i < myCSV.length; i++) {
                 if (myCSV.charAt(i) == "\n") {
@@ -236,7 +236,7 @@ function deselect() {
     for (var j = 0; j < boxes.length; j++) {
         var e = boxes[j];
 
-        e.style.backgroundColor = 'lightblue';
+        e.style.backgroundColor = '#BAD0FF';
         e.style.color = 'black';
         e.style.borderColor = '#5E79B2';
     }
