@@ -205,6 +205,25 @@ width: 49%
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
 }
 
+.boxCreate{
+    color: #5E79B2;
+    background-color: inherit;
+    border-color: #5E79B2;
+    border-style: dashed;
+    border-width: medium;
+}
+
+.boxCreate>.glyphicon-large {
+    font-size: 64px;
+    color: #5E79B2;
+}
+
+.boxCreate:hover,
+.boxCreate:focus {
+    text-decoration: none;
+    background-color: white;
+}
+
 /******************************************************/
 
 /*CSS for accounts and modals*/
