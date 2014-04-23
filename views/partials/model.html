@@ -8,13 +8,16 @@
             <textarea id="promptDescription" class="form-control"  placeholder="Description of the Prompt (Example: Consider the benefits and disadvantages of instant answers. Also, consider mentioning the fact that the internet is always right.)" /><br/>
 
             <label for="cDescription">Class Description: </label><br/>
-            <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Page's 9th Grade English Class)" /><br/><br/>
+            <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Larry Page's 9th Grade English Class)" /><br/><br/>
         </div>
         <div id="promptButtons">
-            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span></button>
-            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span></button>
+            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
+            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button>
         </div>
 
+
+
+ <!--Big blue buttons-->
         <div id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
@@ -27,7 +30,7 @@
                 <br />
                 <span class="center dashBtn">Make CSV File Online</span>
             </button>
-            <button class="box" id="makeZip">
+            <button class="box" id="uploadZip">
                 <span class="glyphicon-large glyphicon glyphicon-folder-close"></span>
                 <br />
                 <span class="center dashBtn">Make CSV from uploaded documents</span>
@@ -59,6 +62,16 @@
         <script>
             $(document).ready(function() {
                 $("#savePrompt").hide();
+
+                $("#editPrompt").click(function() {
+                    editPromptFields();
+                });
+
+                $("#savePrompt").click(function() {
+                    savePrompt();
+                });
+
+
             });
 </script>
 </script>

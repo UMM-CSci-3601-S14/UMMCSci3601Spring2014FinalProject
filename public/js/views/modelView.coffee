@@ -7,7 +7,7 @@ class window.modelView extends Backbone.View
     'click button#hideWait' : 'hideWait'
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
-    'click button#makeZip' : 'makeZip'
+    'click button#uploadZip' : 'uploadZip'
 
 
 
@@ -142,13 +142,39 @@ class window.modelView extends Backbone.View
 
 
   uploadCSV: ->
-    $('#uploadBox').html new window.uploadCSVView().$el
+    if $("#promptTitle").val() is ""
+      window.alert "Please enter the prompt title"
+    else if $("#promptDescription").val() is ""
+      window.alert "Please enter the prompt description"
+    else if $("#cDescription").val() is ""
+      window.alert "Please enter the class description"
+    else
+      fieldCollapse()
+      $('#uploadBox').html new window.uploadCSVView().$el
 
-  makeZip: ->
-    $('#uploadBox').html new window.uploadZipView().$el
+  uploadZip: ->
+    if $("#promptTitle").val() is ""
+      window.alert "Please enter the prompt title"
+    else if $("#promptDescription").val() is ""
+      window.alert "Please enter the prompt description"
+    else if $("#cDescription").val() is ""
+      window.alert "Please enter the class description"
+    else
+      fieldCollapse()
+      $('#uploadBox').html new window.uploadZipView().$el
 
   makeCSV: ->
-    $('#uploadBox').html new window.CSVView().$el
+    if $("#promptTitle").val() is ""
+      window.alert "Please enter the prompt title"
+    else if $("#promptDescription").val() is ""
+      window.alert "Please enter the prompt description"
+    else if $("#cDescription").val() is ""
+      window.alert "Please enter the class description"
+    else
+      fieldCollapse()
+      $('#uploadBox').html new window.CSVView().$el
+      $('#welcomeTut').hide()
+      $('#makeTut').show()
 
 
   hideResults: ->

@@ -19,6 +19,10 @@ blockquote{
     border-left: 4px solid #BAD0FF;
 }
 
+textarea{
+    resize: vertical;
+}
+
 .title {
     font-family: "Francois One", "Lucida Grande", Helvetica, Arial, Sans-serif;
 }
@@ -35,12 +39,12 @@ blockquote{
     margin-top: 0px;
 }
 /*.content {*/
-    /*text-align: center;*/
-    /*padding: 10px;*/
-    /*background-color: #BAD0FF;*/
-    /*border-radius: 10px;*/
-    /*margin-top: 10px;*/
-    /*padding: 15px;*/
+/*text-align: center;*/
+/*padding: 10px;*/
+/*background-color: #BAD0FF;*/
+/*border-radius: 10px;*/
+/*margin-top: 10px;*/
+/*padding: 15px;*/
 /*}*/
 
 .title small {
@@ -99,7 +103,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     height: 100%;
     margin-left: 5px;
     border-radius: 10px;
-    text-align: center;
     padding: 10px;
     background-color: #BAD0FF;
     border-radius: 10px;
@@ -112,7 +115,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 
 .paired{
-width: 49%
+    width: 49%
 }
 
 #right .title {
@@ -247,6 +250,14 @@ width: 49%
 }
 
 /******************************************************/
+
+/*For Tutorial*/
+#makeTut, #editing, #thirdT, #editPrompt{
+    display: none;
+}
+
+
+
 
 /*CSS for Visualization page*/
 .fields {

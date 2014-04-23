@@ -19,7 +19,7 @@
       'click button#hideWait': 'hideWait',
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
-      'click button#makeZip': 'makeZip'
+      'click button#uploadZip': 'uploadZip'
     };
 
     modelView.prototype.initialize = function() {
@@ -150,15 +150,44 @@
     };
 
     modelView.prototype.uploadCSV = function() {
-      return $('#uploadBox').html(new window.uploadCSVView().$el);
+      if ($("#promptTitle").val() === "") {
+        return window.alert("Please enter the prompt title");
+      } else if ($("#promptDescription").val() === "") {
+        return window.alert("Please enter the prompt description");
+      } else if ($("#cDescription").val() === "") {
+        return window.alert("Please enter the class description");
+      } else {
+        fieldCollapse();
+        return $('#uploadBox').html(new window.uploadCSVView().$el);
+      }
     };
 
-    modelView.prototype.makeZip = function() {
-      return $('#uploadBox').html(new window.uploadZipView().$el);
+    modelView.prototype.uploadZip = function() {
+      if ($("#promptTitle").val() === "") {
+        return window.alert("Please enter the prompt title");
+      } else if ($("#promptDescription").val() === "") {
+        return window.alert("Please enter the prompt description");
+      } else if ($("#cDescription").val() === "") {
+        return window.alert("Please enter the class description");
+      } else {
+        fieldCollapse();
+        return $('#uploadBox').html(new window.uploadZipView().$el);
+      }
     };
 
     modelView.prototype.makeCSV = function() {
-      return $('#uploadBox').html(new window.CSVView().$el);
+      if ($("#promptTitle").val() === "") {
+        return window.alert("Please enter the prompt title");
+      } else if ($("#promptDescription").val() === "") {
+        return window.alert("Please enter the prompt description");
+      } else if ($("#cDescription").val() === "") {
+        return window.alert("Please enter the class description");
+      } else {
+        fieldCollapse();
+        $('#uploadBox').html(new window.CSVView().$el);
+        $('#welcomeTut').hide();
+        return $('#makeTut').show();
+      }
     };
 
     modelView.prototype.hideResults = function() {

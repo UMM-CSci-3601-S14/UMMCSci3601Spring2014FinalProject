@@ -72,6 +72,25 @@ function saveFields() {
         window.alert("Please fill all field names");
     }
 }
+/*************Save prompt for when we hit the blue button on modelPage**********************/
+function fieldCollapse() {
+
+    promptTitle = $("#promptTitle").val()
+    promptDescript = $("#promptDescription").val()
+    cDescript = $("#cDescription").val()
+
+        document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
+        document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
+        document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
+
+
+
+    $('#editPrompt').show();
+    $('#uploadZip').hide();
+    $('#uploadCSV').hide();
+    $('#makeCSV').hide();
+
+}
 /******************************************************/
 
 /**************************DOWNLOADING***********************************/
@@ -258,9 +277,11 @@ function addingButtons() {
 function editPromptFields() {
     $('#editPrompt').hide();
     $('#savePrompt').show();
-    document.getElementById("promptSpace").innerHTML= "<label>Prompt Title: </label>\n<input class='form-control' id='promptTitle2' name='promptTitle2' placeholder='Enter the Prompt Title for the Writing Submissions'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Prompt Description: </label>\n<input class='form-control' id='promptDescription2' name='promptDescription2' placeholder='Enter the Prompt Description for the Writing Submissions'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Class Description: </label>\n<input class='form-control' id='cDescription2' name='cDescription2' placeholder='Enter the Class Description for the Writing Submissions'>";
+    document.getElementById("promptSpace").innerHTML= "<label>Prompt Title: </label>\n<input class='form-control' id='promptTitle2' name='promptTitle2' value='" + promptTitle + "'> <br />";
+    document.getElementById("promptSpace").innerHTML += "<label>Prompt Description: </label>\n<input class='form-control' id='promptDescription2' value='" + promptDescript + "' name='promptDescription2' value='" + promptTitle + "'> <br />";
+    document.getElementById("promptSpace").innerHTML += "<label>Class Description: </label>\n<input class='form-control' id='cDescription2' value='" + cDescript + "'  name='cDescription2'>";
+
+
 }
 
 //Saves the prompt model and subject entered into the text field
@@ -269,10 +290,12 @@ function savePrompt() {
     promptDescript = $("#promptDescription2").val();
     cDescript = $("#cDescription2").val();
     $("#editPrompt").show();
-    $("#savePrompt").show();
+    $("#savePrompt").hide();
     document.getElementById("promptSpace").innerHTML= "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
     document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
     document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
+
+
 }
 /**********************************************************************************************************/
 //Clears all global variables, shows/hides divs to get to start, clears divs that may have stored any information.
