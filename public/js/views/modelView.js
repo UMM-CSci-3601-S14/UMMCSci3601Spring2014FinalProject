@@ -158,7 +158,7 @@
         return window.alert("Please enter the class description");
       } else {
         fieldCollapse();
-        return $('#uploadBox').html(new window.uploadCSVView().$el);
+        return $('#csvArea').html(new window.uploadCSVView().$el);
       }
     };
 
@@ -171,7 +171,7 @@
         return window.alert("Please enter the class description");
       } else {
         fieldCollapse();
-        return $('#uploadBox').html(new window.uploadZipView().$el);
+        return $('#csvArea').html(new window.uploadZipView().$el);
       }
     };
 
@@ -184,7 +184,7 @@
         return window.alert("Please enter the class description");
       } else {
         fieldCollapse();
-        $('#uploadBox').html(new window.CSVView().$el);
+        $('#csvArea').html(new window.CSVView().$el);
         $('#welcomeTut').hide();
         return $('#makeTut').show();
       }
