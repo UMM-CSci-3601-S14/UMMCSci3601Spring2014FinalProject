@@ -46,15 +46,14 @@
         surname: $('#createSurname').val()
       });
       console.log('saving...');
-      model.save({}, {
+      return model.save({}, {
         success: function() {
           return console.log('saved');
         },
         error: function() {
-          return console.log('error');
+          return alert("The email is already taken");
         }
       });
-      return this.renderMain;
     };
 
     return newUserView;

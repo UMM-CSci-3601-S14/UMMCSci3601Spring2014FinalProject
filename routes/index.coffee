@@ -132,13 +132,13 @@ exports.updatePassword = (req, res) ->
     currentUser = req.user.username
     newPass = req.body.newPassword
     req.user.password = newPass
-    User.update({username: currentUser}, { password: newPass}, (err, numAffected, raw) ->
+    User.update({username: currentUser}, {password: newPass}, (err, numAffected, raw) ->
       console.log err if err
       console.log 'The number of updated documents was %d', numAffected
     )
-    res.redirect '/dash'
+    res.send(200, "Password changed successfully!")
   else
-    res.redirect '/dash'
+    res.send(500, "Passwords do not match!")
 
 exports.create = (req, res) ->
   newUser = new User req.body

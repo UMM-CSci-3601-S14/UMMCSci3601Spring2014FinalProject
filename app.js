@@ -100,7 +100,7 @@ Module dependencies.
 
   app.post('/create', routes.create);
 
-  app.put('/updatePassword', routes.updatePassword);
+  app.post('/updatePassword', routes.updatePassword);
 
   app.post('/', passport.authenticate('local-login', {
     failureRedirect: '/failed',

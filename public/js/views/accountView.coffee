@@ -19,8 +19,12 @@ class window.accountView extends Backbone.View
   startChangePassword: ->
     $('.changePasswordFields').show()
     $('.startChangePassword').hide()
+    $('#successPasswordChange').hide()
+    $('#failedPasswordChange').hide()
 
   endChangePassword: ->
+    $('#successPasswordChange').hide()
+    $('#failedPasswordChange').hide()
     if $('#newPassword').val() isnt $('#confirmNewPassword').val()
       $('.passwordMismatch').show()
     else
@@ -31,9 +35,14 @@ class window.accountView extends Backbone.View
           oldPassword: $('#oldPassword').val()
           newPassword: $('#newPassword').val()
         success: ->
-          console.log "worked"
+          $('.changePasswordFields').hide()
+          $('.startChangePassword').show()
+          $('#oldPassword').val("")
+          $('#newPassword').val("")
+          $('#confirmNewPassword').val("")
+          $('#successPasswordChange').show()
         error: ->
-          console.log "failed"
+          $('#failedPasswordChange').show()
       }
 
 

@@ -35,10 +35,14 @@
 
     accountView.prototype.startChangePassword = function() {
       $('.changePasswordFields').show();
-      return $('.startChangePassword').hide();
+      $('.startChangePassword').hide();
+      $('#successPasswordChange').hide();
+      return $('#failedPasswordChange').hide();
     };
 
     accountView.prototype.endChangePassword = function() {
+      $('#successPasswordChange').hide();
+      $('#failedPasswordChange').hide();
       if ($('#newPassword').val() !== $('#confirmNewPassword').val()) {
         return $('.passwordMismatch').show();
       } else {
@@ -50,10 +54,15 @@
             newPassword: $('#newPassword').val()
           },
           success: function() {
-            return console.log("worked");
+            $('.changePasswordFields').hide();
+            $('.startChangePassword').show();
+            $('#oldPassword').val("");
+            $('#newPassword').val("");
+            $('#confirmNewPassword').val("");
+            return $('#successPasswordChange').show();
           },
           error: function() {
-            return console.log("failed");
+            return $('#failedPasswordChange').show();
           }
         });
       }

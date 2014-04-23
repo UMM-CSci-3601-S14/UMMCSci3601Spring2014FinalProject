@@ -91,13 +91,19 @@
                     <button class="startChangePassword btn btn-default">Change Password</button>
                     <div id="changePasswordFields" class="changePasswordFields" style="display: none">
                         <label>Old Password:</label>
-                        <input name="oldPassword" id="oldPassword" class="form-control" type="password" /><br/>
+                        <input name="oldPassword" id="oldPassword" class="form-control" type="password"/><br/>
                         <label>New Password:</label>
                         <input name="newPassword" id="newPassword" class="form-control" value="<%= password %>"/><br/>
                         <label>Confirm New Password:</label>
                         <input name="confirmNewPassword" id="confirmNewPassword" class="form-control" value="<%= password %>"/><br/>
                         <button class="endChangePassword btn btn-default">Change Password</button>
                         <button class="cancelPasswordChange btn btn-default">Cancel</button>
+                    </div>
+                    <div id="successPasswordChange" style="display: none">
+                        <p><b>Your password was successfully changed!</b></p>
+                    </div>
+                    <div id="failedPasswordChange" style="display: none">
+                        <p><b>Your old password was incorrect!</b></p>
                     </div>
                     <div class="passwordMismatch" style="display: none">
                         <p><b>New password and confirm new password do not match.<b></p>

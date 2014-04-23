@@ -167,9 +167,9 @@
         }
         return console.log('The number of updated documents was %d', numAffected);
       });
-      return res.redirect('/dash');
+      return res.send(200, "Password changed successfully!");
     } else {
-      return res.redirect('/dash');
+      return res.send(500, "Passwords do not match!");
     }
   };
 

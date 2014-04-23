@@ -42,5 +42,4 @@ class window.newUserView extends Backbone.View
       success: ->
         console.log 'saved'
       error: ->
-        console.log 'error'
-    @renderMain
+        alert("The email is already taken")
