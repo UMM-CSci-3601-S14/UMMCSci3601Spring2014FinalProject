@@ -25,8 +25,8 @@ exports.dash = (req, res) ->
       title: 'LightSide'
       header: 'Dashboard'
       user: req.user
-  }
-  res.render 'index'
+    }
+    res.render 'index'
 
 exports.uploadCSV = (req, res) ->
   if req.user is undefined
@@ -160,3 +160,12 @@ exports.create = (req, res) ->
       newUser.save()
       res.send(200, "Password changed successfully!")
   )
+
+exports.addPrompt = (req, res) ->
+  currentUser = req.user.email
+  promptToAdd = req.body.promptArray
+  User.update({email: currentUser}, {$push: {promptArray: promptToAdd}}, (err, numAffected, raw) ->
+    console.log err if err
+    console.log 'The number of updated documents was %d', numAffected
+  )
+  res.send(200, "Prompt was added to the user.")

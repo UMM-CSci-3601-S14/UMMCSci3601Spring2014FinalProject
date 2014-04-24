@@ -68,6 +68,7 @@ app.get "/login", routes.login
 app.get "/newUser", routes.newUser
 app.get "/logout", routes.logout
 app.get "/account", routes.account
+app.post "/addPrompt", routes.addPrompt
 app.post '/create', routes.create
 app.post '/updatePassword', routes.updatePassword
 app.put '/updatePassword', routes.updatePassword
