@@ -69,7 +69,6 @@ class window.uploadCSVView extends Backbone.View
       divID = "visField" + (j - i)
       document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization'></div>"
       i--
-      document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='perfect" + divID +  "' class='visualization'></div>"
 
     ##array = array[1..array.length-1]
     #sends the array from the csv into the getFields().
@@ -148,7 +147,6 @@ class window.uploadCSVView extends Backbone.View
 #    console.log document.getElementById('visFields').innerHTML
     #array of the field entries and the occurrences of them in an object for each index of the array
     dataPointsTemplate = new Array()
-    perfectDataPointsTemplate = new Array()
 
     i = 0
     console.log arrayOfDict[0]
@@ -167,12 +165,7 @@ class window.uploadCSVView extends Backbone.View
       numOfKeys++
 
       i++
-    i = 0
-    while i < arrayOfDict[fieldNum].keys.length
-      perfectDataPointsTemplate.push
-        y: totalValue / numOfKeys
-        indexLabel: tempKey
-      i++
+
     dataTemplate = [
       type: "doughnut"
       dataPoints: dataPointsTemplate
@@ -185,28 +178,15 @@ class window.uploadCSVView extends Backbone.View
         text: fieldNames[currentField]
 
       data: dataTemplate
+      backgroundColor: "transparent"
     )
 
-    perfectDataTemplate = [
-      type: "doughnut"
-      dataPoints: perfectDataPointsTemplate
-    ]
-
-
-    #chart object
-    perfectChart = new CanvasJS.Chart("perfect" + divID,
-      title:
-        text: "Perfect" + fieldNames[currentField]
-
-      data: perfectDataTemplate
-    )
 
 
     #renders the chart
     console.log "SOMTHIN"
     currentField++
     chart.render()
-    perfectChart.render()
     return
 
   #Dictionary class and methods. Custom data structure!! :D
