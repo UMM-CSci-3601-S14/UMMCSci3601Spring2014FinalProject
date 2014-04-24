@@ -3,6 +3,7 @@ test = require('selenium-webdriver/testing')
 webdriver = require('selenium-webdriver')
 
 
+###
 describe "Create paragraph", ->
   describe "test 1", ->
     it "should create a paragraph with given text", ->
@@ -12,6 +13,7 @@ describe "Create paragraph", ->
       chai.assert.equal 27, cube(3)
     it '-3 cubed is -27', ->
       chai.assert.equal -27, cube(-3)
+###
 
 
 test.describe "gradingOnTheDemo", ->
@@ -22,7 +24,7 @@ test.describe "gradingOnTheDemo", ->
 
       driver.findElement(webdriver.By.id('essayContents')).sendKeys("this paper should return a 1")
       driver.findElement(webdriver.By.id('submitEssay')).click()
-      driver.sleep(4000)
+      driver.sleep(8000)
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal value, "Your grade for the submitted essay is 1 out of 5."
         driver.close()
@@ -37,7 +39,7 @@ test.describe "gradingOnTheDemo", ->
       driver.findElement(webdriver.By.id('essayContents')).sendKeys(paper)
       driver.findElement(webdriver.By.id('submitEssay')).click()
 
-      driver.sleep(4000)
+      driver.sleep(8000)
 
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 3 out of 5.")
@@ -52,9 +54,60 @@ test.describe "gradingOnTheDemo", ->
       driver.findElement(webdriver.By.id('essayContents')).sendKeys(paper)
       driver.findElement(webdriver.By.id('submitEssay')).click()
 
-      driver.sleep(4000)
+      driver.sleep(8000)
 
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 5 out of 5.")
 
         driver.close()
+
+###
+test.describe "testModelMaking", ->
+  test.beforeEach (done) ->
+    driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
+    driver.get('http://localhost:3000/model-maker')
+
+    driver.findElement(webdriver.By.name('username')).sendKeys("Isaac-S")
+    driver.findElement(webdriver.By.name('password')).sendKeys("Butts")
+    driver.findElement(webdriver.By.id('logIn')).click()
+
+    driver.get('http://localhost:3000/modelPage')
+
+    driver.findElement(webdriver.By.id('title')).sendKeys("test-title")
+    driver.findElement(webdriver.By.id('text')).sendKeys("test-text")
+    driver.findElement(webdriver.By.id('description')).sendKeys("test-description")
+    driver.findElement(webdriver.By.id('cDescription')).sendKeys("test-class-description")
+    driver.findElement(webdriver.By.id('file')).sendKeys("/home/smolu004/Documents/sentiment_sentences.csv")
+
+    driver.findElement(webdriver.By.id('createPrompt')).click()
+    console.log("Waiting for one minute...")
+    driver.sleep(6000)
+
+
+
+  test.describe "testing a good model", ->
+    test.it "should return true if the model is being created", ->
+      console.log("Waiting complete!\n")
+      driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
+      alert = ""
+      ###
+### alertExists: A helper method for testing, returns 'true' if there is an alert being given by the page. ###
+###
+      alertExists = () ->
+        console.log("Now running 'alertExists' method...")
+        try
+          alert = driver.switchTo().alert()
+          console.log("FOUND ALERT")
+          console.log("Alert = " + alert + "\n")
+          alert.accept()
+          true
+        catch error
+          console.log("NO ALERT FOUND")
+          false
+
+      if alertExists()
+        console.log("Checking alert text...")
+        console.log("Alert text: " + alert.getText())
+        assert.equal(alert.getText(), "Your Model Has Been Made")
+        driver.close()
+###
