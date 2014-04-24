@@ -6,7 +6,7 @@ class AppRouter extends Backbone.Router
     'model-maker': 'modelMaker'
     'login': 'login'
     'newUser': 'newUser'
-    'failed': 'logIn'
+    'failed': 'login'
     'account': 'account'
     'uploadCSV': 'uploadCSV'
     'uploadZip': 'uploadZip'

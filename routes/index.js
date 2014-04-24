@@ -93,8 +93,7 @@
   exports.failed = function(req, res) {
     res.locals = {
       title: 'Lightside',
-      header: 'Failed Login',
-      failed: 'Your username or password does not match!'
+      header: 'Failed Login'
     };
     return res.render('index');
   };
