@@ -3,7 +3,7 @@ class window.uploadCSVView extends Backbone.View
   template: _.template $('#uploadCSV').html()
 
   events:
-    'click button.submitCSV1': 'submitCSV'
+    'change input#fileInput': 'submitCSV'
     'click button.submitCSV1': 'createPrompt'
 
   numFields = 0
@@ -187,8 +187,8 @@ class window.uploadCSVView extends Backbone.View
     array = new Array()
     endPoint = 0
     text = csvString
-    until text.search("\r") is -1
-      endPoint = text.search("\r")
+    until text.search("\n") is -1
+      endPoint = text.search("\n")
       array.push text.slice(0, endPoint)
       text = text.slice(endPoint + 1, text.length)
 

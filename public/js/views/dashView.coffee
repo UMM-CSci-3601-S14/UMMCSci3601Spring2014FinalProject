@@ -120,7 +120,7 @@ class window.dashView extends Backbone.View
             looping = setInterval (->
 
               # To make sure that we send to https in stead of the http that theProcess returns
-              thePredictionStatus.urlRoot = theProcess.attributes.prediction_task[0..3] + "s" + theProcess.attributes.prediction_task[4..]
+              thePredictionStatus.urlRoot = theProcess.attributes.url
               thePredictionStatus.fetch().done ->
 
                 console.log "Prediction Task status: " + thePredictionStatus.attributes.status

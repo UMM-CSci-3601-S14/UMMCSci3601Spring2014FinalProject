@@ -59,7 +59,7 @@
         return theAuthor = new author({
           designator: "BG2",
           email: "test@gmail.com"
-        }).fetch().done(function() {
+        }).save().done(function() {
           var theAnswerSet;
           return theAnswerSet = new answerSet1({}).fetch().done(function() {
             var theAnswer;
@@ -81,7 +81,7 @@
                   var looping, thePredictionStatus;
                   thePredictionStatus = new request();
                   return looping = setInterval((function() {
-                    thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
+                    thePredictionStatus.urlRoot = theProcess.attributes.url;
                     return thePredictionStatus.fetch().done(function() {
                       var thePredictionResult;
                       console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
