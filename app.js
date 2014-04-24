@@ -35,7 +35,7 @@ Module dependencies.
 
   app.set('partials', {
     welcome: 'partials/welcome',
-    results: 'partials/results',
+    accountTemplates: 'partials/accountTemplates',
     csv: 'partials/csv',
     scripts: 'partials/scripts',
     model: 'partials/model',
