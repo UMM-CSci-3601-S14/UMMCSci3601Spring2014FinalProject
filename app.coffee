@@ -45,7 +45,7 @@ app.configure ->
   app.use express.cookieParser('csci3601')
   app.use express.session(
     cookie: {
-      maxAge: 1800000
+      maxAge: 3600000
     }
     secret: 'csci3601')
   app.use passport.initialize()

@@ -27,21 +27,18 @@ exports.list = (req, res) ->
 populateDB = ->
   usernames = [
     {
-      username: 'skippy'
       password: '1234'
-      email: 'lol@lol.com'
+      email: 'vinkx009@morris.umn.edu'
       firstName: 'Zachary'
       surname: 'Vink'
     },
     {
-      username: 'justin'
       password: '4321'
       email: 'lal@lol.com'
       firstName: 'Justin'
       surname: 'YaDeau'
     },
     {
-      username: 'david'
       password: '9hnMILd23145'
       email: 'Ha@lol.com'
       firstName: 'David'
@@ -63,18 +60,20 @@ passport.deserializeUser (user, done) ->
   done null, user
   return
 
-passport.use 'local-login', new LocalStrategy((username, password, done) ->
-  process.nextTick ->
-    User.findOne
-      username: username, (err, user) ->
-        return done(err) if err
-        return done(null, false) unless user
-        return done(null, false) unless user.password is password
-        done null, user
-    return
-  return
-)
-
-
+passport.use 'local-login', new LocalStrategy({
+    usernameField: 'email'
+    passwordField: 'password'
+  }
+    (email, password, done) ->
+      process.nextTick ->
+        User.findOne
+          email: email, (err, user) ->
+            return done(err) if err
+            return done(null, false) unless user
+            return done(null, false) unless user.password is password
+            done null, user
+        return
+      return
+    )
 
 module.exports = passport

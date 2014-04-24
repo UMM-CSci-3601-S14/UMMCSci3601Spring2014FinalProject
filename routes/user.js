@@ -41,19 +41,16 @@ Module dependencies.
     var user, usernames, _i, _len, _results;
     usernames = [
       {
-        username: 'skippy',
         password: '1234',
-        email: 'lol@lol.com',
+        email: 'vinkx009@morris.umn.edu',
         firstName: 'Zachary',
         surname: 'Vink'
       }, {
-        username: 'justin',
         password: '4321',
         email: 'lal@lol.com',
         firstName: 'Justin',
         surname: 'YaDeau'
       }, {
-        username: 'david',
         password: '9hnMILd23145',
         email: 'Ha@lol.com',
         firstName: 'David',
@@ -83,10 +80,13 @@ Module dependencies.
     done(null, user);
   });
 
-  passport.use('local-login', new LocalStrategy(function(username, password, done) {
+  passport.use('local-login', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, function(email, password, done) {
     process.nextTick(function() {
       User.findOne({
-        username: username
+        email: email
       }, function(err, user) {
         if (err) {
           return done(err);

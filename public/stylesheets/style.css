@@ -237,6 +237,11 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 
 /******************************************************/
 
+.warning {
+    display: none;
+    color: #ff0000;
+}
+
 .user-modal {
     margin-top: 150px;
 }

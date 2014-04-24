@@ -38,20 +38,22 @@
     };
 
     newUserView.prototype.create = function() {
-      model.set({
-        username: $('#createUsername').val(),
-        password: $('#createPassword').val(),
-        email: $('#createEmail').val(),
-        firstName: $('#createFirstName').val(),
-        surname: $('#createSurname').val()
-      });
-      console.log('saving...');
-      return model.save({}, {
+      return Backbone.ajax({
+        type: "POST",
+        url: "/create",
+        data: {
+          password: $('#createPassword').val(),
+          email: $('#createEmail').val(),
+          firstName: $('#createFirstName').val(),
+          surname: $('#createSurname').val()
+        },
         success: function() {
-          return console.log('saved');
+          console.log("created");
+          return $('#backdoorAccessToLogin').click();
         },
         error: function() {
-          return alert("The email is already taken");
+          console.log("email taken");
+          return $('#emailIsTaken').show();
         }
       });
     };

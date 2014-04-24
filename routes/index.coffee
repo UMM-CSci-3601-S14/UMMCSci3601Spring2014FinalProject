@@ -79,7 +79,7 @@ exports.failed = (req, res) ->
   res.locals = {
     title: 'Lightside'
     header: 'Failed Login'
-    failed: 'Your username or password does not match!'
+    failed: 'Your email or password is incorrect!'
   }
   res.render 'index'
 
@@ -129,10 +129,10 @@ exports.account = (req, res) ->
 
 exports.updatePassword = (req, res) ->
   if req.user.password is req.body.oldPassword
-    currentUser = req.user.username
+    currentUser = req.user.email
     newPass = req.body.newPassword
     req.user.password = newPass
-    User.update({username: currentUser}, {password: newPass}, (err, numAffected, raw) ->
+    User.update({email: currentUser}, {password: newPass}, (err, numAffected, raw) ->
       console.log err if err
       console.log 'The number of updated documents was %d', numAffected
     )
@@ -141,8 +141,14 @@ exports.updatePassword = (req, res) ->
     res.send(500, "Passwords do not match!")
 
 exports.create = (req, res) ->
-  newUser = new User req.body
-  console.log req.body
-  newUser.save()
-  res.send newUser
-  res.redirect '/login'
+  User.findOne({email: req.body.email}, (err, result) ->
+    if err
+      console.log "err"
+    if result
+      console.log result
+      res.send(500, "Email is already being used")
+    else
+      newUser = new User req.body
+      newUser.save()
+      res.send(200, "Password changed successfully!")
+  )

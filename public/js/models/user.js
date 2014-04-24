@@ -13,7 +13,6 @@
     user.prototype.url = '/create';
 
     user.prototype.defaults = {
-      username: '',
       password: '',
       email: '',
       firstName: '',

@@ -93,7 +93,8 @@
   exports.failed = function(req, res) {
     res.locals = {
       title: 'Lightside',
-      header: 'Failed Login'
+      header: 'Failed Login',
+      failed: 'Your email or password is incorrect!'
     };
     return res.render('index');
   };
@@ -153,11 +154,11 @@
   exports.updatePassword = function(req, res) {
     var currentUser, newPass;
     if (req.user.password === req.body.oldPassword) {
-      currentUser = req.user.username;
+      currentUser = req.user.email;
       newPass = req.body.newPassword;
       req.user.password = newPass;
       User.update({
-        username: currentUser
+        email: currentUser
       }, {
         password: newPass
       }, function(err, numAffected, raw) {
@@ -173,12 +174,22 @@
   };
 
   exports.create = function(req, res) {
-    var newUser;
-    newUser = new User(req.body);
-    console.log(req.body);
-    newUser.save();
-    res.send(newUser);
-    return res.redirect('/login');
+    return User.findOne({
+      email: req.body.email
+    }, function(err, result) {
+      var newUser;
+      if (err) {
+        console.log("err");
+      }
+      if (result) {
+        console.log(result);
+        return res.send(500, "Email is already being used");
+      } else {
+        newUser = new User(req.body);
+        newUser.save();
+        return res.send(200, "Password changed successfully!");
+      }
+    });
   };
 
 }).call(this);

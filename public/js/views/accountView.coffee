@@ -21,12 +21,14 @@ class window.accountView extends Backbone.View
     $('.startChangePassword').hide()
     $('#successPasswordChange').hide()
     $('#failedPasswordChange').hide()
+    $('#passwordMismatch').hide()
 
   endChangePassword: ->
     $('#successPasswordChange').hide()
     $('#failedPasswordChange').hide()
+    $('#passwordMismatch').hide()
     if $('#newPassword').val() isnt $('#confirmNewPassword').val()
-      $('.passwordMismatch').show()
+      $('#passwordMismatch').show()
     else
       Backbone.ajax {
         type: "POST"

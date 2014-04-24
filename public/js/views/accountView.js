@@ -37,14 +37,16 @@
       $('.changePasswordFields').show();
       $('.startChangePassword').hide();
       $('#successPasswordChange').hide();
-      return $('#failedPasswordChange').hide();
+      $('#failedPasswordChange').hide();
+      return $('#passwordMismatch').hide();
     };
 
     accountView.prototype.endChangePassword = function() {
       $('#successPasswordChange').hide();
       $('#failedPasswordChange').hide();
+      $('#passwordMismatch').hide();
       if ($('#newPassword').val() !== $('#confirmNewPassword').val()) {
-        return $('.passwordMismatch').show();
+        return $('#passwordMismatch').show();
       } else {
         return Backbone.ajax({
           type: "POST",
