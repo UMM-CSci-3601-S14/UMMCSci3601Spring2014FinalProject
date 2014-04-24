@@ -60,10 +60,9 @@ function saveFields() {
         myCSV += "text\r\n"
         $("#fieldNames").hide();
         $("#workZone").show();
-
-        //This will hide the first tutorial div and show the second tutorial div
-        $("#firstT").hide();
-        $("#secondT").show();
+        <!--This will hide the field tutorial-->
+        $("#fieldTut").hide();
+        $("#textTut").show();
     } else {
         window.alert("Please fill all field names");
     }
@@ -75,12 +74,9 @@ function fieldCollapse() {
     promptDescript = $("#promptDescription").val()
     cDescript = $("#cDescription").val()
 
-        document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
-
-
-
+    document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
+    document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
+    document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
     $('#editPrompt').show();
     $('#uploadZip').hide();
     $('#uploadCSV').hide();
@@ -178,14 +174,14 @@ function emptyFields() {
     }
 }
 
-//Hides cancel, the third tutorial, and replace, shows submit, the second tutorial, and add
+//Hides cancel, the edit tutorial, and replace, shows submit, the text tutorial, and add
 function editButtons() {
     $("#cancel").hide();
     $("#replace").hide();
     $("#submit").show();
     $("#add").show();
-    $("#secondT").show();
-    $("#thirdT").hide();
+    $("#textTut").show();
+    $("#editDocs").hide();
 }
 /****************************************************************************************/
 
@@ -257,14 +253,14 @@ function cancelReplace() {
     clearAllFields();
 }
 
-//Hides submit, the second tutorial, and add, shows cancel, third tutorial, and replace.
+//Hides submit, the text tutorial, and add, shows cancel, edit tutorial, and replace.
 function addingButtons() {
     $("#add").hide();
     $("#submit").hide();
     $("#replace").show();
     $("#cancel").show();
-    $("#secondT").hide();
-    $("#thirdT").show();
+    $("#textTut").hide();
+    $("#editDocs").show();
 }
 /*******************************************************************************/
 
@@ -294,41 +290,8 @@ function savePrompt() {
 
 }
 /**********************************************************************************************************/
-//Clears all global variables, shows/hides divs to get to start, clears divs that may have stored any information.
-function reset() {
-    if (confirm("Are you sure you want to reset?")) {
-        editButtons();
-        myCSV = "";
-        documentsAdded = 0;
-        document.getElementById("documentAmount").innerHTML = documentsAdded;
-        document.getElementById("visField1").innerHTML = "";
-        document.getElementById("visField2").innerHTML = "";
-        document.getElementById("visField3").innerHTML = "";
-        document.getElementById("visField4").innerHTML = "";
-        document.getElementById("visField5").innerHTML = "";
-        numFields = 0;
-        fieldNames = [];
-        selected = 0;
-        promptTitle = "";
-        promptDescript = "";
-        cDescript = "";
-        $("#text").val("");
-        $("#fileTitle").val("");
-        $("#promptTitle").val("");
-        $("#promptDescription").val("");
-        $("#cDescription").val("");
-        $("#promptSpace").show();
-        document.getElementById("pastDocs").innerHTML = "";
-        document.getElementById("moreFields").innerHTML = "";
-        document.getElementById("fieldScores").innerHTML = "";
-        $("#moreFields").show();
-        $("#saveFields").hide();
-        $("#workZone").hide();
-        $("#fieldNames").show();
-        $("#visHeader").hide();
-        $("#firstT").show();
-        $("#secondT").hide();
-        $("#thirdT").hide();
-    }
-}
+//Deletes an essay document
+//function deleteDoc() {
+//    if (parseInt($(this).text()) != selected) {
+//}
 </script>

@@ -140,7 +140,6 @@ class window.modelView extends Backbone.View
 
             xhr.send(form)
 
-
   uploadCSV: ->
     if $("#promptTitle").val() is ""
       window.alert "Please enter the prompt title"
@@ -174,7 +173,7 @@ class window.modelView extends Backbone.View
       fieldCollapse()
       $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
-      $('#makeTut').show()
+      $('#fieldTut').show()
 
 
   hideResults: ->
