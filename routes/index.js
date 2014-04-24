@@ -23,15 +23,15 @@
 
   exports.dash = function(req, res) {
     if (req.session.passport.user === void 0) {
-      res.redirect('/login');
+      return res.redirect('/login');
     } else {
       res.locals = {
         title: 'LightSide',
         header: 'Dashboard',
         user: req.user
       };
+      return res.render('index');
     }
-    return res.render('index');
   };
 
   exports.uploadCSV = function(req, res) {
@@ -190,6 +190,25 @@
         return res.send(200, "Password changed successfully!");
       }
     });
+  };
+
+  exports.addPrompt = function(req, res) {
+    var currentUser, promptToAdd;
+    currentUser = req.user.email;
+    promptToAdd = req.body.promptArray;
+    User.update({
+      email: currentUser
+    }, {
+      $push: {
+        promptArray: promptToAdd
+      }
+    }, function(err, numAffected, raw) {
+      if (err) {
+        console.log(err);
+      }
+      return console.log('The number of updated documents was %d', numAffected);
+    });
+    return res.send(200, "Prompt was added to the user.");
   };
 
 }).call(this);

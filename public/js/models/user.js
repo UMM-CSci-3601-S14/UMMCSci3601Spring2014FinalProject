@@ -10,8 +10,6 @@
       return user.__super__.constructor.apply(this, arguments);
     }
 
-    user.prototype.url = '/create';
-
     user.prototype.defaults = {
       password: '',
       email: '',

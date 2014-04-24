@@ -38,24 +38,28 @@
     };
 
     newUserView.prototype.create = function() {
-      return Backbone.ajax({
-        type: "POST",
-        url: "/create",
-        data: {
-          password: $('#createPassword').val(),
-          email: $('#createEmail').val(),
-          firstName: $('#createFirstName').val(),
-          surname: $('#createSurname').val()
-        },
-        success: function() {
-          console.log("created");
-          return $('#backdoorAccessToLogin').click();
-        },
-        error: function() {
-          console.log("email taken");
-          return $('#emailIsTaken').show();
-        }
-      });
+      if ($('#createPassword').val().length === 0 || $('#createEmail').val().length === 0 || $('#createFirstName').val().length === 0 || $('#createSurname').val().length === 0) {
+        return $('#emptyField').show();
+      } else {
+        return Backbone.ajax({
+          type: "POST",
+          url: "/create",
+          data: {
+            password: $('#createPassword').val(),
+            email: $('#createEmail').val(),
+            firstName: $('#createFirstName').val(),
+            surname: $('#createSurname').val()
+          },
+          success: function() {
+            console.log("created");
+            return $('#backdoorAccessToLogin').click();
+          },
+          error: function() {
+            console.log("email taken");
+            return $('#emailIsTaken').show();
+          }
+        });
+      }
     };
 
     return newUserView;

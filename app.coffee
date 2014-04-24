@@ -18,7 +18,7 @@ db.once 'open', ->
 app.set 'layout', 'layouts/main'
 app.set 'partials',
   welcome: 'partials/welcome',
-  results: 'partials/results',
+  accountTemplates: 'partials/accountTemplates',
   csv: 'partials/csv',
   scripts: 'partials/scripts',
   model: 'partials/model',
@@ -68,6 +68,7 @@ app.get "/login", routes.login
 app.get "/newUser", routes.newUser
 app.get "/logout", routes.logout
 app.get "/account", routes.account
+app.post "/addPrompt", routes.addPrompt
 app.post '/create', routes.create
 app.post '/updatePassword', routes.updatePassword
 

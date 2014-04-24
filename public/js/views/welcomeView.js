@@ -63,6 +63,7 @@
           var theAnswerSet;
           return theAnswerSet = new answerSet1({}).fetch().done(function() {
             var theAnswer;
+            console.log(theAnswerSet);
             return theAnswer = new answer({
               author: theAuthor.responseJSON.results[0].url,
               answer_set: theAnswerSet.responseJSON.url,

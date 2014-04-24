@@ -118,7 +118,21 @@
                                         description: newPrompt.responseJSON.description,
                                         default_models: [pollTrainTask.attributes.trained_model]
                                       });
-                                      finalPrompt.save().done(function() {});
+                                      finalPrompt.save().done(function() {
+                                        return Backbone.ajax({
+                                          type: "POST",
+                                          url: "/addPrompt",
+                                          data: {
+                                            promptArray: finalPrompt.responseJSON.url
+                                          },
+                                          success: function() {
+                                            return console.log("worked");
+                                          },
+                                          error: function() {
+                                            return console.log("error");
+                                          }
+                                        });
+                                      });
                                       window.clearInterval(trainTaskLoop);
                                     }
                                     if (pollTrainTask.attributes.status === 'U') {

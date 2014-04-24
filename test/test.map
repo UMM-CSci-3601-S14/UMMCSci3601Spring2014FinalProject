@@ -6,5 +6,5 @@
     "test.coffee"
   ],
   "names": [],
-  "mappings": ";AAAA;AAAA,MAAA,uBAAA;;AAAA,EAAA,MAAA,GAAS,OAAA,CAAQ,QAAR,CAAT,CAAA;;AAAA,EACA,IAAA,GAAO,OAAA,CAAQ,4BAAR,CADP,CAAA;;AAAA,EAEA,SAAA,GAAY,OAAA,CAAQ,oBAAR,CAFZ,CAAA;;AAKA;AAAA;;;;;;;;;;KALA;;AAiBA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;KAjBA;;AAiEA;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;KAjEA;;AA+FA;AAAA,8GA/FA;;AAgGA;AAAA;;;;;;;;;;;;;;;;;;KAhGA;AAAA"
+  "mappings": ";AAAA;CAAA,KAAA,iBAAA;;CAAA,CAAA,CAAS,GAAT,CAAS,CAAA;;CAAT,CACA,CAAO,CAAP,GAAO,qBAAA;;CADP,CAEA,CAAY,IAAA,EAAZ,WAAY;;CAGZ;;;;;;;;;;;CALA;;CAiBA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAjBA;;CAiEA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAjEA;;CA+FA;CA/FA;;CAgGA;;;;;;;;;;;;;;;;;;;CAhGA;CAAA"
 }

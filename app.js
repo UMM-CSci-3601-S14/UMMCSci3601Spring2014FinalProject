@@ -35,7 +35,7 @@ Module dependencies.
 
   app.set('partials', {
     welcome: 'partials/welcome',
-    results: 'partials/results',
+    accountTemplates: 'partials/accountTemplates',
     csv: 'partials/csv',
     scripts: 'partials/scripts',
     model: 'partials/model',
@@ -97,6 +97,8 @@ Module dependencies.
   app.get("/logout", routes.logout);
 
   app.get("/account", routes.account);
+
+  app.post("/addPrompt", routes.addPrompt);
 
   app.post('/create', routes.create);
 
