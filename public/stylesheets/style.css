@@ -123,7 +123,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 
 .paired{
-    width: 49%
+    width: 49%;
+    min-width:100px;
 }
 
 .right .title {

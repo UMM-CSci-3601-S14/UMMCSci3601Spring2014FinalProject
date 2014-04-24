@@ -117,3 +117,5 @@
   })(Backbone.View);
 
 }).call(this);
+
+//# sourceMappingURL=welcomeView.map
