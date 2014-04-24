@@ -6,6 +6,7 @@ userSchema = mongoose.Schema(
    email: String
    firstName: String
    surname: String
+   prompts: Array
 )
 
 user = mongoose.model 'user', userSchema

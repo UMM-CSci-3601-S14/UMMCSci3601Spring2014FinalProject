@@ -13,6 +13,8 @@ class window.dashView extends Backbone.View
     'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
 
+    'click button#yourPrompts': 'loadYourPrompts'
+
   thePrompt = null
   theAuthor = null
   theAnswerSet = null
@@ -30,7 +32,24 @@ class window.dashView extends Backbone.View
     window.location.href = '/model-maker'
 
   loadModelsInAccount: ->
-    $('#modelsInAccount').show()
+    if user.prompts is undefined
+      $('#modelsInAccount').show()
+      $('#yourPrompts').hide()
+      $('#noModels').show()
+    else
+      console.log 'loading models'
+      i=0
+      buttonString = ""
+      buttonString1 = '<button class="box" id="your'
+      buttonString2 = 'Models"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">Model '
+      buttonString3 = '</span></button>'
+      for i in user.prompts
+        do (i) ->
+          buttonString += buttonString1 + i + buttonString2 + i + buttonString3
+
+      $('models').html(buttonString)
+
+
 
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
@@ -42,6 +61,7 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet1({
       }).fetch().done ->
 
+      $('#essayContents').val("")
       $('#essayArea').show()
 
   loadEssay2: ->
@@ -54,6 +74,7 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
+      $('#essayContents').val("")
       $('#essayArea').show()
 
 

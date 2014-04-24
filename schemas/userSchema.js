@@ -10,7 +10,8 @@
     password: String,
     email: String,
     firstName: String,
-    surname: String
+    surname: String,
+    prompts: Array
   });
 
   user = mongoose.model('user', userSchema);

@@ -44,17 +44,20 @@ Module dependencies.
         password: '1234',
         email: 'vinkx009@morris.umn.edu',
         firstName: 'Zachary',
-        surname: 'Vink'
+        surname: 'Vink',
+        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
       }, {
         password: '4321',
         email: 'lal@lol.com',
         firstName: 'Justin',
-        surname: 'YaDeau'
+        surname: 'YaDeau',
+        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
       }, {
         password: '9hnMILd23145',
         email: 'Ha@lol.com',
         firstName: 'David',
-        surname: 'Donatuccshio'
+        surname: 'Donatuccshio',
+        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
       }
     ];
     _results = [];

@@ -18,8 +18,20 @@
         </div>
 
         <div id="modelsInAccount">
-            <div>
-                <p id="noModels">There are no models in your account at this moment.</p>
+            <div id="yourPromptss">
+                <button class="box" id="yourPrompts">
+                    <span class="glyphicon-large glyphicon glyphicon-ok-sign"></span>
+                    <br />
+                    <span class="center dashBtn">Your Practice Model</span>
+                </button>
+            </div>
+            <div id="noPrompts">
+                <button class="box" id="yourPrompts">
+                    <span class="glyphicon-large glyphicon glyphicon-ok-sign"></span>
+                    <br />
+                    <span class="center dashBtn">Your Practice Model</span>
+                </button>
+                <p class="center">There are no models in your account at this moment.</p>
             </div>
         </div>
 
@@ -63,6 +75,26 @@
             <p><strong>Create a New Model</strong> to build a LightSide model focused on your prompts and capable of scoring on your criteria. For a dependable model, we require at least 500 hand-graded essays that are evenly distributed over your grading labels.</p>
             <p><strong>Custom Models</strong> will be built to your specifications and displayed for you to use here on the Dashboard.</p>
 
+        </div>
+    </div>
+</script>
+
+<script id="modelLibrary" type='text/html'>
+    <div class="left col-sm-7 col-sm-push-1">
+        <div id="yourPrompt">
+            <h2 class="title">Here Is Your Model</h2>
+            <h3 id="promptTitle" class="title"></h3>
+            <p id="promptDescription"></p>
+        </div>
+        <div id="yourEssay">
+            <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+            <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
+            <div id="sandboxResults">
+                <h4 class="title">Your model is gradeing the essay:</h4>
+                <p id="yourgrade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                <br/><br/>
+                <button id="hideResults" class="btn btn-success"> Cool!</button>
+            </div>
         </div>
     </div>
 </script>
