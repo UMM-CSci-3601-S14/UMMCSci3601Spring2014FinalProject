@@ -16,7 +16,8 @@
       password: '',
       email: '',
       firstName: '',
-      surname: ''
+      surname: '',
+      prompts: []
     };
 
     user.prototype.initialize = function() {

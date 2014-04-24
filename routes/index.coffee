@@ -140,6 +140,14 @@ exports.updatePassword = (req, res) ->
   else
     res.send(500, "Passwords do not match!")
 
+exports.addPrompt = (req, res) ->
+  currentUser = req.user.username
+  newPrompt = req.body.prompt
+  User.update({username: currentUser}, { prompts: [newPrompt]}, (err) ->
+    console.log err if err
+    console.log "The prompt for " + currentUser + " is now " + newPrompt
+  )
+
 exports.create = (req, res) ->
   User.findOne({email: req.body.email}, (err, result) ->
     if err

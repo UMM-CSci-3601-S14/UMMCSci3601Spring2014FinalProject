@@ -114,6 +114,17 @@ class window.modelView extends Backbone.View
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
 
+#                                      Backbone.ajax {
+#                                        type: "PUT"
+#                                        url: "/addPrompt"
+#                                        data:
+#                                          prompt: finalPrompt.attributes.url
+#                                        success: ->
+#                                          console.log "worked"
+#                                        error: ->
+#                                          console.log "failed"
+#                                      }
+
                                     window.clearInterval trainTaskLoop
 
                                   if pollTrainTask.attributes.status == 'U'

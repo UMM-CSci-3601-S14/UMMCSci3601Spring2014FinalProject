@@ -173,6 +173,22 @@
     }
   };
 
+  exports.addPrompt = function(req, res) {
+    var currentUser, newPrompt;
+    currentUser = req.user.username;
+    newPrompt = req.body.prompt;
+    return User.update({
+      username: currentUser
+    }, {
+      prompts: [newPrompt]
+    }, function(err) {
+      if (err) {
+        console.log(err);
+      }
+      return console.log("The prompt for " + currentUser + " is now " + newPrompt);
+    });
+  };
+
   exports.create = function(req, res) {
     return User.findOne({
       email: req.body.email

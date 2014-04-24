@@ -6,6 +6,7 @@ class window.user extends Backbone.Model
    email: ''
    firstName: ''
    surname: ''
+   prompts: []
 
   initialize: ->
     console.log 'Initializing a user'

@@ -102,6 +102,8 @@ Module dependencies.
 
   app.post('/updatePassword', routes.updatePassword);
 
+  app.put('/addPrompt', routes.addPrompt);
+
   app.post('/', passport.authenticate('local-login', {
     failureRedirect: '/failed',
     successRedirect: '/dash'
