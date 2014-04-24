@@ -16,7 +16,10 @@ function addFields(numToAdd) {
     var template1 = '<div class="fields">\n</div><input class="field form-control" id="field';
     var template2 = '" placeholder="Enter Field Name (Ex: Grade)">\n</div>\n';
     var temp = "<label>Fields</label>";
-    for (var i = 1; i < numToAdd + 1; i++) {
+    //For making the first field called "label"
+    temp += '<div class="fields">\n</div><input class="field form-control" id="field1" placeholder="label (the first field must be called label)" disabled>\n</div>\n';
+    //Set i to equal 1 if the first field does not need to be "label". Also delete the line above and the jQuery call in saveFields()
+    for (var i = 2; i < numToAdd + 1; i++) {
         temp += template1 + i + template2;
     }
     document.getElementById("moreFields").innerHTML=temp;
@@ -26,6 +29,8 @@ function addFields(numToAdd) {
 //Runs when you hit save. Inserts the name of the fields into the fields.
 function saveFields() {
     var tempbool = true;
+    //For making the first field called "label"
+    $("#field1").val("label");
     for (var i = 1; i <= numFields; i++) {
         if ($("#field" + i + "").val()== "") {
             tempbool = false;
