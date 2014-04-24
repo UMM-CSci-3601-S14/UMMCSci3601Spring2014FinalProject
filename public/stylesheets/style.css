@@ -23,6 +23,10 @@ textarea{
     resize: vertical;
 }
 
+#workZone{
+    margin-left: 0px;
+}
+
 .title {
     font-family: "Francois One", "Lucida Grande", Helvetica, Arial, Sans-serif;
 }
