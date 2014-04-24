@@ -9,8 +9,6 @@ class window.modelView extends Backbone.View
     'click button#makeCSV' : 'makeCSV'
     'click button#uploadZip' : 'uploadZip'
 
-
-
   initialize: ->
     @render()
 
@@ -56,6 +54,7 @@ class window.modelView extends Backbone.View
           #  We get access but now have a 412 (Precondition Failed)
           s3Request = new request()
           s3Request.url = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
+
           s3Request.fetch().done ->
             form = new FormData()
             form.append('AWSAccessKeyId', s3Request.attributes.access_key_id)
@@ -67,6 +66,7 @@ class window.modelView extends Backbone.View
             form.append('file', $('#file').get(0).files[0])
             xhr = new XMLHttpRequest()
             xhr.open('POST', "https://lightsidelabs-try.s3.amazonaws.com/", true)
+
             xhr.onreadystatechange = ->
               if(xhr.readyState == 4)
                 s3Key = $(xhr.responseXML).find("Key").first().text()
@@ -93,7 +93,6 @@ class window.modelView extends Backbone.View
                           # If the model is complete then the upload task's status will change to 'S' and we can exit the loop
                         # and beging to interact with the model
 
-
                         if uploadTask.attributes.status == 'S'
                           console.log "Upload Task was SUCCESSFUL"
                           console.log newUploadTask.responseJSON
@@ -113,6 +112,16 @@ class window.modelView extends Backbone.View
                                     window.alert 'Training task was SUCCESSFUL'
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
+                                      Backbone.ajax {
+                                        type: "POST"
+                                        url: "/addPrompt"
+                                        data:
+                                          promptArray: finalPrompt.responseJSON.url
+                                        success: ->
+                                          console.log "worked"
+                                        error: ->
+                                          console.log "error"
+                                      }
 
                                     window.clearInterval trainTaskLoop
 
@@ -123,12 +132,6 @@ class window.modelView extends Backbone.View
                               ), 1000
                           window.clearInterval looping
 
-
-
-
-
-
-
                         #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
                         if uploadTask.attributes.status == 'U'
                           console.log "Prediction Task was UNSUCCESSFUL"
@@ -136,7 +139,6 @@ class window.modelView extends Backbone.View
                           window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
 
                       ), 1000
-
 
             xhr.send(form)
 
@@ -174,7 +176,6 @@ class window.modelView extends Backbone.View
       $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
       $('#fieldTut').show()
-
 
   hideResults: ->
     $('#waitingForModel').hide(1000);

@@ -50,6 +50,7 @@ class window.welcomeView extends Backbone.View
 
         theAnswerSet = new answerSet1({
         }).fetch().done ->
+          console.log theAnswerSet
 
           theAnswer = new answer({
             author: theAuthor.responseJSON.results[0].url
