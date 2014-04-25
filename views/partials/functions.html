@@ -183,6 +183,7 @@ function emptyFields() {
 function editButtons() {
     $("#cancel").hide();
     $("#replace").hide();
+    $("#delete").hide();
     $("#submit").show();
     $("#add").show();
     $("#textTut").show();
@@ -263,6 +264,7 @@ function addingButtons() {
     $("#add").hide();
     $("#submit").hide();
     $("#replace").show();
+    $("#delete").show();
     $("#cancel").show();
     $("#textTut").hide();
     $("#editDocs").show();
@@ -293,5 +295,30 @@ function savePrompt() {
     document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
 
 
+}
+/**********************************************************************************************************/
+//Deletes an essay document
+function del() {
+    editButtons();
+    var counter = 1;
+    for(var i = 0; i < myCSV.length; i++) {
+        if (myCSV.charAt(i) == "\n") {
+            if (counter < (selected)) counter++;
+            else {
+                var toReplace = "";
+                for (var j = 1; j <= numFields; j++) {
+                    toReplace += $("#toScore" + j + "").val() + ",";
+                }
+                toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
+                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
+
+                selected = 0;
+                clearAllFields();
+                deselect();
+                doVisualization();
+                return;
+            }
+        }
+    }
 }
 </script>

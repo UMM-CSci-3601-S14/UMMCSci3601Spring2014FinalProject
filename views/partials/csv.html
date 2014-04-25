@@ -64,11 +64,12 @@
             $("#saveFields").hide();
             $("#workZone").hide();
             $("#replace").hide();
+            $("#delete").hide();
             $("#cancel").hide();
             $("#visHeader").hide();
-            $("#secondT").hide();
-            $("#thirdT").hide();
 //    $("#changePasswordFields").hide();
+
+
 
             $("#submit").click(function() {
                 exportToCSV();
@@ -78,8 +79,8 @@
                 add();
             });
 
-            $("#reset").click(function() {
-                reset();
+            $("#delete").click(function() {
+                del();
             });
 
             $("#saveFields").click(function() {

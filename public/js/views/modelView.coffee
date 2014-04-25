@@ -21,7 +21,6 @@ class window.modelView extends Backbone.View
     @$el.html @template()
     this
 
-
   uploadCSV: ->
     if $("#promptTitle").val() is ""
       window.alert "Please enter the prompt title"
