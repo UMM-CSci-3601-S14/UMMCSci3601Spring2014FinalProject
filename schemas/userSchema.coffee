@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
+
 userSchema = mongoose.Schema(
    password: String
    email: String
@@ -8,7 +9,6 @@ userSchema = mongoose.Schema(
    surname: String
    promptArray: []
 )
-
 user = mongoose.model 'user', userSchema
 
 module.exports =

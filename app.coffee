@@ -8,13 +8,11 @@ path = require 'path'
 mongoose = require 'mongoose'
 passport = require('./routes/user')
 app = express()
-
 mongoose.connect 'mongodb://localhost/test'
 db = mongoose.connection
 db.on 'error', console.error.bind(console, 'connection error:')
 db.once 'open', ->
   console.log 'DB connection opened'
-
 app.set 'layout', 'layouts/main'
 app.set 'partials',
   welcome: 'partials/welcome',

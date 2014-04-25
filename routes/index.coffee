@@ -2,6 +2,8 @@ User = require('../schemas/userSchema').user
 #
 # * GET home page.
 #
+
+
 exports.index = (req, res) ->
   console.log 'inside index'
   if req.user is undefined

@@ -15,6 +15,7 @@ class window.modelView extends Backbone.View
   initialize: ->
     @render()
 
+
   render: ->
     console.log 'Model'
     @$el.html @template()

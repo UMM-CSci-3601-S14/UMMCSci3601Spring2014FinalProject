@@ -9,7 +9,6 @@ class window.dashView extends Backbone.View
 
     'click button#pickEssay1' : 'loadEssay1'
     'click button#pickEssay2' : 'loadEssay2'
-
     'click button.submitEssay': 'submitEssay'
     'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
@@ -19,11 +18,9 @@ class window.dashView extends Backbone.View
   thePrompt = null
   theAuthor = null
   theAnswerSet = null
-
   initialize: ->
     @render()
     return
-
   render: ->
     console.log 'dash'
     @$el.html @template()

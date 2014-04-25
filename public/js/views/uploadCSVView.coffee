@@ -11,6 +11,8 @@ class window.uploadCSVView extends Backbone.View
   fieldNames = []
   currentField = 0
 
+
+
   initialize: ->
     @render()
 

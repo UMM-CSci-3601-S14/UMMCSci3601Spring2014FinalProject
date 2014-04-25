@@ -9,6 +9,7 @@ class window.newUserView extends Backbone.View
   initialize: ->
     @render()
 
+
   render: ->
     @$el.html @template(model.toJSON())
     this

@@ -12,6 +12,7 @@ class AppRouter extends Backbone.Router
     'uploadZip': 'uploadZip'
 
 
+
   index: ->
     console.log "in index"
     $('#content').html new window.welcomeView().$el
