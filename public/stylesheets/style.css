@@ -166,6 +166,11 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 #essayArea{
     display: none;
 }
+
+#yourModel{
+    display:none;
+}
+
 #noModels{
     display: none;
     text-align: center;
