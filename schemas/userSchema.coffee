@@ -7,7 +7,7 @@ userSchema = mongoose.Schema(
    email: String
    firstName: String
    surname: String
-   promptArray: []
+   promptArray: [String]
 )
 user = mongoose.model 'user', userSchema
 

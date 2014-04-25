@@ -118,17 +118,18 @@ class window.uploadCSVView extends Backbone.View
                                     window.alert 'Training task was SUCCESSFUL'
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
-
-#                                      Backbone.ajax {
-#                                        type: "PUT"
-#                                        url: "/addPrompt"
-#                                        data:
-#                                          prompt: finalPrompt.attributes.url
-#                                        success: ->
-#                                          console.log "worked"
-#                                        error: ->
-#                                          console.log "failed"
-#                                      }
+                                      console.log finalPrompt.attributes.url
+                                      Backbone.ajax {
+                                        type: "POST"
+                                        url: "/addPrompt"
+                                        data: JSON.stringify(
+                                          promptArray: finalPrompt.attributes.url
+                                        )
+                                        success: ->
+                                          console.log "worked"
+                                        error: ->
+                                          console.log "failed"
+                                      }
 
                                     window.clearInterval trainTaskLoop
 

@@ -142,14 +142,6 @@ exports.updatePassword = (req, res) ->
   else
     res.send(500, "Passwords do not match!")
 
-exports.addPrompt = (req, res) ->
-  currentUser = req.user.username
-  newPrompt = req.body.prompt
-  User.update({username: currentUser}, { prompts: [newPrompt]}, (err) ->
-    console.log err if err
-    console.log "The prompt for " + currentUser + " is now " + newPrompt
-  )
-
 exports.create = (req, res) ->
   User.findOne({email: req.body.email}, (err, result) ->
     if err
@@ -166,8 +158,12 @@ exports.create = (req, res) ->
 exports.addPrompt = (req, res) ->
   currentUser = req.user.email
   promptToAdd = req.body.promptArray
-  User.update({email: currentUser}, {$push: {promptArray: promptToAdd}}, (err, numAffected, raw) ->
-    console.log err if err
-    console.log 'The number of updated documents was %d', numAffected
+  console.log req.body.promptArray
+  User.update({email: currentUser}
+    $push:
+      promptArray: promptToAdd
+    (err, numAffected, raw) ->
+      console.log err if err
+      console.log 'The number of updated documents was %d', numAffected
   )
   res.send(200, "Prompt was added to the user.")

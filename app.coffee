@@ -69,7 +69,7 @@ app.get "/account", routes.account
 app.post "/addPrompt", routes.addPrompt
 app.post '/create', routes.create
 app.post '/updatePassword', routes.updatePassword
-app.put '/addPrompt', routes.addPrompt
+app.post '/addPrompt', routes.addPrompt
 
 app.post '/', passport.authenticate 'local-login',
   failureRedirect: '/failed',
