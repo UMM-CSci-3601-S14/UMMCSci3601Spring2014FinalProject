@@ -2,7 +2,7 @@
     <div class="left col-sm-7 col-sm-push-1">
         <h1 class="title center" >Welcome {{user.firstName}}, <small>Select A Model to Use or Edit</small></h1>
 
-        <div class="center" id="essayArea">
+        <div id="essayArea">
             <h3 id="promptTitle" class="title"></h3>
             <p id="promptDescription"></p>
             <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
@@ -18,7 +18,7 @@
         </div>
 
         <div id="modelsInAccount">
-            <div id="yourPromptss">
+            <div id="yourPrompts">
                 <button class="box" id="yourPrompts">
                     <span class="glyphicon-large glyphicon glyphicon-ok-sign"></span>
                     <br />
@@ -35,6 +35,24 @@
             </div>
         </div>
 
+        <div id="yourModel">
+            <div id="yourPrompt">
+                <h2 class="title">Here Is Your Model</h2>
+                <h3 id="yourPromptTitle" class="title"></h3>
+                <p id="yourPromptDescription"></p>
+            </div>
+            <div id="yourEssay">
+                <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+                <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
+                <div id="sandboxResults">
+                    <h4 class="title">Your grade from your model:</h4>
+                    <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                    <br/><br/>
+                    <button id="hideResults" class="btn btn-success"> Cool!</button>
+                </div>
+            </div>
+        </div>
+
         <div id="dash">
             <h3 class="title">Explore Our Ready To Use Models!</h3>
             <button type='button' name='pickEssay1'class='pickEssay1 box' id="pickEssay1">
@@ -48,7 +66,7 @@
                 Persuasive Essay on Censorship
             </button>
 
-            <h3 class="title">Custom Models.</h3>
+            <h3 class="title">Custom Models</h3>
             <button class="box boxCreate" id="createModelBox">
                 <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
                 <br />
@@ -77,18 +95,18 @@
 </script>
 
 <script id="modelLibrary" type='text/html'>
-    <div class="left col-sm-7 col-sm-push-1">
+    <div id="yourModel" class="left col-sm-7 col-sm-push-1">
         <div id="yourPrompt">
             <h2 class="title">Here Is Your Model</h2>
-            <h3 id="promptTitle" class="title"></h3>
-            <p id="promptDescription"></p>
+            <h3 id="yourPromptTitle" class="title"></h3>
+            <p id="yourPromptDescription"></p>
         </div>
         <div id="yourEssay">
             <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
             <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
             <div id="sandboxResults">
-                <h4 class="title">Your model is gradeing the essay:</h4>
-                <p id="yourgrade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                <h4 class="title">Your grade from your model:</h4>
+                <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
                 <br/><br/>
                 <button id="hideResults" class="btn btn-success"> Cool!</button>
             </div>

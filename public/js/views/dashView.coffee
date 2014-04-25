@@ -5,6 +5,7 @@ class window.dashView extends Backbone.View
   events:
     'click button#createModelBox' : 'loadModelMaker'
     'click button#yourModels': 'loadModelsInAccount'
+    'click button#yourPrompts': 'loadYourPrompts'
 
     'click button#pickEssay1' : 'loadEssay1'
     'click button#pickEssay2' : 'loadEssay2'
@@ -13,7 +14,7 @@ class window.dashView extends Backbone.View
     'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
 
-    'click button#yourPrompts': 'loadYourPrompts'
+
 
   thePrompt = null
   theAuthor = null
@@ -49,7 +50,19 @@ class window.dashView extends Backbone.View
 
       $('models').html(buttonString)
 
+  loadYourPrompts: ->
+    yourPrompt = new request()
+    yourPrompt.urlRoot = 'https://try-api.lightsidelabs.com/api/prompts/114'
+    yourPrompt.fetch().done() ->
+      $('#yourPromptTitle').html(yourPrompt.responseJSON.text)
+      $('#yourPromptDescripton').html(yourPrompt.responseJSON.description)
 
+#    yourAuthor
+
+#    yourAnswerSet
+
+
+    $('#yourModel').show()
 
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
@@ -77,6 +90,8 @@ class window.dashView extends Backbone.View
       $('#essayContents').val("")
       $('#essayArea').show()
 
+  hidePrompt: ->
+    $('#essayArea').hide()
 
   submitEssay: ->
     # alerts user if no text has been entered
@@ -148,8 +163,7 @@ class window.dashView extends Backbone.View
                   window.clearInterval looping
             ), 1000
 
-  hidePrompt: ->
-    $('#essayArea').hide()
+
 
   hideResults: ->
     $('#sandboxResults').hide(500)
