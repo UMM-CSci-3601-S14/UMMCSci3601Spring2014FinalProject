@@ -24,7 +24,6 @@
                 <br />
                 <span class="center dashBtn">Upload Existing CSV File</span>
             </button>
-
             <button class="box" id="makeCSV">
                 <span class="glyphicon-large glyphicon glyphicon-pencil"></span>
                 <br />
@@ -36,15 +35,17 @@
                 <span class="center dashBtn">Make CSV from uploaded documents</span>
             </button>
         </div>
+
+
         <div id="csvArea"></div>
         <br/><br/>
-        <div id="waitingForModel">
+
+        <div class="center" id="waitingForModel">
             <h4>Please Wait For LightSide To Build Your Model</h4>
             <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
             <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
             <br/><br/>
             <button id="hideWait" class="btn btn-success">Thank You</button>
-
         </div>
     </div>
 
@@ -56,6 +57,7 @@
             <h3 class ="title">Getting Started</h3>
             {{> tutorial}}
             <div id="visFields"></div>
+        </div>
     </div>
 
     <script>

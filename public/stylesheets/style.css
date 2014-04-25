@@ -122,9 +122,10 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     display: none;
 }
 
-.paired{
+.paired {
     width: 49%;
-    min-width:100px;
+    min-width:150px;
+    margin-top: 5px;
 }
 
 .right .title {
