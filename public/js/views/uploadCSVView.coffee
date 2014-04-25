@@ -187,8 +187,8 @@ class window.uploadCSVView extends Backbone.View
     array = new Array()
     endPoint = 0
     text = csvString
-    until text.search("\n") is -1
-      endPoint = text.search("\n")
+    until text.search("\r") is -1
+      endPoint = text.search("\r")
       array.push text.slice(0, endPoint)
       text = text.slice(endPoint + 1, text.length)
 
@@ -208,9 +208,7 @@ class window.uploadCSVView extends Backbone.View
       i--
 
     ##array = array[1..array.length-1]
-    #sends the array from the csv into the getFields().
-    console.log "yup"
-    console.log fieldNames
+    #sends the array from the csv into the getFields()
     i = 0
     while i < array.length
       inputText = array[i]
@@ -279,20 +277,19 @@ class window.uploadCSVView extends Backbone.View
     tempKey = undefined
     totalValue = 0
     numOfKeys = 0
-    divID = "visField" + (fieldNum + 1)
-#    document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization'></div>"
-#    console.log document.getElementById('visFields').innerHTML
+    #divID = "visField" + (fieldNum + 1)
     #array of the field entries and the occurrences of them in an object for each index of the array
     dataPointsTemplate = new Array()
 
     i = 0
     console.log arrayOfDict[0]
+    areYouGood = "All of the data you submitted looks good! Click the button below to make your model"
     while i < arrayOfDict[fieldNum].keys.length
       tempValue = arrayOfDict[fieldNum].values[i]
       if tempValue <= 100 and tempValue > 50
-        console.log "warning"
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For a optimal model you should have 100 of each submition. You may proceed to make a model but it is not advised. "
       if tempValue <= 50
-        console.log "uh no!"
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For a optimal model you should have 100 of each submition. Add more values before proceeding to make a model. "
       tempKey = (arrayOfDict[fieldNum].keys[i]).toString()
       console.log
       dataPointsTemplate.push
@@ -308,22 +305,25 @@ class window.uploadCSVView extends Backbone.View
       dataPoints: dataPointsTemplate
     ]
 
+    #This "if" is here so only graphs with less than 200 sections are shown
+    if numOfKeys < 150
+      divID = "visField" + currentField
 
-    #chart object
-    chart = new CanvasJS.Chart(divID,
-      title:
-        text: fieldNames[currentField]
+      #chart object
+      chart = new CanvasJS.Chart(divID,
+        title:
+          text: fieldNames[currentField]
 
-      data: dataTemplate
-      backgroundColor: "transparent"
-    )
+        data: dataTemplate
+        backgroundColor: "transparent"
+      )
 
 
-
-    #renders the chart
-    console.log "SOMTHIN"
+      #renders the chart
+      console.log "SOMTHIN"
+      chart.render()
+      document.getElementById("results").innerHTML = areYouGood
     currentField++
-    chart.render()
     return
 
   #Dictionary class and methods. Custom data structure!! :D
