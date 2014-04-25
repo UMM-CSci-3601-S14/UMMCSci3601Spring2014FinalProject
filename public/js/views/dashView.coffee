@@ -34,6 +34,7 @@ class window.dashView extends Backbone.View
       $('#modelsInAccount').show()
       $('#yourPrompts').hide()
       $('#noModels').show()
+      $('#dash').hide()
     else
       console.log 'loading models'
       i=0
@@ -46,20 +47,21 @@ class window.dashView extends Backbone.View
           buttonString += buttonString1 + i + buttonString2 + i + buttonString3
 
       $('models').html(buttonString)
+      $('#dash').hide()
 
   loadYourPrompts: ->
-    yourPrompt = new request()
-    yourPrompt.urlRoot = 'https://try-api.lightsidelabs.com/api/prompts/114'
-    yourPrompt.fetch().done() ->
-      $('#yourPromptTitle').html(yourPrompt.responseJSON.text)
-      $('#yourPromptDescripton').html(yourPrompt.responseJSON.description)
+    yourPrompt = new prompt1().fetch().done ->
+#    yourPrompt.urlRoot = 'https://try-api.lightsidelabs.com/api/prompts/114'
+#    yourPrompt.fetch().done ->
+      $('#yourPromptTitle').html(yourPrompt.responseJSON.title)
+      $('#yourPromptDescription').html(yourPrompt.responseJSON.description)
 
 #    yourAuthor
 
 #    yourAnswerSet
-
-
     $('#yourModel').show()
+
+
 
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
