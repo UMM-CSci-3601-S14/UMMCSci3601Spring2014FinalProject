@@ -63,6 +63,10 @@ textarea{
 .center {
     text-align: center;
 }
+
+.hiding{
+    display: none;
+}
 /*
 https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4&name=My%20Kuler%20Theme&mode=rgb&rgbvalues=0.7,0.6210485933503733,0.4405882352941176,1,0.9480818414322183,0.8294117647058823,1,0.9176470588235294,0.7294117647058823,0.37058823529411755,0.4762713689594366,0.7,0.7294117647058823,0.8162229102166801,1&swatchOrder=0,1,2,3,4
 */
@@ -118,9 +122,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     padding: 15px;
 }
 
-.right .extra{
-    display: none;
-}
 
 .paired {
     width: 49%;
@@ -163,23 +164,16 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     border-radius: 10px;
     text-align: center;
 }
-#essayArea{
-    display: none;
-}
-
-#yourModel{
-    display:none;
-}
 
 #yourEssayContents{
     width: 100%;
     min-height: 200px;
 }
 
-#noModels{
+/*#noModels{
     display: none;
     text-align: center;
-}
+}*/
 
 .glyphicon-large {
     font-size: 64px;
@@ -281,9 +275,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 /******************************************************/
 
 /*For Tutorial*/
-#makeTut, #editing, #thirdT, #editPrompt{
+/*#makeTut, #editing, #thirdT{
     display: none;
-}
+}*/
 
 /*CSS for Visualization page*/
 .fields {

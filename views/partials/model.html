@@ -11,8 +11,8 @@
             <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Larry Page's 9th Grade English Class)" /><br/><br/>
         </div>
         <div id="promptButtons">
-            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
-            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button>
+            <button type='button' class='btn btn-default hiding' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
+            <button type='button' class='btn btn-default hiding' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button>
         </div>
 
 
@@ -59,21 +59,4 @@
             <div id="visFields"></div>
         </div>
     </div>
-
-    <script>
-        $("#editDocs").hide();
-        $("#fieldTut").hide();
-        $("#textTut").hide();
-        $(document).ready(function() {
-            $("#savePrompt").hide();
-
-            $("#editPrompt").click(function() {
-                editPromptFields();
-            });
-
-            $("#savePrompt").click(function() {
-                savePrompt();
-            });
-        });
-    </script>
 </script>

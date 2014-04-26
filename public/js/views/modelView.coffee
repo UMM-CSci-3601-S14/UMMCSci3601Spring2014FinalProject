@@ -10,6 +10,12 @@ class window.modelView extends Backbone.View
     'click button#uploadZip' : 'uploadZip'
     'click button#submitCSV1': 'createPrompt'
 
+    ###Buttons Hidden Initally###
+    'click button#editPrompt': 'editPrompt'
+    'click button#savePrompt': 'savePrompt'
+
+
+
 
 
   initialize: ->
@@ -59,4 +65,15 @@ class window.modelView extends Backbone.View
 
   hideResults: ->
     $('#waitingForModel').hide(1000);
+
+
+  editPrompt: ->
+    editPromptFields();
+
+  savePrompt: ->
+    savePrompt();
+
+
+
 this
+

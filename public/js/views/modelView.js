@@ -20,7 +20,11 @@
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',
-      'click button#submitCSV1': 'createPrompt'
+      'click button#submitCSV1': 'createPrompt',
+
+      /*Buttons Hidden Initally */
+      'click button#editPrompt': 'editPrompt',
+      'click button#savePrompt': 'savePrompt'
     };
 
     modelView.prototype.initialize = function() {
@@ -76,6 +80,14 @@
 
     modelView.prototype.hideResults = function() {
       return $('#waitingForModel').hide(1000);
+    };
+
+    modelView.prototype.editPrompt = function() {
+      return editPromptFields();
+    };
+
+    modelView.prototype.savePrompt = function() {
+      return savePrompt();
     };
 
     return modelView;

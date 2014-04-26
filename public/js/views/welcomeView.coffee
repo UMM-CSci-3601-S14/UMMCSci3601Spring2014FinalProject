@@ -26,6 +26,7 @@ class window.welcomeView extends Backbone.View
 
   showExtra: ->
     $('.extra').show()
+    $('.hide').show()
     $('#more').hide()
     $('#less').show()
 
