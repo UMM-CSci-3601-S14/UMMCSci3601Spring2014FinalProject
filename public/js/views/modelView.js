@@ -16,11 +16,11 @@
 
     modelView.prototype.events = {
       'click button#createPrompt': 'createPrompt',
+      'click button#submitCSV1': 'createPrompt',
       'click button#hideWait': 'hideWait',
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',
-      'click button#submitCSV1': 'createPrompt',
 
       /*Buttons Hidden Initally */
       'click button#editPrompt': 'editPrompt',
@@ -38,56 +38,53 @@
     };
 
     modelView.prototype.uploadCSV = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
         return $('#csvArea').html(new window.uploadCSVView().$el);
       }
     };
 
     modelView.prototype.uploadZip = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
         return $('#csvArea').html(new window.uploadZipView().$el);
       }
     };
 
     modelView.prototype.makeCSV = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
         $('#csvArea').html(new window.CSVView().$el);
         $('#welcomeTut').hide();
         return $('#makeTut').show();
       }
     };
 
-    modelView.prototype.hideResults = function() {
-      return $('#waitingForModel').hide(1000);
-    };
-
     modelView.prototype.editPrompt = function() {
-      return editPromptFields();
+      $('#editPrompt').hide();
+      $('#savePrompt').show();
+      $('#promptSpaceSmall').hide();
+      return $('#promptSpace').show();
     };
 
     modelView.prototype.savePrompt = function() {
-      return savePrompt();
+      if (fieldsFilled() === true) {
+        fieldCollapse();
+        return $('#savePrompt').hide();
+      }
+    };
+
+    modelView.prototype.hideWait = function() {
+      return $('#waitingForModel').hide(1000);
     };
 
     return modelView;

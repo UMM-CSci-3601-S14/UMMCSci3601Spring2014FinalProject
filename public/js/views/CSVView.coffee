@@ -23,17 +23,22 @@ class window.CSVView extends Backbone.View
       "WARNING: Reloading the page will restart the process and you will lose all of your data!"
     this
 
+
+###These functions are found in funtions.html###
+
   downloadCSV: ->
     exportToCSV();
 
   add: ->
-    add();
+   add()
 
   delete: ->
     del();
 
   saveFields: ->
     saveFields();
+    $("#fieldTut").hide();
+    $("#textTut").show();
 
   replace: ->
     replace();

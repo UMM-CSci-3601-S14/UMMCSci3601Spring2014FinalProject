@@ -36,16 +36,7 @@ function saveFields() {
             tempbool = false;
         }
     }
-    if ($("#promptTitle").val()=="") {
-        window.alert("Please enter the prompt title");
-    }
-    else if ($("#promptDescription").val()=="") {
-        window.alert("Please enter the prompt description");
-    }
-    else if($("#cDescription").val()=="") {
-        window.alert("Please enter the class description");
-    }
-    else if (tempbool == true) {
+    if (tempbool == true) {
         for (var i = 1; i <= numFields; i++) {
             fieldNames.push($("#field" + i + "").val());
             myCSV += $("#field" + i + "").val() + ",";
@@ -58,34 +49,42 @@ function saveFields() {
         for (var i = 1; i < numFields+ 1; i++) {
             temp += template1 + fieldNames[i-1] + template2 + i + template3 + fieldNames[i-1] + template4;
         }
-        document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
         document.getElementById("fieldScores").innerHTML=temp;
         myCSV += "text\r\n"
         $("#fieldNames").hide();
         $("#workZone").show();
-        <!--This will hide the field tutorial-->
-        $("#fieldTut").hide();
-        $("#textTut").show();
+
     } else {
         window.alert("Please fill all field names");
     }
 }
-/*************Save prompt for when we hit the blue button on modelPage**********************/
+/*************Save prompt for when we hit the blue button on modelPage or after edit**********************/
+function fieldsFilled(){
+    if ($("#promptTitle").val() === "") {
+        window.alert("Please enter the prompt title");
+        return false;
+    } else if ($("#promptDescription").val() === "") {
+        window.alert("Please enter the prompt description");
+        return false;
+    } else if ($("#cDescription").val() === "") {
+        window.alert("Please enter the class description");
+        return false;
+    } else {
+        return true
+    }
+}
+
 function fieldCollapse() {
 
     promptTitle = $("#promptTitle").val()
     promptDescript = $("#promptDescription").val()
     cDescript = $("#cDescription").val()
 
-    document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
-    $('#editPrompt').show();
-    $('#uploadZip').hide();
-    $('#uploadCSV').hide();
-    $('#makeCSV').hide();
+        $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript);
+
+        $('#promptSpace').hide()
+        $('#promptSpaceSmall').show()
+        $('#editPrompt').show();
 
 }
 /******************************************************/
@@ -271,32 +270,7 @@ function addingButtons() {
 }
 /*******************************************************************************/
 
-/*******************************EDIT PROMPT/MODEL/SUBJECT ESSAY********************************************/
-//Brings up a text field to edit the prompt, model, and subject
-function editPromptFields() {
-    $('#editPrompt').hide();
-    $('#savePrompt').show();
-    document.getElementById("promptSpace").innerHTML= "<label>Prompt Title: </label>\n<input class='form-control' id='promptTitle2' name='promptTitle2' value='" + promptTitle + "'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Prompt Description: </label>\n<input class='form-control' id='promptDescription2' value='" + promptDescript + "' name='promptDescription2' value='" + promptTitle + "'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Class Description: </label>\n<input class='form-control' id='cDescription2' value='" + cDescript + "'  name='cDescription2'>";
 
-
-}
-
-//Saves the prompt model and subject entered into the text field
-function savePrompt() {
-    promptTitle = $("#promptTitle2").val();
-    promptDescript = $("#promptDescription2").val();
-    cDescript = $("#cDescription2").val();
-    $("#editPrompt").show();
-    $("#savePrompt").hide();
-    document.getElementById("promptSpace").innerHTML= "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
-
-
-}
-/**********************************************************************************************************/
 //Deletes an essay document
 function del() {
     editButtons();

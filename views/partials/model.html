@@ -1,5 +1,6 @@
 <script id='modelMaker' type='text/html'>
     <div class="left col-sm-7 col-sm-push-1">
+
         <div id="promptSpace">
             <label for="promptTitle">Prompt Title: </label><br/>
             <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
@@ -10,6 +11,10 @@
             <label for="cDescription">Class Description: </label><br/>
             <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Larry Page's 9th Grade English Class)" /><br/><br/>
         </div>
+
+        <div id="promptSpaceSmall"></div>
+
+
         <div id="promptButtons">
             <button type='button' class='btn btn-default hiding' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
             <button type='button' class='btn btn-default hiding' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button>
@@ -17,7 +22,9 @@
 
 
 
- <!--Big blue buttons-->
+
+
+
         <div id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
@@ -45,7 +52,7 @@
             <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
             <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
             <br/><br/>
-            <button id="hideWait" class="btn btn-success">Thank You</button>
+            <button id="hideWait" class="btn btn-success">Hide</button>
         </div>
     </div>
 

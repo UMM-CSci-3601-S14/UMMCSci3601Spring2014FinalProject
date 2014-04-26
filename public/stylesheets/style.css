@@ -272,6 +272,10 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     cursor: pointer;
 }
 
+#promptSpaceSmall{
+    word-wrap: break-word;
+}
+
 /******************************************************/
 
 /*For Tutorial*/
