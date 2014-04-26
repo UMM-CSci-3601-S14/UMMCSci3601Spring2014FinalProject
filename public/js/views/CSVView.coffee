@@ -3,7 +3,14 @@ class window.CSVView extends Backbone.View
   template: _.template $('#csvPage').html()
 
   events:
-    'click button.submitEssay': 'submitEssay'
+    'click button#downloadCSV': 'downloadCSV'
+    'click button#add': 'add'
+    'click button#delete': 'delete'
+    'click button#saveFields': 'saveFields'
+    'click button#replace': 'replace'
+    'click button#cancel': 'cancel'
+
+
 
   initialize: ->
     @render()
@@ -16,7 +23,20 @@ class window.CSVView extends Backbone.View
       "WARNING: Reloading the page will restart the process and you will lose all of your data!"
     this
 
-  submitEssay: ->
-    console.log 'in function'
-    #    console.log this.get 'essayContents'
-    this
+  downloadCSV: ->
+    exportToCSV();
+
+  add: ->
+    add();
+
+  delete: ->
+    del();
+
+  saveFields: ->
+    saveFields();
+
+  replace: ->
+    replace();
+
+  cancel: ->
+    cancelReplace();

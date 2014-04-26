@@ -15,7 +15,12 @@
     CSVView.prototype.template = _.template($('#csvPage').html());
 
     CSVView.prototype.events = {
-      'click button.submitEssay': 'submitEssay'
+      'click button#downloadCSV': 'downloadCSV',
+      'click button#add': 'add',
+      'click button#delete': 'delete',
+      'click button#saveFields': 'saveFields',
+      'click button#replace': 'replace',
+      'click button#cancel': 'cancel'
     };
 
     CSVView.prototype.initialize = function() {
@@ -31,9 +36,28 @@
       return this;
     };
 
-    CSVView.prototype.submitEssay = function() {
-      console.log('in function');
-      return this;
+    CSVView.prototype.downloadCSV = function() {
+      return exportToCSV();
+    };
+
+    CSVView.prototype.add = function() {
+      return add();
+    };
+
+    CSVView.prototype["delete"] = function() {
+      return del();
+    };
+
+    CSVView.prototype.saveFields = function() {
+      return saveFields();
+    };
+
+    CSVView.prototype.replace = function() {
+      return replace();
+    };
+
+    CSVView.prototype.cancel = function() {
+      return cancelReplace();
     };
 
     return CSVView;
