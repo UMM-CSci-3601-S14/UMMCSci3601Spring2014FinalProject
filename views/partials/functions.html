@@ -76,14 +76,13 @@ function fieldsFilled(){
 
 function fieldCollapse() {
 
-    promptTitle = $("#promptTitle").val()
-    promptDescript = $("#promptDescription").val()
-    cDescript = $("#cDescription").val()
+    promptTitle = $("#promptTitle").val();
+    promptDescript = $("#promptDescription").val();
+    cDescript = $("#cDescription").val();
 
-        $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript);
+        $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript).show();
 
-        $('#promptSpace').hide()
-        $('#promptSpaceSmall').show()
+        $('#promptSpace').hide();
         $('#editPrompt').show();
 
 }
@@ -171,11 +170,7 @@ function emptyFields() {
             return true;
         }
     }
-    if ($("#text").val() == "") {
-        return true;
-    } else {
-        return false;
-    }
+    return $("#text").val() == "";
 }
 
 //Hides cancel, the edit tutorial, and replace, shows submit, the text tutorial, and add
