@@ -105,3 +105,4 @@ this.getValue = function(key) {
 }
 
 module.exports.Dictionary = Dictionary;
+module.exports.generateMap = generateMap
