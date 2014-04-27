@@ -111,9 +111,8 @@ describe 'testing GenerateMap', ->
 
 
 #testing front end API calls
-###
 
-test.describe "gradingOnTheDemo", ->
+###test.describe "gradingOnTheDemo", ->
   test.describe "testABadPaper", ->
     test.it "should return the label being 1", ->
       driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
@@ -121,7 +120,7 @@ test.describe "gradingOnTheDemo", ->
 
       driver.findElement(webdriver.By.id('essayContents')).sendKeys("this paper should return a 1")
       driver.findElement(webdriver.By.id('submitEssay')).click()
-      driver.sleep(4000)
+      driver.sleep(8000)
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal value, "Your grade for the submitted essay is 1 out of 5."
         driver.close()
@@ -136,7 +135,7 @@ test.describe "gradingOnTheDemo", ->
       driver.findElement(webdriver.By.id('essayContents')).sendKeys(paper)
       driver.findElement(webdriver.By.id('submitEssay')).click()
 
-      driver.sleep(4000)
+      driver.sleep(8000)
 
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 3 out of 5.")
@@ -151,10 +150,9 @@ test.describe "gradingOnTheDemo", ->
       driver.findElement(webdriver.By.id('essayContents')).sendKeys(paper)
       driver.findElement(webdriver.By.id('submitEssay')).click()
 
-      driver.sleep(4000)
+      driver.sleep(8000)
 
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 5 out of 5.")
 
-        driver.close()
-###
+        driver.close()###

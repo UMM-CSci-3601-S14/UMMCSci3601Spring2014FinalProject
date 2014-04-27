@@ -47,7 +47,7 @@ class window.welcomeView extends Backbone.View
       $('#sandboxResults').show(500)
 
       #Begin calls to the LightSide API
-      theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).save().done ->
+      theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
 
         theAnswerSet = new answerSet1({
         }).fetch().done ->

@@ -13,4 +13,3 @@ class window.uploadZipView extends Backbone.View
     @$el.html @template()
     this
 
-
