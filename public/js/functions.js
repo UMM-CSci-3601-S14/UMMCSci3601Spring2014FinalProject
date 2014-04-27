@@ -114,10 +114,10 @@ function fieldCollapse() {
     function add() {
     /***************************/
         if (emptyFields() == true) {                             //If any of the fields/text areas are empty, will alert the user.
-        window.alert("Please fill all fields for the text");
+            window.alert("Please fill all fields for the text");
         } else {                                                 //If all fields are populated will add the entry.
-        for (var i = 1; i <= numFields; i++) {
-        myCSV += $("#toScore" + i + "").val() + ",";
+            for (var i = 1; i <= numFields; i++) {
+                myCSV += $("#toScore" + i + "").val() + ",";
         }
     myCSV += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n"; //Adds the string in the text area to myCSV string, replacing double quotes with single quotes.
     documentsAdded++;
@@ -126,7 +126,7 @@ function fieldCollapse() {
     doVisualization();
 
     /***************************/
-    document.getElementById("pastDocs").innerHTML += "<div class='docBox' id ='docBox' >" + documentsAdded + "</div>"; //Adds boxes of past entries.
+    document.getElementById("pastDocs").innerHTML += "<div class='docBox' id ='docBox" + documentsAdded + "'>" + documentsAdded + "</div>"; //Adds boxes of past entries.
 
     $(".docBox").slideDown(130);
     $(".docBox").mouseover(function() { //Hover effect.
@@ -270,26 +270,29 @@ function fieldCollapse() {
 
     //Deletes an essay document
     function del() {
-        editButtons();
-        var counter = 1;
-        for(var i = 0; i < myCSV.length; i++) {
-        if (myCSV.charAt(i) == "\n") {
-        if (counter < (selected)) counter++;
-        else {
-        var toReplace = "";
-        for (var j = 1; j <= numFields; j++) {
-        toReplace += $("#toScore" + j + "").val() + ",";
-        }
-    toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
-    myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
+       editButtons();
+       var newCSV = myCSV;
+       var selectedSection = selected;
+       var toDelete = 0;
+       var i = 0;
+       var nextLine = 0;
+        console.log(selectedSection);
+       while(i < selectedSection) {
+           nextLine = newCSV.search("\n");
+           toDelete += newCSV.search("\n");
+           newCSV = newCSV.slice(nextLine + 1,newCSV.length);
+           i++;
+       }
 
-    selected = 0;
-    clearAllFields();
-    deselect();
-    doVisualization();
-    return;
-    }
-    }
-    }
-    }
+       myCSV = myCSV.slice(0, toDelete) + myCSV.slice(toDelete + newCSV.search("\n") + 1);
+       console.log(myCSV);
+       $('#docBox' + documentsAdded).remove();
+       documentsAdded--;
+       document.getElementById("documentAmount").innerHTML = documentsAdded;
+       selected = 0;
+       clearAllFields();
+       deselect();
+       doVisualization();
+       return;
+}
 

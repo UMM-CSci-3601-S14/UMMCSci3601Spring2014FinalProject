@@ -30,18 +30,18 @@ class window.CSVView extends Backbone.View
     exportToCSV();
 
   add: ->
-   add()
+    add()
 
   delete: ->
-    del();
+    del()
 
   saveFields: ->
     saveFields();
-    $("#fieldTut").hide();
-    $("#textTut").show();
+    $("#fieldTut").hide()
+    $("#textTut").show()
 
   replace: ->
-    replace();
+    replace()
 
   cancel: ->
     cancelReplace()
