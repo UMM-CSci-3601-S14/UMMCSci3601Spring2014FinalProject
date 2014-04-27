@@ -15,9 +15,9 @@
     modelView.prototype.template = _.template($('#modelMaker').html());
 
     modelView.prototype.events = {
-      'click button#createPrompt': 'createPrompt',
-      'click button#submitCSV1': 'createPrompt',
       'click button#hideWait': 'hideWait',
+
+      /*Big Blue Buttons */
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',

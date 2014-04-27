@@ -5,7 +5,7 @@ class window.modelView extends Backbone.View
   events:
     'click button#hideWait' : 'hideWait'
 
-  ###Big Blue Buttons###
+    ###Big Blue Buttons###
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
     'click button#uploadZip' : 'uploadZip'
@@ -16,12 +16,11 @@ class window.modelView extends Backbone.View
 
   initialize: ->
     @render()
-=
+
   render: ->
     console.log 'Model'
     @$el.html @template()
     this
-
 
   uploadCSV: ->
     if fieldsFilled() is true

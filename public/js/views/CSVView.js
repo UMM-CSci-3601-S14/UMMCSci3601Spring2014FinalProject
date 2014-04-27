@@ -36,33 +36,36 @@
       return this;
     };
 
-    CSVView.prototype.downloadCSV = function() {
-      return exportToCSV();
-    };
-
-    CSVView.prototype.add = function() {
-      return add();
-    };
-
-    CSVView.prototype["delete"] = function() {
-      return del();
-    };
-
-    CSVView.prototype.saveFields = function() {
-      return saveFields();
-    };
-
-    CSVView.prototype.replace = function() {
-      return replace();
-    };
-
-    CSVView.prototype.cancel = function() {
-      return cancelReplace();
-    };
-
     return CSVView;
 
   })(Backbone.View);
+
+  ({
+
+    /*
+    These functions are found in funtions.html
+     */
+    downloadCSV: function() {
+      return exportToCSV();
+    },
+    add: function() {
+      return add();
+    },
+    "delete": function() {
+      return del();
+    },
+    saveFields: function() {
+      saveFields();
+      $("#fieldTut").hide();
+      return $("#textTut").show();
+    },
+    cancel: function() {
+      return cancelReplace();
+    },
+    replace: function() {
+      return replace();
+    }
+  });
 
 }).call(this);
 
