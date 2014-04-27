@@ -44,4 +44,4 @@ class window.CSVView extends Backbone.View
     replace();
 
   cancel: ->
-    cancelReplace();
+    cancelReplace()

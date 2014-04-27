@@ -12,7 +12,7 @@
 #    it '-3 cubed is -27', ->
 #      chai.assert.equal -27, cube(-3)
 
-
+Dictionary = require('../public/js/visualization').Dictionary
 ######## Testing Dictionary ##########
 
 
