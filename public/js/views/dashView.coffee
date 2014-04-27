@@ -4,8 +4,8 @@ class window.dashView extends Backbone.View
 
   events:
     'click button#createModelBox' : 'loadModelMaker'
-    'click button#yourModels': 'loadModelsInAccount'
-    'click button#yourPrompts': 'loadYourPrompts'
+#    'click button#yourModels': 'loadModelsInAccount'
+    'click button.yourPrompt': 'loadYourPrompts'
 
     'click button#pickEssay1' : 'loadEssay1'
     'click button#pickEssay2' : 'loadEssay2'
@@ -13,53 +13,52 @@ class window.dashView extends Backbone.View
     'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
 
-
-
   thePrompt = null
   theAuthor = null
   theAnswerSet = null
+
   initialize: ->
     @render()
     return
+
   render: ->
     console.log 'dash'
     @$el.html @template()
-    this
 
-  loadModelMaker: ->
-    window.location.href = '/model-maker'
-
-  loadModelsInAccount: ->
     if user.prompts is undefined
-      $('#modelsInAccount').show()
-      $('#yourPrompts').hide()
-      $('#noModels').show()
-      $('#dash').hide()
+      $('#yourPrompt').hide()
+      $('#noPrompts').show()
+
     else
       console.log 'loading models'
       i=0
       buttonString = ""
-      buttonString1 = '<button class="box" id="your'
-      buttonString2 = 'Models"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">Model '
+      buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
+      buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
       buttonString3 = '</span></button>'
       for i in user.prompts
         do (i) ->
           buttonString += buttonString1 + i + buttonString2 + i + buttonString3
 
-      $('models').html(buttonString)
-      $('#dash').hide()
+      $('yourPrompt').html(buttonString)
 
-  loadYourPrompts: ->
-    yourPrompt = new prompt1().fetch().done ->
-#    yourPrompt.urlRoot = 'https://try-api.lightsidelabs.com/api/prompts/114'
-#    yourPrompt.fetch().done ->
-      $('#yourPromptTitle').html(yourPrompt.responseJSON.title)
-      $('#yourPromptDescription').html(yourPrompt.responseJSON.description)
+    this
+
+  loadYourPrompts = (req, res) ->
+    prompt = req.id
+    thePrompt = new request
+    thePrompt.urlRoot = prompt
+    thePrompt.fetch().done ->
+      $('#promptTitle').html(thePrompt.responseJSON.title)
+      $('#promptDescription').html(thePrompt.responseJSON.description)
 
 #    yourAuthor
 
 #    yourAnswerSet
-    $('#yourModel').show()
+      $('#yourModel').show()
+      $('#essayContents').val("")
+      $('#essayArea').show()
+
 
 
 
@@ -73,6 +72,7 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet1({
       }).fetch().done ->
 
+      $('#yourModel').hide()
       $('#essayContents').val("")
       $('#essayArea').show()
 
@@ -86,6 +86,7 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
+      $('#yourModel').hide()
       $('#essayContents').val("")
       $('#essayArea').show()
 
