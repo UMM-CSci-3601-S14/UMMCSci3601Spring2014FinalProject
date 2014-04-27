@@ -29,7 +29,7 @@ $("#saveFields").show();
 }
 
 //Runs when you hit save. Inserts the name of the fields into the fields.
-function saveFields() {
+function saveFieldNames() {
     var tempbool = true;
     //For making the first field called "label"
     $("#field1").val("label");
