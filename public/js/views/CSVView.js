@@ -15,7 +15,12 @@
     CSVView.prototype.template = _.template($('#csvPage').html());
 
     CSVView.prototype.events = {
-      'click button.submitEssay': 'submitEssay'
+      'click button#downloadCSV': 'downloadCSV',
+      'click button#add': 'add',
+      'click button#delete': 'delete',
+      'click button#saveFields': 'saveFields',
+      'click button#replace': 'replace',
+      'click button#cancel': 'cancel'
     };
 
     CSVView.prototype.initialize = function() {
@@ -31,14 +36,36 @@
       return this;
     };
 
-    CSVView.prototype.submitEssay = function() {
-      console.log('in function');
-      return this;
-    };
-
     return CSVView;
 
   })(Backbone.View);
+
+  ({
+
+    /*
+    These functions are found in funtions.html
+     */
+    downloadCSV: function() {
+      return exportToCSV();
+    },
+    add: function() {
+      return add();
+    },
+    "delete": function() {
+      return del();
+    },
+    saveFields: function() {
+      saveFields();
+      $("#fieldTut").hide();
+      return $("#textTut").show();
+    },
+    cancel: function() {
+      return cancelReplace();
+    },
+    replace: function() {
+      return replace();
+    }
+  });
 
 }).call(this);
 

@@ -11,7 +11,7 @@
     email: String,
     firstName: String,
     surname: String,
-    promptArray: []
+    promptArray: [String]
   });
 
   user = mongoose.model('user', userSchema);
@@ -21,5 +21,3 @@
   };
 
 }).call(this);
-
-//# sourceMappingURL=userSchema.map

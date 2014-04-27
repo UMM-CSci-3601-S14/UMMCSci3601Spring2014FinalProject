@@ -3,14 +3,16 @@ class window.modelView extends Backbone.View
   template: _.template $('#modelMaker').html()
 
   events:
-    'click button#createPrompt': 'createPrompt'
     'click button#hideWait' : 'hideWait'
+
+    ###Big Blue Buttons###
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
     'click button#uploadZip' : 'uploadZip'
-    'click button#submitCSV1': 'createPrompt'
 
-
+    ###Buttons Hidden Initally###
+    'click button#editPrompt': 'editPrompt'
+    'click button#savePrompt': 'savePrompt'
 
   initialize: ->
     @render()
@@ -20,43 +22,52 @@ class window.modelView extends Backbone.View
     @$el.html @template()
     this
 
-
   uploadCSV: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
       $('#csvArea').html new window.uploadCSVView().$el
 
   uploadZip: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
       $('#csvArea').html new window.uploadZipView().$el
 
   makeCSV: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
       $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
       $('#makeTut').show()
 
+  editPrompt: ->
+    $('#editPrompt').hide();
+    $('#savePrompt').show();
 
-  hideResults: ->
+    $('#promptSpaceSmall').hide();
+    $('#promptSpace').show();
+
+  savePrompt: ->
+    if fieldsFilled() is true
+      fieldCollapse()
+      $('#savePrompt').hide();
+
+  hideWait: ->
     $('#waitingForModel').hide(1000);
+
+
+
+
 this
+

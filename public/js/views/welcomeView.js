@@ -42,6 +42,7 @@
 
     welcomeView.prototype.showExtra = function() {
       $('.extra').show();
+      $('.hide').show();
       $('#more').hide();
       return $('#less').show();
     };
@@ -61,7 +62,7 @@
         return theAuthor = new author({
           designator: "BG2",
           email: "test@gmail.com"
-        }).save().done(function() {
+        }).fetch().done(function() {
           var theAnswerSet;
           return theAnswerSet = new answerSet1({}).fetch().done(function() {
             var theAnswer;

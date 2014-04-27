@@ -19,29 +19,29 @@
             </div>
         </form>
         <div style="padding-bottom:5px;" id="moreFields"></div>
-        <button class="btn btn-default glyphicon glyphicon-saved" id="saveFields">Save</button>
+        <button class="btn btn-default glyphicon glyphicon-saved hiding" id="saveFields">Save</button>
     </div>
-    <div id="workZone" class="row">
+    <div id="workZone" class="row hiding">
         <form role="form">
             <div id="fieldScores"></div>
 
             <label>Text</label>
             <textarea class="text form-control" id="text" placeholder="Enter Text" rows="10"></textarea>
             <br />
-            <button type="button" class="btn btn-danger" id="reset">
+            <button type="button" class="btn btn-danger hiding" id="delete">
                 <span class="glyphicon glyphicon-trash"></span> Delete
             </button>
             <button type="button" class="btn btn-default" id="add">
                 <span class="glyphicon glyphicon-plus"></span> Add
             </button>
-            <button type="button" class = "btn btn-default" id="replace">
+            <button type="button" class = "btn btn-default hiding" id="replace">
                 <span class="glyphicon glyphicon-edit"></span> Replace
             </button>
-            <button type="button" class="btn btn-default" id="submit">
+            <button type="button" class="btn btn-default" id="downloadCSV">
                 <span class="glyphicon glyphicon-download"></span> Download CSV
             </button>
 
-            <button type="button" class="btn btn-default" id="cancel">
+            <button type="button" class="btn btn-default hiding" id="cancel">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </form>
@@ -58,41 +58,4 @@
             <div id="visField5" class="visualization"></div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $("#saveFields").hide();
-            $("#workZone").hide();
-            $("#replace").hide();
-            $("#cancel").hide();
-            $("#visHeader").hide();
-            $("#secondT").hide();
-            $("#thirdT").hide();
-//    $("#changePasswordFields").hide();
-
-            $("#submit").click(function() {
-                exportToCSV();
-            });
-
-            $("#add").click(function() {
-                add();
-            });
-
-            $("#reset").click(function() {
-                reset();
-            });
-
-            $("#saveFields").click(function() {
-                saveFields();
-            });
-
-            $("#replace").click(function() {
-                replace();
-            });
-
-            $("#cancel").click(function() {
-                cancelReplace();
-            });
-        });
-    </script>
 </script>

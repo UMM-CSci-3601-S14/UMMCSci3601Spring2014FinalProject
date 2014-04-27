@@ -1,23 +1,118 @@
 assert = require('assert')
 test = require('selenium-webdriver/testing')
 webdriver = require('selenium-webdriver')
+chai = require('chai')
+#import our functions
+Dictionary = require('../public/js/visualization').Dictionary
+generateMap = require('../public/js/visualization').generateMap
 
+#describe "Create paragraph", ->
+#  describe "test 1", ->
+#    it "should create a paragraph with given text", ->
+#      assert.equal "2", "2"
+#
+#    it '3 cubed is 27', ->
+#      chai.assert.equal 27, cube(3)
+#    it '-3 cubed is -27', ->
+#      chai.assert.equal -27, cube(-3)
+
+
+######## Testing Dictionary ##########
+
+
+describe 'dictionary tests', ->
+
+  it 'empty keys in dictionary', ->
+    emptyDict = new Dictionary()
+    chai.assert.deepEqual [], emptyDict.keys
+  it 'empty value in dictionary', ->
+    emptyDict = new Dictionary()
+    chai.assert.deepEqual [], emptyDict.values
+  it 'adds one item to dictionary then checks the key', ->
+    emptyDict = new Dictionary()
+    emptyDict.add('item')
+    chai.assert.deepEqual ['item'], emptyDict.keys
+  it 'adds one item to dictionary then checks the value', ->
+    emptyDict = new Dictionary()
+    emptyDict.add('item')
+    chai.assert.deepEqual [1], emptyDict.values
+  it 'checks to see if value.length works', ->
+    emptyDict = new Dictionary()
+    emptyDict.add('item')
+    emptyDict.add('item')
+    emptyDict.add('item')
+    emptyDict.add('otheritem')
+    chai.assert.deepEqual 2, emptyDict.values.length
+  it 'checks to see if keys.length works', ->
+    emptyDict = new Dictionary()
+    emptyDict.add('item')
+    emptyDict.add('item')
+    emptyDict.add('item')
+    emptyDict.add('otheritem')
+    chai.assert.deepEqual 2, emptyDict.values.length
+  it 'adds 500 items to the Dictionary using a loop ', ->
+    emptyDict = new Dictionary()
+    i = 0
+    while i < 500
+      emptyDict.add "item"
+      i++
+    chai.assert.deepEqual [500], emptyDict.values
+  it 'adds 500 items to the Dictionary using a loop then another 300 ', ->
+    emptyDict = new Dictionary()
+    i = 0
+    while i < 500
+      emptyDict.add "item"
+      i++
+    while i < 800
+      emptyDict.add "otheritem"
+      i++
+    chai.assert.deepEqual [500, 300], emptyDict.values
+  it 'adds 500 items to the Dictionary using a loop then another 300, checks the keys ', ->
+    emptyDict = new Dictionary()
+    i = 0
+    while i < 500
+      emptyDict.add "item"
+      i++
+    while i < 800
+      emptyDict.add "otheritem"
+      i++
+    chai.assert.deepEqual ['item','otheritem'], emptyDict.keys
+
+
+
+##### Test GenerateMap #####
 
 ###
-describe "Create paragraph", ->
-  describe "test 1", ->
-    it "should create a paragraph with given text", ->
-      assert.equal "2", "2"
+describe 'testing GenerateMap', ->
+  it 'should test to see if .values is working', ->
+    numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
 
-    it '3 cubed is 27', ->
-      chai.assert.equal 27, cube(3)
-    it '-3 cubed is -27', ->
-      chai.assert.equal -27, cube(-3)
+    chai.assert.deepEqual generateMap(numbers).values, [9];
+
+    numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    chai.assert.deepEqual generateMap(numbers).values, [1,1,1,1,1,1,1,1,1]
+
+    numbers = ['1', '1', '2', '2', '5', '5', '7', '8', '9', '1']
+    chai.assert.deepEqual generateMap(numbers).values, [3,2,2,1,1,1]
+
+  it 'should test keys', ->
+    blankArray = []
+    chai.assert.deepEqual generateMap(blankArray).keys, new Dictionary().keys;
+
+    numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
+    chai.assert.deepEqual generateMap(numbers).keys, ['1'];
+
+    numbers = ['1', '2', '3', '1', '1', '1', '1', '1', '1']
+    chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3'];
+
+    numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 ###
 
-###
 
-test.describe "gradingOnTheDemo", ->
+#testing front end API calls
+
+###test.describe "gradingOnTheDemo", ->
   test.describe "testABadPaper", ->
     test.it "should return the label being 1", ->
       driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
@@ -60,56 +155,4 @@ test.describe "gradingOnTheDemo", ->
       driver.findElement(webdriver.By.id('grade')).getAttribute('textContent').then (value) ->
         assert.equal(value, "Your grade for the submitted essay is 5 out of 5.")
 
-        driver.close()
-###
-
-###
-test.describe "testModelMaking", ->
-  test.beforeEach (done) ->
-    driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
-    driver.get('http://localhost:3000/model-maker')
-
-    driver.findElement(webdriver.By.name('username')).sendKeys("Isaac-S")
-    driver.findElement(webdriver.By.name('password')).sendKeys("Butts")
-    driver.findElement(webdriver.By.id('logIn')).click()
-
-    driver.get('http://localhost:3000/modelPage')
-
-    driver.findElement(webdriver.By.id('title')).sendKeys("test-title")
-    driver.findElement(webdriver.By.id('text')).sendKeys("test-text")
-    driver.findElement(webdriver.By.id('description')).sendKeys("test-description")
-    driver.findElement(webdriver.By.id('cDescription')).sendKeys("test-class-description")
-    driver.findElement(webdriver.By.id('file')).sendKeys("/home/smolu004/Documents/sentiment_sentences.csv")
-
-    driver.findElement(webdriver.By.id('createPrompt')).click()
-    console.log("Waiting for one minute...")
-    driver.sleep(6000)
-
-
-
-  test.describe "testing a good model", ->
-    test.it "should return true if the model is being created", ->
-      console.log("Waiting complete!\n")
-      driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
-      alert = ""
-      ###
-### alertExists: A helper method for testing, returns 'true' if there is an alert being given by the page. ###
-###
-      alertExists = () ->
-        console.log("Now running 'alertExists' method...")
-        try
-          alert = driver.switchTo().alert()
-          console.log("FOUND ALERT")
-          console.log("Alert = " + alert + "\n")
-          alert.accept()
-          true
-        catch error
-          console.log("NO ALERT FOUND")
-          false
-
-      if alertExists()
-        console.log("Checking alert text...")
-        console.log("Alert text: " + alert.getText())
-        assert.equal(alert.getText(), "Your Model Has Been Made")
-        driver.close()
-###
+        driver.close()###

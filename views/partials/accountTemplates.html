@@ -15,7 +15,7 @@
                     </div>
                     {{{failed}}} <br/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" value="Log In">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" value="Log In" name="logIn">Sign In</button>
                     </div>
                 </form>
             </div>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <button class="create btn btn-primary btn-lg btn-block">Create Account</button>
                         </div>
-                        <div class="warning" id="emptyField" style="display: none">
+                        <div class="warning hiding" id="emptyField">
                             <p><b>One of the required fields above is empty!</b></p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <p>{{ user.surname }}</p><br/>
                     </div>
                     <button class="startChangePassword btn btn-default">Change Password</button>
-                    <div id="changePasswordFields" class="changePasswordFields" style="display: none">
+                    <div id="changePasswordFields" class="changePasswordFields hiding" >
                         <label>Old Password:</label>
                         <input name="oldPassword" id="oldPassword" class="form-control" type="password"/><br/>
                         <label>New Password:</label>

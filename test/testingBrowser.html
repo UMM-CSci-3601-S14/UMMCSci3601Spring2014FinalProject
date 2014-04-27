@@ -18,6 +18,88 @@
         return n*n*n;
     }
 
+    var numFields = 4;
+
+    countGrades = function(arrayOfArrays) {
+        var arrayOfDict, i;
+        arrayOfDict = new Array();
+        i = 0;
+        while (i < numFields) {
+            console.log(arrayOfArrays);
+            arrayOfDict.push(generateMap(arrayOfArrays[i]));
+            createData(i, arrayOfDict);
+            i++;
+        }
+    };
+
+    generateMap = function(arrayOfStrings) {
+        var entry, i, map;
+        map = new Dictionary();
+        i = 0;
+        while (i < arrayOfStrings.length) {
+            entry = arrayOfStrings[i];
+            map.add(entry);
+            i++;
+        }
+        return map;
+    };
+
+    createData = function(fieldNum, arrayOfDict) {
+        var chart, dataPointsTemplate, dataTemplate, divID, i, tempKey, tempValue;
+        tempValue = void 0;
+        tempKey = void 0;
+        divID = "visField" + (fieldNum + 1);
+        dataPointsTemplate = new Array();
+        i = 0;
+        console.log(arrayOfDict[0]);
+        while (i < arrayOfDict[fieldNum].keys.length) {
+            tempValue = arrayOfDict[fieldNum].values[i];
+            tempKey = arrayOfDict[fieldNum].keys[i].toString();
+            console.log;
+            dataPointsTemplate.push({
+                y: tempValue,
+                indexLabel: tempKey
+            });
+            i++;
+        }
+        dataTemplate = [
+            {
+                type: "doughnut",
+                dataPoints: dataPointsTemplate
+            }
+        ];
+        chart = new CanvasJS.Chart(divID, {
+            title: {
+                text: fieldNames[currentField]
+            },
+            data: dataTemplate
+        });
+        console.log("SOMTHIN");
+        currentField++;
+        chart.render();
+    };
+
+    Dictionary = function() {
+        this.keys = [];
+        this.values = [];
+        this.add = function(entry) {
+            var index;
+            index = this.keys.indexOf(entry);
+            if (-1 === index) {
+                this.keys.push(entry);
+                this.values.push(1);
+                this.length === (this.length + 1);
+            } else {
+                this.values[index] = this.values[index] + 1;
+            }
+        };
+        this.getValue = function(key) {
+            var index;
+            index = this.keys.indexOf(key);
+            return this.values[index];
+        };
+    };
+
     mocha.checkLeaks();
     mocha.globals(['jQuery', 'chai']);
     mocha.run();
