@@ -41,8 +41,6 @@ Module dependencies.
     model: 'partials/model',
     tutorial: 'partials/tutorial',
     dashboard: 'partials/dashboard',
-    functions: 'partials/functions',
-    visualization: 'partials/visualization',
     uploadCSV: 'partials/uploadCSV',
     unzip: 'partials/unzip'
   });
