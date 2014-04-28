@@ -8,6 +8,7 @@ userSchema = mongoose.Schema(
    firstName: String
    surname: String
    promptArray: [String]
+   authorURL: String
 )
 user = mongoose.model 'user', userSchema
 

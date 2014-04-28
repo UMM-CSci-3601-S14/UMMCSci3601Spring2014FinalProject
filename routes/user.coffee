@@ -70,7 +70,7 @@ passport.use 'local-login', new LocalStrategy({
     (email, password, done) ->
       process.nextTick ->
         User.findOne
-          email: email, (err, user) ->
+          email: email.toLowerCase(), (err, user) ->
             return done(err) if err
             return done(null, false) unless user
             return done(null, false) unless user.password is password

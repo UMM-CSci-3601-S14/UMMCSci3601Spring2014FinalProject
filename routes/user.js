@@ -87,7 +87,7 @@ Module dependencies.
   }, function(email, password, done) {
     process.nextTick(function() {
       User.findOne({
-        email: email
+        email: email.toLowerCase()
       }, function(err, user) {
         if (err) {
           return done(err);
