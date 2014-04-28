@@ -11,27 +11,20 @@ class window.uploadCSVView extends Backbone.View
   fieldNames = []
   currentField = 1
 
-
-
   initialize: ->
     @render()
 
   render: ->
-    console.log 'rendering uploadCSVView'
     @$el.html @template()
     this
 
-
-
   createPrompt: ->
-    console.log 'in function'
     $('#waitingForModel').show(1000)
 
     # Collecting all the nessesary information from the page
     # Text and title are requeired to create a new prompt
     newTitle = promptTitle
     newText = promptTitle
-    console.log newTitle + 'hello'
     # The prompt description is NOT required
     # but used for grading after model is created
     newDescription =  promptDescript
@@ -45,7 +38,6 @@ class window.uploadCSVView extends Backbone.View
       text: newText
       description: newDescription
     }).save().done ->
-      console.log newPrompt.responseJSON.url
 
       # Then set up the corpus that will hold the model and all of the answers
       newCorpus = new createCorpora({
@@ -100,9 +92,6 @@ class window.uploadCSVView extends Backbone.View
 
 
                         if uploadTask.attributes.status == 'S'
-                          console.log "Upload Task was SUCCESSFUL"
-                          console.log newUploadTask.responseJSON
-                          console.log count
                           trainingTask = new trainingTasks({corpus: newCorpus.responseJSON.url}).save().done ->
                             addTrainTask = new request()
                             addTrainTask.url = trainingTask.responseJSON.process;
@@ -119,7 +108,6 @@ class window.uploadCSVView extends Backbone.View
                                     window.alert 'Training task was SUCCESSFUL'
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
-                                      console.log finalPrompt.attributes.url
                                       Backbone.ajax {
                                         type: "POST"
                                         url: "/addPrompt"
@@ -143,29 +131,18 @@ class window.uploadCSVView extends Backbone.View
                               ), 1000
                           window.clearInterval looping
 
-
-
-
-
-
-
                         #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
                         if uploadTask.attributes.status == 'U'
                           $('#waitMessage').text('Making your model was unsuccessful')
-                          console.log "Prediction Task was UNSUCCESSFUL"
                           window.clearInterval looping
                           window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
 
                     ), 1000
 
-
             xhr.send(form)
-
 
   submitCSV: ->
     document.getElementById('visFields').innerHTML = ""
-
-    console.log numFields
     fileInput = document.getElementById("fileInput")
     fileDisplayArea = document.getElementById("fileDisplayArea")
     file = fileInput.files[0]
@@ -188,10 +165,8 @@ class window.uploadCSVView extends Backbone.View
     fieldNames = []
     #Hides #visHeader if nothing has been added
     $("#visHeader1").show()  if documentsAdded > 0
-
     #uses CSVParser.js to parse the myCSV string into an array
     parser = new CSVParser(csvString)
-
     #CSVarray is an array of arrays. The arrays inside the main array contain the information from one document and its fields.
     CSVArray = parser.array()
     array = new Array()
@@ -199,7 +174,6 @@ class window.uploadCSVView extends Backbone.View
     text = csvString
     newLine = "\r"
     if text.search("\r") == -1
-      console.log "msagjhdfg"
       newLine = "\n"
     until text.search(newLine) is -1
       endPoint = text.search(newLine)
@@ -210,14 +184,12 @@ class window.uploadCSVView extends Backbone.View
     console.log(fieldControl)
     numFields = 0
     until fieldControl.search(",") is -1
-      console.log numFields
       endPoint = fieldControl.search(",")
       fieldNames.push fieldControl.slice(0, endPoint)
       fieldControl = fieldControl.slice(endPoint + 1, fieldControl.length)
       numFields++
     i = numFields
     j = i+1
-    console.log('numFields:' + numFields)
     while i > 0
       divID = "visField" + (j - i)
       document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization sideBySide'></div>"
@@ -240,8 +212,6 @@ class window.uploadCSVView extends Backbone.View
       fieldArray.push inputText
       array[i] = fieldArray
       i++
-    console.log "Hended to getFields"
-    console.log array
 
     getFields array
     return
@@ -269,8 +239,6 @@ class window.uploadCSVView extends Backbone.View
     while i < numFields
       #Add the dictionary to arrayOfDicts
       arrayOfDict.push generateMap(arrayOfArrays[i])
-      console.log "LOOK AT MNENAKLRJ"
-      console.log arrayOfDict
       #Runs createData on each field
       createData i, arrayOfDict
       i++
@@ -334,9 +302,7 @@ class window.uploadCSVView extends Backbone.View
         backgroundColor: "transparent"
       )
 
-
       #renders the chart
-      console.log "SOMTHIN"
       chart.render()
       document.getElementById("results").innerHTML = areYouGood
       currentField++

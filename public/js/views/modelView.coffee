@@ -66,8 +66,4 @@ class window.modelView extends Backbone.View
   hideWait: ->
     $('#waitingForModel').hide(1000);
 
-
-
-
 this
-

@@ -47,14 +47,6 @@ textarea{
     background:none;
     border:none;
 }
-/*.content {*/
-/*text-align: center;*/
-/*padding: 10px;*/
-/*background-color: #BAD0FF;*/
-/*border-radius: 10px;*/
-/*margin-top: 10px;*/
-/*padding: 15px;*/
-/*}*/
 
 .title small {
     color: darkslategray;
@@ -114,6 +106,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 .right {
     height: 100%;
     margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     border-radius: 10px;
     padding: 10px;
     background-color: #BAD0FF;
@@ -267,11 +261,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 
 /******************************************************/
-
-/*For Tutorial*/
-/*#makeTut, #editing, #thirdT{
-    display: none;
-}*/
 
 /*CSS for Visualization page*/
 .fields {

@@ -77,16 +77,11 @@ class window.dashView extends Backbone.View
         $('#essayContents').val("")
         $('#essayArea').show()
 
-
-
-
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
-
       theAnswerSet = new answerSet1({
       }).fetch().done ->
 
@@ -98,9 +93,7 @@ class window.dashView extends Backbone.View
     thePrompt = new prompt2().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
-
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
@@ -148,7 +141,6 @@ class window.dashView extends Backbone.View
             #request used to checks status of the prediction process
             thePredictionStatus = new request()
 
-
             # a loop to wait for the api to grade the answer, waits 1 second.
             looping = setInterval (->
 
@@ -166,9 +158,7 @@ class window.dashView extends Backbone.View
                   thePredictionResult = new predictionResult().fetch().done ->
                     $('#grade').html("Your grade for the submitted essay is " +
                     thePredictionResult.responseJSON.results[0].label + " out of 5.")
-
                     answerGraded = new answer
-
                   # Ternimate loop.
                   window.clearInterval looping
 
@@ -180,8 +170,6 @@ class window.dashView extends Backbone.View
                   # Terminate loop
                   window.clearInterval looping
             ), 1000
-
-
 
   hideResults: ->
     $('#sandboxResults').hide(500)

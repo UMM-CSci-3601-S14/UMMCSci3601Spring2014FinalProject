@@ -106,6 +106,5 @@ class window.welcomeView extends Backbone.View
                       window.clearInterval looping
                 ), 1000
 
-
   hideResults: ->
     $('#sandboxResults').hide(500);

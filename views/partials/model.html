@@ -1,6 +1,5 @@
 <script id='modelMaker' type='text/html'>
     <div class="left col-sm-7 col-sm-push-1">
-
         <div id="promptSpace">
             <label for="promptTitle">Prompt Title: </label><br/>
             <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" autofocus /> <br/>
@@ -14,18 +13,12 @@
 
         <div id="promptSpaceSmall"></div>
 
-
         <div id="promptButtons">
             <button type='button' class='btn btn-default hiding' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
             <button type='button' class='btn btn-default hiding' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button> <br><br>
         </div>
 
-
-
-
-
-
-        <div id="csvButtons">
+        <div class="center" id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
                 <br />
@@ -43,7 +36,6 @@
             </button>
         </div>
 
-
         <div id="csvArea"></div>
         <br/><br/>
 
@@ -58,12 +50,11 @@
 
     <div class="right col-sm-3 col-sm-push-1">
         <div class="content">
-            <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
-            <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
+            <a href="dash" class="btn btn-primary btn-lg btn-block">Dashboard</a>
+            <a href="logout" class="btn btn-primary btn-lg btn-block">Sign Out</a>
             <br/><br/>
             <h3 class ="title">Getting Started</h3>
             {{> tutorial}}
-
         </div>
     </div>
 </script>
