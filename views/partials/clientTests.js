@@ -15,3 +15,5 @@
   describe("String from XML");
 
 }).call(this);
+
+//# sourceMappingURL=clientTests.map
