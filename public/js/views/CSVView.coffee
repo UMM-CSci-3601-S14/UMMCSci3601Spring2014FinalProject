@@ -10,7 +10,6 @@ class window.CSVView extends Backbone.View
     'click button#replace': 'replace'
     'click button#cancel': 'cancel'
 
-
   initialize: ->
     @render()
 
