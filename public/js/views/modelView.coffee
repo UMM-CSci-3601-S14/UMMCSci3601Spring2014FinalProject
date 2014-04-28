@@ -49,7 +49,7 @@ class window.modelView extends Backbone.View
 
       $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
-      $('#makeTut').show()
+      $('#fieldTut').show()
 
   editPrompt: ->
     $('#editPrompt').hide();

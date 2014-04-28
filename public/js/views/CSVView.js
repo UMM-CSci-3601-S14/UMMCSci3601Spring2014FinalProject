@@ -46,7 +46,8 @@
     };
 
     CSVView.prototype.add = function() {
-      return add();
+      add();
+      return $("#titleV").show();
     };
 
     CSVView.prototype["delete"] = function() {

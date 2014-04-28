@@ -31,6 +31,7 @@ class window.CSVView extends Backbone.View
 
   add: ->
     add()
+    $("#titleV").show()
 
   delete: ->
     del()
