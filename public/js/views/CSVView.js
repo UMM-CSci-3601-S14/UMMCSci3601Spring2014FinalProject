@@ -47,11 +47,15 @@
 
     CSVView.prototype.add = function() {
       add();
-      return $("#titleV").show();
+      $("#titleV").show();
+      return $("#docTut").show();
     };
 
     CSVView.prototype["delete"] = function() {
-      return del();
+      del();
+      if (documentsAdded > 0) {
+        return $("#docTut").show();
+      }
     };
 
     CSVView.prototype.saveFields = function() {
@@ -61,11 +65,14 @@
     };
 
     CSVView.prototype.cancel = function() {
-      return cancelReplace();
+      cancelReplace();
+      $("#textTut").show();
+      return $("#docTut").show();
     };
 
     CSVView.prototype.replace = function() {
-      return replace();
+      replace();
+      return $("#docTut").show();
     };
 
     return CSVView;

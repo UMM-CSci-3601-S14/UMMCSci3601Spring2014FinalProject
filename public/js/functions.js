@@ -45,7 +45,7 @@ function saveFieldNames() {
         }
     var template1 = '<div class="input-group fields">\n<span class="input-group-addon">';
     var template2 = '</span>\n<input type="text" class="form-control" id="toScore';
-            var template3 = '"placeholder="Enter ';
+            var template3 = '"placeholder="Enter grade for ';
             var template4 = '">\n</div>\n';
     var temp = "<label>Scores</label>";
     for (var i = 1; i < numFields+ 1; i++) {
@@ -143,6 +143,7 @@ function add() {
 
     $(".docBox").click(function() { //Edits CSV document by clicking the specified docBox
         addingButtons();
+        $("#docTut").hide();
         selected = (parseInt($(this).text()));
         deselect();
         docBoxColors(this, '#EBADFF', 'black', '#BA80CC');
