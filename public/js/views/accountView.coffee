@@ -47,11 +47,11 @@ class window.accountView extends Backbone.View
           $('#failedPasswordChange').show()
       }
 
-
   cancelPasswordChange: ->
-    console.log "here"
     $('.changePasswordFields').hide()
     $('.startChangePassword').show()
     $('#oldPassword').val("")
     $('#newPassword').val("")
     $('#confirmNewPassword').val("")
+    $('#successPasswordChange').hide()
+    $('#failedPasswordChange').hide()

@@ -182,7 +182,6 @@
         console.log("err");
       }
       if (result) {
-        console.log(result);
         return res.send(500, "Email is already being used");
       } else {
         newUser = new User(req.body);
@@ -207,7 +206,6 @@
       }
       if (result) {
         prompts = result.promptArray;
-        console.log(result);
         return res.send(prompts);
       } else {
         return res.send(500, "else");
@@ -219,7 +217,6 @@
     var currentUser, promptToAdd;
     currentUser = req.user.email;
     promptToAdd = req.body.promptArray;
-    console.log(req.body.promptArray);
     User.update({
       email: currentUser
     }, {

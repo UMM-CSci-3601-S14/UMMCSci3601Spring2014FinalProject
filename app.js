@@ -96,7 +96,7 @@ Module dependencies.
 
   app.get("/account", routes.account);
 
-  app.post("/addPrompt", routes.addPrompt);
+  app.get('/getPrompts', routes.getPromptArray);
 
   app.post('/create', routes.create);
 

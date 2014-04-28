@@ -71,12 +71,13 @@
     };
 
     accountView.prototype.cancelPasswordChange = function() {
-      console.log("here");
       $('.changePasswordFields').hide();
       $('.startChangePassword').show();
       $('#oldPassword').val("");
       $('#newPassword').val("");
-      return $('#confirmNewPassword').val("");
+      $('#confirmNewPassword').val("");
+      $('#successPasswordChange').hide();
+      return $('#failedPasswordChange').hide();
     };
 
     return accountView;

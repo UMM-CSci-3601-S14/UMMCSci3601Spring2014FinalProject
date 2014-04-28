@@ -147,7 +147,6 @@ exports.create = (req, res) ->
     if err
       console.log "err"
     if result
-      console.log result
       res.send(500, "Email is already being used")
     else
       newUser = new User req.body
@@ -155,10 +154,21 @@ exports.create = (req, res) ->
       res.send(200, "Password changed successfully!")
   )
 
+exports.getPromptArray = (req, res) ->
+  prompts = Array
+  User.findOne({email: req.user.email}, {promptArray: true}, {_id: false}, (err, result) ->
+    if err
+      res.send(500, "Prompts not found")
+    if result
+      prompts = result.promptArray
+      res.send(prompts)
+    else
+      res.send(500, "else")
+  )
+
 exports.addPrompt = (req, res) ->
   currentUser = req.user.email
   promptToAdd = req.body.promptArray
-  console.log req.body.promptArray
   User.update({email: currentUser}
     $push:
       promptArray: promptToAdd
@@ -167,3 +177,5 @@ exports.addPrompt = (req, res) ->
       console.log 'The number of updated documents was %d', numAffected
   )
   res.send(200, "Prompt was added to the user.")
+
+

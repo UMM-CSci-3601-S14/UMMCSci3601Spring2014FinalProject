@@ -24,23 +24,26 @@ class window.dashView extends Backbone.View
     console.log 'dash'
     @$el.html @template()
 
-    if user.prompts is undefined
-      $('#yourPrompt').hide()
-      $('#noPrompts').show()
+#    if user.prompts is undefined
+#      $('#yourPrompt').hide()
+#      $('#noPrompts').show()
 
-    else
-      console.log 'loading models'
-      i=0
-      buttonString = ""
-      buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
-      buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
-      buttonString3 = '</span></button>'
-      #bad guess
-      for i in user.prompts
+    console.log 'loading models'
+    i=0
+    buttonString = ""
+    buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
+    buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
+    buttonString3 = '</span></button>'
+    userPrompts = $.getJSON("/getPrompts").done ->
+      console.log "success"
+      userPrompts = userPrompts.responseJSON
+      console.log userPrompts
+
+      for i in userPrompts
         do (i) ->
           buttonString += buttonString1 + i + buttonString2 + i + buttonString3
 
-      $('yourPrompt').html(buttonString)
+      $('#customModels').append(buttonString)
 
     this
 
