@@ -217,7 +217,7 @@ class window.uploadCSVView extends Backbone.View
     console.log('numFields:' + numFields)
     while i > 0
       divID = "visField" + (j - i)
-      document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization'></div>"
+      document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization sideBySide'></div>"
       i--
 
     ##array = array[1..array.length-1]
