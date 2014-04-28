@@ -169,6 +169,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     font-size: 64px;
     color: white;
 }
+.glyphicon-red {
+    color: red;
+}
 
 .box {
     color: white;
