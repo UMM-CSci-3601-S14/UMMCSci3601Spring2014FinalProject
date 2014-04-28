@@ -162,16 +162,14 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     border-radius: 10px;
     text-align: center;
 }
-
-#yourEssayContents{
-    width: 100%;
-    min-height: 200px;
+#essayArea{
+    display: none;
 }
 
-/*#noModels{
+#noPrompts{
     display: none;
     text-align: center;
-}*/
+}
 
 .glyphicon-large {
     font-size: 64px;
@@ -310,4 +308,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 
 .visualization {
     height: 300px;
+    width: 175px;
+}
+
+.selector {
+display: inline-block;
 }

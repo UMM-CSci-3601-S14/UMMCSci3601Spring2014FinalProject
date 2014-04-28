@@ -5,12 +5,12 @@ class window.modelView extends Backbone.View
   events:
     'click button#hideWait' : 'hideWait'
 
-    ###Big Blue Buttons###
+      ###Big Blue Buttons###
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
     'click button#uploadZip' : 'uploadZip'
 
-    ###Buttons Hidden Initally###
+      ###Buttons Hidden Initally###
     'click button#editPrompt': 'editPrompt'
     'click button#savePrompt': 'savePrompt'
 
@@ -49,7 +49,7 @@ class window.modelView extends Backbone.View
 
       $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
-      $('#makeTut').show()
+      $('#fieldTut').show()
 
   editPrompt: ->
     $('#editPrompt').hide();

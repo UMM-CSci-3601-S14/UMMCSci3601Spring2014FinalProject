@@ -36,36 +36,41 @@
       return this;
     };
 
-    return CSVView;
-
-  })(Backbone.View);
-
-  ({
 
     /*
     These functions are found in funtions.html
      */
-    downloadCSV: function() {
+
+    CSVView.prototype.downloadCSV = function() {
       return exportToCSV();
-    },
-    add: function() {
-      return add();
-    },
-    "delete": function() {
+    };
+
+    CSVView.prototype.add = function() {
+      add();
+      return $("#titleV").show();
+    };
+
+    CSVView.prototype["delete"] = function() {
       return del();
-    },
-    saveFields: function() {
-      saveFields();
+    };
+
+    CSVView.prototype.saveFields = function() {
+      saveFieldNames();
       $("#fieldTut").hide();
       return $("#textTut").show();
-    },
-    cancel: function() {
+    };
+
+    CSVView.prototype.cancel = function() {
       return cancelReplace();
-    },
-    replace: function() {
+    };
+
+    CSVView.prototype.replace = function() {
       return replace();
-    }
-  });
+    };
+
+    return CSVView;
+
+  })(Backbone.View);
 
 }).call(this);
 

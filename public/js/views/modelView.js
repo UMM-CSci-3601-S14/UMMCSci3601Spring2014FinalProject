@@ -67,7 +67,7 @@
         $('#makeCSV').hide();
         $('#csvArea').html(new window.CSVView().$el);
         $('#welcomeTut').hide();
-        return $('#makeTut').show();
+        return $('#fieldTut').show();
       }
     };
 
