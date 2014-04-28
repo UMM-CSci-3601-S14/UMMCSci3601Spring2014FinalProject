@@ -274,9 +274,9 @@ class window.uploadCSVView extends Backbone.View
     while i < arrayOfDict[fieldNum].keys.length
       tempValue = arrayOfDict[fieldNum].values[i]
       if tempValue <= 100 and tempValue > 50
-        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submition. You may proceed to make a model but it is not advised. "
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submission. You may proceed to make a model but it is not advised. "
       if tempValue <= 50
-        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submition. Add more values before proceeding to make a model. "
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submission. Add more values before proceeding to make a model. "
       tempKey = (arrayOfDict[fieldNum].keys[i]).toString()
       console.log
       dataPointsTemplate.push
