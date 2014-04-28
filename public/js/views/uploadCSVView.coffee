@@ -130,6 +130,7 @@ class window.uploadCSVView extends Backbone.View
                                         error: ->
                                           console.log "failed"
                                       }
+                                      newAnswerSet = new createAnswerSet({"prompt": finalPrompt.attributes.url, "trained_models": finalPrompt.attributes.trained_models})
 
                                     window.clearInterval trainTaskLoop
 

@@ -42,6 +42,19 @@
 
   })(superPost);
 
+  window.createAnswerSet = (function(_super) {
+    __extends(createAnswerSet, _super);
+
+    function createAnswerSet() {
+      return createAnswerSet.__super__.constructor.apply(this, arguments);
+    }
+
+    createAnswerSet.prototype.urlRoot = 'https://try-api.lightsidelabs.com/api/answer-sets/';
+
+    return createAnswerSet;
+
+  })(superPost);
+
   window.clonePrompt1 = (function(_super) {
     __extends(clonePrompt1, _super);
 
