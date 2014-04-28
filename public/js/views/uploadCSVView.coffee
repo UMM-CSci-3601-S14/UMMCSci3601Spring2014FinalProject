@@ -141,6 +141,7 @@ class window.uploadCSVView extends Backbone.View
 
             xhr.send(form)
 
+  ##This function begins the process of visualization. It grabs the inputed csv and sends it to doVizualization
   submitCSV: ->
     document.getElementById('visFields').innerHTML = ""
     fileInput = document.getElementById("fileInput")
@@ -157,7 +158,8 @@ class window.uploadCSVView extends Backbone.View
     else
       alert "File not supported!"
 
-  #This function will call every visualization function in a chain.
+  # doVisualization takes the string format of the csv and begins to visualize the data, first it grabs the first line to determine
+  # the names of the feilds. It then seperates each input of the csv into an array, and creates the divs in the html to hold the graphs that will be made.
   doVisualization = (csvString) ->
     currentField = 1
     numFields = 0
@@ -215,6 +217,8 @@ class window.uploadCSVView extends Backbone.View
 
     getFields array
     return
+
+  ## This function takes the array made by doVisualization and creates an Array of arrays where each input of the array is an array of all inputs of one field.
   getFields = (CSVArray) ->
     arrayOfArrays = new Array()
     i = 0
@@ -228,9 +232,9 @@ class window.uploadCSVView extends Backbone.View
         j++
       i++
 
-    #sets arrayOfArrays to be an array of each field (including the field name at the first index of each sub-array!).
     countGrades arrayOfArrays
     return
+  # this makes an array of Dictionaries that is handed to createData.
   countGrades = (arrayOfArrays) ->
 
     #arrayOfDicts will contain a dictionary of occurrences for each field
@@ -243,9 +247,8 @@ class window.uploadCSVView extends Backbone.View
       createData i, arrayOfDict
       i++
     return
+  # this creates a key value pair system that holds each particular vield value (held as the key) and the number of occurences of the value is stored as the value. it then returns the dictionary
   generateMap = (arrayOfStrings) ->
-
-    #Makes a dictionary of key value pairs based on occurrences within the given array. Returns the dictionary.
     map = new Dictionary()
     i = 1
 
@@ -255,7 +258,7 @@ class window.uploadCSVView extends Backbone.View
       i++
     map
 
-  #fieldNum is the index that a field is on
+  #createData takes the array of dictionaries from countGrades and the number of fields, and creates a graph containing the values and keys for each feild of the csv
   createData = (fieldNum, arrayOfDict) ->
     tempValue = undefined
     tempKey = undefined
@@ -271,9 +274,9 @@ class window.uploadCSVView extends Backbone.View
     while i < arrayOfDict[fieldNum].keys.length
       tempValue = arrayOfDict[fieldNum].values[i]
       if tempValue <= 100 and tempValue > 50
-        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For a optimal model you should have 100 of each submition. You may proceed to make a model but it is not advised. "
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submition. You may proceed to make a model but it is not advised. "
       if tempValue <= 50
-        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For a optimal model you should have 100 of each submition. Add more values before proceeding to make a model. "
+        areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submition. Add more values before proceeding to make a model. "
       tempKey = (arrayOfDict[fieldNum].keys[i]).toString()
       console.log
       dataPointsTemplate.push
