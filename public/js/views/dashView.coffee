@@ -4,7 +4,6 @@ class window.dashView extends Backbone.View
 
   events:
     'click button#createModelBox' : 'loadModelMaker'
-#    'click button#yourModels': 'loadModelsInAccount'
     'click button.yourPrompt': 'loadYourPrompts'
 
     'click button#pickEssay1' : 'loadEssay1'
@@ -45,10 +44,12 @@ class window.dashView extends Backbone.View
 
     this
 
+  loadModelMaker: ->
+    window.location.href = '/model-maker'
+
   loadYourPrompts: ->
     $('.yourPrompt').click ->
       prompt = this.id
-      console.log prompt
       thePrompt = new request
       thePrompt.urlRoot = prompt
       thePrompt.fetch().done ->
