@@ -21,6 +21,8 @@
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',
+
+      /*Buttons Hidden Initally */
       'click button#editPrompt': 'editPrompt',
       'click button#savePrompt': 'savePrompt'
     };

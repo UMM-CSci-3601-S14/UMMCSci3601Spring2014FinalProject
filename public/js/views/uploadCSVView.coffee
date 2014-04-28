@@ -9,7 +9,7 @@ class window.uploadCSVView extends Backbone.View
   numFields = 0
   fieldArray = []
   fieldNames = []
-  currentField = 0
+  currentField = 1
 
 
 
@@ -179,7 +179,10 @@ class window.uploadCSVView extends Backbone.View
 
   #This function will call every visualization function in a chain.
   doVisualization = (csvString) ->
-
+    currentField = 1
+    numFields = 0
+    fieldArray = []
+    fieldNames = []
     #Hides #visHeader if nothing has been added
     $("#visHeader1").show()  if documentsAdded > 0
 
@@ -191,12 +194,17 @@ class window.uploadCSVView extends Backbone.View
     array = new Array()
     endPoint = 0
     text = csvString
-    until text.search("\r") is -1
-      endPoint = text.search("\r")
+    newLine = "\r"
+    if text.search("\r") == -1
+      console.log "msagjhdfg"
+      newLine = "\n"
+    until text.search(newLine) is -1
+      endPoint = text.search(newLine)
       array.push text.slice(0, endPoint)
       text = text.slice(endPoint + 1, text.length)
 
     fieldControl = array[0]
+    console.log(fieldControl)
     numFields = 0
     until fieldControl.search(",") is -1
       console.log numFields
@@ -206,6 +214,7 @@ class window.uploadCSVView extends Backbone.View
       numFields++
     i = numFields
     j = i+1
+    console.log('numFields:' + numFields)
     while i > 0
       divID = "visField" + (j - i)
       document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization'></div>"
@@ -327,7 +336,7 @@ class window.uploadCSVView extends Backbone.View
       console.log "SOMTHIN"
       chart.render()
       document.getElementById("results").innerHTML = areYouGood
-    currentField++
+      currentField++
     return
 
   #Dictionary class and methods. Custom data structure!! :D

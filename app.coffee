@@ -30,7 +30,7 @@ app.set 'partials',
 app.engine 'html', require ("hogan-express")
 app.enable 'view cache'
 app.configure ->
-  app.set "port", process.env.PORT or 3002
+  app.set "port", process.env.PORT or 3000
   app.set "views", __dirname + "/views"
   app.set "view engine", "html"
   app.use express.favicon()
