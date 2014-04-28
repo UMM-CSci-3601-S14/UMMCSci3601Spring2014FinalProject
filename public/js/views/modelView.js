@@ -16,6 +16,8 @@
 
     modelView.prototype.events = {
       'click button#hideWait': 'hideWait',
+
+      /*Big Blue Buttons */
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',
@@ -61,7 +63,7 @@
         $('#makeCSV').hide();
         $('#csvArea').html(new window.CSVView().$el);
         $('#welcomeTut').hide();
-        return $('#makeTut').show();
+        return $('#fieldTut').show();
       }
     };
 

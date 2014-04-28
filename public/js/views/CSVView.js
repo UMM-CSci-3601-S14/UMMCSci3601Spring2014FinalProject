@@ -36,28 +36,43 @@
       return this;
     };
 
+
+    /*
+    These functions are found in funtions.html
+     */
+
     CSVView.prototype.downloadCSV = function() {
       return exportToCSV();
     };
 
     CSVView.prototype.add = function() {
-      return add();
+      add();
+      $("#titleV").show();
+      return $("#docTut").show();
     };
 
     CSVView.prototype["delete"] = function() {
-      return del();
+      del();
+      if (documentsAdded > 0) {
+        return $("#docTut").show();
+      }
     };
 
     CSVView.prototype.saveFields = function() {
-      return saveFields();
-    };
-
-    CSVView.prototype.replace = function() {
-      return replace();
+      saveFieldNames();
+      $("#fieldTut").hide();
+      return $("#textTut").show();
     };
 
     CSVView.prototype.cancel = function() {
-      return cancelReplace();
+      cancelReplace();
+      $("#textTut").show();
+      return $("#docTut").show();
+    };
+
+    CSVView.prototype.replace = function() {
+      replace();
+      return $("#docTut").show();
     };
 
     return CSVView;

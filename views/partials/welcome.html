@@ -4,7 +4,7 @@
         <h3 id="promptTitle" class="title"></h3>
         <p id="promptDescription"></p>
 
-        <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+        <textarea autofocus id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
         <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
 
         <div id="sandboxResults">
@@ -44,12 +44,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h1 class="text-center">Welcome</h1>
+                    <h1 class="text-center">Welcome!!</h1>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="/" class="form col-md-12 center-block">
                         <div class="form-group">
-                            <input name="email" type="text" class="form-control input-lg" placeholder="Email">
+                            <input name="email" type="text" class="form-control input-lg" placeholder="Email" autofocus>
                         </div>
                         <div class="form-group">
                             <input name="password" type="password" class="form-control input-lg" placeholder="Password">

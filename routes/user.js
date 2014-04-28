@@ -105,3 +105,5 @@ Module dependencies.
   module.exports = passport;
 
 }).call(this);
+
+//# sourceMappingURL=user.map

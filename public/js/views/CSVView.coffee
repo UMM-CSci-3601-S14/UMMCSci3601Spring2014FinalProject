@@ -10,8 +10,6 @@ class window.CSVView extends Backbone.View
     'click button#replace': 'replace'
     'click button#cancel': 'cancel'
 
-
-
   initialize: ->
     @render()
 
@@ -23,25 +21,33 @@ class window.CSVView extends Backbone.View
       "WARNING: Reloading the page will restart the process and you will lose all of your data!"
     this
 
-
-###These functions are found in funtions.html###
+  ###
+  These functions are found in funtions.html
+  ###
 
   downloadCSV: ->
-    exportToCSV();
+    exportToCSV()
 
   add: ->
     add()
+    $("#titleV").show()
+    $("#docTut").show()
 
   delete: ->
     del()
+    if documentsAdded > 0
+      $("#docTut").show()
 
   saveFields: ->
-    saveFields();
+    saveFieldNames();
     $("#fieldTut").hide()
     $("#textTut").show()
 
-  replace: ->
-    replace()
-
   cancel: ->
     cancelReplace()
+    $("#textTut").show()
+    $("#docTut").show()
+
+  replace: ->
+     replace()
+     $("#docTut").show()

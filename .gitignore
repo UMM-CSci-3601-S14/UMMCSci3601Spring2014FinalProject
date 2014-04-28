@@ -3,3 +3,4 @@ db
 coverage
 node_modules
 .idea
+.map
