@@ -41,7 +41,18 @@ class window.dashView extends Backbone.View
 
       for i in userPrompts
         do (i) ->
-          buttonString += buttonString1 + i + buttonString2 + i + buttonString3
+          if i.length <= 50
+            if i.indexOf(" ") >= 14
+              x = i[0..14]
+              x += '...'
+              buttonString += buttonString1 + i + buttonString2 + x + buttonString3
+            else
+
+                buttonString += buttonString1 + i + buttonString2 + i + buttonString3
+          else
+            x = i[0..30]
+            x += '...'
+            buttonString += buttonString1 + i + buttonString2 + x + buttonString3
 
       $('#customModels').append(buttonString)
 
