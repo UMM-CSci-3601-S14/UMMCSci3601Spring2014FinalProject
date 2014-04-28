@@ -115,6 +115,7 @@ class window.uploadCSVView extends Backbone.View
                                 pollTrainTask.fetch().done ->
 
                                   if pollTrainTask.attributes.status == 'S'
+                                    $('#waitMessage').text('Your model has been successfully made!')
                                     window.alert 'Training task was SUCCESSFUL'
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
@@ -135,6 +136,7 @@ class window.uploadCSVView extends Backbone.View
                                     window.clearInterval trainTaskLoop
 
                                   if pollTrainTask.attributes.status == 'U'
+                                    $('#waitMessage').text('Making your model was unsuccessful')
                                     window.alert 'Training task was UNSUCCESSFUL'
                                     window.clearInterval trainTaskLoop
 
@@ -149,6 +151,7 @@ class window.uploadCSVView extends Backbone.View
 
                         #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
                         if uploadTask.attributes.status == 'U'
+                          $('#waitMessage').text('Making your model was unsuccessful')
                           console.log "Prediction Task was UNSUCCESSFUL"
                           window.clearInterval looping
                           window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")

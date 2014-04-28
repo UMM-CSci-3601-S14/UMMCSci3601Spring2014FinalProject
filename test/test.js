@@ -124,7 +124,9 @@
    */
 
 
-  /*test.describe "gradingOnTheDemo", ->
+  /*
+  
+  test.describe "gradingOnTheDemo", ->
     test.describe "testABadPaper", ->
       test.it "should return the label being 1", ->
         driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
@@ -168,6 +170,44 @@
           assert.equal(value, "Your grade for the submitted essay is 5 out of 5.")
   
           driver.close()
+  
+  
+  test.describe "testModelMaking", ->
+    test.describe "testing a good model", ->
+      test.it "should return true if the model is being created", ->
+        driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build()
+  
+        driver.get('http://localhost:3000/login')
+  
+        driver.findElement(webdriver.By.name('email')).sendKeys("smolu004@morris.umn.edu")
+        driver.findElement(webdriver.By.name('password')).sendKeys("Butts")
+        driver.findElement(webdriver.By.name('logIn')).click()
+  
+        driver.get('http://localhost:3000/model-maker')
+  
+        driver.findElement(webdriver.By.id('promptTitle')).sendKeys("test-title")
+        driver.findElement(webdriver.By.id('promptDescription')).sendKeys("test-description")
+        driver.findElement(webdriver.By.id('cDescription')).sendKeys("test-class-description")
+        driver.findElement(webdriver.By.id('uploadCSV')).click()
+        driver.findElement(webdriver.By.id('fileInput')).sendKeys("/home/smolu004/Desktop/sdfgdsf.csv")
+   */
+
+
+  /*Getting rid of the alert: */
+
+
+  /*
+        dumbAlert = driver.switchTo().alert()
+        dumbAlert.accept()
+  
+  
+        driver.findElement(webdriver.By.id('submitCSV1')).click()
+        driver.sleep(100000)
+        dumbAlert = driver.switchTo().alert()
+        dumbAlert.accept()
+        driver.findElement(webdriver.By.id('waitMessage')).getAttribute('textContent').then (value) ->
+           assert.equal(value, "Your model was successfully made!")
+           driver.close()
    */
 
 }).call(this);

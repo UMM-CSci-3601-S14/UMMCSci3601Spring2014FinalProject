@@ -101,4 +101,4 @@ function Dictionary(){
 }
 
 module.exports.Dictionary = Dictionary;
-module.exports.generateMap = generateMap
+module.exports.generateMap = generateMap;
