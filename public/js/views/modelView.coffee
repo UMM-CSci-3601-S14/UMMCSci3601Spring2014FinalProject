@@ -29,6 +29,8 @@ class window.modelView extends Backbone.View
       $('#uploadCSV').hide();
       $('#makeCSV').hide();
 
+      $('#welcomeTut').hide()
+      $('#refreshWarning').hide()
       $('#csvArea').html new window.uploadCSVView().$el
 
   uploadZip: ->
@@ -38,6 +40,9 @@ class window.modelView extends Backbone.View
       $('#uploadCSV').hide();
       $('#makeCSV').hide();
 
+      $('#welcomeTut').hide()
+      $('#refreshWarning').hide()
+      $('#whatIsCSV').hide()
       $('#csvArea').html new window.uploadZipView().$el
 
   makeCSV: ->
@@ -47,9 +52,10 @@ class window.modelView extends Backbone.View
       $('#uploadCSV').hide();
       $('#makeCSV').hide();
 
-      $('#csvArea').html new window.CSVView().$el
       $('#welcomeTut').hide()
+      $('#whatIsCSV').hide()
       $('#fieldTut').show()
+      $('#csvArea').html new window.CSVView().$el
 
   editPrompt: ->
     $('#editPrompt').hide();

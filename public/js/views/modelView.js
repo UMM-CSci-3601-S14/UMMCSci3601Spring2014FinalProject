@@ -43,6 +43,8 @@
         $('#uploadZip').hide();
         $('#uploadCSV').hide();
         $('#makeCSV').hide();
+        $('#welcomeTut').hide();
+        $('#refreshWarning').hide();
         return $('#csvArea').html(new window.uploadCSVView().$el);
       }
     };
@@ -53,6 +55,9 @@
         $('#uploadZip').hide();
         $('#uploadCSV').hide();
         $('#makeCSV').hide();
+        $('#welcomeTut').hide();
+        $('#refreshWarning').hide();
+        $('#whatIsCSV').hide();
         return $('#csvArea').html(new window.uploadZipView().$el);
       }
     };
@@ -63,9 +68,10 @@
         $('#uploadZip').hide();
         $('#uploadCSV').hide();
         $('#makeCSV').hide();
-        $('#csvArea').html(new window.CSVView().$el);
         $('#welcomeTut').hide();
-        return $('#fieldTut').show();
+        $('#whatIsCSV').hide();
+        $('#fieldTut').show();
+        return $('#csvArea').html(new window.CSVView().$el);
       }
     };
 
