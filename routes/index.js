@@ -182,7 +182,6 @@
         console.log("err");
       }
       if (result) {
-        console.log(result);
         return res.send(500, "Email is already being used");
       } else {
         newUser = new User(req.body);
@@ -192,11 +191,32 @@
     });
   };
 
+  exports.getPromptArray = function(req, res) {
+    var prompts;
+    prompts = Array;
+    return User.findOne({
+      email: req.user.email
+    }, {
+      promptArray: true
+    }, {
+      _id: false
+    }, function(err, result) {
+      if (err) {
+        res.send(500, "Prompts not found");
+      }
+      if (result) {
+        prompts = result.promptArray;
+        return res.send(prompts);
+      } else {
+        return res.send(500, "else");
+      }
+    });
+  };
+
   exports.addPrompt = function(req, res) {
     var currentUser, promptToAdd;
     currentUser = req.user.email;
     promptToAdd = req.body.promptArray;
-    console.log(req.body.promptArray);
     User.update({
       email: currentUser
     }, {

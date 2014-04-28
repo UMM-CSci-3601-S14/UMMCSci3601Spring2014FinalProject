@@ -33,6 +33,7 @@ populateDB = ->
       email: 'vinkx009@morris.umn.edu'
       firstName: 'Zachary'
       surname: 'Vink'
+      promptArray: ["Informative essay on goat milking", "Underwater basket-weaving", "Above water basket-weaving"]
     },
     {
       password: '4321'

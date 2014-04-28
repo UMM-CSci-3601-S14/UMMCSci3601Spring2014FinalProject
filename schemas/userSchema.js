@@ -11,7 +11,8 @@
     email: String,
     firstName: String,
     surname: String,
-    promptArray: [String]
+    promptArray: [String],
+    authorURL: String
   });
 
   user = mongoose.model('user', userSchema);

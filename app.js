@@ -50,7 +50,7 @@ Module dependencies.
   app.enable('view cache');
 
   app.configure(function() {
-    app.set("port", process.env.PORT || 3000);
+    app.set("port", process.env.PORT || 3002);
     app.set("views", __dirname + "/views");
     app.set("view engine", "html");
     app.use(express.favicon());
@@ -96,7 +96,7 @@ Module dependencies.
 
   app.get("/account", routes.account);
 
-  app.post("/addPrompt", routes.addPrompt);
+  app.get('/getPrompts', routes.getPromptArray);
 
   app.post('/create', routes.create);
 

@@ -44,7 +44,8 @@ Module dependencies.
         password: '1234',
         email: 'vinkx009@morris.umn.edu',
         firstName: 'Zachary',
-        surname: 'Vink'
+        surname: 'Vink',
+        promptArray: ["Informative essay on goat milking", "Underwater basket-weaving", "Above water basket-weaving"]
       }, {
         password: '4321',
         email: 'lal@lol.com',
