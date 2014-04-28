@@ -39,12 +39,16 @@
 
     newUserView.prototype.create = function() {
       var newAuthor;
-      return newAuthor = new author({
-        designator: $('#createEmail').val()
-      }).save().done(function() {
-        if ($('#createPassword').val().length === 0 || $('#createEmail').val().length === 0 || $('#createFirstName').val().length === 0 || $('#createSurname').val().length === 0) {
-          return $('#emptyField').show();
-        } else {
+      $('#passwordTooShort').hide();
+      $('#emptyField').hide();
+      if ($('#createPassword').val().length < 6) {
+        return $('#passwordTooShort').show();
+      } else if ($('#createEmail').val().length === 0 || $('#createFirstName').val().length === 0 || $('#createSurname').val().length === 0) {
+        return $('#emptyField').show();
+      } else {
+        return newAuthor = new author({
+          designator: $('#createEmail').val()
+        }).save().done(function() {
           return Backbone.ajax({
             type: "POST",
             url: "/create",
@@ -64,8 +68,8 @@
               return $('#emailIsTaken').show();
             }
           });
-        }
-      });
+        });
+      }
     };
 
     return newUserView;

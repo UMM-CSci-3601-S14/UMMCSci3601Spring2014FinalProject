@@ -22,13 +22,17 @@ class window.accountView extends Backbone.View
     $('#successPasswordChange').hide()
     $('#failedPasswordChange').hide()
     $('#passwordMismatch').hide()
+    $('#passwordTooShort').hide()
 
   endChangePassword: ->
     $('#successPasswordChange').hide()
     $('#failedPasswordChange').hide()
     $('#passwordMismatch').hide()
+    $('#passwordTooShort').hide()
     if $('#newPassword').val() isnt $('#confirmNewPassword').val()
       $('#passwordMismatch').show()
+    else if $('#newPassword').val().length < 6
+      $('#passwordTooShort').show()
     else
       Backbone.ajax {
         type: "POST"
@@ -55,3 +59,4 @@ class window.accountView extends Backbone.View
     $('#confirmNewPassword').val("")
     $('#successPasswordChange').hide()
     $('#failedPasswordChange').hide()
+    $('#passwordTooShort').hide()

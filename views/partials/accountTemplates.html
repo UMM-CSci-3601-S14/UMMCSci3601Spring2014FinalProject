@@ -15,7 +15,7 @@
                     </div>
                     {{{failed}}} <br/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" value="Log In" name="logIn">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-lg•••• btn-block" value="Log In" name="logIn">Sign In</button>
                     </div>
                 </form>
             </div>
@@ -53,11 +53,14 @@
                             <label>Surname:</label><br/>
                             <input name="createSurname" class="form-control" id="createSurname" type="text" placeholder="Surname" value="<%= surname %>"/>
                         </div>
-                        <div class="form-group">
-                            <button class="create btn btn-primary btn-lg btn-block">Create Account</button>
-                        </div>
                         <div class="warning" id="emptyField">
                             <p><b>One of the required fields above is empty!</b></p>
+                        </div>
+                        <div id="passwordTooShort" class="warning">
+                            <p><b>Your new password must be at least six characters!</b></p>
+                        </div>
+                        <div class="form-group">
+                            <button class="create btn btn-primary btn-lg btn-block">Create Account</button>
                         </div>
                     </div>
                 </div>
@@ -107,7 +110,10 @@
                         <p><b>Your old password was incorrect!</b></p>
                     </div>
                     <div id="passwordMismatch" class="warning">
-                        <p><b>New password and confirm new password do not match.<b></p>
+                        <p><b>New password and confirm new password do not match!<b></p>
+                    </div>
+                    <div id="passwordTooShort" class="warning">
+                        <p><b>Your new password must be at least six characters!</b></p>
                     </div>
                 </div>
                 <div class="modal-footer">

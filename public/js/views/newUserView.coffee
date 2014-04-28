@@ -19,10 +19,14 @@ class window.newUserView extends Backbone.View
     this
 
   create: ->
-    newAuthor = new author({designator: $('#createEmail').val()}).save().done ->
-      if $('#createPassword').val().length == 0 or $('#createEmail').val().length == 0 or $('#createFirstName').val().length == 0 or $('#createSurname').val().length == 0
-        $('#emptyField').show()
-      else
+    $('#passwordTooShort').hide()
+    $('#emptyField').hide()
+    if $('#createPassword').val().length < 6
+      $('#passwordTooShort').show()
+    else if $('#createEmail').val().length == 0 or $('#createFirstName').val().length == 0 or $('#createSurname').val().length == 0
+      $('#emptyField').show()
+    else
+      newAuthor = new author({designator: $('#createEmail').val()}).save().done ->
         Backbone.ajax {
           type: "POST"
           url: "/create"
