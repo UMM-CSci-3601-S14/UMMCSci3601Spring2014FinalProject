@@ -9,7 +9,8 @@ class window.prompt2 extends superPost
 class window.prompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/'
 
-
+class window.createAnswerSet extends superPost
+  urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/'
 
 #  Clone is presently unused/commented out.
 class window.clonePrompt1 extends superPost
