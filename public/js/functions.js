@@ -82,7 +82,7 @@ function fieldCollapse() {
     promptDescript = $("#promptDescription").val();
     cDescript = $("#cDescription").val();
 
-        $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript).show();
+    $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript).show();
 
     $('#promptSpace').hide();
     $('#editPrompt').show();
@@ -170,11 +170,11 @@ function add() {
 //Returns true or false. False if all fields and text area have contents.
 function emptyFields() {
     for (var i = 1; i <= numFields; i++) {
-    if ($("#toScore" + i + "").val() == "") {
-    return true;
+        if ($("#toScore" + i + "").val() == "") {
+            return true;
+        }
     }
-}
-return $("#text").val() == "";
+    return $("#text").val() == "";
 }
 
 //Hides cancel, the edit tutorial, and replace, shows submit, the text tutorial, and add
@@ -186,7 +186,7 @@ function editButtons() {
     $("#add").show();
     $("#textTut").show();
     $("#editDocs").hide();
-    }
+}
 /****************************************************************************************/
 
 //Changes the color of the docBox.
@@ -194,7 +194,7 @@ function docBoxColors(element, bgColor, color, bdColor) {
     $(element).css("background-color", bgColor);
     $(element).css("color", color);
     $(element).css("border-color",bdColor);
-    }
+}
 
 /******************************REPLACING/EDITING ESSAYS******************************************/
 //Performs the replacing in myCSV. UGLY! But it works.
@@ -209,16 +209,16 @@ function replace() {
                 for (var j = 1; j <= numFields; j++) {
                     toReplace += $("#toScore" + j + "").val() + ",";
                 }
-    toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
-    myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
+            toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
+            myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at            that line.
 
-    selected = 0;
-    clearAllFields();
-    deselect();
-    doVisualization();
-    return;
-             }
-         }
+            selected = 0;
+            clearAllFields();
+            deselect();
+            doVisualization();
+            return;
+            }
+        }
     }
 }
 
@@ -227,25 +227,25 @@ function replace() {
 //Used in the replace function, takes in two indices of a string and replaces that range of the string with other given text
 function replaceAt(str, start, end, text) {
     return str.substring(0, start) + text + str.substring(end + 1);
-    }
+}
 
 //Deselects all docBoxes
 function deselect() {
     var boxes = document.getElementById('pastDocs').getElementsByTagName('*');
 
     for (var j = 0; j < boxes.length; j++) {
-    var e = boxes[j];
+        var e = boxes[j];
 
-    e.style.backgroundColor = '#BAD0FF';
-    e.style.color = 'black';
-    e.style.borderColor = '#5E79B2';
+        e.style.backgroundColor = '#BAD0FF';
+        e.style.color = 'black';
+        e.style.borderColor = '#5E79B2';
     }
 }
 
 //Clears all text in text boxes in all field EXCEPT title
 function clearAllFields() {
     for (var k = 1; k <= numFields; k++) {
-    $("#toScore" + k + "").val("");
+        $("#toScore" + k + "").val("");
     }
     $("#text").val("");
 }
@@ -255,7 +255,7 @@ function cancelReplace() {
     deselect();
     editButtons();
     clearAllFields();
-    }
+}
 
 //Hides submit, the text tutorial, and add, shows cancel, edit tutorial, and replace.
 function addingButtons() {
@@ -266,7 +266,7 @@ function addingButtons() {
     $("#cancel").show();
     $("#textTut").hide();
     $("#editDocs").show();
-    }
+}
 /*******************************************************************************/
 
 
@@ -278,7 +278,8 @@ function del() {
    var toDelete = 0;
    var i = 0;
    var nextLine = 0;
-    console.log(selectedSection);
+   console.log(selectedSection);
+
    while(i < selectedSection) {
        nextLine = newCSV.search("\n");
        toDelete += newCSV.search("\n");
