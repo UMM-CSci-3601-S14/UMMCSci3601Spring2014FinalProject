@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form method="post" action="/" class="form col-md-12 center-block">
                     <div class="form-group">
-                        <input name="email" type="text" class="form-control input-lg" placeholder="Email" autofocus="autofocus">
+                        <input name="email" type="text" class="form-control input-lg" placeholder="Email" autofocus>
                     </div>
                     <div class="form-group">
                         <input name="password" type="password" class="form-control input-lg" placeholder="Password">
@@ -39,7 +39,7 @@
                         <p id="emailIsTaken" class="warning">The email you have entered is already in use!</p>
                         <div class="form-group">
                             <label>Email:</label><br/>
-                            <input name="createEmail" class="form-control" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/>
+                            <input autofocus="" name="createEmail" class="form-control" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/>
                         </div>
                         <div class="form-group">
                             <label>Desired Password:</label><br/>
