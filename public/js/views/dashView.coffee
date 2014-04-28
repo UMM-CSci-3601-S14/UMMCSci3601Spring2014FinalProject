@@ -36,6 +36,7 @@ class window.dashView extends Backbone.View
       buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
       buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
       buttonString3 = '</span></button>'
+      #bad guess
       for i in user.prompts
         do (i) ->
           buttonString += buttonString1 + i + buttonString2 + i + buttonString3
@@ -44,20 +45,22 @@ class window.dashView extends Backbone.View
 
     this
 
-  loadYourPrompts = (req, res) ->
-    prompt = req.id
-    thePrompt = new request
-    thePrompt.urlRoot = prompt
-    thePrompt.fetch().done ->
-      $('#promptTitle').html(thePrompt.responseJSON.title)
-      $('#promptDescription').html(thePrompt.responseJSON.description)
+  loadYourPrompts: ->
+    $('.yourPrompt').click ->
+      prompt = this.id
+      console.log prompt
+      thePrompt = new request
+      thePrompt.urlRoot = prompt
+      thePrompt.fetch().done ->
+        $('#promptTitle').html(thePrompt.attributes.title)
+        $('#promptDescription').html(thePrompt.attributes.description)
 
-#    yourAuthor
+  #    yourAuthor
 
-#    yourAnswerSet
-      $('#yourModel').show()
-      $('#essayContents').val("")
-      $('#essayArea').show()
+  #    yourAnswerSet
+        $('#yourModel').show()
+        $('#essayContents').val("")
+        $('#essayArea').show()
 
 
 
