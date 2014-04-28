@@ -311,6 +311,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     width: 175px;
 }
 
-.selector {
-display: inline-block;
+.sideBySide {
+    display: inline-block;
 }
