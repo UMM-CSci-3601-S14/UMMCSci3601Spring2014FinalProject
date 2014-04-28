@@ -10,7 +10,6 @@ class window.CSVView extends Backbone.View
     'click button#replace': 'replace'
     'click button#cancel': 'cancel'
 
-
   initialize: ->
     @render()
 
@@ -32,9 +31,12 @@ class window.CSVView extends Backbone.View
   add: ->
     add()
     $("#titleV").show()
+    $("#docTut").show()
 
   delete: ->
     del()
+    if documentsAdded > 0
+      $("#docTut").show()
 
   saveFields: ->
     saveFieldNames();
@@ -43,6 +45,9 @@ class window.CSVView extends Backbone.View
 
   cancel: ->
     cancelReplace()
+    $("#textTut").show()
+    $("#docTut").show()
 
   replace: ->
      replace()
+     $("#docTut").show()
