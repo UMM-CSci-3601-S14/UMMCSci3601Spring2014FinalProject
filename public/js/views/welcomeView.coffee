@@ -14,9 +14,6 @@ class window.welcomeView extends Backbone.View
     thePrompt = new prompt1().fetch().done ->
       $('#promptTitle').html('Prompt: ' + thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-    #this is not used because we only need one clone for each different prompt
-      #theClone = new clonePrompt1().save()
-      #console.log theClone.responseJSON
     @render()
     return
 
@@ -36,74 +33,56 @@ class window.welcomeView extends Backbone.View
     $('#less').hide()
 
   submitEssay: ->
-    # alerts user if no text has been entered
+    # Alerts user if no text has been entered
     if $('#essayContents').val() is ""
       alert "Please enter text to for LightSide to Grade."
 
     else
-      #Start calls to LightSide API
 
-      #Show results area
       $('#sandboxResults').show(500)
+      # Get default author and answer set
+      theAuthor = new author({designator: "LightsideDefault", email: "test@gmail.com"}).fetch().done ->
+        theAnswerSet = new answerSet1().fetch().done ->
 
-      #Begin calls to the LightSide API
-      theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
-
-        theAnswerSet = new answerSet1({
-        }).fetch().done ->
-          console.log theAnswerSet
-
+          # Create answer from contents of #essayContents
           theAnswer = new answer({
             author: theAuthor.responseJSON.results[0].url
             answer_set: theAnswerSet.responseJSON.url
             text:  $('#essayContents').val()
           }).save().done ->
 
-            # We start the process for getting a grade for the essay written in the answer area
+            # Post a prediction task to calculate the grade of the essay.
             thePredictionTask = new predictionTask({
               answer_set: theAnswerSet.responseJSON.url
               trained_model: thePrompt.responseJSON.default_models[0]
             }).save().done ->
 
-              #request sent to the api for processing
+              # Adds the prediction task to the process queue
               theProcess = new request()
               theProcess.urlRoot = thePredictionTask.responseJSON.process
               theProcess.save().done ->
 
-                #request used to checks status of the prediction process
+                # Request for checking status of essay grade calculation every second
                 thePredictionStatus = new request()
-
-
-                # a loop to wait for the api to grade the answer, waits 1 second.
                 looping = setInterval (->
 
-                  # To make sure that we send to https in stead of the http that theProcess returns
                   thePredictionStatus.urlRoot = theProcess.attributes.url
                   thePredictionStatus.fetch().done ->
 
-                    console.log "Prediction Task status: " + thePredictionStatus.attributes.status
-
-                    # If the grading is compleat then the status will be set to 'S' and we can exit the loop and return the grade
                     if thePredictionStatus.attributes.status == 'S'
-                      console.log "Prediction Task was SUCCESSFUL"
 
-                      # Get the result from the api, and grab the grade from that JSON object
+                      # Gets the grade
                       thePredictionResult = new predictionResult().fetch().done ->
                         $('#grade').html("Your grade for the submitted essay is " +
                         thePredictionResult.responseJSON.results[0].label + " out of 5.")
 
-                        answerGraded = new answer
-
-                      # Ternimate loop.
                       window.clearInterval looping
 
-                    # If the grading was rejected then the status will be set to 'U' and there is no point in continuing the loop
                     if thePredictionStatus.attributes.status == 'U'
-                      console.log "Prediction Task was UNSUCCESSFUL"
-                      $('#grade').html("The grading process was unsucessful. Please wait before resubmitting.")
 
-                      # Terminate loop
+                      $('#grade').html("The grading process was unsucessful. Please wait before resubmitting.")
                       window.clearInterval looping
+
                 ), 1000
 
   hideResults: ->
