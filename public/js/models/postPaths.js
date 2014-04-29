@@ -29,19 +29,6 @@
 
   })(superPost);
 
-  window.prompt = (function(_super) {
-    __extends(prompt, _super);
-
-    function prompt() {
-      return prompt.__super__.constructor.apply(this, arguments);
-    }
-
-    prompt.prototype.urlRoot = 'https://try-api.lightsidelabs.com/api/prompts/2/';
-
-    return prompt;
-
-  })(superPost);
-
   window.createAnswerSet = (function(_super) {
     __extends(createAnswerSet, _super);
 
