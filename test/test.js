@@ -10,9 +10,9 @@
 
   chai = require('chai');
 
-  Dictionary = require('../public/js/visualization').Dictionary;
+  Dictionary = require('../public/js/visualization.js').countingMap;
 
-  generateMap = require('../public/js/visualization').generateMap;
+  generateMap = require('../public/js/visualization/js').generateMap;
 
   describe('dictionary tests', function() {
     it('empty keys in dictionary', function() {
@@ -55,7 +55,7 @@
       emptyDict.add('otheritem');
       return chai.assert.deepEqual(2, emptyDict.values.length);
     });
-    it('adds 500 items to the Dictionary using a loop ', function() {
+    it('adds 500 items to the countingMap using a loop ', function() {
       var emptyDict, i;
       emptyDict = new Dictionary();
       i = 0;
@@ -65,7 +65,7 @@
       }
       return chai.assert.deepEqual([500], emptyDict.values);
     });
-    it('adds 500 items to the Dictionary using a loop then another 300 ', function() {
+    it('adds 500 items to the countingMap using a loop then another 300 ', function() {
       var emptyDict, i;
       emptyDict = new Dictionary();
       i = 0;
@@ -79,7 +79,7 @@
       }
       return chai.assert.deepEqual([500, 300], emptyDict.values);
     });
-    return it('adds 500 items to the Dictionary using a loop then another 300, checks the keys ', function() {
+    return it('adds 500 items to the countingMap using a loop then another 300, checks the keys ', function() {
       var emptyDict, i;
       emptyDict = new Dictionary();
       i = 0;

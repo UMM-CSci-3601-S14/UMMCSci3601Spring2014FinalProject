@@ -83,12 +83,15 @@ function countingMap(){
     this.keys = [];
     this.values = [];
 
+    //This object has a key-value pair interface;
+    //The value is the number of times the key has been added. (clarification: it starts at one)
+
     this.add = function(entry) {
         var index = this.keys.indexOf(entry);
         if (-1 == index){
             this.keys.push(entry);
             this.values.push(1);
-            this.length == (this.length + 1);
+            this.length = (this.length + 1);
         } else {
             this.values[index] = (this.values[index] + 1);
         }
