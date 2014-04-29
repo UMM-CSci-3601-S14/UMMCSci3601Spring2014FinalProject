@@ -8,14 +8,14 @@
             <div class="modal-body">
                 <form method="post" action="/" class="form col-md-12 center-block">
                     <div class="form-group">
-                        <input name="email" type="text" class="form-control input-lg" placeholder="Email" autofocus="autofocus">
+                        <input name="email" type="text" class="form-control input-lg" placeholder="Email" autofocus>
                     </div>
                     <div class="form-group">
                         <input name="password" type="password" class="form-control input-lg" placeholder="Password">
                     </div>
                     {{{failed}}} <br/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" value="Log In">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-lg•••• btn-block" value="Log In" name="logIn">Sign In</button>
                     </div>
                 </form>
             </div>
@@ -39,7 +39,7 @@
                         <p id="emailIsTaken" class="warning">The email you have entered is already in use!</p>
                         <div class="form-group">
                             <label>Email:</label><br/>
-                            <input name="createEmail" class="form-control" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/>
+                            <input autofocus="" name="createEmail" class="form-control" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/>
                         </div>
                         <div class="form-group">
                             <label>Desired Password:</label><br/>
@@ -53,11 +53,14 @@
                             <label>Surname:</label><br/>
                             <input name="createSurname" class="form-control" id="createSurname" type="text" placeholder="Surname" value="<%= surname %>"/>
                         </div>
+                        <div class="warning" id="emptyField">
+                            <p><b>One of the required fields above is empty!</b></p>
+                        </div>
+                        <div id="passwordTooShort" class="warning">
+                            <p><b>Your new password must be at least six characters!</b></p>
+                        </div>
                         <div class="form-group">
                             <button class="create btn btn-primary btn-lg btn-block">Create Account</button>
-                        </div>
-                        <div class="warning" id="emptyField" style="display: none">
-                            <p><b>One of the required fields above is empty!</b></p>
                         </div>
                     </div>
                 </div>
@@ -90,13 +93,13 @@
                         <p>{{ user.surname }}</p><br/>
                     </div>
                     <button class="startChangePassword btn btn-default">Change Password</button>
-                    <div id="changePasswordFields" class="changePasswordFields" style="display: none">
+                    <div id="changePasswordFields" class="changePasswordFields hiding" >
                         <label>Old Password:</label>
                         <input name="oldPassword" id="oldPassword" class="form-control" type="password"/><br/>
                         <label>New Password:</label>
-                        <input name="newPassword" id="newPassword" class="form-control" value="<%= password %>"/><br/>
+                        <input name="newPassword" id="newPassword" class="form-control" value="<%= password %>" type="password"/><br/>
                         <label>Confirm New Password:</label>
-                        <input name="confirmNewPassword" id="confirmNewPassword" class="form-control" value="<%= password %>"/><br/>
+                        <input name="confirmNewPassword" id="confirmNewPassword" class="form-control" value="<%= password %>" type="password"/><br/>
                         <button class="endChangePassword btn btn-default">Change Password</button>
                         <button class="cancelPasswordChange btn btn-default">Cancel</button>
                     </div>
@@ -107,7 +110,10 @@
                         <p><b>Your old password was incorrect!</b></p>
                     </div>
                     <div id="passwordMismatch" class="warning">
-                        <p><b>New password and confirm new password do not match.<b></p>
+                        <p><b>New password and confirm new password do not match!<b></p>
+                    </div>
+                    <div id="passwordTooShort" class="warning">
+                        <p><b>Your new password must be at least six characters!</b></p>
                     </div>
                 </div>
                 <div class="modal-footer">

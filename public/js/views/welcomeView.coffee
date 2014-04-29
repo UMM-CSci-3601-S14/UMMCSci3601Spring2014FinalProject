@@ -12,7 +12,7 @@ class window.welcomeView extends Backbone.View
 
   initialize: ->
     thePrompt = new prompt1().fetch().done ->
-      $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
+      $('#promptTitle').html('Prompt: ' + thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
     #this is not used because we only need one clone for each different prompt
       #theClone = new clonePrompt1().save()
@@ -26,6 +26,7 @@ class window.welcomeView extends Backbone.View
 
   showExtra: ->
     $('.extra').show()
+    $('.hide').show()
     $('#more').hide()
     $('#less').show()
 
@@ -77,7 +78,7 @@ class window.welcomeView extends Backbone.View
                 looping = setInterval (->
 
                   # To make sure that we send to https in stead of the http that theProcess returns
-                  thePredictionStatus.urlRoot = theProcess.attributes.prediction_task[0..3] + "s" + theProcess.attributes.prediction_task[4..]
+                  thePredictionStatus.urlRoot = theProcess.attributes.url
                   thePredictionStatus.fetch().done ->
 
                     console.log "Prediction Task status: " + thePredictionStatus.attributes.status
@@ -104,7 +105,6 @@ class window.welcomeView extends Backbone.View
                       # Terminate loop
                       window.clearInterval looping
                 ), 1000
-
 
   hideResults: ->
     $('#sandboxResults').hide(500);

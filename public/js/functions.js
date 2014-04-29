@@ -1,4 +1,6 @@
-<script type="text/javascript">
+/*
+    Functions used for the CSV maker on /model-maker
+ */
 
 var myCSV = "";
 var documentsAdded = 0;
@@ -27,7 +29,7 @@ function addFields(numToAdd) {
 }
 
 //Runs when you hit save. Inserts the name of the fields into the fields.
-function saveFields() {
+function saveFieldNames() {
     var tempbool = true;
     //For making the first field called "label"
     $("#field1").val("label");
@@ -36,57 +38,50 @@ function saveFields() {
             tempbool = false;
         }
     }
-    if ($("#promptTitle").val()=="") {
-        window.alert("Please enter the prompt title");
-    }
-    else if ($("#promptDescription").val()=="") {
-        window.alert("Please enter the prompt description");
-    }
-    else if($("#cDescription").val()=="") {
-        window.alert("Please enter the class description");
-    }
-    else if (tempbool == true) {
+    if (tempbool == true) {
         for (var i = 1; i <= numFields; i++) {
             fieldNames.push($("#field" + i + "").val());
             myCSV += $("#field" + i + "").val() + ",";
         }
         var template1 = '<div class="input-group fields">\n<span class="input-group-addon">';
         var template2 = '</span>\n<input type="text" class="form-control" id="toScore';
-        var template3 = '"placeholder="Enter ';
+        var template3 = '"placeholder="Enter grade for ';
         var template4 = '">\n</div>\n';
         var temp = "<label>Scores</label>";
         for (var i = 1; i < numFields+ 1; i++) {
             temp += template1 + fieldNames[i-1] + template2 + i + template3 + fieldNames[i-1] + template4;
         }
-        document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-        document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
         document.getElementById("fieldScores").innerHTML=temp;
         myCSV += "text\r\n"
         $("#fieldNames").hide();
         $("#workZone").show();
-        <!--This will hide the field tutorial-->
-        $("#fieldTut").hide();
-        $("#textTut").show();
     } else {
         window.alert("Please fill all field names");
     }
 }
-/*************Save prompt for when we hit the blue button on modelPage**********************/
+/*************Save prompt for when we hit the blue button on modelPage or after edit**********************/
+function fieldsFilled(){
+    if ($("#promptTitle").val() === "") {
+        window.alert("Please enter the prompt title");
+        return false;
+    } else if ($("#promptDescription").val() === "") {
+        window.alert("Please enter the prompt description");
+        return false;
+    } else if ($("#cDescription").val() === "") {
+        window.alert("Please enter the class description");
+        return false;
+    } else {
+        return true
+    }
+}
+
 function fieldCollapse() {
-
-    promptTitle = $("#promptTitle").val()
-    promptDescript = $("#promptDescription").val()
-    cDescript = $("#cDescription").val()
-
-    document.getElementById("promptSpace").innerHTML = "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
+    promptTitle = $("#promptTitle").val();
+    promptDescript = $("#promptDescription").val();
+    cDescript = $("#cDescription").val();
+    $('#promptSpaceSmall').html("<strong>Prompt Title: </strong>" + promptTitle + "<br /><strong>Prompt Description: </strong>" + promptDescript + "<br /><strong>Class Description: </strong>" + cDescript).show();
+    $('#promptSpace').hide();
     $('#editPrompt').show();
-    $('#uploadZip').hide();
-    $('#uploadCSV').hide();
-    $('#makeCSV').hide();
-
 }
 /******************************************************/
 
@@ -95,9 +90,7 @@ function fieldCollapse() {
 function exportToCSV() {
     if (documentsAdded == 0){
         window.alert("Please add some documents");
-    }
-    else if (confirm("Do you want to download the CSV?"))
-    {
+    } else if (confirm("Do you want to download the CSV?")) {
         download(promptTitle, myCSV);
     }
 }
@@ -119,14 +112,15 @@ function add() {
         for (var i = 1; i <= numFields; i++) {
             myCSV += $("#toScore" + i + "").val() + ",";
         }
-        myCSV += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n"; //Adds the string in the text area to myCSV string, replacing double quotes with single quotes.
+        //Adds the string in the text area to myCSV string, replacing double quotes with single quotes, line breaks with spaces, and double spaces with single spaces.
+        myCSV += "\"" + $("#text").val().replace(/"/g,"'").replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," ") + "\"\r\n";
         documentsAdded++;
         clearAllFields();
         document.getElementById("documentAmount").innerHTML = documentsAdded;
         doVisualization();
 
         /***************************/
-        document.getElementById("pastDocs").innerHTML += "<div class='docBox' id ='docBox' >" + documentsAdded + "</div>"; //Adds boxes of past entries.
+        document.getElementById("pastDocs").innerHTML += "<div class='docBox' id ='docBox" + documentsAdded + "'>" + documentsAdded + "</div>"; //Adds boxes of past entries.
 
         $(".docBox").slideDown(130);
         $(".docBox").mouseover(function() { //Hover effect.
@@ -134,13 +128,16 @@ function add() {
                 docBoxColors(this, '#506696', 'white', '#5E79B2');
             }
         });
+
         $(".docBox").mouseout(function() { //Returns to normal color.
             if (parseInt($(this).text()) != selected) {
                 docBoxColors(this, '#BAD0FF', 'black', '#5E79B2');
             }
         });
+
         $(".docBox").click(function() { //Edits CSV document by clicking the specified docBox
             addingButtons();
+            $("#docTut").hide();
             selected = (parseInt($(this).text()));
             deselect();
             docBoxColors(this, '#EBADFF', 'black', '#BA80CC');
@@ -172,17 +169,14 @@ function emptyFields() {
             return true;
         }
     }
-    if ($("#text").val() == "") {
-        return true;
-    } else {
-        return false;
-    }
+    return $("#text").val() == "";
 }
 
 //Hides cancel, the edit tutorial, and replace, shows submit, the text tutorial, and add
 function editButtons() {
     $("#cancel").hide();
     $("#replace").hide();
+    $("#delete").hide();
     $("#submit").show();
     $("#add").show();
     $("#textTut").show();
@@ -211,7 +205,7 @@ function replace() {
                     toReplace += $("#toScore" + j + "").val() + ",";
                 }
                 toReplace += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n";
-                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at that line.
+                myCSV = replaceAt(myCSV, myCSV.indexOf('\n', i - 1) + 1, myCSV.indexOf("\n", i + 1), toReplace); //Finds the ith instance of a line break, then replaces starting at            that line.
 
                 selected = 0;
                 clearAllFields();
@@ -233,7 +227,6 @@ function replaceAt(str, start, end, text) {
 //Deselects all docBoxes
 function deselect() {
     var boxes = document.getElementById('pastDocs').getElementsByTagName('*');
-
     for (var j = 0; j < boxes.length; j++) {
         var e = boxes[j];
 
@@ -263,40 +256,37 @@ function addingButtons() {
     $("#add").hide();
     $("#submit").hide();
     $("#replace").show();
+    $("#delete").show();
     $("#cancel").show();
     $("#textTut").hide();
     $("#editDocs").show();
 }
 /*******************************************************************************/
 
-/*******************************EDIT PROMPT/MODEL/SUBJECT ESSAY********************************************/
-//Brings up a text field to edit the prompt, model, and subject
-function editPromptFields() {
-    $('#editPrompt').hide();
-    $('#savePrompt').show();
-    document.getElementById("promptSpace").innerHTML= "<label>Prompt Title: </label>\n<input class='form-control' id='promptTitle2' name='promptTitle2' value='" + promptTitle + "'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Prompt Description: </label>\n<input class='form-control' id='promptDescription2' value='" + promptDescript + "' name='promptDescription2' value='" + promptTitle + "'> <br />";
-    document.getElementById("promptSpace").innerHTML += "<label>Class Description: </label>\n<input class='form-control' id='cDescription2' value='" + cDescript + "'  name='cDescription2'>";
 
-
-}
-
-//Saves the prompt model and subject entered into the text field
-function savePrompt() {
-    promptTitle = $("#promptTitle2").val();
-    promptDescript = $("#promptDescription2").val();
-    cDescript = $("#cDescription2").val();
-    $("#editPrompt").show();
-    $("#savePrompt").hide();
-    document.getElementById("promptSpace").innerHTML= "<strong>Prompt Title: </strong>" + promptTitle + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Prompt Description: </strong>" + promptDescript + "<br />";
-    document.getElementById("promptSpace").innerHTML += "<strong>Class Description: </strong>" + cDescript;
-
-
-}
-/**********************************************************************************************************/
 //Deletes an essay document
-//function deleteDoc() {
-//    if (parseInt($(this).text()) != selected) {
-//}
-</script>
+function del() {
+    editButtons();
+    var newCSV = myCSV;
+    var selectedSection = selected;
+    var toDelete = 0;
+    var i = 0;
+    var nextLine = 0;
+    console.log(selectedSection);
+    while(i < selectedSection) {
+        nextLine = newCSV.search("\n");
+        toDelete += newCSV.search("\n");
+        newCSV = newCSV.slice(nextLine + 1,newCSV.length);
+        i++;
+    }
+    myCSV = myCSV.slice(0, toDelete) + myCSV.slice(toDelete + newCSV.search("\n") + 1);
+    console.log(myCSV);
+    $('#docBox' + documentsAdded).remove();
+    documentsAdded--;
+    document.getElementById("documentAmount").innerHTML = documentsAdded;
+    selected = 0;
+    clearAllFields();
+    deselect();
+    doVisualization();
+    return;
+}

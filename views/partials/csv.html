@@ -19,80 +19,42 @@
             </div>
         </form>
         <div style="padding-bottom:5px;" id="moreFields"></div>
-        <button class="btn btn-default glyphicon glyphicon-saved" id="saveFields">Save</button>
+        <button class="btn btn-default glyphicon glyphicon-saved hiding" id="saveFields">Save</button>
     </div>
-    <div id="workZone" class="row">
+    <div id="workZone" class="row hiding">
         <form role="form">
-            <div id="fieldScores"></div>
+            <div id="fieldScores"></div><br>
 
             <label>Text</label>
-            <textarea class="text form-control" id="text" placeholder="Enter Text" rows="10"></textarea>
+            <textarea class="text form-control" id="text" placeholder="Enter or paste the essay here" rows="10"></textarea>
             <br />
-            <button type="button" class="btn btn-danger" id="reset">
+            <button type="button" class="btn btn-danger hiding" id="delete">
                 <span class="glyphicon glyphicon-trash"></span> Delete
             </button>
             <button type="button" class="btn btn-default" id="add">
-                <span class="glyphicon glyphicon-plus"></span> Add
+                <span class="glyphicon glyphicon-plus"></span> Add Essay
             </button>
-            <button type="button" class = "btn btn-default" id="replace">
+            <button type="button" class = "btn btn-default hiding" id="replace">
                 <span class="glyphicon glyphicon-edit"></span> Replace
             </button>
-            <button type="button" class="btn btn-default" id="submit">
+            <button type="button" class="btn btn-default" id="downloadCSV">
                 <span class="glyphicon glyphicon-download"></span> Download CSV
             </button>
-
-            <button type="button" class="btn btn-default" id="cancel">
+            <button type="button" class="btn btn-default hiding" id="cancel">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
             </button>
         </form>
         <p style="display:inline;"><strong>Documents Added:</strong></p>
         <p style="display:inline;" id="documentAmount">0</p>
         <br />
-        <div id="pastDocs"></div><br/><br/>
-        <div class="col-md-6 col-md-push-3" id="visualization">
-            <h2 class="title center">Visualization of Your Data</h2>
-            <div id="visField1" class="visualization"></div>
-            <div id="visField2" class="visualization"></div>
-            <div id="visField3" class="visualization"></div>
-            <div id="visField4" class="visualization"></div>
-            <div id="visField5" class="visualization"></div>
+        <div id="pastDocs"></div>
+        <div class="col-lg-12" id="visualization">
+            <h2 id="titleV" class="title center hiding">Visualization of Your Data</h2>
+            <div id="visField1" class="visualization sideBySide"></div>
+            <div id="visField2" class="visualization sideBySide"></div>
+            <div id="visField3" class="visualization sideBySide"></div>
+            <div id="visField4" class="visualization sideBySide"></div>
+            <div id="visField5" class="visualization sideBySide"></div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $("#saveFields").hide();
-            $("#workZone").hide();
-            $("#replace").hide();
-            $("#cancel").hide();
-            $("#visHeader").hide();
-            $("#secondT").hide();
-            $("#thirdT").hide();
-//    $("#changePasswordFields").hide();
-
-            $("#submit").click(function() {
-                exportToCSV();
-            });
-
-            $("#add").click(function() {
-                add();
-            });
-
-            $("#reset").click(function() {
-                reset();
-            });
-
-            $("#saveFields").click(function() {
-                saveFields();
-            });
-
-            $("#replace").click(function() {
-                replace();
-            });
-
-            $("#cancel").click(function() {
-                cancelReplace();
-            });
-        });
-    </script>
 </script>

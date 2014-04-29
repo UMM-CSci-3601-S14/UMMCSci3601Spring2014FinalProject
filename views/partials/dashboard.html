@@ -1,11 +1,12 @@
 <script id='dashboard' type='text/html'>
     <div class="left col-sm-7 col-sm-push-1">
-        <h1 class="title center" >Welcome {{user.firstName}}, <small>Select A Model to Use or Edit</small></h1>
+        <h1 class="title center" >Welcome {{user.firstName}}, <small>Select a Model to Use or Edit</small></h1>
 
-        <div id="essayArea">
-            <h3 id="promptTitle" class="title"></h3>
+        <div class="center" id="essayArea">
+            <h2 id="yourModel" class="title center">Here Is Your Model</h2>
+            <h3 id="promptTitle" class="title center"></h3>
             <p id="promptDescription"></p>
-            <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+            <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!" autofocus></textarea>
             <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
             <button type='button' name='hidePrompt' class='hidePrompt btn btn-success' id="hidePrompt">Hide Prompt</button>
 
@@ -18,7 +19,7 @@
         </div>
 
         <div id="modelsInAccount">
-            <div id="yourPromptss">
+            <div id="yourPrompts">
                 <button class="box" id="yourPrompts">
                     <span class="glyphicon-large glyphicon glyphicon-ok-sign"></span>
                     <br />
@@ -31,67 +32,81 @@
                     <br />
                     <span class="center dashBtn">Your Practice Model</span>
                 </button>
-                <p class="center">There are no models in your account at this moment.</p>
+                <p class="center">You have no models in your account at this moment.</p>
+            </div>
+        </div>
+
+        <div id="yourModel" class="hiding">
+            <div id="yourPrompt">
+                <h2 class="title center">Here Is Your Model</h2>
+                <h3 id="yourPromptTitle" class="title center"></h3>
+                <p id="yourPromptDescription"></p>
+            </div>
+            <div id="yourEssay">
+                <textarea id="yourEssayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
+                <button type='button' name='submitYourEssay' data-loading-text= 'Loading Results...' class='submitYourEssay btn btn-success' id="submitYourEssay">Submit To Your Model</button>
+                <div id="sandboxResults">
+                    <h4 class="title">Your grade from your model:</h4>
+                    <p id="yourGrade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                    <br/><br/>
+                    <button id="hideYourResults" class="btn btn-success">Done</button>
+                </div>
             </div>
         </div>
 
         <div id="dash">
             <h3 class="title">Explore Our Ready To Use Models!</h3>
-            <button type='button' name='pickEssay1'class='pickEssay1 box' id="pickEssay1">
+            <button type='button' name='pickEssay1' class='pickEssay1 box' id="pickEssay1">
                 <span class="glyphicon-large glyphicon glyphicon-briefcase"></span>
                 <br />
                 Persuasive Essay on Computers
             </button>
-            <button type='button' name='pickEssay2'class='pickEssay2 box' id="pickEssay2">
+            <button type='button' name='pickEssay2' class='pickEssay2 box' id="pickEssay2">
                 <span class="glyphicon-large glyphicon glyphicon-briefcase"></span>
                 <br />
                 Persuasive Essay on Censorship
             </button>
 
-            <h3 class="title">Custom Models.</h3>
-            <button class="box boxCreate" id="createModelBox">
+            <h3 class="title">Custom Models</h3>
+            <div id="customModels">
+                <button class="box boxCreate" id="createModelBox">
                 <span class="glyphicon-large glyphicon glyphicon-plus-sign"></span>
                 <br />
                 <span class="center dashBtn">Create New Model</span>
-            </button>
+                </button>
+            </div>
 
-            <button class="box" id="yourModels">
-                <span class="glyphicon-large glyphicon glyphicon-ok-sign"></span>
-                <br />
-                <span class="center dashBtn">Your Model</span>
-            </button>
+            <p id="noPrompts" class="center">You have no models in your account at this moment.</p>
         </div>
-
-
     </div>
 
     <div class="right col-sm-3 col-sm-push-1">
         <div class="content">
-            <a href="account" class="paired btn btn-primary btn-lg">Account</a>
-            <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
-            <br/><br/>
+            <a href="account" class="btn btn-primary btn-lg btn-block">Account</a>
+            <a href="logout" class="btn btn-primary btn-lg btn-block">Sign Out</a>
+            <br />
             <h3 class="title"><small>Welcome to the </small> Dashboard<small>, a place where you can create and access your LightSide models.</small></h3>
+            <p><strong>What is a Model?</strong> LightSide models are created by analyzing your graded essays and observing patterns to associate your positive scores with strong writing. After a model had been created, it can be used to score new essays by the same standards. Instantly.</p>
             <p><strong>Ready to Use Models</strong> are good examples of our automated essay scoring system in action.</p>
             <p><strong>Create a New Model</strong> to build a LightSide model focused on your prompts and capable of scoring on your criteria. For a dependable model, we require at least 500 hand-graded essays that are evenly distributed over your grading labels.</p>
             <p><strong>Custom Models</strong> will be built to your specifications and displayed for you to use here on the Dashboard.</p>
-
         </div>
     </div>
 </script>
 
 <script id="modelLibrary" type='text/html'>
-    <div class="left col-sm-7 col-sm-push-1">
+    <div id="yourModel" class="left col-sm-7 col-sm-push-1">
         <div id="yourPrompt">
             <h2 class="title">Here Is Your Model</h2>
-            <h3 id="promptTitle" class="title"></h3>
-            <p id="promptDescription"></p>
+            <h3 id="yourPromptTitle" class="title"></h3>
+            <p id="yourPromptDescription"></p>
         </div>
         <div id="yourEssay">
             <textarea id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
             <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
             <div id="sandboxResults">
-                <h4 class="title">Your model is gradeing the essay:</h4>
-                <p id="yourgrade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+                <h4 class="title">Your grade from your model:</h4>
+                <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
                 <br/><br/>
                 <button id="hideResults" class="btn btn-success"> Cool!</button>
             </div>

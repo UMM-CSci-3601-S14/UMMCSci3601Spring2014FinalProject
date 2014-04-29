@@ -1,6 +1,8 @@
 ###
 Module dependencies.
 ###
+
+
 express = require("express")
 User = require('../schemas/userSchema').user
 passport = require("passport")
@@ -31,21 +33,19 @@ populateDB = ->
       email: 'vinkx009@morris.umn.edu'
       firstName: 'Zachary'
       surname: 'Vink'
-      prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
+      promptArray: ["Informative essay on goat milking", "Underwater basket-weaving", "Above water basket-weaving"]
     },
     {
       password: '4321'
       email: 'lal@lol.com'
       firstName: 'Justin'
       surname: 'YaDeau'
-      prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
     },
     {
       password: '9hnMILd23145'
       email: 'Ha@lol.com'
       firstName: 'David'
       surname: 'Donatuccshio'
-      prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
     }
   ]
   createAndAdd user for user in usernames
@@ -70,7 +70,7 @@ passport.use 'local-login', new LocalStrategy({
     (email, password, done) ->
       process.nextTick ->
         User.findOne
-          email: email, (err, user) ->
+          email: email.toLowerCase(), (err, user) ->
             return done(err) if err
             return done(null, false) unless user
             return done(null, false) unless user.password is password

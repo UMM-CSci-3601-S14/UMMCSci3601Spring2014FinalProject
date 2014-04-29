@@ -41,8 +41,6 @@ Module dependencies.
     model: 'partials/model',
     tutorial: 'partials/tutorial',
     dashboard: 'partials/dashboard',
-    functions: 'partials/functions',
-    visualization: 'partials/visualization',
     uploadCSV: 'partials/uploadCSV',
     unzip: 'partials/unzip'
   });
@@ -98,13 +96,13 @@ Module dependencies.
 
   app.get("/account", routes.account);
 
-  app.post("/addPrompt", routes.addPrompt);
+  app.get('/getPrompts', routes.getPromptArray);
 
   app.post('/create', routes.create);
 
   app.post('/updatePassword', routes.updatePassword);
 
-  app.put('/addPrompt', routes.addPrompt);
+  app.post('/addPrompt', routes.addPrompt);
 
   app.post('/', passport.authenticate('local-login', {
     failureRedirect: '/failed',

@@ -38,15 +38,19 @@
       $('.startChangePassword').hide();
       $('#successPasswordChange').hide();
       $('#failedPasswordChange').hide();
-      return $('#passwordMismatch').hide();
+      $('#passwordMismatch').hide();
+      return $('#passwordTooShort').hide();
     };
 
     accountView.prototype.endChangePassword = function() {
       $('#successPasswordChange').hide();
       $('#failedPasswordChange').hide();
       $('#passwordMismatch').hide();
+      $('#passwordTooShort').hide();
       if ($('#newPassword').val() !== $('#confirmNewPassword').val()) {
         return $('#passwordMismatch').show();
+      } else if ($('#newPassword').val().length < 6) {
+        return $('#passwordTooShort').show();
       } else {
         return Backbone.ajax({
           type: "POST",
@@ -71,12 +75,14 @@
     };
 
     accountView.prototype.cancelPasswordChange = function() {
-      console.log("here");
       $('.changePasswordFields').hide();
       $('.startChangePassword').show();
       $('#oldPassword').val("");
       $('#newPassword').val("");
-      return $('#confirmNewPassword').val("");
+      $('#confirmNewPassword').val("");
+      $('#successPasswordChange').hide();
+      $('#failedPasswordChange').hide();
+      return $('#passwordTooShort').hide();
     };
 
     return accountView;

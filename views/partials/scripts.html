@@ -11,6 +11,10 @@
 <script type="text/javascript" src="/js/models/user.js"></script>
 <script type="text/javascript" src="/js/models/changePassword.js"></script>
 
+<!--function files-->
+<script type="text/javascript" src="/js/functions.js"></script>
+<script type="text/javascript" src="/js/visualization.js"></script>
+
 <!-- other -->
 <script type="text/javascript" src="/js/app.js"></script>
 <script type="text/javascript" src="/blob/Blob.js"></script>
@@ -30,5 +34,16 @@
 <script type="text/javascript" src="/js/views/dashView.js"></script>
 <script type="text/javascript" src="/js/views/CSVView.js"></script>
 <script src="/js/views/uploadCSVView.js"></script>
-<script src="/js/views/uploadZipView.js"></script>
-
+<script type="text/javascript">
+    var kkeys = [], konami = "54,57,54,57,52,50,48";
+    $(document).keydown(function(e) {
+        kkeys.push( e.keyCode );
+        if ( kkeys.toString().indexOf( konami ) >= 0 ){
+            $(document).unbind('keydown',arguments.callee);
+            $.getScript('http://www.cornify.com/js/cornify.js',function(){
+                cornify_add();
+                $(document).keydown(cornify_add);
+            });
+        }
+    });
+</script>

@@ -4,16 +4,13 @@ class window.dashView extends Backbone.View
 
   events:
     'click button#createModelBox' : 'loadModelMaker'
-    'click button#yourModels': 'loadModelsInAccount'
+    'click button.yourPrompt': 'loadYourPrompts'
 
     'click button#pickEssay1' : 'loadEssay1'
     'click button#pickEssay2' : 'loadEssay2'
-
     'click button.submitEssay': 'submitEssay'
     'click button#hidePrompt': 'hidePrompt'
     'click button#hideResults' : 'hideResults'
-
-    'click button#yourPrompts': 'loadYourPrompts'
 
   thePrompt = null
   theAuthor = null
@@ -26,41 +23,69 @@ class window.dashView extends Backbone.View
   render: ->
     console.log 'dash'
     @$el.html @template()
+
+#    if user.prompts is undefined
+#      $('#yourPrompt').hide()
+#      $('#noPrompts').show()
+
+    console.log 'loading models'
+    i=0
+    buttonString = ""
+    buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
+    buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
+    buttonString3 = '</span></button>'
+    userPrompts = $.getJSON("/getPrompts").done ->
+      console.log "success"
+      userPrompts = userPrompts.responseJSON
+      console.log userPrompts
+
+      for i in userPrompts
+        do (i) ->
+          if i.length <= 50
+            if i.indexOf(" ") >= 14
+              x = i[0..14]
+              x += '...'
+              buttonString += buttonString1 + i + buttonString2 + x + buttonString3
+            else
+
+                buttonString += buttonString1 + i + buttonString2 + i + buttonString3
+          else
+            x = i[0..30]
+            x += '...'
+            buttonString += buttonString1 + i + buttonString2 + x + buttonString3
+
+      $('#customModels').append(buttonString)
+
     this
 
   loadModelMaker: ->
     window.location.href = '/model-maker'
 
-  loadModelsInAccount: ->
-    if user.prompts is undefined
-      $('#modelsInAccount').show()
-      $('#yourPrompts').hide()
-      $('#noModels').show()
-    else
-      console.log 'loading models'
-      i=0
-      buttonString = ""
-      buttonString1 = '<button class="box" id="your'
-      buttonString2 = 'Models"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">Model '
-      buttonString3 = '</span></button>'
-      for i in user.prompts
-        do (i) ->
-          buttonString += buttonString1 + i + buttonString2 + i + buttonString3
+  loadYourPrompts: ->
+    $('.yourPrompt').click ->
+      prompt = this.id
+      thePrompt = new request
+      thePrompt.urlRoot = prompt
+      thePrompt.fetch().done ->
+        $('#promptTitle').html(thePrompt.attributes.title)
+        $('#promptDescription').html(thePrompt.attributes.description)
 
-      $('models').html(buttonString)
+  #    yourAuthor
 
-
+  #    yourAnswerSet
+        $('#yourModel').show()
+        $('#essayContents').val("")
+        $('#essayArea').show()
 
   loadEssay1: ->
     thePrompt = new prompt1().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
-
       theAnswerSet = new answerSet1({
       }).fetch().done ->
 
+      $('#yourModel').hide()
       $('#essayContents').val("")
       $('#essayArea').show()
 
@@ -68,15 +93,16 @@ class window.dashView extends Backbone.View
     thePrompt = new prompt2().fetch().done ->
       $('#promptTitle').html('Prompt: ' +thePrompt.responseJSON.text)
       $('#promptDescription').html(thePrompt.responseJSON.description)
-
       theAuthor = new author({designator: "BG2", email: "test@gmail.com"}).fetch().done ->
-
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
+      $('#yourModel').hide()
       $('#essayContents').val("")
       $('#essayArea').show()
 
+  hidePrompt: ->
+    $('#essayArea').hide()
 
   submitEssay: ->
     # alerts user if no text has been entered
@@ -115,12 +141,11 @@ class window.dashView extends Backbone.View
             #request used to checks status of the prediction process
             thePredictionStatus = new request()
 
-
             # a loop to wait for the api to grade the answer, waits 1 second.
             looping = setInterval (->
 
               # To make sure that we send to https in stead of the http that theProcess returns
-              thePredictionStatus.urlRoot = theProcess.attributes.prediction_task[0..3] + "s" + theProcess.attributes.prediction_task[4..]
+              thePredictionStatus.urlRoot = theProcess.attributes.url
               thePredictionStatus.fetch().done ->
 
                 console.log "Prediction Task status: " + thePredictionStatus.attributes.status
@@ -133,9 +158,7 @@ class window.dashView extends Backbone.View
                   thePredictionResult = new predictionResult().fetch().done ->
                     $('#grade').html("Your grade for the submitted essay is " +
                     thePredictionResult.responseJSON.results[0].label + " out of 5.")
-
                     answerGraded = new answer
-
                   # Ternimate loop.
                   window.clearInterval looping
 
@@ -147,9 +170,6 @@ class window.dashView extends Backbone.View
                   # Terminate loop
                   window.clearInterval looping
             ), 1000
-
-  hidePrompt: ->
-    $('#essayArea').hide()
 
   hideResults: ->
     $('#sandboxResults').hide(500)

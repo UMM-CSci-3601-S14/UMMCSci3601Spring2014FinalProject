@@ -38,26 +38,36 @@
     };
 
     newUserView.prototype.create = function() {
-      if ($('#createPassword').val().length === 0 || $('#createEmail').val().length === 0 || $('#createFirstName').val().length === 0 || $('#createSurname').val().length === 0) {
+      var newAuthor;
+      $('#passwordTooShort').hide();
+      $('#emptyField').hide();
+      if ($('#createPassword').val().length < 6) {
+        return $('#passwordTooShort').show();
+      } else if ($('#createEmail').val().length === 0 || $('#createFirstName').val().length === 0 || $('#createSurname').val().length === 0) {
         return $('#emptyField').show();
       } else {
-        return Backbone.ajax({
-          type: "POST",
-          url: "/create",
-          data: {
-            password: $('#createPassword').val(),
-            email: $('#createEmail').val(),
-            firstName: $('#createFirstName').val(),
-            surname: $('#createSurname').val()
-          },
-          success: function() {
-            console.log("created");
-            return $('#backdoorAccessToLogin').click();
-          },
-          error: function() {
-            console.log("email taken");
-            return $('#emailIsTaken').show();
-          }
+        return newAuthor = new author({
+          designator: $('#createEmail').val()
+        }).save().done(function() {
+          return Backbone.ajax({
+            type: "POST",
+            url: "/create",
+            data: JSON.stringify({
+              password: $('#createPassword').val(),
+              email: $('#createEmail').val().toLowerCase(),
+              firstName: $('#createFirstName').val(),
+              surname: $('#createSurname').val(),
+              authorURL: newAuthor.responseJSON.url
+            }),
+            success: function() {
+              console.log("created");
+              return $('#backdoorAccessToLogin').click();
+            },
+            error: function() {
+              console.log("email taken");
+              return $('#emailIsTaken').show();
+            }
+          });
         });
       }
     };

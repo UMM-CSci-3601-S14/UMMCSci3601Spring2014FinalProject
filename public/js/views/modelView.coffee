@@ -3,14 +3,16 @@ class window.modelView extends Backbone.View
   template: _.template $('#modelMaker').html()
 
   events:
-    'click button#createPrompt': 'createPrompt'
     'click button#hideWait' : 'hideWait'
+
+      ###Big Blue Buttons###
     'click button#uploadCSV' : 'uploadCSV'
     'click button#makeCSV' : 'makeCSV'
     'click button#uploadZip' : 'uploadZip'
-    'click button#submitCSV1': 'createPrompt'
 
-
+      ###Buttons Hidden Initally###
+    'click button#editPrompt': 'editPrompt'
+    'click button#savePrompt': 'savePrompt'
 
   initialize: ->
     @render()
@@ -20,43 +22,54 @@ class window.modelView extends Backbone.View
     @$el.html @template()
     this
 
-
   uploadCSV: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
+      $('#welcomeTut').hide()
+      $('#refreshWarning').hide()
       $('#csvArea').html new window.uploadCSVView().$el
 
   uploadZip: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
+      $('#welcomeTut').hide()
+      $('#refreshWarning').hide()
+      $('#whatIsCSV').hide()
       $('#csvArea').html new window.uploadZipView().$el
 
   makeCSV: ->
-    if $("#promptTitle").val() is ""
-      window.alert "Please enter the prompt title"
-    else if $("#promptDescription").val() is ""
-      window.alert "Please enter the prompt description"
-    else if $("#cDescription").val() is ""
-      window.alert "Please enter the class description"
-    else
+    if fieldsFilled() is true
       fieldCollapse()
-      $('#csvArea').html new window.CSVView().$el
+      $('#uploadZip').hide();
+      $('#uploadCSV').hide();
+      $('#makeCSV').hide();
+
       $('#welcomeTut').hide()
-      $('#makeTut').show()
+      $('#whatIsCSV').hide()
+      $('#fieldTut').show()
+      $('#csvArea').html new window.CSVView().$el
 
+  editPrompt: ->
+    $('#editPrompt').hide();
+    $('#savePrompt').show();
 
-  hideResults: ->
+    $('#promptSpaceSmall').hide();
+    $('#promptSpace').show();
+
+  savePrompt: ->
+    if fieldsFilled() is true
+      fieldCollapse()
+      $('#savePrompt').hide();
+
+  hideWait: ->
     $('#waitingForModel').hide(1000);
+
 this

@@ -5,5 +5,7 @@ class window.changePassword extends Backbone.Model
     oldPassword: ''
     newPassword: ''
 
+
+
   initialize: ->
     console.log 'Initializing a user'

@@ -45,19 +45,17 @@ Module dependencies.
         email: 'vinkx009@morris.umn.edu',
         firstName: 'Zachary',
         surname: 'Vink',
-        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
+        promptArray: ["Informative essay on goat milking", "Underwater basket-weaving", "Above water basket-weaving"]
       }, {
         password: '4321',
         email: 'lal@lol.com',
         firstName: 'Justin',
-        surname: 'YaDeau',
-        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
+        surname: 'YaDeau'
       }, {
         password: '9hnMILd23145',
         email: 'Ha@lol.com',
         firstName: 'David',
-        surname: 'Donatuccshio',
-        prompts: ['https://try-api.lightsidelabs.com/api/prompts/114']
+        surname: 'Donatuccshio'
       }
     ];
     _results = [];
@@ -89,7 +87,7 @@ Module dependencies.
   }, function(email, password, done) {
     process.nextTick(function() {
       User.findOne({
-        email: email
+        email: email.toLowerCase()
       }, function(err, user) {
         if (err) {
           return done(err);

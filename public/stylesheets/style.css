@@ -24,7 +24,7 @@ textarea{
 }
 
 #workZone{
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .title {
@@ -40,21 +40,13 @@ textarea{
 }
 
 .LightSideStyle .page-header {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 #more, #less{
     background:none;
     border:none;
 }
-/*.content {*/
-/*text-align: center;*/
-/*padding: 10px;*/
-/*background-color: #BAD0FF;*/
-/*border-radius: 10px;*/
-/*margin-top: 10px;*/
-/*padding: 15px;*/
-/*}*/
 
 .title small {
     color: darkslategray;
@@ -62,6 +54,10 @@ textarea{
 
 .center {
     text-align: center;
+}
+
+.hiding{
+    display: none;
 }
 /*
 https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4&name=My%20Kuler%20Theme&mode=rgb&rgbvalues=0.7,0.6210485933503733,0.4405882352941176,1,0.9480818414322183,0.8294117647058823,1,0.9176470588235294,0.7294117647058823,0.37058823529411755,0.4762713689594366,0.7,0.7294117647058823,0.8162229102166801,1&swatchOrder=0,1,2,3,4
@@ -110,25 +106,23 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 .right {
     height: 100%;
     margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     border-radius: 10px;
     padding: 10px;
     background-color: #BAD0FF;
-    border-radius: 10px;
     margin-top: 10px;
-    padding: 15px;
 }
 
-.right .extra{
-    display: none;
-}
 
-.paired{
+.paired {
     width: 49%;
-    min-width:100px;
+    min-width:150px;
+    margin-top: 5px;
 }
 
 .right .title {
-    margin-top: 0px;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -165,7 +159,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 #essayArea{
     display: none;
 }
-#noModels{
+
+#noPrompts{
     display: none;
     text-align: center;
 }
@@ -174,11 +169,13 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     font-size: 64px;
     color: white;
 }
+.glyphicon-red {
+    color: red;
+}
 
 .box {
     color: white;
     display: inline-block;
-    padding: 6px 12px;
     margin: 5px;
     font-size: 14px;
     font-weight: normal;
@@ -189,12 +186,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     background-color: #5E79B2;
     border-radius: 10px;
     text-align: center;
-    padding: 10px;
+    padding: 6px 12px;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     border: 1px solid transparent;
 }
 .box:focus,
@@ -256,7 +249,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 }
 
 #accountSettings {
-    padding: 10px;
     background-color: #BAD0FF;
     border-radius: 10px;
     margin-top: 10px;
@@ -267,12 +259,11 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     cursor: pointer;
 }
 
-/******************************************************/
-
-/*For Tutorial*/
-#makeTut, #editing, #thirdT, #editPrompt{
-    display: none;
+#promptSpaceSmall{
+    word-wrap: break-word;
 }
+
+/******************************************************/
 
 /*CSS for Visualization page*/
 .fields {
@@ -293,8 +284,7 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     float: left;
     margin-right: 5px;
     margin-bottom: 5px;
-    border-style: solid;
-    border-color: #5E79B2;
+    border: solid #5E79B2;
     padding-left: 3px;
     padding-right: 3px;
     height:30px;
@@ -310,4 +300,9 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 
 .visualization {
     height: 300px;
+    width: 175px;
+}
+
+.sideBySide {
+    display: inline-block;
 }

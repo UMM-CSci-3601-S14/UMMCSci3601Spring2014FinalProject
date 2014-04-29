@@ -40,6 +40,7 @@
 
     welcomeView.prototype.showExtra = function() {
       $('.extra').show();
+      $('.hide').show();
       $('#more').hide();
       return $('#less').show();
     };
@@ -81,7 +82,7 @@
                   var looping, thePredictionStatus;
                   thePredictionStatus = new request();
                   return looping = setInterval((function() {
-                    thePredictionStatus.urlRoot = theProcess.attributes.prediction_task.slice(0, 4) + "s" + theProcess.attributes.prediction_task.slice(4);
+                    thePredictionStatus.urlRoot = theProcess.attributes.url;
                     return thePredictionStatus.fetch().done(function() {
                       var thePredictionResult;
                       console.log("Prediction Task status: " + thePredictionStatus.attributes.status);

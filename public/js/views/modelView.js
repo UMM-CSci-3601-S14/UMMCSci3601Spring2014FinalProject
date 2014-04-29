@@ -15,12 +15,16 @@
     modelView.prototype.template = _.template($('#modelMaker').html());
 
     modelView.prototype.events = {
-      'click button#createPrompt': 'createPrompt',
       'click button#hideWait': 'hideWait',
+
+      /*Big Blue Buttons */
       'click button#uploadCSV': 'uploadCSV',
       'click button#makeCSV': 'makeCSV',
       'click button#uploadZip': 'uploadZip',
-      'click button#submitCSV1': 'createPrompt'
+
+      /*Buttons Hidden Initally */
+      'click button#editPrompt': 'editPrompt',
+      'click button#savePrompt': 'savePrompt'
     };
 
     modelView.prototype.initialize = function() {
@@ -34,47 +38,58 @@
     };
 
     modelView.prototype.uploadCSV = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
+        $('#welcomeTut').hide();
+        $('#refreshWarning').hide();
         return $('#csvArea').html(new window.uploadCSVView().$el);
       }
     };
 
     modelView.prototype.uploadZip = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
+        $('#welcomeTut').hide();
+        $('#refreshWarning').hide();
+        $('#whatIsCSV').hide();
         return $('#csvArea').html(new window.uploadZipView().$el);
       }
     };
 
     modelView.prototype.makeCSV = function() {
-      if ($("#promptTitle").val() === "") {
-        return window.alert("Please enter the prompt title");
-      } else if ($("#promptDescription").val() === "") {
-        return window.alert("Please enter the prompt description");
-      } else if ($("#cDescription").val() === "") {
-        return window.alert("Please enter the class description");
-      } else {
+      if (fieldsFilled() === true) {
         fieldCollapse();
-        $('#csvArea').html(new window.CSVView().$el);
+        $('#uploadZip').hide();
+        $('#uploadCSV').hide();
+        $('#makeCSV').hide();
         $('#welcomeTut').hide();
-        return $('#makeTut').show();
+        $('#whatIsCSV').hide();
+        $('#fieldTut').show();
+        return $('#csvArea').html(new window.CSVView().$el);
       }
     };
 
-    modelView.prototype.hideResults = function() {
+    modelView.prototype.editPrompt = function() {
+      $('#editPrompt').hide();
+      $('#savePrompt').show();
+      $('#promptSpaceSmall').hide();
+      return $('#promptSpace').show();
+    };
+
+    modelView.prototype.savePrompt = function() {
+      if (fieldsFilled() === true) {
+        fieldCollapse();
+        return $('#savePrompt').hide();
+      }
+    };
+
+    modelView.prototype.hideWait = function() {
       return $('#waitingForModel').hide(1000);
     };
 

@@ -1,14 +1,15 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
+
 userSchema = mongoose.Schema(
    password: String
    email: String
    firstName: String
    surname: String
-   promptArray: []
+   promptArray: [String]
+   authorURL: String
 )
-
 user = mongoose.model 'user', userSchema
 
 module.exports =

@@ -2,7 +2,7 @@
     <div class="left col-sm-7 col-sm-push-1">
         <div id="promptSpace">
             <label for="promptTitle">Prompt Title: </label><br/>
-            <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" /> <br/>
+            <input id="promptTitle" class="form-control" placeholder="Title (Example: Does Google makes us smarter?)" autofocus /> <br/>
 
             <label for="promptDescription">Prompt Description: </label><br/>
             <textarea id="promptDescription" class="form-control"  placeholder="Description of the Prompt (Example: Consider the benefits and disadvantages of instant answers. Also, consider mentioning the fact that the internet is always right.)" /><br/>
@@ -10,21 +10,20 @@
             <label for="cDescription">Class Description: </label><br/>
             <input id="cDescription" class="form-control"  placeholder="Class Description (Example: Mr. Larry Page's 9th Grade English Class)" /><br/><br/>
         </div>
+
+        <div id="promptSpaceSmall"></div>
+
         <div id="promptButtons">
-            <button type='button' class='btn btn-default' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
-            <button type='button' class='btn btn-default' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button>
+            <button type='button' class='btn btn-default hiding' id='editPrompt' name='editPrompt'> <span class='glyphicon glyphicon-pencil'></span> Edit</button>
+            <button type='button' class='btn btn-default hiding' id='savePrompt'> <span class='glyphicon glyphicon-saved'></span> Save</button> <br><br>
         </div>
 
-
-
- <!--Big blue buttons-->
-        <div id="csvButtons">
+        <div class="center" id="csvButtons">
             <button class="box" id="uploadCSV">
                 <span class="glyphicon-large glyphicon glyphicon-upload"></span>
                 <br />
                 <span class="center dashBtn">Upload Existing CSV File</span>
             </button>
-
             <button class="box" id="makeCSV">
                 <span class="glyphicon-large glyphicon glyphicon-pencil"></span>
                 <br />
@@ -36,42 +35,26 @@
                 <span class="center dashBtn">Make CSV from uploaded documents</span>
             </button>
         </div>
+
         <div id="csvArea"></div>
         <br/><br/>
-        <div id="waitingForModel">
-            <h4>Please Wait For LightSide To Build Your Model</h4>
-            <p id="waitMessage">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
-            <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
-            <br/><br/>
-            <button id="hideWait" class="btn btn-success">Thank You</button>
 
+        <div class="center" id="waitingForModel">
+            <h4>Please Wait For LightSide To Build Your Model</h4>
+            <p id="waitMessage" style="text-align: center">This may take about half an hour, please do not close your browser window if you have not chosen to receive an email notification about your model.</p>
+            <img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+            <br />
+            <button id="hideWait" class="btn btn-success">Hide</button>
         </div>
     </div>
 
     <div class="right col-sm-3 col-sm-push-1">
         <div class="content">
-            <a href="dash" class="paired btn btn-primary btn-lg">Dashboard</a>
-            <a href="logout" class="paired btn btn-primary btn-lg">Sign Out</a>
-            <br/><br/>
+            <a href="dash" class="btn btn-primary btn-lg btn-block">Dashboard</a>
+            <a href="logout" class="btn btn-primary btn-lg btn-block">Sign Out</a>
+            <br/>
             <h3 class ="title">Getting Started</h3>
             {{> tutorial}}
-            <div id="visFields"></div>
+        </div>
     </div>
-
-    <script>
-        $("#editDocs").hide();
-        $("#fieldTut").hide();
-        $("#textTut").hide();
-        $(document).ready(function() {
-            $("#savePrompt").hide();
-
-            $("#editPrompt").click(function() {
-                editPromptFields();
-            });
-
-            $("#savePrompt").click(function() {
-                savePrompt();
-            });
-        });
-    </script>
 </script>
