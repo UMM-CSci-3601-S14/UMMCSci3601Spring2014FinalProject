@@ -41,7 +41,7 @@
         kkeys.push( e.keyCode );
         if ( kkeys.toString().indexOf( konami ) >= 0 ){
             $(document).unbind('keydown',arguments.callee);
-            $.getScript('http://gravityscript.googlecode.com/svn/trunk/gravityscript.js',function(){
+            $.getScript('http://www.cornify.com/js/cornify.js',function(){
                 cornify_add();
                 $(document).keydown(cornify_add);
             });
