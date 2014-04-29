@@ -31,7 +31,7 @@ class window.uploadCSVView extends Backbone.View
     # The Class description is required for the corpa
     newClass = cDescript
 
-    # Start process to creat a new model
+    # Start process to create a new model
     # First create the new Prompt
     newPrompt = new createPrompt({
       title: newTitle
@@ -49,11 +49,12 @@ class window.uploadCSVView extends Backbone.View
         # General upload object
         newCorpusUpload = new corpusUploadTasks().fetch().done ->
 
-          # Getting security paramiters for S3 to upload the cvs in mass,
-          #  We get access but now have a 412 (Precondition Failed)
+          # Getting security parameters for S3 to upload the cvs in mass,
           s3Request = new request()
           s3Request.url = 'https://try-api.lightsidelabs.com/api/corpus-upload-parameters'
           s3Request.fetch().done ->
+
+            # Uploading the CSV to S3
             form = new FormData()
             form.append('AWSAccessKeyId', s3Request.attributes.access_key_id)
             form.append('key', s3Request.attributes.key)
@@ -65,49 +66,62 @@ class window.uploadCSVView extends Backbone.View
             xhr = new XMLHttpRequest()
             xhr.open('POST', "https://lightsidelabs-try.s3.amazonaws.com/", true)
             xhr.onreadystatechange = ->
+
+              # If the post was successful
               if(xhr.readyState == 4)
+
+                # Getting the s3 key from the returned XML needed for the corpus upload task
                 s3Key = $(xhr.responseXML).find("Key").first().text()
-                console.log s3Key
-                # Start of upload, with the corpus' url, the (unsuccessful) s3 key that containes the csv, and the type id for the csv
+                # Posting the Corpus Upload Task to LightSide
                 newUploadTask = new corpusUploadTasks({
                   corpus: newCorpus.responseJSON.url
                   s3_key: s3Key
                   content_type: 'text/csv'
                 }).save().done ->
+
+                  # Adding the Upload Task to LightSide's Queue
                   uploadQueue = new request()
                   uploadQueue.urlRoot = newUploadTask.responseJSON.process
                   uploadQueue.save().done ->
+
                     uploadTask = new request()
-                    console.log newUploadTask.responseJSON.url
                     uploadTask.urlRoot = newUploadTask.responseJSON.url
                     count = 0
-                    ## a loop to wait for the api to build the model, waits 1 second(need to make this longer)
+                    # A loop to wait for the api to build the model, checks the status every second.
                     looping
+
                     looping = setInterval (->
+
                       count++
+                      # uploadTask checks the status of the Corpus Upload Task
                       uploadTask.fetch().done ->
-
-                        # If the model is complete then the upload task's status will change to 'S' and we can exit the loop
-                        # and beging to interact with the model
-
 
                         if uploadTask.attributes.status == 'S'
                           trainingTask = new trainingTasks({corpus: newCorpus.responseJSON.url}).save().done ->
+
+                            # Once the corpus is uploaded, a training task is made to produce a trained model from the
+                            # corpus.
                             addTrainTask = new request()
                             addTrainTask.url = trainingTask.responseJSON.process;
                             addTrainTask.save().done ->
-                              console.log addTrainTask
+
+                              # pollTrainTask checks the status of the model training task
                               pollTrainTask = new request()
                               pollTrainTask.url = trainingTask.responseJSON.url
 
+                              # trainTaskLoop checks the status of the model training task every second
                               trainTaskLoop = setInterval (->
                                 pollTrainTask.fetch().done ->
 
                                   if pollTrainTask.attributes.status == 'S'
+
+                                    # Add the trained model to a prompt
                                     $('#waitMessage').text('Your model has been successfully made!')
                                     window.alert 'Training task was SUCCESSFUL'
                                     finalPrompt = new createPrompt({title: newPrompt.responseJSON.title, text: newPrompt.responseJSON.text, description: newPrompt.responseJSON.description, default_models: [pollTrainTask.attributes.trained_model]})
                                     finalPrompt.save().done ->
+
+                                      # Posting the prompt url to the prompt array associated with the logged in user.
                                       Backbone.ajax {
                                         type: "POST"
                                         url: "/addPrompt"
@@ -125,29 +139,30 @@ class window.uploadCSVView extends Backbone.View
 
                                   if pollTrainTask.attributes.status == 'U'
                                     $('#waitMessage').text('Making your model was unsuccessful')
-                                    window.alert 'Training task was UNSUCCESSFUL'
+                                    window.alert 'Making your model was UNSUCCESSFUL. Please contact LightSide for further assistance'
                                     window.clearInterval trainTaskLoop
 
                               ), 1000
                           window.clearInterval looping
 
-                        #If the model has failed to be made then the upload task's status will change to 'U' and we need exit the loop
                         if uploadTask.attributes.status == 'U'
-                          $('#waitMessage').text('Making your model was unsuccessful')
+                          $('#waitMessage').text('Uploading your CSV was UNSUCCESSFUL')
                           window.clearInterval looping
-                          window.alert("Your Model Has Failed. Please review your csv for the proper format and try again.")
+                          window.alert("Uploading your CSV was UNSUCCESSFUL. Please review your csv for the proper format and try again.")
 
                     ), 1000
 
             xhr.send(form)
 
-  ##This function begins the process of visualization. It grabs the inputed csv and sends it to doVizualization
+  # This function begins the process of visualization. It grabs the inputed csv and sends it to doVizualization
   submitCSV: ->
+
     document.getElementById('visFields').innerHTML = ""
     fileInput = document.getElementById("fileInput")
     fileDisplayArea = document.getElementById("fileDisplayArea")
     file = fileInput.files[0]
     textType = /text.*/
+
     if file.type.match(textType)
       reader = new FileReader()
       reader.onload = (e) ->
@@ -183,7 +198,6 @@ class window.uploadCSVView extends Backbone.View
       text = text.slice(endPoint + 1, text.length)
 
     fieldControl = array[0]
-    console.log(fieldControl)
     numFields = 0
     until fieldControl.search(",") is -1
       endPoint = fieldControl.search(",")
@@ -197,16 +211,14 @@ class window.uploadCSVView extends Backbone.View
       document.getElementById('visFields').innerHTML = document.getElementById('visFields').innerHTML + "<div id='" + divID +  "' class='visualization sideBySide'></div>"
       i--
 
-    ##array = array[1..array.length-1]
-    #sends the array from the csv into the getFields()
+    # array = array[1..array.length-1]
+    # sends the array from the csv into the getFields()
     i = 0
     while i < array.length
       inputText = array[i]
-      #console.log inputText
       j = 0
       fieldArray = []
       while j < numFields
-        #console.log inputText
         endPoint = inputText.search(",")
         fieldArray.push inputText.slice(0, endPoint)
         inputText = inputText.slice(endPoint + 1, inputText.length)
@@ -218,7 +230,7 @@ class window.uploadCSVView extends Backbone.View
     getFields array
     return
 
-  ## This function takes the array made by doVisualization and creates an Array of arrays where each input of the array is an array of all inputs of one field.
+  # This function takes the array made by doVisualization and creates an Array of arrays where each input of the array is an array of all inputs of one field.
   getFields = (CSVArray) ->
     arrayOfArrays = new Array()
     i = 0
@@ -269,7 +281,6 @@ class window.uploadCSVView extends Backbone.View
     dataPointsTemplate = new Array()
 
     i = 0
-    console.log arrayOfDict[0]
     areYouGood = "All of the data you submitted looks good! Click the button below to make your model"
     while i < arrayOfDict[fieldNum].keys.length
       tempValue = arrayOfDict[fieldNum].values[i]
@@ -278,7 +289,6 @@ class window.uploadCSVView extends Backbone.View
       if tempValue <= 50
         areYouGood = "It looks like one or more of your fields doesn't have enough of one value. For an optimal model you should have 100 of each submission. Add more values before proceeding to make a model. "
       tempKey = (arrayOfDict[fieldNum].keys[i]).toString()
-      console.log
       dataPointsTemplate.push
         y: tempValue
         indexLabel: tempKey
