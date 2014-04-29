@@ -1,3 +1,7 @@
+/*
+    Functions used for the CSV maker on /model-maker
+ */
+
 var myCSV = "";
 var documentsAdded = 0;
 var numFields;
@@ -108,7 +112,8 @@ function add() {
         for (var i = 1; i <= numFields; i++) {
             myCSV += $("#toScore" + i + "").val() + ",";
         }
-        myCSV += "\"" + $("#text").val().replace(/"/g,"'") + "\"\r\n"; //Adds the string in the text area to myCSV string, replacing double quotes with single quotes.
+        //Adds the string in the text area to myCSV string, replacing double quotes with single quotes, line breaks with spaces, and double spaces with single spaces.
+        myCSV += "\"" + $("#text").val().replace(/"/g,"'").replace(/(\r\n|\n|\r)/gm," ").replace(/\s+/g," ") + "\"\r\n";
         documentsAdded++;
         clearAllFields();
         document.getElementById("documentAmount").innerHTML = documentsAdded;
