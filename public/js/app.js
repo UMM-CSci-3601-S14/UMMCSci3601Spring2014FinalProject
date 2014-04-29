@@ -25,47 +25,38 @@
     };
 
     AppRouter.prototype.index = function() {
-      console.log("in index");
       $('#content').html(new window.welcomeView().$el);
     };
 
     AppRouter.prototype.dash = function() {
-      console.log("in dash");
       $('#content').html(new window.dashView().$el);
     };
 
     AppRouter.prototype.csvPage = function() {
-      console.log("in csv");
       $('#content').html(new window.CSVView().$el);
     };
 
     AppRouter.prototype.uploadCSV = function() {
-      console.log("in uploadCSV");
       $('#content').html(new window.uploadCSVView().$el);
     };
 
     AppRouter.prototype.uploadZip = function() {
-      console.log("in uploadZip");
       $('#content').html(new window.uploadZipView().$el);
     };
 
     AppRouter.prototype.modelMaker = function() {
-      console.log("in model");
       $('#content').html(new window.modelView().$el);
     };
 
     AppRouter.prototype.login = function() {
-      console.log("in Sign in");
       $('#content').html(new window.logInView().$el);
     };
 
     AppRouter.prototype.newUser = function() {
-      console.log("in newUser");
       $('#content').html(new window.newUserView().$el);
     };
 
     AppRouter.prototype.account = function() {
-      console.log("in account");
       $('#content').html(new window.accountView().$el);
     };
 
