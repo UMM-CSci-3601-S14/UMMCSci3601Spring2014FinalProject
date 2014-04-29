@@ -36,7 +36,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form col-md-12 center-block">
-                        <p id="emailIsTaken" class="warning">The email you have entered is already in use!</p>
+                        <p id="emailIsTaken" class="warning hiding">The email you have entered is already in use!</p>
                         <div class="form-group">
                             <label>Email:</label><br/>
                             <input autofocus="" name="createEmail" class="form-control" id="createEmail" type="email" placeholder="Email" value="<%= email %>"/>
@@ -53,10 +53,10 @@
                             <label>Surname:</label><br/>
                             <input name="createSurname" class="form-control" id="createSurname" type="text" placeholder="Surname" value="<%= surname %>"/>
                         </div>
-                        <div class="warning" id="emptyField">
+                        <div class="warning hiding" id="emptyField">
                             <p><b>One of the required fields above is empty!</b></p>
                         </div>
-                        <div id="passwordTooShort" class="warning">
+                        <div id="passwordTooShort" class="warning hiding">
                             <p><b>Your new password must be at least six characters!</b></p>
                         </div>
                         <div class="form-group">
@@ -103,16 +103,16 @@
                         <button class="endChangePassword btn btn-default">Change Password</button>
                         <button class="cancelPasswordChange btn btn-default">Cancel</button>
                     </div>
-                    <div id="successPasswordChange" class="warning">
+                    <div id="successPasswordChange" class="warning hiding">
                         <p><b>Your password was successfully changed!</b></p>
                     </div>
-                    <div id="failedPasswordChange" class="warning">
+                    <div id="failedPasswordChange" class="warning hiding">
                         <p><b>Your old password was incorrect!</b></p>
                     </div>
-                    <div id="passwordMismatch" class="warning">
+                    <div id="passwordMismatch" class="warning hiding">
                         <p><b>New password and confirm new password do not match!<b></p>
                     </div>
-                    <div id="passwordTooShort" class="warning">
+                    <div id="passwordTooShort" class="warning hiding">
                         <p><b>Your new password must be at least six characters!</b></p>
                     </div>
                 </div>

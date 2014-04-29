@@ -1,29 +1,35 @@
 <script id="welcomePage" type="text/html">
+    <!--Start the left side of the welcome page-->
     <div class="left center col-sm-7 col-sm-push-1">
         <h2 class="title">Try Our Tools for In-Classroom Writing!</h2>
+        <!--The start of the prompt-->
         <h3 id="promptTitle" class="title"></h3>
         <p id="promptDescription"></p>
-
+        <!--Enter an essay below-->
         <textarea autofocus id="essayContents" class="form-control" placeholder="Paste in or write your own essay to be graded!"></textarea>
         <button type='button' name='submitEssay' data-loading-text= 'Loading Results...' class='submitEssay btn btn-success' id="submitEssay">Submit</button>
-
-        <div id="sandboxResults">
+        <!--This is a hidden div that will show the grading results from the model-->
+        <div id="sandboxResults" class="hiding">
             <h4 class="title">Here is what our Model Reports:</h4>
-            <p id="grade"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
+            <p id="grade" class="center"><img src="http://lightsidelabs.com/wp-content/uploads/2013/09/lightside-how-it-works-icon.png"></p>
             <br/><br/>
             <button id="hideResults" class="btn btn-success"> Cool!</button>
         </div>
     </div>
-
+    <!--End of left side of the welcome page-->
+    <!--Start of right side of the welcome page-->
     <div class="right col-sm-3 col-sm-push-1">
         <!-- Button trigger modal -->
         <div class="content">
-            <h3 class="title">Sign in <small>to create and use your own models!</small></h3>
+            <h3 class="title center">Sign in <small>to create and use your own models!</small></h3>
+            <!--Sign in button-->
             <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
                 Sign In
             </button>
+            <!--Create account button-->
             <a href="newUser" class="btn btn-primary btn-lg btn-block">Create Account</a>
             <br />
+            <!--Information on LightSide-->
             <p>At LightSide, we’ve developed software that can instantly evaluate student writing – but scores aren’t enough. In less than a second, we can grade an essay on multiple rubric scales and highlight the writer’s strongest and weakest passages on each dimension. Independent research has repeatedly shown that if all you’re interested in is a score, this technology is as accurate as human graders, and focuses on intuitive features of writing like content mastery, stylistic syntax choices, and genre awareness.
                 <button id="more" class="btn btn-default btn-sm glyphicon glyphicon-chevron-down btn-block"></button>
             </p>
@@ -35,7 +41,7 @@
         </div>
     </div>
 
-    <!-- Sign In Modal -->
+    <!-- Sign In Modal (appears after clicking on sign in)-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

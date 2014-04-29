@@ -39,21 +39,43 @@ class window.dashView extends Backbone.View
       userPrompts = userPrompts.responseJSON
       console.log userPrompts
 
-      for i in userPrompts
-        do (i) ->
-          if i.length <= 50
-            if i.indexOf(" ") >= 14
-              x = i[0..14]
-              x += '...'
-              buttonString += buttonString1 + i + buttonString2 + x + buttonString3
+      for p in userPrompts
+        #The p is the url that holds the prompt within Lightside
+        do (p) ->
+          #yourPrompt = new request
+          #yourPrompt.urlRoot = p
+          #yourPrompt.fetch().done ->
+
+            #promptTitle = yourPrompt.attributes.title
+            #check if the prompt title is to long to fit on the button
+            #if promptTitle.length <= 50
+            if p.length <= 50
+              #check for spaces with in reasonable length,
+              # if so shorten to 14 characters and add ...
+              #if promptTitle.indexOf(" ") >= 14
+              if p.indexOf(" ") >= 14
+                shortTitle = p[0..14]
+                shortTitle += '...'
+                buttonString += buttonString1 + p + buttonString2 + shortTitle + buttonString3
+              #if the length of the title is less than 50 and there are reasonable spaces
+              #then add the title as is
+              else
+                  buttonString += buttonString1 + p + buttonString2 + p + buttonString3
+
+            #if the title is more than 50 characters
             else
+              #check for spaces with in reasonable length,
+              # if so shorten further to 14 characters and add ...
+              if p.indexOf(" ") >= 14
+                shorterTitle = p[0..14]
+                shorterTitle += '...'
+                buttonString += buttonString1 + p + buttonString2 + shorterTitle + buttonString3
+              else
+                shortTitle = p[0..25]
+                shortTitle += '...'
+                buttonString += buttonString1 + p + buttonString2 + shortTitle + buttonString3
 
-                buttonString += buttonString1 + i + buttonString2 + i + buttonString3
-          else
-            x = i[0..30]
-            x += '...'
-            buttonString += buttonString1 + i + buttonString2 + x + buttonString3
-
+      #append the buttons to the div 'customModels'
       $('#customModels').append(buttonString)
 
     this
@@ -62,7 +84,8 @@ class window.dashView extends Backbone.View
     window.location.href = '/model-maker'
 
   loadYourPrompts: ->
-    $('.yourPrompt').click ->
+    #when you
+    $('.yourPrompts').click ->
       prompt = this.id
       thePrompt = new request
       thePrompt.urlRoot = prompt
@@ -71,8 +94,9 @@ class window.dashView extends Backbone.View
         $('#promptDescription').html(thePrompt.attributes.description)
 
   #    yourAnswerSet
-        $('#yourModel').show()
+
         $('#essayContents').val("")
+        $('#yourModel').show()
         $('#essayArea').show()
 
   loadEssay1: ->
@@ -83,8 +107,8 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet1({
       }).fetch().done ->
 
-      $('#yourModel').hide()
       $('#essayContents').val("")
+      $('#yourModel').hide()
       $('#essayArea').show()
 
   loadEssay2: ->
@@ -95,8 +119,8 @@ class window.dashView extends Backbone.View
       theAnswerSet = new answerSet2({
       }).fetch().done ->
 
-      $('#yourModel').hide()
       $('#essayContents').val("")
+      $('#yourModel').hide()
       $('#essayArea').show()
 
   hidePrompt: ->

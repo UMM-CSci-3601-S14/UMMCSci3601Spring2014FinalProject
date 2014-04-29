@@ -34,7 +34,6 @@ textarea{
 .page-header{
     font: Helvetica, Arial, sans-serif;
     font-size: 50px;
-    text-align: center;
     padding: 15px;
     background-color: #B29E70;
 }
@@ -76,28 +75,13 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     width: 100%;
     min-height: 200px;
 }
-#sandbox {
-    text-align: center;
-    padding: 15px;
-    background-color: #B29E70;
-    border-radius: 10px;
-}
+
 #sandboxResults{
-    display: none;
     padding: 15px;
     background-color: #FFE099;
     border-radius: 10px;
 }
-#grade{
-    text-align: center;
-}
-#waitingForModel{
-    text-align: center;
-    display: none;
-    padding: 15px;
-    background-color: #FFE099;
-    border-radius: 10px;
-}
+
 #submitEssay {
     margin: 15px;
 }
@@ -123,7 +107,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 
 .right .title {
     margin-top: 0;
-    text-align: center;
 }
 
 #goToLightSide {
@@ -139,30 +122,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     height: 100%;
     margin-right: 5px;
     border-radius: 10px;
-    text-align: center;
-}
-
-#modelsInAccount{
-    display: none;
-    height: 100%;
-    margin-right: 5px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-#preexisting {
-    height: 100%;
-    margin-right: 5px;
-    border-radius: 10px;
-    text-align: center;
-}
-#essayArea{
-    display: none;
-}
-
-#noPrompts{
-    display: none;
-    text-align: center;
 }
 
 .glyphicon-large {
@@ -236,7 +195,6 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
 /******************************************************/
 
 .warning {
-    display: none;
     color: #ff0000;
 }
 
@@ -255,12 +213,14 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     padding: 15px;
 }
 
-#addFieldsSelector .dropdown-menu {
-    cursor: pointer;
-}
-
 #promptSpaceSmall{
     word-wrap: break-word;
+}
+
+#waitingForModel{
+    padding: 15px;
+    background-color: #FFE099;
+    border-radius: 10px;
 }
 
 /******************************************************/
@@ -270,8 +230,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     padding-bottom: 5px;
 }
 
-#reset {
-    float: right;
+#addFieldsSelector .dropdown-menu {
+    cursor: pointer;
 }
 
 .docBox {
@@ -294,15 +254,8 @@ https://kuler.adobe.com/create/color-wheel/?base=2&rule=Complementary&selected=4
     box-shadow: 2px 2px 2px #888888;
 }
 
-#advice{
-    text-align: center;
-}
-
 .visualization {
     height: 300px;
     width: 175px;
-}
-
-.sideBySide {
     display: inline-block;
 }

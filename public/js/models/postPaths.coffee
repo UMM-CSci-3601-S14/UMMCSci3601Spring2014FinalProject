@@ -6,9 +6,7 @@ class window.prompt1 extends superPost
 class window.prompt2 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/449'
 
-class window.prompt extends superPost
-  urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/'
-
+#needed to creat an answer set for a prompt/model
 class window.createAnswerSet extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/'
 
