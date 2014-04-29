@@ -99,6 +99,3 @@ function countingMap(){
         return this.values[index];
     };
 }
-
-module.exports.Dictionary = countingMap;
-module.exports.generateMap = generateMap;
