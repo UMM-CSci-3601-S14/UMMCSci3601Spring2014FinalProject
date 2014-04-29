@@ -34,7 +34,7 @@
 
     generateMap = function(arrayOfStrings) {
         var entry, i, map;
-        map = new Dictionary();
+        map = new countingMap();
         i = 0;
         while (i < arrayOfStrings.length) {
             entry = arrayOfStrings[i];
@@ -79,7 +79,7 @@
         chart.render();
     };
 
-    Dictionary = function() {
+    countingMap = function() {
         this.keys = [];
         this.values = [];
         this.add = function(entry) {

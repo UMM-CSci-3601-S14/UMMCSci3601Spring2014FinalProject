@@ -3,8 +3,8 @@ test = require('selenium-webdriver/testing')
 webdriver = require('selenium-webdriver')
 chai = require('chai')
 #import our functions
-Dictionary = require('../public/js/visualization').Dictionary
-generateMap = require('../public/js/visualization').generateMap
+Dictionary = require('../public/js/visualization.js').countingMap
+generateMap = require('../public/js/visualization/js').generateMap
 
 describe "cube tests", ->
     it "should create a paragraph with given text", ->
@@ -48,14 +48,14 @@ describe 'dictionary tests', ->
     emptyDict.add('item')
     emptyDict.add('otheritem')
     chai.assert.deepEqual 2, emptyDict.values.length
-  it 'adds 500 items to the Dictionary using a loop ', ->
+  it 'adds 500 items to the countingMap using a loop ', ->
     emptyDict = new Dictionary()
     i = 0
     while i < 500
       emptyDict.add "item"
       i++
     chai.assert.deepEqual [500], emptyDict.values
-  it 'adds 500 items to the Dictionary using a loop then another 300 ', ->
+  it 'adds 500 items to the countingMap using a loop then another 300 ', ->
     emptyDict = new Dictionary()
     i = 0
     while i < 500
@@ -65,7 +65,7 @@ describe 'dictionary tests', ->
       emptyDict.add "otheritem"
       i++
     chai.assert.deepEqual [500, 300], emptyDict.values
-  it 'adds 500 items to the Dictionary using a loop then another 300, checks the keys ', ->
+  it 'adds 500 items to the countingMap using a loop then another 300, checks the keys ', ->
     emptyDict = new Dictionary()
     i = 0
     while i < 500

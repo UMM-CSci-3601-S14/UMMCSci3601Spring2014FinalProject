@@ -192,6 +192,12 @@ class window.uploadCSVView extends Backbone.View
     newLine = "\r"
     if text.search("\r") == -1
       newLine = "\n"
+      if text.search("\n") == -1
+        newLine = "\n\r"
+        if text.search("\n\r") == -1
+          newLine = "\r\n"
+          if text.search("\r\n") == -1
+            alert("Your CSV does not seem to have any content. Please review and re-submit.")
     until text.search(newLine) is -1
       endPoint = text.search(newLine)
       array.push text.slice(0, endPoint)
