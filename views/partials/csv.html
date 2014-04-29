@@ -28,21 +28,23 @@
             <label>Text</label>
             <textarea class="text form-control" id="text" placeholder="Enter or paste the essay here" rows="10"></textarea>
             <br />
-            <button type="button" class="btn btn-danger hiding" id="delete">
-                <span class="glyphicon glyphicon-trash"></span> Delete
-            </button>
+
             <button type="button" class="btn btn-default" id="add">
                 <span class="glyphicon glyphicon-plus"></span> Add Essay
             </button>
-            <button type="button" class = "btn btn-default hiding" id="replace">
-                <span class="glyphicon glyphicon-edit"></span> Replace
-            </button>
-            <button type="button" class="btn btn-default" id="downloadCSV">
-                <span class="glyphicon glyphicon-download"></span> Download CSV
+            <button type="button" class = "btn btn-default btn-success hiding btn-success" id="replace">
+                <span class="glyphicon glyphicon-edit"></span> Save Changes
             </button>
             <button type="button" class="btn btn-default hiding" id="cancel">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
             </button>
+            <button type="button" class="btn btn-default pull-right" id="downloadCSV">
+                <span class="glyphicon glyphicon-download"></span> Download CSV
+            </button>
+            <button type="button" class="btn btn-danger hiding pull-right" id="delete">
+                <span class="glyphicon glyphicon-trash"></span> Delete
+            </button>
+
         </form>
         <p style="display:inline;"><strong>Documents Added:</strong></p>
         <p style="display:inline;" id="documentAmount">0</p>

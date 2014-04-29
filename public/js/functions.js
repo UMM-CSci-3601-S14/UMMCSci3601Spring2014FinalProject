@@ -181,6 +181,20 @@ function editButtons() {
     $("#add").show();
     $("#textTut").show();
     $("#editDocs").hide();
+    $("#downloadCSV").show();
+
+}
+
+//Hides submit, the text tutorial, and add, shows cancel, edit tutorial, and replace.
+function addingButtons() {
+    $("#add").hide();
+    $("#submit").hide();
+    $("#replace").show();
+    $("#delete").show();
+    $("#cancel").show();
+    $("#textTut").hide();
+    $("#editDocs").show();
+    $("#downloadCSV").hide();
 }
 /****************************************************************************************/
 
@@ -251,16 +265,7 @@ function cancelReplace() {
     clearAllFields();
 }
 
-//Hides submit, the text tutorial, and add, shows cancel, edit tutorial, and replace.
-function addingButtons() {
-    $("#add").hide();
-    $("#submit").hide();
-    $("#replace").show();
-    $("#delete").show();
-    $("#cancel").show();
-    $("#textTut").hide();
-    $("#editDocs").show();
-}
+
 /*******************************************************************************/
 
 
