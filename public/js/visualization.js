@@ -36,9 +36,9 @@ function countGrades (arrayOfArrays){
 }
 
 function generateMap (arrayOfStrings) {
-    //Makes a countingMap of key value pairs based on occurrences within the given array. Returns the countingMap.
-    var map = new countingMap();
-    for (var i = 1; i < arrayOfStrings.length; i++) {
+    //Makes a dictionary of key value pairs based on occurrences within the given array. Returns the dictionary.
+    var map = new Dictionary();
+    for (var i = 0; i < arrayOfStrings.length; i++) {
         var entry = arrayOfStrings[i];
         map.add(entry)
     }
@@ -78,8 +78,8 @@ function createData(fieldNum, arrayOfDict){
     chart.render();
 }
 
-//countingMap class and methods. Custom data structure!! :D
-function countingMap(){
+//Dictionary class and methods. Custom data structure!! :D
+function Dictionary(){
     this.keys = [];
     this.values = [];
 
@@ -99,3 +99,6 @@ function countingMap(){
         return this.values[index];
     };
 }
+
+module.exports.Dictionary = Dictionary;
+module.exports.generateMap = generateMap;
