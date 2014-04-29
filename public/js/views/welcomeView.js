@@ -58,13 +58,12 @@
       } else {
         $('#sandboxResults').show(500);
         return theAuthor = new author({
-          designator: "BG2",
+          designator: "LightsideDefault",
           email: "test@gmail.com"
         }).fetch().done(function() {
           var theAnswerSet;
-          return theAnswerSet = new answerSet1({}).fetch().done(function() {
+          return theAnswerSet = new answerSet1().fetch().done(function() {
             var theAnswer;
-            console.log(theAnswerSet);
             return theAnswer = new answer({
               author: theAuthor.responseJSON.results[0].url,
               answer_set: theAnswerSet.responseJSON.url,
@@ -85,18 +84,13 @@
                     thePredictionStatus.urlRoot = theProcess.attributes.url;
                     return thePredictionStatus.fetch().done(function() {
                       var thePredictionResult;
-                      console.log("Prediction Task status: " + thePredictionStatus.attributes.status);
                       if (thePredictionStatus.attributes.status === 'S') {
-                        console.log("Prediction Task was SUCCESSFUL");
                         thePredictionResult = new predictionResult().fetch().done(function() {
-                          var answerGraded;
-                          $('#grade').html("Your grade for the submitted essay is " + thePredictionResult.responseJSON.results[0].label + " out of 5.");
-                          return answerGraded = new answer;
+                          return $('#grade').html("Your grade for the submitted essay is " + thePredictionResult.responseJSON.results[0].label + " out of 5.");
                         });
                         window.clearInterval(looping);
                       }
                       if (thePredictionStatus.attributes.status === 'U') {
-                        console.log("Prediction Task was UNSUCCESSFUL");
                         $('#grade').html("The grading process was unsucessful. Please wait before resubmitting.");
                         return window.clearInterval(looping);
                       }

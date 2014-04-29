@@ -2,9 +2,9 @@
 # This is the cloned prompts that we are using for the demo page
 class window.prompt1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/114'
+
 class window.prompt2 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/449'
-
 
 class window.prompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/'
@@ -15,6 +15,7 @@ class window.createAnswerSet extends superPost
 #  Clone is presently unused/commented out.
 class window.clonePrompt1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/1/clone'
+
 class window.clonePrompt2 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/2/clone'
 
@@ -25,7 +26,7 @@ class window.author extends superPost
 # Calls for sending an answer to the api
 class window.answerSet1 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/263'
-#does not exist or can't access
+
 class window.answerSet2 extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/answer-sets/279'
 
@@ -39,7 +40,7 @@ class window.predictionTask extends superPost
 class window.predictionResult extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prediction-results/'
 
-  ##Calls for making a new model.
+# Calls for making a new model.
 class window.createPrompt extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/prompts/'
 
@@ -51,8 +52,6 @@ class window.corpusUploadTasks extends superPost
 
 class window.trainingTasks extends superPost
   urlRoot: 'https://try-api.lightsidelabs.com/api/training-tasks/'
-
-
 
 #  This general request call takes the place of the prediction process,
 #  the prediction status, and other places where the URL can't be predefined
