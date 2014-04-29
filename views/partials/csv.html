@@ -38,12 +38,20 @@
             <button type="button" class="btn btn-default hiding" id="cancel">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
             </button>
-            <button type="button" class="btn btn-default pull-right" id="downloadCSV">
-                <span class="glyphicon glyphicon-download"></span> Download CSV
-            </button>
             <button type="button" class="btn btn-danger hiding pull-right" id="delete">
                 <span class="glyphicon glyphicon-trash"></span> Delete
             </button>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" id="downloadCSV">
+                    <span class="glyphicon glyphicon-download"></span> Download CSV
+                </button>
+                <button type="button" class="btn btn-success" id="finishCSV">
+                    <span class="glyphicon glyphicon-ok"></span> Finish & Submit to LightSide
+                </button>
+            </div>
+
+            <label for="fileInput" value="Submit your csv: ">Upload CSV to Create Model: </label>
+            <input type="file" id="fileInputs">
 
         </form>
         <p style="display:inline;"><strong>Documents Added:</strong></p>

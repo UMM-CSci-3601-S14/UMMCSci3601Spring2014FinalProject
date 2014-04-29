@@ -20,7 +20,8 @@
       'click button#delete': 'delete',
       'click button#saveFields': 'saveFields',
       'click button#replace': 'replace',
-      'click button#cancel': 'cancel'
+      'click button#cancel': 'cancel',
+      'click button#finishCSV': 'finishCSV'
     };
 
     CSVView.prototype.initialize = function() {
@@ -73,6 +74,10 @@
     CSVView.prototype.replace = function() {
       replace();
       return $("#docTut").show();
+    };
+
+    CSVView.prototype.finishCSV = function() {
+      return finishCSVButton();
     };
 
     return CSVView;
