@@ -6,15 +6,13 @@ chai = require('chai')
 Dictionary = require('../public/js/visualization').Dictionary
 generateMap = require('../public/js/visualization').generateMap
 
-#describe "Create paragraph", ->
-#  describe "test 1", ->
-#    it "should create a paragraph with given text", ->
-#      assert.equal "2", "2"
-#
-#    it '3 cubed is 27', ->
-#      chai.assert.equal 27, cube(3)
-#    it '-3 cubed is -27', ->
-#      chai.assert.equal -27, cube(-3)
+describe "cube tests", ->
+    it "should create a paragraph with given text", ->
+      chai.assert.equal "2", "2"
+    it '3 cubed is 27', ->
+      chai.assert.equal 27, cube(3)
+    it '-3 cubed is -27', ->
+      chai.assert.equal -27, cube(-3)
 
 
 ######## Testing Dictionary ##########
