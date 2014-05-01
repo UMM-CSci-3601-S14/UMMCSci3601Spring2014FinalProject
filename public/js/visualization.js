@@ -53,7 +53,7 @@ function createData(fieldNum, arrayOfDict){
     var title = fieldNames[fieldNum];
     //array of the field entries and the occurrences of them in an object for each index of the array
     var dataPointsTemplate = new Array();
-    for(var i = 0; i < arrayOfDict[fieldNum].keys.length; i++) {
+    for(var i = 1; i < arrayOfDict[fieldNum].keys.length; i++) {
         tempValue = arrayOfDict[fieldNum].values[i];
         tempKey = (arrayOfDict[fieldNum].keys[i]).toString();
         dataPointsTemplate.push({y: tempValue, indexLabel: tempKey});
