@@ -10,9 +10,9 @@
 
   chai = require('chai');
 
-  Dictionary = require('../public/js/visualization.js').countingMap;
+  Dictionary = require('../public/js/visualization').countingMap;
 
-  generateMap = require('../public/js/visualization/js').generateMap;
+  generateMap = require('../public/js/visualization').generateMap;
 
   describe('dictionary tests', function() {
     it('empty keys in dictionary', function() {
@@ -95,33 +95,28 @@
     });
   });
 
-
-  /*
-  describe 'testing GenerateMap', ->
-    it 'should test to see if .values is working', ->
-      numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
-  
-      chai.assert.deepEqual generateMap(numbers).values, [9];
-  
-      numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-      chai.assert.deepEqual generateMap(numbers).values, [1,1,1,1,1,1,1,1,1]
-  
-      numbers = ['1', '1', '2', '2', '5', '5', '7', '8', '9', '1']
-      chai.assert.deepEqual generateMap(numbers).values, [3,2,2,1,1,1]
-  
-    it 'should test keys', ->
-      blankArray = []
-      chai.assert.deepEqual generateMap(blankArray).keys, new Dictionary().keys;
-  
-      numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
-      chai.assert.deepEqual generateMap(numbers).keys, ['1'];
-  
-      numbers = ['1', '2', '3', '1', '1', '1', '1', '1', '1']
-      chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3'];
-  
-      numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-      chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-   */
+  describe('testing GenerateMap', function() {
+    it('should test to see if .values is working', function() {
+      var numbers;
+      numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1'];
+      chai.assert.deepEqual(generateMap(numbers).values, [9]);
+      numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      chai.assert.deepEqual(generateMap(numbers).values, [1, 1, 1, 1, 1, 1, 1, 1, 1]);
+      numbers = ['1', '1', '2', '2', '5', '5', '7', '8', '9', '1'];
+      return chai.assert.deepEqual(generateMap(numbers).values, [3, 2, 2, 1, 1, 1]);
+    });
+    return it('should test keys', function() {
+      var blankArray, numbers;
+      blankArray = [];
+      chai.assert.deepEqual(generateMap(blankArray).keys, new Dictionary().keys);
+      numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1'];
+      chai.assert.deepEqual(generateMap(numbers).keys, ['1']);
+      numbers = ['1', '2', '3', '1', '1', '1', '1', '1', '1'];
+      chai.assert.deepEqual(generateMap(numbers).keys, ['1', '2', '3']);
+      numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      return chai.assert.deepEqual(generateMap(numbers).keys, ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+    });
+  });
 
 
   /*

@@ -38,7 +38,7 @@ function countGrades (arrayOfArrays){
 function generateMap (arrayOfStrings) {
     //Makes a countingMap of key value pairs based on occurrences within the given array. Returns the countingMap.
     var map = new countingMap();
-    for (var i = 1; i < arrayOfStrings.length; i++) {
+    for (var i = 0; i < arrayOfStrings.length; i++) {
         var entry = arrayOfStrings[i];
         map.add(entry)
     }
@@ -102,3 +102,6 @@ function countingMap(){
         return this.values[index];
     };
 }
+
+module.exports.countingMap = countingMap;
+module.exports.generateMap = generateMap;
