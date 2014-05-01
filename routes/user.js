@@ -46,7 +46,8 @@ Module dependencies.
         password: '4321',
         email: 'lal@lol.com',
         firstName: 'Justin',
-        surname: 'YaDeau'
+        surname: 'YaDeau',
+        promptArray: ["https://try-api.lightsidelabs.com/api/prompts/449"]
       }, {
         password: '9hnMILd23145',
         email: 'Ha@lol.com',
