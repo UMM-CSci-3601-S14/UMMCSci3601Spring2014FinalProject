@@ -216,12 +216,7 @@
       $push: {
         promptArray: promptToAdd
       }
-    }, function(err, numAffected, raw) {
-      if (err) {
-        console.log(err);
-      }
-      return console.log('The number of updated documents was %d', numAffected);
-    });
+    }, function(err, numAffected, raw) {});
     return res.send(200, "Prompt was added to the user.");
   };
 

@@ -144,7 +144,7 @@ exports.updatePassword = (req, res) ->
 exports.create = (req, res) ->
   User.findOne({email: req.body.email}, (err, result) ->
     if err
-#      console.log "err"
+      console.log "err"
     if result
       res.send(500, "Email is already being used")
     else
