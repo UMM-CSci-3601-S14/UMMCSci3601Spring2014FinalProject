@@ -3,8 +3,8 @@ test = require('selenium-webdriver/testing')
 webdriver = require('selenium-webdriver')
 chai = require('chai')
 #import our functions
-Dictionary = require('../public/js/visualization.js').countingMap
-generateMap = require('../public/js/visualization/js').generateMap
+Dictionary = require('../public/js/visualization').countingMap
+generateMap = require('../public/js/visualization').generateMap
 
 describe "cube tests", ->
     it "should create a paragraph with given text", ->
@@ -80,7 +80,7 @@ describe 'dictionary tests', ->
 
 ##### Test GenerateMap #####
 
-###
+
 describe 'testing GenerateMap', ->
   it 'should test to see if .values is working', ->
     numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
@@ -105,7 +105,7 @@ describe 'testing GenerateMap', ->
 
     numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-###
+
 
 
 #testing front end API calls

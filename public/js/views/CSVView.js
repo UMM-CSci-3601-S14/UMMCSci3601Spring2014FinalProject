@@ -20,7 +20,8 @@
       'click button#delete': 'delete',
       'click button#saveFields': 'saveFields',
       'click button#replace': 'replace',
-      'click button#cancel': 'cancel'
+      'click button#cancel': 'cancel',
+      'click button#finishCSV': 'finishCSV'
     };
 
     CSVView.prototype.initialize = function() {
@@ -28,18 +29,12 @@
     };
 
     CSVView.prototype.render = function() {
-      console.log('rendering CSVView');
       this.$el.html(this.template());
       window.onbeforeunload = function() {
         return "WARNING: Reloading the page will restart the process and you will lose all of your data!";
       };
       return this;
     };
-
-
-    /*
-    These functions are found in funtions.html
-     */
 
     CSVView.prototype.downloadCSV = function() {
       return exportToCSV();
@@ -73,6 +68,10 @@
     CSVView.prototype.replace = function() {
       replace();
       return $("#docTut").show();
+    };
+
+    CSVView.prototype.finishCSV = function() {
+      return finishCSVButton();
     };
 
     return CSVView;

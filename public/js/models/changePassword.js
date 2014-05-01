@@ -17,9 +17,7 @@
       newPassword: ''
     };
 
-    changePassword.prototype.initialize = function() {
-      return console.log('Initializing a user');
-    };
+    changePassword.prototype.initialize = function() {};
 
     return changePassword;
 

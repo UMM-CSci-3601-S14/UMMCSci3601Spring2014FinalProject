@@ -21,23 +21,19 @@ class window.dashView extends Backbone.View
     return
 
   render: ->
-    console.log 'dash'
+#    console.log 'dash'
     @$el.html @template()
 
-#    if user.prompts is undefined
-#      $('#yourPrompt').hide()
-#      $('#noPrompts').show()
-
-    console.log 'loading models'
+#    console.log 'loading models'
     i=0
     buttonString = ""
     buttonString1 = '<button class="box yourPrompts" id="'#id will be a url
     buttonString2 = '"><span class="glyphicon-large glyphicon glyphicon-ok-sign"></span><br /><span class="center dashBtn">'
     buttonString3 = '</span></button>'
     userPrompts = $.getJSON("/getPrompts").done ->
-      console.log "success"
+#      console.log "success"
       userPrompts = userPrompts.responseJSON
-      console.log userPrompts
+#      console.log userPrompts
 
       for p in userPrompts
         #The p is the url that holds the prompt within Lightside

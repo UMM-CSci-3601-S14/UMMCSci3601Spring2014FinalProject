@@ -8,4 +8,4 @@ class window.changePassword extends Backbone.Model
 
 
   initialize: ->
-    console.log 'Initializing a user'
+#    console.log 'Initializing a user'

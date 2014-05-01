@@ -12,9 +12,9 @@ LocalStrategy = require("passport-local").Strategy
 # * GET users listing.
 #
 User.count {},(err, c) ->
-  console.log err if err
+#  console.log err if err
   if c == 0
-    console.log 'Populating database'
+#    console.log 'Populating database'
     populateDB()
 
 exports.getByUsername = (req, res) ->
@@ -52,7 +52,7 @@ populateDB = ->
 
 createAndAdd = (u) ->
   newUser = new User(u)
-  console.log 'user logged'
+#  console.log 'user logged'
   newUser.save()
 
 passport.serializeUser (user, done) ->

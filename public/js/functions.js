@@ -101,6 +101,14 @@ function download(fileName, text) {
     saveAs(blob, fileName + ".csv");
 }
 /**********************************************************************/
+function finishCSVButton (){
+    if (documentsAdded == 0){
+        window.alert("Please add some documents");
+    }else{
+        alert("Sorry Folks, this feature doesn't work just yet. Instead, download the file and use the 'Upload Existing CSV File' feature to create your model.")
+    }
+
+}
 
 
 /**********************ADDING********************************/
@@ -172,7 +180,7 @@ function emptyFields() {
     return $("#text").val() == "";
 }
 
-//Hides cancel, the edit tutorial, and replace, shows submit, the text tutorial, and add
+//Exit editing mode: show normal controls
 function editButtons() {
     $("#cancel").hide();
     $("#replace").hide();
@@ -182,10 +190,11 @@ function editButtons() {
     $("#textTut").show();
     $("#editDocs").hide();
     $("#downloadCSV").show();
+    $("#finishCSV").show();
 
 }
 
-//Hides submit, the text tutorial, and add, shows cancel, edit tutorial, and replace.
+//Change to editing mode
 function addingButtons() {
     $("#add").hide();
     $("#submit").hide();
@@ -195,6 +204,7 @@ function addingButtons() {
     $("#textTut").hide();
     $("#editDocs").show();
     $("#downloadCSV").hide();
+    $("#finishCSV").hide();
 }
 /****************************************************************************************/
 

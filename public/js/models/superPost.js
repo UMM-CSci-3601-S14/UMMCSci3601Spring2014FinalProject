@@ -17,9 +17,7 @@
           'Content-Type': 'application/json'
         }
       });
-      return Backbone.sync(method, model, options).done(function() {
-        return console.log(model);
-      });
+      return Backbone.sync(method, model, options).done(function() {});
     };
 
     superPost.prototype.parse = function(response, options) {

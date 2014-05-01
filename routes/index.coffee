@@ -5,7 +5,6 @@ User = require('../schemas/userSchema').user
 
 
 exports.index = (req, res) ->
-  console.log 'inside index'
   if req.user is undefined
     res.locals = {
       title: 'LightSide'
@@ -121,7 +120,7 @@ exports.account = (req, res) ->
   if (req.session.passport.user is undefined)
     res.redirect '/login'
   else
-    console.log req.user
+#    console.log req.user
     res.locals = {
       title: 'LightSide'
       header: 'Welcome ' + req.user.firstName
@@ -135,8 +134,8 @@ exports.updatePassword = (req, res) ->
     newPass = req.body.newPassword
     req.user.password = newPass
     User.update({email: currentUser}, {password: newPass}, (err, numAffected, raw) ->
-      console.log err if err
-      console.log 'The number of updated documents was %d', numAffected
+#      console.log err if err
+#      console.log 'The number of updated documents was %d', numAffected
     )
     res.send(200, "Password changed successfully!")
   else
@@ -145,7 +144,7 @@ exports.updatePassword = (req, res) ->
 exports.create = (req, res) ->
   User.findOne({email: req.body.email}, (err, result) ->
     if err
-      console.log "err"
+#      console.log "err"
     if result
       res.send(500, "Email is already being used")
     else
@@ -173,8 +172,8 @@ exports.addPrompt = (req, res) ->
     $push:
       promptArray: promptToAdd
     (err, numAffected, raw) ->
-      console.log err if err
-      console.log 'The number of updated documents was %d', numAffected
+#      console.log err if err
+#      console.log 'The number of updated documents was %d', numAffected
   )
   res.send(200, "Prompt was added to the user.")
 
