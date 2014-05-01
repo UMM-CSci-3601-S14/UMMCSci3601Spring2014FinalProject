@@ -1,6 +1,25 @@
 The MIT License (MIT)
 
 Copyright (c) 2014, Students of UMM Csci 3601, Spring 2014 course offering
+Callery,Emma, 
+Chapman,Josh, 
+Donatucci,David, 
+Eberhardt,Jeremy,
+Gensch,Brennan,
+Harren,Thomas,
+Linder,Matthew
+Megarry,Henry Thomas,
+Mitchell,Brian, 
+Pagels,David Andrew,
+Peterson,Andrew Lawrence,
+Rachor,Kristin Marie,
+Schuweiler,Michael,
+Smolund,Isaac,
+Stenberg,Dillon,
+Stock,Brandon,
+Vink,Zachary,
+Walcome,Xavier Sarek,
+Yadeau,Justin.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
