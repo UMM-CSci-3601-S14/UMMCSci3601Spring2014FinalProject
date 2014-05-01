@@ -3,78 +3,70 @@ test = require('selenium-webdriver/testing')
 webdriver = require('selenium-webdriver')
 chai = require('chai')
 #import our functions
-Dictionary = require('../public/js/visualization').countingMap
+countingMap = require('../public/js/visualization').countingMap
 generateMap = require('../public/js/visualization').generateMap
 
-describe "cube tests", ->
-    it "should create a paragraph with given text", ->
-      chai.assert.equal "2", "2"
-    it '3 cubed is 27', ->
-      chai.assert.equal 27, cube(3)
-    it '-3 cubed is -27', ->
-      chai.assert.equal -27, cube(-3)
+
+######## Testing countingMap ##########
 
 
-######## Testing Dictionary ##########
+describe 'countingMap tests', ->
 
-
-describe 'dictionary tests', ->
-
-  it 'empty keys in dictionary', ->
-    emptyDict = new Dictionary()
-    chai.assert.deepEqual [], emptyDict.keys
-  it 'empty value in dictionary', ->
-    emptyDict = new Dictionary()
-    chai.assert.deepEqual [], emptyDict.values
-  it 'adds one item to dictionary then checks the key', ->
-    emptyDict = new Dictionary()
-    emptyDict.add('item')
-    chai.assert.deepEqual ['item'], emptyDict.keys
-  it 'adds one item to dictionary then checks the value', ->
-    emptyDict = new Dictionary()
-    emptyDict.add('item')
-    chai.assert.deepEqual [1], emptyDict.values
+  it 'empty keys in countingMap', ->
+    emptyMap = new countingMap()
+    chai.assert.deepEqual [], emptyMap.keys
+  it 'empty value in countingMap', ->
+    emptyMap = new countingMap()
+    chai.assert.deepEqual [], emptyMap.values
+  it 'adds one item to countingMap then checks the key', ->
+    emptyMap = new countingMap()
+    emptyMap.add('item')
+    chai.assert.deepEqual ['item'], emptyMap.keys
+  it 'adds one item to countingMap then checks the value', ->
+    emptyMap = new countingMap()
+    emptyMap.add('item')
+    chai.assert.deepEqual [1], emptyMap.values
   it 'checks to see if value.length works', ->
-    emptyDict = new Dictionary()
-    emptyDict.add('item')
-    emptyDict.add('item')
-    emptyDict.add('item')
-    emptyDict.add('otheritem')
-    chai.assert.deepEqual 2, emptyDict.values.length
+    emptyMap = new countingMap()
+    emptyMap.add('item')
+    emptyMap.add('item')
+    emptyMap.add('item')
+    emptyMap.add('otheritem')
+    chai.assert.deepEqual 2, emptyMap.values.length
   it 'checks to see if keys.length works', ->
-    emptyDict = new Dictionary()
-    emptyDict.add('item')
-    emptyDict.add('item')
-    emptyDict.add('item')
-    emptyDict.add('otheritem')
-    chai.assert.deepEqual 2, emptyDict.values.length
+    emptyMap = new countingMap()
+    emptyMap.add('item')
+    emptyMap.add('item')
+    emptyMap.add('item')
+    emptyMap.add('otheritem')
+    chai.assert.deepEqual 2, emptyMap.values.length
   it 'adds 500 items to the countingMap using a loop ', ->
-    emptyDict = new Dictionary()
+    emptyMap = new countingMap()
     i = 0
     while i < 500
-      emptyDict.add "item"
+      emptyMap.add "item"
       i++
-    chai.assert.deepEqual [500], emptyDict.values
+    chai.assert.deepEqual [500], emptyMap.values
   it 'adds 500 items to the countingMap using a loop then another 300 ', ->
-    emptyDict = new Dictionary()
+    emptyMap = new countingMap()
     i = 0
     while i < 500
-      emptyDict.add "item"
+      emptyMap.add "item"
       i++
     while i < 800
-      emptyDict.add "otheritem"
+      emptyMap.add "otheritem"
       i++
-    chai.assert.deepEqual [500, 300], emptyDict.values
+    chai.assert.deepEqual [500, 300], emptyMap.values
   it 'adds 500 items to the countingMap using a loop then another 300, checks the keys ', ->
-    emptyDict = new Dictionary()
+    emptyMap = new countingMap()
     i = 0
     while i < 500
-      emptyDict.add "item"
+      emptyMap.add "item"
       i++
     while i < 800
-      emptyDict.add "otheritem"
+      emptyMap.add "otheritem"
       i++
-    chai.assert.deepEqual ['item','otheritem'], emptyDict.keys
+    chai.assert.deepEqual ['item','otheritem'], emptyMap.keys
 
 
 
@@ -85,26 +77,26 @@ describe 'testing GenerateMap', ->
   it 'should test to see if .values is working', ->
     numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
 
-    chai.assert.deepEqual generateMap(numbers).values, [9];
+    chai.assert.deepEqual generateMap(numbers).values, [8];
 
     numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-    chai.assert.deepEqual generateMap(numbers).values, [1,1,1,1,1,1,1,1,1]
+    chai.assert.deepEqual generateMap(numbers).values, [1,1,1,1,1,1,1,1]
 
     numbers = ['1', '1', '2', '2', '5', '5', '7', '8', '9', '1']
-    chai.assert.deepEqual generateMap(numbers).values, [3,2,2,1,1,1]
+    chai.assert.deepEqual generateMap(numbers).values, [2,2,2,1,1,1]
 
   it 'should test keys', ->
     blankArray = []
-    chai.assert.deepEqual generateMap(blankArray).keys, new Dictionary().keys;
+    chai.assert.deepEqual generateMap(blankArray).keys, new countingMap().keys;
 
     numbers = ['1', '1', '1', '1', '1', '1', '1', '1', '1']
     chai.assert.deepEqual generateMap(numbers).keys, ['1'];
 
     numbers = ['1', '2', '3', '1', '1', '1', '1', '1', '1']
-    chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3'];
+    chai.assert.deepEqual generateMap(numbers).keys, ['2', '3', '1'];
 
     numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-    chai.assert.deepEqual generateMap(numbers).keys, ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    chai.assert.deepEqual generateMap(numbers).keys, ['2', '3', '4', '5', '6', '7', '8', '9'];
 
 
 

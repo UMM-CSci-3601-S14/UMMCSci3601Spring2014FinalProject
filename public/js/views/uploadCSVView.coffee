@@ -268,7 +268,7 @@ class window.uploadCSVView extends Backbone.View
   # this creates a key value pair system that holds each particular vield value (held as the key) and the number of occurences of the value is stored as the value. it then returns the dictionary
   generateMap = (arrayOfStrings) ->
     map = new Dictionary()
-    i = 1
+    i = 0
 
     while i < arrayOfStrings.length
       entry = arrayOfStrings[i]
