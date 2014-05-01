@@ -9,28 +9,28 @@
 //Ideally we'd use the API, but as a stop-gap, we tried to use the ZipJs library. It was way beyond my understanding,
 // so i'll leave this here
 
-
-function processEssay(aString) {
-//returns one complete line for a csv, given an essay.
-  var regex = /{#.*}/
-  //This regex finds our grade segment - which has the form {#grade1#grade2}.
-  //It assumes that it is among the first elements of a Essay.
-  //So similar forms *CAN* be in an essay, but ours *HAS* to be first.
-  var grades = getGrades(aString.match(regex))
-  var csvLine = "";
-  for (var i = 0; i <= grades.length; i++){
-      csvLine = csvLine + grades[i] + ", ";
-  }
-    //here we add the essay to the line, removing our grade construct.
-  return (csvLine + aString.replace(regex, "") + "\r\n")
-}
-
 function getGrades(aString){
-    var regex = /#([^#{}\s]*)/gm
-    //Matches hash tags, globally, with any non hash character in them.
+    var regex = /#([^#{}\s]*)/gm;
+    //Matches hashtags, globally, with any non hash character in them.
     //So the hash ## is *NOT* ok, but all other hashes work.
     //Even Unicode characters - #漢字 should work!
     return aString.match(regex);
+}
+
+function processEssay(aString) {
+//returns one complete line for a csv, given an essay.
+    var regex = /{#.*}/;
+    //This regex finds our grade segment - which has the form {#grade1#grade2}.
+    //It assumes that it is among the first elements of a Essay.
+    //So similar forms *CAN* be in an essay, but ours *HAS* to be first.
+    var tags = aString.match(regex);
+    var grades = getGrades(tags[0]);
+    var csvLine = "";
+    for (var i = 0; i < grades.length; i++){
+        csvLine = csvLine + grades[i] + ", ";
+    }
+    //here we add the essay to the line, removing our grade construct.
+    return (csvLine + aString.replace(regex, "") + "\r\n");
 }
 
 function dezip(zip){
