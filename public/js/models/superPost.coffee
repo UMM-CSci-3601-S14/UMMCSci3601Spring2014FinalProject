@@ -7,7 +7,7 @@ class window.superPost extends Backbone.Model
         'Content-Type': 'application/json'
       }
     Backbone.sync(method,model,options).done ->
-      console.log model
+#      console.log model
 
 
   parse: (response, options) ->

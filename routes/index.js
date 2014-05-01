@@ -5,7 +5,6 @@
   User = require('../schemas/userSchema').user;
 
   exports.index = function(req, res) {
-    console.log('inside index');
     if (req.user === void 0) {
       res.locals = {
         title: 'LightSide',
@@ -141,7 +140,6 @@
     if (req.session.passport.user === void 0) {
       res.redirect('/login');
     } else {
-      console.log(req.user);
       res.locals = {
         title: 'LightSide',
         header: 'Welcome ' + req.user.firstName,
@@ -161,12 +159,7 @@
         email: currentUser
       }, {
         password: newPass
-      }, function(err, numAffected, raw) {
-        if (err) {
-          console.log(err);
-        }
-        return console.log('The number of updated documents was %d', numAffected);
-      });
+      }, function(err, numAffected, raw) {});
       return res.send(200, "Password changed successfully!");
     } else {
       return res.send(500, "Passwords do not match!");

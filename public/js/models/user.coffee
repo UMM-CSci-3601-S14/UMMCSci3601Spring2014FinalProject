@@ -7,9 +7,5 @@ class window.user extends Backbone.Model
    surname: ''
    prompts: []
 
-
-
   initialize: ->
-    console.log 'Initializing a user'
-
-
+#    console.log 'Initializing a user'

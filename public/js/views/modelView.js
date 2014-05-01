@@ -32,7 +32,6 @@
     };
 
     modelView.prototype.render = function() {
-      console.log('Model');
       this.$el.html(this.template());
       return this;
     };

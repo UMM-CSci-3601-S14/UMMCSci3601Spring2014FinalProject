@@ -16,11 +16,7 @@ Module dependencies.
   LocalStrategy = require("passport-local").Strategy;
 
   User.count({}, function(err, c) {
-    if (err) {
-      console.log(err);
-    }
     if (c === 0) {
-      console.log('Populating database');
       return populateDB();
     }
   });
@@ -69,7 +65,6 @@ Module dependencies.
   createAndAdd = function(u) {
     var newUser;
     newUser = new User(u);
-    console.log('user logged');
     return newUser.save();
   };
 

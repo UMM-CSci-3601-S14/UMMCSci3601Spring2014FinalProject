@@ -9,7 +9,7 @@ class window.uploadZipView extends Backbone.View
     @render()
 
   render: ->
-    console.log 'rendering uploadZipView'
+#    console.log 'rendering uploadZipView'
     @$el.html @template()
     this
 

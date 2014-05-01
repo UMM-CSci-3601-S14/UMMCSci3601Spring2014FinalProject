@@ -18,9 +18,7 @@
       prompts: []
     };
 
-    user.prototype.initialize = function() {
-      return console.log('Initializing a user');
-    };
+    user.prototype.initialize = function() {};
 
     return user;
 

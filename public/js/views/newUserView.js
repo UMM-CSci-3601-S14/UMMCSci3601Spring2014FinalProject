@@ -60,11 +60,9 @@
               authorURL: newAuthor.responseJSON.url
             }),
             success: function() {
-              console.log("created");
               return $('#backdoorAccessToLogin').click();
             },
             error: function() {
-              console.log("email taken");
               return $('#emailIsTaken').show();
             }
           });

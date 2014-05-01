@@ -129,9 +129,9 @@ class window.uploadCSVView extends Backbone.View
                                           promptArray: finalPrompt.attributes.url
                                         )
                                         success: ->
-                                          console.log "worked"
+#                                          console.log "worked"
                                         error: ->
-                                          console.log "failed"
+#                                          console.log "failed"
                                       }
                                       newAnswerSet = new createAnswerSet({"prompt": finalPrompt.attributes.url, "trained_models": finalPrompt.attributes.trained_models})
 

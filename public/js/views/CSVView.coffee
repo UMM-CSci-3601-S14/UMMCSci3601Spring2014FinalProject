@@ -16,7 +16,7 @@ class window.CSVView extends Backbone.View
     @render()
 
   render: ->
-    console.log 'rendering CSVView'
+#    console.log 'rendering CSVView'
     @$el.html @template()
     #REFRESH WARNING:
     window.onbeforeunload = ->

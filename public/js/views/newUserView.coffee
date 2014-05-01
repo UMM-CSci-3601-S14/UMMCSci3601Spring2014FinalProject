@@ -38,9 +38,9 @@ class window.newUserView extends Backbone.View
             authorURL: newAuthor.responseJSON.url
           )
           success: ->
-            console.log "created"
+#            console.log "created"
             $('#backdoorAccessToLogin').click()
           error: ->
-            console.log "email taken"
+#            console.log "email taken"
             $('#emailIsTaken').show()
         }
