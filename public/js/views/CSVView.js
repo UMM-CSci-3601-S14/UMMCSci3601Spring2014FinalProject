@@ -37,11 +37,6 @@
       return this;
     };
 
-
-    /*
-    These functions are found in funtions.html
-     */
-
     CSVView.prototype.downloadCSV = function() {
       return exportToCSV();
     };
