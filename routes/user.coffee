@@ -40,6 +40,7 @@ populateDB = ->
       email: 'lal@lol.com'
       firstName: 'Justin'
       surname: 'YaDeau'
+      promptArray: ["https://try-api.lightsidelabs.com/api/prompts/449"]
     },
     {
       password: '9hnMILd23145'

@@ -71,7 +71,7 @@ class window.dashView extends Backbone.View
                 shortTitle += '...'
                 buttonString += buttonString1 + p + buttonString2 + shortTitle + buttonString3
 
-      #append the buttons to the div 'customModels'
+#     append the buttons to the div 'customModels'
       $('#customModels').append(buttonString)
 
     this
@@ -80,7 +80,7 @@ class window.dashView extends Backbone.View
     window.location.href = '/model-maker'
 
   loadYourPrompts: ->
-    #when you
+    #when you click any of your made prompts
     $('.yourPrompts').click ->
       prompt = this.id
       thePrompt = new request
@@ -123,7 +123,7 @@ class window.dashView extends Backbone.View
     $('#essayArea').hide()
 
   submitEssay: ->
-    # alerts user if no text has been entered
+#   alerts user if no text has been entered
     if $('#essayContents').val() is ""
       alert "Please enter text to for LightSide to Grade."
 
@@ -137,18 +137,18 @@ class window.dashView extends Backbone.View
         text:  $('#essayContents').val()
       }).save().done ->
 
-        # Post a prediction task to calculate the grade of the essay.
+#       Post a prediction task to calculate the grade of the essay.
         thePredictionTask = new predictionTask({
           answer_set: theAnswerSet.responseJSON.url
           trained_model: thePrompt.responseJSON.default_models[0]
         }).save().done ->
 
-          # Adds the prediction task to the process queue
+#         Adds the prediction task to the process queue
           theProcess = new request()
           theProcess.urlRoot = thePredictionTask.responseJSON.process
           theProcess.save().done ->
 
-            # Request for checking status of essay grade calculation every second
+#           Request for checking status of essay grade calculation every second
             thePredictionStatus = new request()
             looping = setInterval (->
 
@@ -157,7 +157,7 @@ class window.dashView extends Backbone.View
 
                 if thePredictionStatus.attributes.status == 'S'
 
-                  # Gets the grade
+#                 Gets the grade
                   thePredictionResult = new predictionResult().fetch().done ->
                     $('#grade').html("Your grade for the submitted essay is " +
                     thePredictionResult.responseJSON.results[0].label + " out of 5.")
