@@ -24,5 +24,3 @@
   })(Backbone.Model);
 
 }).call(this);
-
-//# sourceMappingURL=changePassword.map

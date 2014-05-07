@@ -90,5 +90,3 @@
   })(Backbone.View);
 
 }).call(this);
-
-//# sourceMappingURL=accountView.map

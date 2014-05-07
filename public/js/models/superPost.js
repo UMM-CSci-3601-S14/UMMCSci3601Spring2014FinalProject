@@ -29,5 +29,3 @@
   })(Backbone.Model);
 
 }).call(this);
-
-//# sourceMappingURL=superPost.map

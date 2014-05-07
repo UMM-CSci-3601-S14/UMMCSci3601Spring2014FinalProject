@@ -28,5 +28,3 @@
   })(Backbone.View);
 
 }).call(this);
-
-//# sourceMappingURL=logInView.map

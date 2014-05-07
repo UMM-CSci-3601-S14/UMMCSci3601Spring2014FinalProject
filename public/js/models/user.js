@@ -25,5 +25,3 @@
   })(Backbone.Model);
 
 }).call(this);
-
-//# sourceMappingURL=user.map
